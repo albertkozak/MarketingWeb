@@ -1,9 +1,19 @@
 import React from "react";
-import Home from "./screens/Home";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Home from "./screens/Home";
+import NavComponent from "./components/NavComponent";
 
 function App() {
-  return <Home />;
+  return (
+    <Router>
+      <NavComponent />
+      <Switch>
+        <Route exact path="/" component={Home} />
+      </Switch>
+    </Router>
+  );
 }
 
 export default App;
