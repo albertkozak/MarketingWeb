@@ -1,12 +1,12 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 
-const Home = () => {
+const Events = () => {
   return (
     <Container>
-      <h1>Home Page</h1>
+      <h1>Event Manager</h1>
     </Container>
   );
 };
 
-export default Home;
+export default Events;
