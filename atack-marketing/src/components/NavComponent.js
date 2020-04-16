@@ -19,8 +19,8 @@ const NavComponent = () => {
             </Link>
           </Nav.Link>
           <Nav.Link>
-            <Link className="nav-link" to="/tabTwo">
-              Tab Two
+            <Link className="nav-link" to="/Events">
+              Events
             </Link>
           </Nav.Link>
         </Nav>

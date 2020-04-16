@@ -1,12 +1,12 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 
-const TabTwo = () => {
+const Events = () => {
   return (
     <Container>
-      <h1>Tab Two</h1>
+      <h1>Event Manager</h1>
     </Container>
   );
 };
 
-export default TabTwo;
+export default Events;
