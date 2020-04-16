@@ -6,16 +6,34 @@ const NavComponent = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Navbar.Brand>
-        <Link to="/">Atack Marketing</Link>
+        <Link className="navbar-brand" to="/">
+          Atack Marketing
+        </Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           <Nav.Link>
-            <Link to="/">Home</Link>
+            <Link className="nav-link" to="/">
+              Home
+            </Link>
           </Nav.Link>
           <Nav.Link>
-            <Link to="/tabTwo">Tab Two</Link>
+            <Link className="nav-link" to="/tabTwo">
+              Tab Two
+            </Link>
+          </Nav.Link>
+        </Nav>
+        <Nav pullRight>
+          <Nav.Link>
+            <Link className="nav-link" to="/login">
+              Login
+            </Link>
+          </Nav.Link>
+          <Nav.Link>
+            <Link className="nav-link" to="/register">
+              Register
+            </Link>
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>

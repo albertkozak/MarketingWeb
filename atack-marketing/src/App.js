@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./screens/Home";
 import NavComponent from "./components/NavComponent";
 import TabTwo from "./screens/TabTwo";
+import Register from "./screens/Register";
+import Login from "./screens/Login";
 
 function App() {
   return (
@@ -12,7 +14,9 @@ function App() {
       <NavComponent />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/tabTwo" component={TabTwo} />
+        <Route path="/tabTwo" component={TabTwo} />
+        <Route path="/register" component={Register} />
+        <Route path="/login" component={Login} />
       </Switch>
     </Router>
   );
