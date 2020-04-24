@@ -1,37 +1,82 @@
-import React from "react";
-import { Container, Form, Col, Button, Row } from "react-bootstrap";
+import React from 'react';
+import { Container, } from 'react-bootstrap';
+import { Formik,  } from 'formik';
+import * as Yup from 'yup';
 
+
+ 
 const Login = () => {
-  return (
+
+  
+  return(
     <Container>
       <h1>Login</h1>
-      <Form>
-        <Form.Group as={Row} controlId="formHorizontalEmail">
-          <Form.Label column sm={2}>
-            Email
-          </Form.Label>
-          <Col sm={10}>
-            <Form.Control type="email" placeholder="Email" />
-          </Col>
-        </Form.Group>
+	<Formik
+		initialValues={{ email: '', password: '' }}
+		onSubmit={(values, { setSubmitting }) => {
+			setTimeout(() => {
+				console.log('Logging in', values);
+				setSubmitting(false);
+			}, 500);
+		}}
+		validationSchema={Yup.object().shape({
+			email: Yup.string().email().required('Required'),
+			password: Yup.string()
+				.required('No password provided.')
+				.min(6, 'Password is too short - should be 6 chars minimum.')
+				.matches(/(?=.*[0-9])/, 'Password must contain a number.'),
+		})}
+	>
+		{(props) => {
+			const {
+				values,
+				touched,
+				errors,
+				isSubmitting,
+				handleChange,
+				handleBlur,
+				handleSubmit,
+			} = props;
 
-        <Form.Group as={Row} controlId="formHorizontalPassword">
-          <Form.Label column sm={2}>
-            Password
-          </Form.Label>
-          <Col sm={10}>
-            <Form.Control type="password" placeholder="Password" />
-          </Col>
-        </Form.Group>
+			return (
+				<form onSubmit={handleSubmit}>
+					<label htmlFor="email">Email</label>
+					<input
+						name="email"
+						type="text"
+						placeholder="Enter your email"
+						value={values.email}
+						onChange={handleChange}
+						onBlur={handleBlur}
+						className={errors.email && touched.email && 'error'}
+					/>
+					{errors.email && touched.email && (
+						<div className="input-feedback">{errors.email}</div>
+					)}
 
-        <Form.Group as={Row}>
-          <Col sm={{ span: 10, offset: 2 }}>
-            <Button type="submit">Sign in</Button>
-          </Col>
-        </Form.Group>
-      </Form>
-    </Container>
-  );
-};
-
+					<label htmlFor="email">Password</label>
+					<input
+						name="password"
+						type="password"
+						placeholder="Enter your password"
+						value={values.password}
+						onChange={handleChange}
+						onBlur={handleBlur}
+						className={
+							errors.password && touched.password && 'error'
+						}
+					/>
+					{errors.password && touched.password && (
+						<div className="input-feedback">{errors.password}</div>
+					)}
+					<button type="submit" disabled={isSubmitting}>
+						Login
+					</button>
+				</form>
+			);
+		}}
+	</Formik>
+  </Container>
+);
+  };
 export default Login;
