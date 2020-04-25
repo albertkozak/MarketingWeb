@@ -3,10 +3,12 @@ import { Container } from 'react-bootstrap';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import firebase from '../firebase';
+import { useHistory } from 'react-router-dom';
 
 const Register = () => {
 	const API_CREATE_URL =
 		'https://atackmarketingapi.azurewebsites.net/api/User/create';
+	const history = useHistory();
 	async function handleSubmit(values) {
 		return new Promise(async (resolve, reject) => {
 			if (values.email.length > 0 && values.password.length > 0) {
@@ -61,13 +63,14 @@ const Register = () => {
 	}
 
 	return (
-		<Container>
+	<>
 			<h1>Register</h1>
 			<Formik
 				initialValues={{ email: '', password: '', confirmPassword: '' }}
 				onSubmit={async (values, { setSubmitting, resetForm }) => {
 					try {
 						await handleSubmit(values);
+						history.push('/Login');
 					} catch (error) {
 						alert(error);
 						resetForm();
@@ -178,7 +181,7 @@ const Register = () => {
 					);
 				}}
 			</Formik>
-		</Container>
+		</>
 	);
 };
 export default Register;

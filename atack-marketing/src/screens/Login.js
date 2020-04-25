@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { Component }from 'react';
 import { Container } from 'react-bootstrap';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import firebase from '../firebase';
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
 	//const API_CREATE_URL =
 	//		'https://atackmarketingapi.azurewebsites.net/api/User/create';
 	const API_GET_URL = 'https://atackmarketingapi.azurewebsites.net/api/User';
-
+  const history = useHistory();
 	async function handleSubmit(values) {
 		return new Promise(async (resolve, reject) => {
 			if (values.email.length > 0 && values.password.length > 0) {
@@ -67,14 +68,15 @@ const Login = () => {
 	}
 
 	return (
-		<Container>
+    <>
 			<h1>Login</h1>
 			<Formik
 				initialValues={{ email: '', password: '' }}
 				onSubmit={async (values, { setSubmitting, resetForm }) => {
 					try {
 						await handleSubmit(values);
-						resetForm();
+            resetForm();
+            history.push('/Home');
 					} catch (error) {
 						alert(error);
 						values.password = '';
@@ -155,7 +157,7 @@ const Login = () => {
 					);
 				}}
 			</Formik>
-		</Container>
+	</>
 	);
 };
 export default Login;
