@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Container } from 'react-bootstrap';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import firebase from '../../firebase';
@@ -21,7 +20,7 @@ const Login = () => {
 						.then(() => {
 							if (firebase.auth().currentUser.emailVerified === false) {
 								reject(
-									'please verify your email address from the verification email sent to your inbox'
+									'Please verify email address.'
 								);
 							}
 							firebase
@@ -80,10 +79,10 @@ const Login = () => {
 						//	}, 1000);
 					}}
 					validationSchema={Yup.object().shape({
-						email: Yup.string().email().required('Required'),
+						email: Yup.string().email().required('Password Required.'),
 						password: Yup.string()
-							.required('No password provided.')
-							.min(6, 'Password is too short - should be 6 chars minimum.')
+							.required('Enter Password.')
+							.min(6, 'Minimum of 6 characters required.')
 							.matches(/(?=.*[0-9])/, 'Password must contain a number.')
 					})}
 				>
@@ -96,7 +95,7 @@ const Login = () => {
 								<input
 									name="email"
 									type="text"
-									placeholder="Enter your email"
+									placeholder="Email"
 									value={values.email}
 									onChange={handleChange}
 									onBlur={handleBlur}
@@ -108,7 +107,7 @@ const Login = () => {
 								<input
 									name="password"
 									type="password"
-									placeholder="Enter your password"
+									placeholder="Password"
 									value={values.password}
 									onChange={handleChange}
 									onBlur={handleBlur}

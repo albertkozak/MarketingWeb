@@ -19,7 +19,7 @@ const Register = () => {
 						.createUserWithEmailAndPassword(values.email, values.password)
 						.then((response) => {
 							console.log(response);
-							alert(' - ' + response.user.email + ' Please check verification email');
+							alert(' - ' + response.user.email + 'Please verify email address.');
 
 							firebase.auth().currentUser.sendEmailVerification();
 
@@ -70,12 +70,12 @@ const Register = () => {
 					validationSchema={Yup.object().shape({
 						email: Yup.string().email().required('Required'),
 						password: Yup.string()
-							.required('No password provided.')
-							.min(6, 'Password is too short - should be 6 chars minimum.')
+							.required('Enter password.')
+							.min(6, 'Minimum of 6 characters required.')
 							.matches(/(?=.*[0-9])/, 'Password must contain a number.'),
 						confirmPassword: Yup.string()
-							.oneOf([ Yup.ref('password') ], 'Confirm Password must matched Password')
-							.required('Confirm Password is required')
+							.oneOf([ Yup.ref('password') ], 'Passwords do not match.')
+							.required('Confirm password.')
 					})}
 				>
 					{(props) => {
@@ -87,7 +87,7 @@ const Register = () => {
 								<input
 									name="email"
 									type="text"
-									placeholder="Enter your email"
+									placeholder="Email"
 									value={values.email}
 									onChange={handleChange}
 									onBlur={handleBlur}
@@ -99,7 +99,7 @@ const Register = () => {
 								<input
 									name="password"
 									type="password"
-									placeholder="Enter your password"
+									placeholder="Password"
 									value={values.password}
 									onChange={handleChange('password')}
 									onBlur={handleBlur('password')}
@@ -111,7 +111,7 @@ const Register = () => {
 								<input
 									name="password"
 									type="password"
-									placeholder="re-enter your password"
+									placeholder="Confirm Password"
 									value={values.confirmPassword}
 									onChange={handleChange('confirmPassword')}
 									onBlur={handleBlur('confirmPassword')}

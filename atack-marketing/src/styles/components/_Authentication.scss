@@ -48,7 +48,7 @@
 	
   input {
     padding-left: 1rem;
-    margin-bottom: 30px;
+    margin-bottom: 1rem;
 	}
 	
   button {
@@ -89,7 +89,8 @@
       margin-left: auto;
       margin-right: auto;
       display: block;
-    }
+		}
+		
     .auth-wrapper {
       position: relative;
       transform: translateX(0);
@@ -98,10 +99,12 @@
 	
   @media(max-width: 590px) {
     margin-top: 3rem;
-    width: 400px;
+		width: 400px;
+		
     img {
       max-width: 200px;
-    }
+		}
+		
     h1 {
       font-size: 2.6rem;
       margin: 2rem 0;
@@ -109,30 +112,37 @@
 	}
 	
   @media(max-width: 470px) {
-    width: 300px;
+		width: 300px;
+		
     img {
       max-width: 150px;
-    }
+		}
+		
     h1 {
       font-size: 2.5em;
       margin-bottom: 0px;
-    }
+		}
+		
     input, button {
       border-radius: 15px;
       font-size: 1em;
       padding: 10px;
-    }
+		}
+		
     input {
       padding-left: 30px;
       margin-bottom: 20px;
-    }
+		}
+		
     button {
       font-size: 1.1em;
       margin-bottom: 15px;
-    }
+		}
+		
     p {
       font-size: 1em;
-    }
+		}
+		
     .auth__error {
       height: 24px;
       padding-bottom: 5px;
