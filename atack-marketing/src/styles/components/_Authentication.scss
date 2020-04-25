@@ -2,53 +2,68 @@
   position: relative;
   width: 500px;
   margin: 0 auto;
-  margin-top: 160px;
+	margin-top: 160px;
+
   img {
     position: absolute;
     max-width: 330px;
     transform: translate(-80%, -20%);
-  }
+	}
+	
   .auth-wrapper {
     position: absolute;
     transform: translateX(30%);
-  }
+	}
+	
   h1 {
     color: $black;
     text-transform: uppercase;
     font-size: 3.5em;
     margin-bottom: 10px;
-  }
+	}
+	
   input, button, p {font-family: $body-font}
   .auth__message {
     text-align: left;
     font-size: 1.1em;
     margin-bottom: 0;
-  }
+	}
+	
   .auth__message--lone {
     margin-bottom: 20px;
-  }
+	}
+	
   .auth__error {
     text-align: center;
-  }
+	}
+	
   input, button {
     box-sizing: border-box;
     width: 100%;
-    border-radius: 20px;
-    font-size: 1.3em;
-    padding: 14px;
+    border-radius: 10px;
+    font-size: 1rem;
+    padding: 7px;
     border: 1px solid $grey;
-  }
+	}
+	
   input {
-    padding-left: 50px;
+    padding-left: 1rem;
     margin-bottom: 30px;
-  }
+	}
+	
   button {
-    font-size: 1.3em;
+    font-size: 1rem;
     margin-bottom: 15px;
     text-transform: uppercase;
     color: $white;
-    background-color: $orange;
-  }
+		background-color: $orange;
+		border:none;
+	}
+
+	label {
+		display: none;
+	}
+
   .auth__link {
     font-size: 1.2em;
     text-align: center;
@@ -58,12 +73,14 @@
       text-decoration: none;
       color: $orange;
     }
-  }
+	}
+	
   .auth__error {
     color: $orange;
     height: 32px;
     padding-bottom: 5px;
-  }
+	}
+	
   @media(max-width: 1040px) {
     margin-top: 20px;
     img {
@@ -73,22 +90,24 @@
       margin-right: auto;
       display: block;
     }
-    .auth__form-wrapper {
+    .auth-wrapper {
       position: relative;
       transform: translateX(0);
     }
-  }
+	}
+	
   @media(max-width: 590px) {
-    margin-top: 5px;
+    margin-top: 3rem;
     width: 400px;
     img {
       max-width: 200px;
     }
     h1 {
-      font-size: 3em;
-      margin-bottom: 5px;
+      font-size: 2.6rem;
+      margin: 2rem 0;
     }
-  }
+	}
+	
   @media(max-width: 470px) {
     width: 300px;
     img {
