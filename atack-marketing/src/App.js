@@ -6,6 +6,7 @@ import NavComponent from "./components/NavComponent";
 import Events from "./screens/Events";
 import Register from "./screens/Register";
 import Login from "./screens/Login";
+//import './styles/index'
 
 function App() {
   return (
