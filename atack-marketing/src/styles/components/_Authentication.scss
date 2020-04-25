@@ -20,7 +20,7 @@ input {
   margin-bottom: 20px;
   padding: 10px;
   border-radius: 3px;
-  border: 1px solid #777;
+  border: 1px solid $grey;
 }
 
 input.error {
@@ -37,13 +37,13 @@ input.error {
 button {
   padding: 10px 15px;
   background-color: rgb(70, 153, 179);
-  color: white;
+  color: $white;
   border: 1px solid rgb(70, 153, 179);
   background-color: 250ms;
 }
 
 button:hover {
   cursor: pointer;
-  background-color: white;
+  background-color: $white;
   color: rgb(70, 153, 179);
 }
