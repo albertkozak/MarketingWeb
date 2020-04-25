@@ -1,84 +1,79 @@
-import React, { Component }from 'react';
+import React from 'react';
 import { Container } from 'react-bootstrap';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import firebase from '../firebase';
+import firebase from '../../firebase';
 import { useHistory } from 'react-router-dom';
 
-const Login = () => {
-	//const API_CREATE_URL =
-	//		'https://atackmarketingapi.azurewebsites.net/api/User/create';
-	const API_GET_URL = 'https://atackmarketingapi.azurewebsites.net/api/User';
-  const history = useHistory();
+const Register = () => {
+	const API_CREATE_URL =
+		'https://atackmarketingapi.azurewebsites.net/api/User/create';
+	const history = useHistory();
 	async function handleSubmit(values) {
 		return new Promise(async (resolve, reject) => {
 			if (values.email.length > 0 && values.password.length > 0) {
 				await setTimeout(() => {
+					console.log('AAAA');
 					firebase
 						.auth()
-						.signInWithEmailAndPassword(
+						.createUserWithEmailAndPassword(
 							values.email,
 							values.password
 						)
-						.then(() => {
-							if (
-								firebase.auth().currentUser.emailVerified ===
-								false
-							) {
-								reject(
-									'please verify your email address from the verification email sent to your inbox'
-								);
-							}
+
+						.then((response) => {
+							console.log(response);
+							alert(
+								' - ' +
+								response.user.email +
+								' Please check verification email'
+							);
+
+							firebase.auth().currentUser.sendEmailVerification();
+
 							firebase
 								.auth()
 								.currentUser.getIdTokenResult()
-
 								.then((tokenResponse) => {
-									console.log(tokenResponse);
-									fetch(API_GET_URL, {
-										method: 'GET',
+									fetch(API_CREATE_URL, {
+										method: 'POST',
 										headers: {
 											Authorization: `Bearer ${tokenResponse.token}`,
 										},
-										//	})
-										// fetch(API_CREATE_URL, {
-										// 	method: 'POST',
-										// 	headers: {
-										// 		Authorization: `Bearer ${tokenResponse.token}`,
-										// 	},
 									}).then((response) => {
-										if (response.status === 200) {
+										if (response.status === 201) {
 											resolve(response.status);
 										} else {
 											reject(
-												'API ERROR: ' +
+												console.log(
+													'API ERROR: ' +
 													JSON.stringify(response)
+												)
 											);
 										}
 									});
-
-									resolve();
-								})
-								.catch((error) => reject('Firebase ' + error));
+								});
 						})
-						.catch((error) => reject('Firebase ' + error));
-				}, 1000);
+						.catch((e) => {
+							console.log(e);
+						});
+				}, 3000);
 			}
 		});
 	}
 
 	return (
-    <>
-			<h1>Login</h1>
+		<>
+			<h1>Register</h1>
 			<Formik
-				initialValues={{ email: '', password: '' }}
+				initialValues={{ email: '', password: '', confirmPassword: '' }}
 				onSubmit={async (values, { setSubmitting, resetForm }) => {
 					try {
 						await handleSubmit(values);
-            resetForm();
-            history.push('/Home');
+						history.push('/Login');
 					} catch (error) {
 						alert(error);
+						resetForm();
 						values.password = '';
 					}
 					//	setTimeout(() => {
@@ -98,6 +93,12 @@ const Login = () => {
 							/(?=.*[0-9])/,
 							'Password must contain a number.'
 						),
+					confirmPassword: Yup.string()
+						.oneOf(
+							[Yup.ref('password')],
+							'Confirm Password must matched Password'
+						)
+						.required('Confirm Password is required'),
 				})}
 			>
 				{(props) => {
@@ -137,8 +138,8 @@ const Login = () => {
 								type="password"
 								placeholder="Enter your password"
 								value={values.password}
-								onChange={handleChange}
-								onBlur={handleBlur}
+								onChange={handleChange('password')}
+								onBlur={handleBlur('password')}
 								className={
 									errors.password &&
 									touched.password &&
@@ -150,14 +151,37 @@ const Login = () => {
 									{errors.password}
 								</div>
 							)}
+							<label htmlFor="confirmPassword">
+								Confirm Password
+							</label>
+							<input
+								name="password"
+								type="password"
+								placeholder="re-enter your password"
+								value={values.confirmPassword}
+								onChange={handleChange('confirmPassword')}
+								onBlur={handleBlur('confirmPassword')}
+								className={
+									errors.confirmPassword &&
+									touched.confirmPassword &&
+									'error'
+								}
+							/>
+							{errors.confirmPassword &&
+								touched.confirmPassword && (
+									<div className="input-feedback">
+										{errors.confirmPassword}
+									</div>
+								)}
+
 							<button type="submit" disabled={isSubmitting}>
-								Login
+								Register
 							</button>
 						</form>
 					);
 				}}
 			</Formik>
-	</>
+		</>
 	);
 };
-export default Login;
+export default Register;
