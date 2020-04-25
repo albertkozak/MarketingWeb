@@ -47,9 +47,9 @@ const Register = () => {
 	}
 
 	return (
-		<div className="login-container">
+		<div className="auth-container">
 			<img className="logo" src={Logo} alt="logo" />
-			<div className="wrapper">
+			<div className="auth-wrapper">
 				<h1>Register</h1>
 				<Formik
 					initialValues={{ email: '', password: '', confirmPassword: '' }}
