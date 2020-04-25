@@ -1,13 +1,13 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
-// import logo from "";
+import logo from "../assets/nav-logo.png";
 
 const NavComponent = () => {
   return (
     <header className="header">
-      {/* <a href="/" className="logo">
-            <img src={logo} alt="" />
-          </a> */}
+      <a href="/" className="logo">
+        <img src={logo} alt="" />
+      </a>
       <input className="menu-btn" type="checkbox" id="menu-btn" />
       <label className="menu-icon" htmlFor="menu-btn">
         <span className="navicon" />
