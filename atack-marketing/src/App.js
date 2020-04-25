@@ -2,7 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./screens/Home";
-import NavComponent from "./components/NavComponent";
+import Navbar from "./components/Navbar";
 import Events from "./screens/Events";
 import Register from "./screens/Register";
 import Login from "./screens/Login";
@@ -10,15 +10,27 @@ import Login from "./screens/Login";
 
 function App() {
   return (
-    <Router>
-      <NavComponent />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/events" component={Events} />
-        <Route path="/register" component={Register} />
-        <Route path="/login" component={Login} />
-      </Switch>
-    </Router>
+    <div>
+      <Router>
+        <Navbar />
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/Home">
+          <Home />
+        </Route>
+        <Route path="/Events">
+          <Events />
+        </Route>
+        <Route path="/Login">
+          <Login />
+        </Route>
+        <Route path="/Register">
+          <Register />
+        </Route>
+      </Router>
+      {/* <Footer /> */}
+    </div>
   );
 }
 
