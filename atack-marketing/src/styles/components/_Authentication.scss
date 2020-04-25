@@ -6,41 +6,41 @@
 
   img {
     position: absolute;
-    max-width: 330px;
+    max-width: 220px;
     transform: translate(-80%, -20%);
 	}
 	
   .auth-wrapper {
-    position: absolute;
+    // position: absolute; BUG: screws up inputs on form errors
     transform: translateX(30%);
 	}
 	
   h1 {
     color: $black;
     text-transform: uppercase;
-    font-size: 3.5em;
-    margin-bottom: 10px;
+    font-size: 2.8em;
+    margin-bottom: 15px;
 	}
 	
   input, button, p {font-family: $body-font}
-  .auth__message {
+  .input-feedback {
     text-align: left;
     font-size: 1.1em;
     margin-bottom: 0;
 	}
 	
-  .auth__message--lone {
+  .input-feedback--lone {
     margin-bottom: 20px;
 	}
 	
-  .auth__error {
+  .input-feedback {
     text-align: center;
 	}
 	
   input, button {
     box-sizing: border-box;
     width: 100%;
-    border-radius: 10px;
+    border-radius: 5px;
     font-size: 1rem;
     padding: 7px;
     border: 1px solid $grey;
@@ -71,18 +71,25 @@
     padding-bottom: 10px;
     a {
       text-decoration: none;
-      color: $orange;
+      color: $error;
     }
 	}
 	
-  .auth__error {
-    color: $orange;
+  .input-feedback {
+    color: $error;
     height: 32px;
     padding-bottom: 5px;
+    font-size: 0.8rem;
+    font-family: $body-font;
 	}
 	
   @media(max-width: 1040px) {
     margin-top: 20px;
+
+    h1{
+      margin: 1.5rem 0;
+    }
+
     img {
       position: relative;
       transform: translate(0, 0);
@@ -107,7 +114,7 @@
 		
     h1 {
       font-size: 2.6rem;
-      margin: 2rem 0;
+      margin: 1.5rem 0;
     }
 	}
 	
@@ -124,7 +131,7 @@
 		}
 		
     input, button {
-      border-radius: 15px;
+      border-radius: 5px;
       font-size: 1em;
       padding: 10px;
 		}
@@ -143,7 +150,7 @@
       font-size: 1em;
 		}
 		
-    .auth__error {
+    .input-feedback {
       height: 24px;
       padding-bottom: 5px;
     }
