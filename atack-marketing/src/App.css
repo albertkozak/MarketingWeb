@@ -1,4 +1,8 @@
-.App {
+/* Google Fonts */
+@import url("https://fonts.googleapis.com/css?family=Bebas+Neue|Fjalla+One|Montserrat&display=swap");
+
+/* OLD BOOTSTRAP - COMMENTED OUT */ 
+/* .App {
   text-align: center;
 }
 
@@ -21,7 +25,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #b8b8b8;
 }
 
 .App-link {
@@ -35,13 +39,15 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
 
 /* Start Navigation */
 /* Header */
 .header {
-  font-family: "Fjalla One", sans-serif;
-  background-color: #1d1d1d;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.1rem;
+  font-weight: normal;
+  background-color: #fff;
   position: fixed;
   top: 0;
   width: 100%;
@@ -54,21 +60,22 @@
   padding: 0;
   list-style: none;
   overflow: hidden;
-  background-color: #1d1d1d;
+  background-color: #fff;
 }
 
 .header li a {
-  font-family: "Fjalla One", sans-serif;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.1rem;
   font-weight: 100;
   display: block;
   padding: 20px 20px;
   text-decoration: none;
-  color: white;
+  color: #b8b8b8;
 }
 
 .header li a:hover {
-  background-color: #1d1d1d;
-  color: #f8cb15;
+  background-color: #fff;
+  color: #ffa643;
 }
 /* End Header */
 
@@ -108,7 +115,7 @@
 
 /* Start Transitions */
 .header .menu-icon .navicon {
-  background: #fff;
+  background: #b8b8b8;
   display: block;
   height: 3px;
   position: relative;
@@ -118,7 +125,7 @@
 
 .header .menu-icon .navicon:before,
 .header .menu-icon .navicon:after {
-  background: #fff;
+  background: #b8b8b8;
   content: "";
   display: block;
   height: 100%;
@@ -164,5 +171,56 @@
   top: 0;
 }
 /* End Menu Button */
+
+/* Start Media Queries */
+@media (min-width: 48em) {
+  .header li {
+    float: left;
+  }
+  .header .logo {
+    padding: 20px;
+  }
+  .header li a {
+    padding: 30px;
+  }
+  .header .menu {
+    clear: none;
+    float: right;
+    max-height: none;
+  }
+  .header .menu-icon {
+    display: none;
+  }
+
+  .search-form {
+    margin: 3rem;
+  }
+}
+/* End Media Queries */
+/* Start Media Queries */
+@media (min-width: 48em) {
+  .header li {
+    float: left;
+  }
+  .header .logo {
+    padding: 20px;
+  }
+  .header li a {
+    padding: 30px;
+  }
+  .header .menu {
+    clear: none;
+    float: right;
+    max-height: none;
+  }
+  .header .menu-icon {
+    display: none;
+  }
+
+  .search-form {
+    margin: 3rem;
+  }
+}
+/* End Media Queries */
 
 /* End Navigation */

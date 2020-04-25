@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar";
 import Events from "./screens/Events";
 import Register from "./screens/Register";
 import Login from "./screens/Login";
-//import './styles/index'
+import "./App.css";
 
 function App() {
   return (
