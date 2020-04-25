@@ -4,6 +4,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import firebase from '../../firebase';
 import { useHistory } from 'react-router-dom';
+import Logo from "../../assets/full-logo.png"
 
 const Register = () => {
 	const API_CREATE_URL =
@@ -63,7 +64,9 @@ const Register = () => {
 	}
 
 	return (
-		<>
+		<div className="login-container">
+		<img className="logo" src={Logo} alt="logo"/>
+		<div className="wrapper">
 			<h1>Register</h1>
 			<Formik
 				initialValues={{ email: '', password: '', confirmPassword: '' }}
@@ -181,7 +184,8 @@ const Register = () => {
 					);
 				}}
 			</Formik>
-		</>
+			</div>
+			</div>
 	);
 };
 export default Register;
