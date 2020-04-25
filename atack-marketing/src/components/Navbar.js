@@ -1,12 +1,13 @@
 import React from "react";
-import logo from "";
+import { Navbar, Nav } from "react-bootstrap";
+// import logo from "";
 
-function Navigation() {
+const NavComponent = () => {
   return (
     <header className="header">
       {/* <a href="/" className="logo">
-        <img src={logo} alt="" />
-      </a> */}
+            <img src={logo} alt="" />
+          </a> */}
       <input className="menu-btn" type="checkbox" id="menu-btn" />
       <label className="menu-icon" htmlFor="menu-btn">
         <span className="navicon" />
@@ -27,6 +28,6 @@ function Navigation() {
       </ul>
     </header>
   );
-}
+};
 
-export default Navigation;
+export default NavComponent;
