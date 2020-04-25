@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&family=swap');
+
 $black: #000;
 $white: #fff;
 $grey: #b8b8b8;
@@ -7,5 +9,7 @@ $gradient: -webkit-linear-gradient(90deg,rgb(28, 34, 51), rgb(54, 56, 68), rgb(1
 
 // $heading-font: 
 // $body-font
-
-
+$heading-font: 'Bebas Neue', sans-serif;
+// $heading-font-light:
+// $heading-font-bold:
+$body-font: 'Roboto', sans-serif;

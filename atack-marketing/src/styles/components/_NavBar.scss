@@ -1,10 +1,10 @@
 /* Start Navigation */
 /* Header */
 .header {
-    font-family: "Bebas Neue", sans-serif;
+    font-family: $heading-font;
     font-size: 1.1rem;
     font-weight: normal;
-    background-color: #fff;
+    background-color: $white;
     position: fixed;
     top: 0;
     width: 100%;
@@ -17,22 +17,22 @@
     padding: 0;
     list-style: none;
     overflow: hidden;
-    background-color: #fff;
+    background-color: $white;
   }
   
   .header li a {
-    font-family: "Bebas Neue", sans-serif;
+    font-family: $heading-font;
     font-size: 1.1rem;
     font-weight: 100;
     display: block;
     padding: 20px 20px;
     text-decoration: none;
-    color: #b8b8b8;
+    color: $grey;
   }
   
   .header li a:hover {
-    background-color: #fff;
-    color: #ffa643;
+    background-color: $white;
+    color: $orange;
   }
   /* End Header */
   
@@ -72,7 +72,7 @@
   
   /* Start Transitions */
   .header .menu-icon .navicon {
-    background: #b8b8b8;
+    background:$grey;
     display: block;
     height: 3px;
     position: relative;
@@ -82,7 +82,7 @@
   
   .header .menu-icon .navicon:before,
   .header .menu-icon .navicon:after {
-    background: #b8b8b8;
+    background: $grey;
     content: "";
     display: block;
     height: 100%;
