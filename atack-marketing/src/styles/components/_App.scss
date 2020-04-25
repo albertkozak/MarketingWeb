@@ -1,7 +1,11 @@
 body {
-    margin: 0;
-    font-family: $body-font;
-    color: $black;
-    //padding: 3rem;
-    height: 100%;
-  } 
+	margin: 0;
+	font-family: $body-font;
+	color: $black;
+	padding: 5rem 0;
+	height: 100%;
+}
+
+h1,h2,h3, h4 {
+	font-family: $heading-font;
+}

@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './screens/Home';
 import Navbar from './components/Navbar';
 import Events from './screens/Events';
-import Register from './screens/Register';
-import Login from './screens/Login';
+import Register from './screens/authentication/Register';
+import Login from './screens/authentication/Login';
 //import './App.css';
 //import './login.css';
 
