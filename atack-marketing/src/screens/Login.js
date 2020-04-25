@@ -5,50 +5,63 @@ import * as Yup from 'yup';
 import firebase from '../firebase';
 
 const Login = () => {
-	const API_CREATE_URL =
-		'https://atackmarketingapi.azurewebsites.net/api/User/create';
+	//const API_CREATE_URL =
+	//		'https://atackmarketingapi.azurewebsites.net/api/User/create';
+	const API_GET_URL = 'https://atackmarketingapi.azurewebsites.net/api/User';
 
 	async function handleSubmit(values) {
 		return new Promise(async (resolve, reject) => {
 			if (values.email.length > 0 && values.password.length > 0) {
-        await setTimeout(() => {
-			firebase
-				.auth()
-				.signInWithEmailAndPassword(values.email, values.password)
-				.then(() => {
-					if (firebase.auth().currentUser.emailVerified === false) {
-						reject(
-							'please verify your email address from the verification email sent to your inbox'
-						);
-					}
+				await setTimeout(() => {
 					firebase
 						.auth()
-						.currentUser.getIdTokenResult()
+						.signInWithEmailAndPassword(
+							values.email,
+							values.password
+						)
+						.then(() => {
+							if (
+								firebase.auth().currentUser.emailVerified ===
+								false
+							) {
+								reject(
+									'please verify your email address from the verification email sent to your inbox'
+								);
+							}
+							firebase
+								.auth()
+								.currentUser.getIdTokenResult()
 
-						.then((tokenResponse) => {
-							console.log(tokenResponse);
-							fetch(API_CREATE_URL, {
-								method: 'POST',
-								headers: {
-									Authorization: `Bearer ${tokenResponse.token}`,
-								},
-							}).then((response) => {
-								// console.log(tokenResponse.token);
-								if (response.status === 201) {
-									resolve(response.status);
-								} else {
-									reject(
-										'API ERROR: ' + JSON.stringify(response)
-									);
-								}
-							});
+								.then((tokenResponse) => {
+									console.log(tokenResponse);
+									fetch(API_GET_URL, {
+										method: 'GET',
+										headers: {
+											Authorization: `Bearer ${tokenResponse.token}`,
+										},
+										//	})
+										// fetch(API_CREATE_URL, {
+										// 	method: 'POST',
+										// 	headers: {
+										// 		Authorization: `Bearer ${tokenResponse.token}`,
+										// 	},
+									}).then((response) => {
+										if (response.status === 200) {
+											resolve(response.status);
+										} else {
+											reject(
+												'API ERROR: ' +
+													JSON.stringify(response)
+											);
+										}
+									});
 
-							resolve();
+									resolve();
+								})
+								.catch((error) => reject('Firebase ' + error));
 						})
 						.catch((error) => reject('Firebase ' + error));
-				})
-				.catch((error) => reject('Firebase ' + error));
-		}, 1000);
+				}, 1000);
 			}
 		});
 	}
@@ -64,7 +77,7 @@ const Login = () => {
 						resetForm();
 					} catch (error) {
 						alert(error);
-						values.passowrd = '';
+						values.password = '';
 					}
 					//	setTimeout(() => {
 					//		console.log('Logging in', values);
