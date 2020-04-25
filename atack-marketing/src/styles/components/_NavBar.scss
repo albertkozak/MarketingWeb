@@ -1,0 +1,183 @@
+/* Start Navigation */
+/* Header */
+.header {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 1.1rem;
+    font-weight: normal;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 3;
+    display: inline-block;
+  }
+  
+  .header ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+    background-color: #fff;
+  }
+  
+  .header li a {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 100;
+    display: block;
+    padding: 20px 20px;
+    text-decoration: none;
+    color: #b8b8b8;
+  }
+  
+  .header li a:hover {
+    background-color: #fff;
+    color: #ffa643;
+  }
+  /* End Header */
+  
+  /* Start Logo */
+  .header .logo {
+    display: block;
+    font-size: 2rem;
+    padding: 10px;
+    text-decoration: none;
+    float: left;
+  }
+  
+  .logo img {
+    height: 3rem;
+    padding-left: 0.5rem;
+    width: auto;
+  }
+  /* End Logo */
+  
+  /* Start Menu */
+  .header .menu {
+    clear: both;
+    max-height: 0;
+    transition: max-height 0.2s ease-out;
+    padding-right: 10px;
+  }
+  
+  .header .menu-icon {
+    cursor: pointer;
+    display: inline-block;
+    padding: 20px 20px 42px;
+    position: relative;
+    user-select: none;
+    float: right;
+  }
+  /* End Menu */
+  
+  /* Start Transitions */
+  .header .menu-icon .navicon {
+    background: #b8b8b8;
+    display: block;
+    height: 3px;
+    position: relative;
+    transition: background 0.2s ease-out;
+    width: 30px;
+  }
+  
+  .header .menu-icon .navicon:before,
+  .header .menu-icon .navicon:after {
+    background: #b8b8b8;
+    content: "";
+    display: block;
+    height: 100%;
+    position: absolute;
+    transition: all 0.2s ease-out;
+    width: 100%;
+  }
+  
+  .header .menu-icon .navicon:before {
+    top: 5px;
+    margin-top: 1rem;
+  }
+  
+  .header .menu-icon .navicon:after {
+    top: -5px;
+    margin-top: 0.96rem;
+  }
+  /* End Transition */
+  
+  /* Start Menu Button */
+  .header .menu-btn {
+    display: none;
+  }
+  
+  .header .menu-btn:checked ~ .menu {
+    max-height: 270px;
+  }
+  
+  .header .menu-btn:checked ~ .menu-icon .navicon {
+    background: transparent;
+  }
+  
+  .header .menu-btn:checked ~ .menu-icon .navicon:before {
+    transform: rotate(-45deg);
+  }
+  
+  .header .menu-btn:checked ~ .menu-icon .navicon:after {
+    transform: rotate(45deg);
+  }
+  
+  .header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+  .header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+    top: 0;
+  }
+  /* End Menu Button */
+  
+  /* Start Media Queries */
+  @media (min-width: 48em) {
+    .header li {
+      float: left;
+    }
+    .header .logo {
+      padding: 20px;
+    }
+    .header li a {
+      padding: 30px;
+    }
+    .header .menu {
+      clear: none;
+      float: right;
+      max-height: none;
+    }
+    .header .menu-icon {
+      display: none;
+    }
+  
+    .search-form {
+      margin: 3rem;
+    }
+  }
+  /* End Media Queries */
+  /* Start Media Queries */
+  @media (min-width: 48em) {
+    .header li {
+      float: left;
+    }
+    .header .logo {
+      padding: 20px;
+    }
+    .header li a {
+      padding: 30px;
+    }
+    .header .menu {
+      clear: none;
+      float: right;
+      max-height: none;
+    }
+    .header .menu-icon {
+      display: none;
+    }
+  
+    .search-form {
+      margin: 3rem;
+    }
+  }
+  /* End Media Queries */
+  
+  /* End Navigation */
