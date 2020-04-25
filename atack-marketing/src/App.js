@@ -6,8 +6,8 @@ import Navbar from './components/Navbar';
 import Events from './screens/Events';
 import Register from './screens/Register';
 import Login from './screens/Login';
-import './App.css';
-import './login.css';
+//import './App.css';
+//import './login.css';
 
 function App() {
 	return (
