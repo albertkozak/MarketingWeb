@@ -6,6 +6,8 @@ import QRCode from './screens/QRCode';
 import Register from './screens/authentication/Register';
 import Login from './screens/authentication/Login';
 import Footer from './components/Footer';
+import Export from './screens/Export';
+import Roles from './screens/Roles';
 
 function App() {
 	return (
@@ -20,6 +22,12 @@ function App() {
 				</Route>
 				<Route path="/QRCode">
 					<QRCode />
+				</Route>
+				<Route path="/Roles">
+					<Roles />
+				</Route>
+				<Route path="/Export">
+					<Export />
 				</Route>
 				<Route path="/Login">
 					<Login />
