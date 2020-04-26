@@ -1,10 +1,10 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import firebase from '../../firebase';
 import { useHistory } from 'react-router-dom';
 import Logo from '../../assets/full-logo.png';
+import { withRouter, Link } from 'react-router-dom';
 
 const Register = () => {
 	const API_CREATE_URL = 'https://atackmarketingapi.azurewebsites.net/api/User/create';
@@ -82,6 +82,7 @@ const Register = () => {
 						const { values, touched, errors, isSubmitting, handleChange, handleBlur, handleSubmit } = props;
 
 						return (
+							<div>
 							<form onSubmit={handleSubmit}>
 								<label htmlFor="email">Email</label>
 								<input
@@ -126,6 +127,8 @@ const Register = () => {
 									Register
 								</button>
 							</form>
+							<p className="auth-link">Already have an account? <Link to="/login">Login</Link></p>
+							</div>
 						);
 					}}
 				</Formik>

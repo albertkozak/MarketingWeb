@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import firebase from '../../firebase';
 import { useHistory } from 'react-router-dom';
 import Logo from '../../assets/full-logo.png';
+import { withRouter, Redirect, Link } from "react-router-dom";
 
 const Login = () => {
 	//const API_CREATE_URL =
@@ -90,6 +91,7 @@ const Login = () => {
 						const { values, touched, errors, isSubmitting, handleChange, handleBlur, handleSubmit } = props;
 
 						return (
+							<div>
 							<form onSubmit={handleSubmit}>
 								<label htmlFor="email">Email</label>
 								<input
@@ -119,6 +121,8 @@ const Login = () => {
 									Login
 								</button>
 							</form>
+							<p className="auth-link">Not a member? <Link to="/register">Register</Link></p>
+							</div>
 						);
 					}}
 				</Formik>
