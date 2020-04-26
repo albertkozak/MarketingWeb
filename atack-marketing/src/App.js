@@ -6,6 +6,8 @@ import Navbar from './components/Navbar';
 import Events from './screens/Events';
 import Register from './screens/authentication/Register';
 import Login from './screens/authentication/Login';
+import Footer from './components/Footer';
+
 //import './App.css';
 //import './login.css';
 
@@ -30,7 +32,7 @@ function App() {
 					<Register />
 				</Route>
 			</Router>
-			{/* <Footer /> */}
+			<Footer />
 		</div>
 	);
 }
