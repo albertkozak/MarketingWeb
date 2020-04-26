@@ -16,7 +16,6 @@
 	}
 	
   h1 {
-    color: $black;
     text-transform: uppercase;
     font-size: 2.8em;
     margin-bottom: 15px;
@@ -43,7 +42,7 @@
     border-radius: 5px;
     font-size: 1rem;
     padding: 7px;
-    border: 1px solid $grey;
+    border: 1px solid $light-grey;
 	}
 	
   input {
@@ -64,14 +63,15 @@
 		display: none;
 	}
 
-  .auth__link {
+  .auth-link {
     font-size: 1.2em;
     text-align: center;
     margin: 0;
     padding-bottom: 10px;
+    color: $grey;
     a {
       text-decoration: none;
-      color: $error;
+      color: $orange;
     }
 	}
 	
