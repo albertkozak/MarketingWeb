@@ -12,28 +12,28 @@ const NavComponent = () => {
 				<span className="navicon" />
 			</label>
 			<ul className="menu">
-				<div className="nav-menu">
-					<li>
-						<a href="/Home">Home</a>
-					</li>
-					<li>
-						<a href="/QRCode">QR Code</a>
-					</li>
-					<li>
-						<a href="/Roles">Roles</a>
-					</li>
-					<li>
-						<a href="/Export">Export</a>
-					</li>
-				</div>
-				<div className="nav-auth">
-					<li>
-						<a href="/Login">Login</a>
-					</li>
-					<li>
-						<a href="/Register">Register</a>
-					</li>
-				</div>
+				{/* <div className="nav-menu"> */}
+				<li>
+					<a href="/Home">Home</a>
+				</li>
+				<li>
+					<a href="/QRCode">QR Code</a>
+				</li>
+				<li>
+					<a href="/Roles">Roles</a>
+				</li>
+				<li>
+					<a href="/Export">Export</a>
+				</li>
+				{/* </div> */}
+				{/* <div className="nav-auth"> */}
+				<li>
+					<a href="/Login">Login</a>
+				</li>
+				<li>
+					<a href="/Register">Register</a>
+				</li>
+				{/* </div> */}
 			</ul>
 		</header>
 	);
