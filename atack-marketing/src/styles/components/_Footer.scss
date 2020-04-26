@@ -1,0 +1,17 @@
+.footer-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	height: 2.8rem;
+	font-size: 1rem;
+	color: $grey;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	// font-family: $heading-font;
+
+	p {
+		margin: 0;
+	}
+}
