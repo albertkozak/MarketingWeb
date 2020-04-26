@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 const NavComponent = () => {
   return (
     <header className="header">
-      <a href="/" className="logo">
+      <Link to="/" className="logo">
         <img src={logo} alt="" />
-      </a>
+      </Link>
       <input className="menu-btn" type="checkbox" id="menu-btn" />
       <label className="menu-icon" htmlFor="menu-btn">
         <span className="navicon" />
