@@ -1,5 +1,4 @@
 import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
 import logo from '../assets/nav-logo.png';
 
 const NavComponent = () => {
@@ -17,7 +16,7 @@ const NavComponent = () => {
 					<a href="/Home">Home</a>
 				</li>
 				<li>
-					<a href="/Events">Events</a>
+					<a href="/QRCode">QR Code</a>
 				</li>
 				<li>
 					<a href="/Login">Login</a>

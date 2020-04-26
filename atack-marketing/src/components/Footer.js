@@ -4,7 +4,7 @@ function Footer() {
 	return (
 		<footer>
 			<div className="footer-container">
-				<p>© 2020, Powered By Atack Marketing.</p>
+				<p>© 2020 Powered By Atack Marketing</p>
 			</div>
 		</footer>
 	);

@@ -83,51 +83,54 @@ const Register = () => {
 
 						return (
 							<div>
-							<form onSubmit={handleSubmit}>
-								<label htmlFor="email">Email</label>
-								<input
-									name="email"
-									type="text"
-									placeholder="Email"
-									value={values.email}
-									onChange={handleChange}
-									onBlur={handleBlur}
-									className={errors.email && touched.email && 'error'}
-								/>
-								{errors.email && touched.email && <div className="input-feedback">{errors.email}</div>}
+								<form onSubmit={handleSubmit}>
+									<label htmlFor="email">Email</label>
+									<input
+										name="email"
+										type="text"
+										placeholder="Email"
+										value={values.email}
+										onChange={handleChange}
+										onBlur={handleBlur}
+										className={errors.email && touched.email && 'error'}
+									/>
+									{errors.email &&
+									touched.email && <div className="input-feedback">{errors.email}</div>}
 
-								<label htmlFor="email">Password</label>
-								<input
-									name="password"
-									type="password"
-									placeholder="Password"
-									value={values.password}
-									onChange={handleChange('password')}
-									onBlur={handleBlur('password')}
-									className={errors.password && touched.password && 'error'}
-								/>
-								{errors.password &&
-								touched.password && <div className="input-feedback">{errors.password}</div>}
-								<label htmlFor="confirmPassword">Confirm Password</label>
-								<input
-									name="password"
-									type="password"
-									placeholder="Confirm Password"
-									value={values.confirmPassword}
-									onChange={handleChange('confirmPassword')}
-									onBlur={handleBlur('confirmPassword')}
-									className={errors.confirmPassword && touched.confirmPassword && 'error'}
-								/>
-								{errors.confirmPassword &&
-								touched.confirmPassword && (
-									<div className="input-feedback">{errors.confirmPassword}</div>
-								)}
+									<label htmlFor="email">Password</label>
+									<input
+										name="password"
+										type="password"
+										placeholder="Password"
+										value={values.password}
+										onChange={handleChange('password')}
+										onBlur={handleBlur('password')}
+										className={errors.password && touched.password && 'error'}
+									/>
+									{errors.password &&
+									touched.password && <div className="input-feedback">{errors.password}</div>}
+									<label htmlFor="confirmPassword">Confirm Password</label>
+									<input
+										name="password"
+										type="password"
+										placeholder="Confirm Password"
+										value={values.confirmPassword}
+										onChange={handleChange('confirmPassword')}
+										onBlur={handleBlur('confirmPassword')}
+										className={errors.confirmPassword && touched.confirmPassword && 'error'}
+									/>
+									{errors.confirmPassword &&
+									touched.confirmPassword && (
+										<div className="input-feedback">{errors.confirmPassword}</div>
+									)}
 
-								<button type="submit" disabled={isSubmitting}>
-									Register
-								</button>
-							</form>
-							<p className="auth-link">Already have an account? <Link to="/login">Login</Link></p>
+									<button type="submit" disabled={isSubmitting}>
+										Register
+									</button>
+								</form>
+								<p className="auth-link">
+									Already have an account? <Link to="/login">Login</Link>
+								</p>
 							</div>
 						);
 					}}
