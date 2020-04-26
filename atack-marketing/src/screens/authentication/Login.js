@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import firebase from '../../firebase';
 import { useHistory } from 'react-router-dom';
 import Logo from '../../assets/full-logo.png';
-import { withRouter, Redirect, Link } from "react-router-dom";
+import { withRouter, Redirect, Link } from 'react-router-dom';
 
 const Login = () => {
 	//const API_CREATE_URL =
@@ -20,9 +20,7 @@ const Login = () => {
 						.signInWithEmailAndPassword(values.email, values.password)
 						.then(() => {
 							if (firebase.auth().currentUser.emailVerified === false) {
-								reject(
-									'Please verify email address.'
-								);
+								reject('Please verify email address.');
 							}
 							firebase
 								.auth()
@@ -92,36 +90,39 @@ const Login = () => {
 
 						return (
 							<div>
-							<form onSubmit={handleSubmit}>
-								<label htmlFor="email">Email</label>
-								<input
-									name="email"
-									type="text"
-									placeholder="Email"
-									value={values.email}
-									onChange={handleChange}
-									onBlur={handleBlur}
-									className={errors.email && touched.email && 'error'}
-								/>
-								{errors.email && touched.email && <div className="input-feedback">{errors.email}</div>}
+								<form onSubmit={handleSubmit}>
+									<label htmlFor="email">Email</label>
+									<input
+										name="email"
+										type="text"
+										placeholder="Email"
+										value={values.email}
+										onChange={handleChange}
+										onBlur={handleBlur}
+										className={errors.email && touched.email && 'error'}
+									/>
+									{errors.email &&
+									touched.email && <div className="input-feedback">{errors.email}</div>}
 
-								<label htmlFor="email">Password</label>
-								<input
-									name="password"
-									type="password"
-									placeholder="Password"
-									value={values.password}
-									onChange={handleChange}
-									onBlur={handleBlur}
-									className={errors.password && touched.password && 'error'}
-								/>
-								{errors.password &&
-								touched.password && <div className="input-feedback">{errors.password}</div>}
-								<button type="submit" disabled={isSubmitting}>
-									Login
-								</button>
-							</form>
-							<p className="auth-link">Not a member? <Link to="/register">Register</Link></p>
+									<label htmlFor="email">Password</label>
+									<input
+										name="password"
+										type="password"
+										placeholder="Password"
+										value={values.password}
+										onChange={handleChange}
+										onBlur={handleBlur}
+										className={errors.password && touched.password && 'error'}
+									/>
+									{errors.password &&
+									touched.password && <div className="input-feedback">{errors.password}</div>}
+									<button type="submit" disabled={isSubmitting}>
+										Login
+									</button>
+								</form>
+								<p className="auth-link">
+									Not a member? <Link to="/register">Register</Link>
+								</p>
 							</div>
 						);
 					}}

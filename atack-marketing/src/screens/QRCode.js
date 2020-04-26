@@ -1,24 +1,7 @@
 import React from 'react';
 import { QRCode } from 'react-qr-svg';
 
-const styles = {
-	wrapper: {
-		position: 'relative',
-		paddingTop: 100
-	},
-	h1: {
-		textAlign: 'center'
-	},
-	qrcode: {
-		textAlign: 'center'
-	},
-	form: {
-		textAlign: 'center',
-		margin: 20
-	}
-};
-
-export default class Events extends React.Component {
+export default class QRCodeGen extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { value: '' };
@@ -65,3 +48,20 @@ export default class Events extends React.Component {
 		);
 	}
 }
+
+const styles = {
+	wrapper: {
+		position: 'relative',
+		paddingTop: 100
+	},
+	h1: {
+		textAlign: 'center'
+	},
+	qrcode: {
+		textAlign: 'center'
+	},
+	form: {
+		textAlign: 'center',
+		margin: 20
+	}
+};

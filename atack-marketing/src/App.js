@@ -1,15 +1,11 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './screens/Home';
 import Navbar from './components/Navbar';
-import Events from './screens/Events';
+import QRCode from './screens/QRCode';
 import Register from './screens/authentication/Register';
 import Login from './screens/authentication/Login';
 import Footer from './components/Footer';
-
-//import './App.css';
-//import './login.css';
 
 function App() {
 	return (
@@ -22,8 +18,8 @@ function App() {
 				<Route path="/Home">
 					<Home />
 				</Route>
-				<Route path="/Events">
-					<Events />
+				<Route path="/QRCode">
+					<QRCode />
 				</Route>
 				<Route path="/Login">
 					<Login />
