@@ -31,7 +31,9 @@ const Export = (props) => {
 	return (
 		<div className="container">
 			<h1>Export Page</h1>
+			<div className="input-selector">
 			<InputSelector data={dummyData} label={dummyData.eventName} value={dummyData.eventId}/>
+			</div>
 		</div>
 	);
 };
