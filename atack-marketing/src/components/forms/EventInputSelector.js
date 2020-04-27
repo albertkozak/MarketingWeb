@@ -4,17 +4,17 @@ import Select from "react-dropdown-select";
 const EventInputSelector = (props) => {
 	const [events, setEvents] = useState([]);
 
-	function isSetEvents(events) {
-		setEvents(events)
+	function isSetEvents(value) {
+		setEvents(value)
 		console.log(events)
 	}
 
   return (
     <Select
 				multi
-				create
+				//create
 				placeholder="Select event(s)"
-				onCreateNew={(item) => console.log('%c New item created ', item)}
+				//onCreateNew={(item) => console.log('%c New item created ', item)}
 				options={props.data.map(data => ({
 					label: data.eventName,
 					value: data.eventId
@@ -22,7 +22,6 @@ const EventInputSelector = (props) => {
 				values={[]}
 				onChange={(value) =>
 					isSetEvents(value)
-					//console.log(`%c > onChange  `, value)
 				}
 			/>
   )

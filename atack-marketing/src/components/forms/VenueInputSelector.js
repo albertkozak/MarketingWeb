@@ -5,8 +5,8 @@ const  VenueInputSelector = (props) => {
   // Refactor later for reusability - labels and values
   const [venue, setVenue] = useState('')
 
-  function isSetVenue(venue) {
-      setVenue(venue)
+  function isSetVenue(value) {
+      setVenue(value)
       console.log(venue)
   }
 
