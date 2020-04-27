@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, withRouter } from 'react-router-dom';
 import Home from './screens/Home';
 import Navbar from './components/Navbar';
 import QRCode from './screens/QRCode';
@@ -18,8 +18,19 @@ function App() {
 	return (
 		<AuthProvider>
 			<Router>
+			<Main />
+			</Router>
+			<Footer />
+		</AuthProvider>
+	)
+}
+
+export const Main = withRouter(({ location }) =>{
+	return(
 				<div>
-					<Navbar />
+					{
+						location.pathname !=="/login" && location.pathname != '/register' && <Navbar />
+					}
 					<Switch>
 						<PrivateRoute exact path="/" component={Home} />
 						<PrivateRoute exact path="/home" component={Home} />
@@ -32,12 +43,10 @@ function App() {
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/register" component={Register} />
 					</Switch>
-				</div>
-			</Router>
 			<Footer />
-		</AuthProvider>
+			</div>
 	)
-}
+})
 
 // function App() {
 // 	return (
