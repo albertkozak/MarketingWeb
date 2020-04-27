@@ -16,13 +16,18 @@ const AddEvent = () => {
     };
 
     return (
+        <div className="container">
+            <h1 className="addEventTitle">Add Event</h1>
         <div className="eventForm">
-            <form onSubmit={createEvent} id="add-event-form">
+            <form onSubmit={createEvent} id="add-event-form" className="addEventForm">
                 <input name="eventName" type="text" placeholder="Title" />
                 <input name="eventStartDateTime" type="date" placeholder="Start Date" />
-                <button onClick={clearForm}>Cancel</button>
-                <button variant="" type="submit">Create</button>
+                <div className="buttons">
+                <button className="cancel" onClick={clearForm}>Cancel</button>
+                <button className="submit" variant="" type="submit">Create</button>
+                </div>
             </form>
+        </div>
         </div>
     )
     
