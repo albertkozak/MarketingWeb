@@ -10,6 +10,7 @@ import Export from './screens/Export';
 import Roles from './screens/Roles';
 import AddEvent from './components/events/AddEvent';
 import AddUser from './components/users/AddUser';
+import ViewEvent from './screens/ViewEvent'
 
 function App() {
 	return (
@@ -42,6 +43,9 @@ function App() {
 				</Route>
 				<Route path="/adduser">
 					<AddUser />
+				</Route>
+				<Route path="/event">
+					<ViewEvent />
 				</Route>
 			</Router>
 			<Footer />
