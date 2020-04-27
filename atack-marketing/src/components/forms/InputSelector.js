@@ -4,8 +4,8 @@ import Select from "react-dropdown-select";
 const InputSelector = (props) => {
   // Refactor later for reusability - labels and values
 
-//   const labelValue = props.label.toString()
-//   const valueValue = props.value.toString()
+	// const labelValue = props.label
+	// const valueValue = props.value
 
   return (
     <Select

@@ -1,5 +1,5 @@
 import React from 'react'
-import InputSelector from '../forms/InputSelector'
+import VenueInputSelector from '../forms/VenueInputSelector'
 
 const AddEvent = () => {
     // Add GET Request here for Vendors
@@ -38,10 +38,8 @@ const AddEvent = () => {
                 <input name="eventName" type="text" placeholder="Title" />
                 <input name="eventStartDateTime" type="date" placeholder="Start Date" />
                 <div className="input-selector">
-                <InputSelector 
-                    data={dummyData} 
-                    label={"venueName"} 
-                    value={"venueId"} />
+                <VenueInputSelector 
+                    data={dummyData} />
                 </div>
                 <div className="buttons">
                 <button className="cancel" onClick={clearForm}>Cancel</button>
