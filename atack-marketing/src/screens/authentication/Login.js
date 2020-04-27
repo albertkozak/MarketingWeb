@@ -60,10 +60,11 @@ const Login = () => {
 	// ATTEMPT AT AUTH CONTEXT
 
 	const { currentUser } = useContext(AuthContext)
+	console.log("Login Current User: " + currentUser)
 
-	if(!!currentUser) {
-		return <Redirect to="/" />
-	}
+	// if(!!currentUser) {
+	// 	return <Redirect to="/register" />
+	// }
 
 	return (
 		<div className="auth-container">
@@ -76,7 +77,7 @@ const Login = () => {
 						try {
 							await handleSubmit(values);
 							resetForm();
-							history.push('/Home');
+							history.push('/home');
 						} catch (error) {
 							alert(error);
 							values.password = '';
@@ -140,4 +141,4 @@ const Login = () => {
 		</div>
 	);
 };
-export default Login;
+export default withRouter(Login);
