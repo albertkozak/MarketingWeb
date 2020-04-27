@@ -7,7 +7,11 @@ const EventItem = (props) => {
 
 	return (
 		<div className="eventItem">
-			<Link to='/event' event={event}>
+			<Link to={{
+				pathname:'/event',
+				state: {event}
+				}}
+				>
 			<h3 className="eventTitle">{event.eventName}</h3>
 			</Link>
 			<p className="eventStartDateTime">{event.eventStartDateTime}</p>

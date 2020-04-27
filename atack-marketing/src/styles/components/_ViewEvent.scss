@@ -1,0 +1,55 @@
+.eventWrapper{
+    width: 70%;
+    margin: 2rem auto;
+
+    .eventHeader{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    h2{
+        font-size: 2.2rem;
+        font-family: $body-heading-font;
+    }
+
+    .edit-del-links {
+        color: $light-grey;
+        margin: 0
+    }
+
+    .venue {
+        margin: 3rem 0;
+        font-size: 1.3rem;
+    }
+
+    .eventDetailsWrapper {
+        display: flex;
+        justify-content: space-between;
+
+        h3{
+            font-size: 1.2rem;
+            color: $dark-grey;
+            font-family: $body-heading-font;
+        }
+
+        li {
+            list-style-type: none;
+            padding: .5rem 0;
+            font-size: 1.1rem;
+        }
+
+        button {
+            align-self: flex-start;
+            font-size: 1rem;
+            margin-left: 5rem;
+            margin-top: 2rem;
+            text-transform: uppercase;
+            color: $white;
+            background-color: $orange;
+            border: none;
+            padding: 7px 17px;
+            border-radius: 10px;
+        }
+    }
+}
