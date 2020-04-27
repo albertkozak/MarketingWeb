@@ -78,7 +78,7 @@ const Login = () => {
 						//	}, 1000);
 					}}
 					validationSchema={Yup.object().shape({
-						email: Yup.string().email().required('Password Required.'),
+						email: Yup.string().email('Valid email address required').required('Password Required.'),
 						password: Yup.string()
 							.required('Enter Password.')
 							.min(6, 'Minimum of 6 characters required.')
@@ -99,10 +99,17 @@ const Login = () => {
 										value={values.email}
 										onChange={handleChange}
 										onBlur={handleBlur}
-										className={errors.email && touched.email && 'error'}
+										className={
+											errors.email &&
+											touched.email &&
+											'error'
+										}
 									/>
-									{errors.email &&
-									touched.email && <div className="input-feedback">{errors.email}</div>}
+									{errors.email && touched.email && (
+										<div className="input-feedback">
+											{errors.email}
+										</div>
+									)}
 
 									<label htmlFor="email">Password</label>
 									<input
@@ -112,16 +119,31 @@ const Login = () => {
 										value={values.password}
 										onChange={handleChange}
 										onBlur={handleBlur}
-										className={errors.password && touched.password && 'error'}
+										className={
+											errors.password &&
+											touched.password &&
+											'error'
+										}
 									/>
-									{errors.password &&
-									touched.password && <div className="input-feedback">{errors.password}</div>}
-									<button type="submit" disabled={isSubmitting}>
+									{errors.password && touched.password && (
+										<div className="input-feedback">
+											{errors.password}
+										</div>
+									)}
+									<button
+										type="submit"
+										disabled={isSubmitting}
+									>
 										Login
 									</button>
 								</form>
 								<p className="auth-link">
-									Not a member? <Link to="/register">Register</Link>
+									Forgot password?{' '}
+									<Link to="/forgotPassword">Reset password</Link>
+								</p>
+								<p className="auth-link">
+									Not a member?{' '}
+									<Link to="/register">Register</Link>
 								</p>
 							</div>
 						);
