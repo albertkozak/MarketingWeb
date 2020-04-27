@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Select from "react-dropdown-select";
+import InputSelector from '../components/forms/InputSelector'
 
 const Export = (props) => {
 	const {events, setEvents} = useState([]);
@@ -22,32 +23,17 @@ const Export = (props) => {
 				eventStartDateTime: "April 28th 12pm"
 		},
 
-		// NEEDS TO ASSIGN VALUES (TO STATE) FOR EVENTS
+		// Needs To Assign Values (To State) For Events
 		function onChange(values) {
 			console.log(values)
 		}
 ]
 	return (
 		<div className="container">
-			<h1>Export Page - Pending</h1>
-			<Select
-				multi
-				create
-				onCreateNew={(item) => console.log('%c New item created ', item)}
-				options={dummyData.map(event => ({
-					label: event.eventName,
-					value: event.eventId
-				}))}
-				values={[]}
-				onChange={(value) =>
-					console.log(`%c > onChange  `, value)
-				}
-  			//onChange={(values) => this.onChange(values)}
-			/>
+			<h1>Export Page</h1>
+			<InputSelector data={dummyData} label={dummyData.eventName} value={dummyData.eventId}/>
 		</div>
 	);
 };
-
-Export.propTypes = {}
 
 export default Export;
