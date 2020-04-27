@@ -1,4 +1,4 @@
-.eventButton {
+.userButton {
 	font-size: 1rem;
 	margin-left: 5rem;
 	margin-top: 2rem;
@@ -14,7 +14,7 @@
 	margin-top: 2.5rem;
 }
 
-.eventItem {
+.userItem {
 	margin: 0 auto;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
@@ -22,14 +22,14 @@
 	width: 65%;
 	padding: .7rem 0;
 
-	.eventTitle {
+	.userTitle {
 		font-family: $body-font;
 		font-size: 1.2rem;
 		color: $dark-grey;
 		font-weight: 100;
 	}
 
-	.eventStartDateTime {
+	.isAdmin {
 		text-align: center;
 		font-size: 1.1rem;
 	}

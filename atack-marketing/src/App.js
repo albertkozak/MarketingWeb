@@ -8,7 +8,7 @@ import Login from './screens/authentication/Login';
 import Footer from './components/Footer';
 import Export from './screens/Export';
 import Roles from './screens/Roles';
-import AddEvent from './components/events/AddEvent'
+import AddEvent from './components/events/AddEvent';
 
 function App() {
 	return (

@@ -1,10 +1,15 @@
-.input-selector{
-  width: 60%;
-  margin: 0 auto;
+.input-selector {
+	width: 60%;
+	margin: 0 auto;
 }
 
-@media screen and (min-width:1200px) {
-  .input-selector{
-    width: 40%;
-  }
+.container h1 {
+	text-align: center;
+	padding-bottom: 2rem;
+}
+
+@media screen and (min-width: 1200px) {
+	.input-selector {
+		width: 40%;
+	}
 }
