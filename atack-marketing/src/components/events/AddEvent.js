@@ -45,7 +45,7 @@ const AddEvent = () => {
                 </div>
                 <div className="buttons">
                 <button className="cancel" onClick={clearForm}>Cancel</button>
-                <button className="submit" variant="" type="submit">Create</button>
+                <button className="submit" variant="" type="submit">Add Event</button>
                 </div>
             </form>
         </div>
