@@ -12,6 +12,7 @@ import AddEvent from './components/events/AddEvent';
 import AddUser from './components/users/AddUser';
 import Profile from './screens/Profile';
 import ForgotPassword from './screens/ForgotPassword';
+import ViewEvent from './screens/ViewEvent'
 
 function App() {
 	return (
@@ -51,6 +52,9 @@ function App() {
 				</Route>
 				<Route path="/adduser">
 					<AddUser />
+				</Route>
+				<Route path="/event">
+					<ViewEvent />
 				</Route>
 			</Router>
 			<Footer />
