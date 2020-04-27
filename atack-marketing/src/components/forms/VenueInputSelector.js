@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Select from "react-dropdown-select";
 
-const InputSelector = (props) => {
+const  VenueInputSelector = (props) => {
   // Refactor later for reusability - labels and values
   const [venue, setVenue] = useState('')
 
@@ -30,6 +30,6 @@ const InputSelector = (props) => {
   )
 } 
 
-InputSelector.propTypes = {}
+VenueInputSelector.propTypes = {}
 
-export default InputSelector;
+export default VenueInputSelector;

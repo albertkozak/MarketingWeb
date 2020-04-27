@@ -1,16 +1,19 @@
 import React, {useState} from 'react';
 import Select from "react-dropdown-select";
 
-const InputSelector = (props) => {
-  // Refactor later for reusability - labels and values
+const EventInputSelector = (props) => {
+	const [events, setEvents] = useState([]);
 
-	// const labelValue = props.label
-	// const valueValue = props.value
+	function isSetEvents(events) {
+		setEvents(events)
+		console.log(events)
+	}
 
   return (
     <Select
 				multi
 				create
+				placeholder="Select event(s)"
 				onCreateNew={(item) => console.log('%c New item created ', item)}
 				options={props.data.map(data => ({
 					label: data.eventName,
@@ -18,13 +21,13 @@ const InputSelector = (props) => {
 				}))}
 				values={[]}
 				onChange={(value) =>
-					console.log(`%c > onChange  `, value)
+					isSetEvents(value)
+					//console.log(`%c > onChange  `, value)
 				}
-  			//onChange={(values) => this.onChange(values)} - pending function
 			/>
   )
 } 
 
-InputSelector.propTypes = {}
+EventInputSelector.propTypes = {}
 
-export default InputSelector;
+export default EventInputSelector;

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Select from "react-dropdown-select";
-import InputSelector from '../components/forms/InputSelector'
+import EventInputSelector from '../components/forms/EventInputSelector'
 
 const Export = (props) => {
 	const {events, setEvents} = useState([]);
@@ -32,7 +32,7 @@ const Export = (props) => {
 		<div className="container">
 			<h1>Export Page</h1>
 			<div className="input-selector">
-			<InputSelector data={dummyData} label={dummyData.eventName} value={dummyData.eventId}/>
+			<EventInputSelector data={dummyData} />
 			</div>
 		</div>
 	);
