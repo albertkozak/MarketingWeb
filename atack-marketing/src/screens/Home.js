@@ -1,6 +1,6 @@
 import React from 'react';
-import EventList from '../components/events/EventList'
-import { Link } from "react-router-dom";
+import EventList from '../components/events/EventList';
+import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 
 const Home = () => {
@@ -8,11 +8,9 @@ const Home = () => {
 	return (
 		<div className="container">
 			{/* <h1>Home Page</h1> */}
-			<button
-				className="eventButton"
-				onClick={() => history.push('/addevent')}
-			>Create Event
-			</button> 
+			<button className="eventButton" onClick={() => history.push('/addevent')}>
+				Create Event
+			</button>
 			<EventList />
 		</div>
 	);
