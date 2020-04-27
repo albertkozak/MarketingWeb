@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import EventItem from './EventItem';
 
-const EventList = () => {
+const EventList = (props) => {
 	const [ events, setEvents ] = useState([]);
 
 	const dummyData = [

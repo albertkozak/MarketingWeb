@@ -1,14 +1,16 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 const EventItem = (props) => {
-	const history = useHistory();
+	const event = (props.event);
+	//const eventToPass = withRouter(event.eventName)
+
 	return (
 		<div className="eventItem">
-			<Link to='/event'>
-			<h3 className="eventTitle">{props.event.eventName}</h3>
+			<Link to='/event' event={event}>
+			<h3 className="eventTitle">{event.eventName}</h3>
 			</Link>
-			<p className="eventStartDateTime">{props.event.eventStartDateTime}</p>
+			<p className="eventStartDateTime">{event.eventStartDateTime}</p>
 			{/* links for these */}
 			<div className="edit-del-links">Edit / Delete</div>
 		</div>

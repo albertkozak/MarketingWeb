@@ -2,9 +2,11 @@ import React from 'react';
 import EventList from '../components/events/EventList'
 import { useHistory } from 'react-router-dom';
 
-const ViewEvent = (props) => {
-    const history = useHistory();
+const ViewEvent = ({event}) => {
+    //const history = useHistory();
 
+    const currentEvent = event;
+    console.log(currentEvent)
     // Add GET requests for Event Organizers & Vendors here
 
     const dummyDataEO = [
@@ -45,10 +47,10 @@ const ViewEvent = (props) => {
     
 	return (
 		<div className="container">
-            <h2>{props.eventName}</h2>
-            <p>{props.eventStartDateTime}</p>
+            {/* <h2>{currentEvent.event.eventName}</h2> */}
+            {/* <p>{props.eventStartDateTime}</p> */}
             <p className="edit-del-links">Edit / Delete</p>
-            <p className="venue">{props.venueName}</p>
+            {/* <p className="venue">{props.venueName}</p> */}
             <div className="eventOrganziersContainer">
             <h3 className="eventOrganizers">Event Organizers</h3>
             <ul className="eventOrganizersList">
