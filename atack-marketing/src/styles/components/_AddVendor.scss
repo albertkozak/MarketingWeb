@@ -1,10 +1,10 @@
-.addVenueName {
+.addVendorName {
 	text-align: center;
 	font-size: 3rem;
 	margin: 5rem 0;
 }
 
-.addVenueForm {
+.addVendorForm {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -88,18 +88,10 @@
 			&:focus {
 				outline: none;
 			}
-
-			&:hover {
-				background-color: $hover-orange;
-			}
 		}
 	}
 
 	.submit {
 		margin-right: .5rem;
-
-		&:hover {
-			background-color: $hover-orange;
-		}
 	}
 }

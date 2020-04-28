@@ -38,9 +38,8 @@
 
 	.input-feedback {
 		text-align: center;
-		
 	}
-	
+
 	input,
 	button {
 		box-sizing: border-box;
@@ -63,6 +62,10 @@
 		color: $white;
 		background-color: $orange;
 		border: none;
+
+		&:hover {
+			background-color: $hover-orange;
+		}
 	}
 
 	label {
@@ -87,6 +90,13 @@
 		padding-bottom: 5px;
 		font-size: 0.8rem;
 		font-family: $body-font;
+	}
+
+	.logout-button {
+		a {
+			text-decoration: none;
+			color: $white;
+		}
 	}
 
 	@media (max-width: 1040px) {
