@@ -1,10 +1,17 @@
 import React from "react";
 import EventList from "../components/events/EventList";
+import { useHistory } from "react-router-dom";
+import { FaRegArrowAltCircleLeft } from "react-icons/fa";
 
 const ViewEvent = (props) => {
   const currentEvent = props.location.state.event;
   console.log(currentEvent);
 
+  let history = useHistory();
+
+  const handleBack = () => {
+    history.goBack();
+  };
   return (
     <div className="container">
       <div className="eventWrapper">
@@ -28,6 +35,10 @@ const ViewEvent = (props) => {
             //onClick={() => history.push('/addvendor')}
           >
             Add Vendor
+          </button>
+          <button className="addVendorButton" onClick={handleBack}>
+            Back <br />
+            <FaRegArrowAltCircleLeft />
           </button>
         </div>
       </div>
