@@ -22,11 +22,11 @@ const AddUser = () => {
 					<input name="userEmail" type="text" placeholder="Email" />
 					{/* <input name="isAdmin" type="checkbox" placeholder="Admin" /> */}
 					<div className="buttons">
-						<button className="cancel" onClick={clearForm}>
-							Cancel
-						</button>
 						<button className="submit" variant="" type="submit">
 							Create
+						</button>
+						<button className="cancel" onClick={clearForm}>
+							Cancel
 						</button>
 					</div>
 				</form>
