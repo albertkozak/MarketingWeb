@@ -5,7 +5,7 @@ import firebase from '../../firebase';
 import { useHistory } from 'react-router-dom';
 import Logo from '../../assets/full-logo.png';
 import { withRouter, Redirect, Link } from 'react-router-dom';
-import {AuthContext} from './Auth'
+import { AuthContext } from './Auth';
 
 const Login = () => {
 	//const API_CREATE_URL =
@@ -18,9 +18,15 @@ const Login = () => {
 				await setTimeout(() => {
 					firebase
 						.auth()
-						.signInWithEmailAndPassword(values.email, values.password)
+						.signInWithEmailAndPassword(
+							values.email,
+							values.password
+						)
 						.then(() => {
-							if (firebase.auth().currentUser.emailVerified === false) {
+							if (
+								firebase.auth().currentUser.emailVerified ===
+								false
+							) {
 								reject('Please verify email address.');
 							}
 							firebase
@@ -31,8 +37,8 @@ const Login = () => {
 									fetch(API_GET_URL, {
 										method: 'GET',
 										headers: {
-											Authorization: `Bearer ${tokenResponse.token}`
-										}
+											Authorization: `Bearer ${tokenResponse.token}`,
+										},
 										//	})
 										// fetch(API_CREATE_URL, {
 										// 	method: 'POST',
@@ -43,7 +49,10 @@ const Login = () => {
 										if (response.status === 200) {
 											resolve(response.status);
 										} else {
-											reject('API ERROR: ' + JSON.stringify(response));
+											reject(
+												'API ERROR: ' +
+													JSON.stringify(response)
+											);
 										}
 									});
 
@@ -56,11 +65,12 @@ const Login = () => {
 			}
 		});
 	}
-	const { currentUser } = useContext(AuthContext)
+	//redundant... causing memory leak.
+	// const { currentUser } = useContext(AuthContext)
 
-	if(!!currentUser) {
-		return <Redirect to="/" />
-	}
+	// if(!!currentUser) {
+	// 	return <Redirect to="/" />
+	// }
 
 	return (
 		<div className="auth-container">
@@ -84,15 +94,28 @@ const Login = () => {
 						//	}, 1000);
 					}}
 					validationSchema={Yup.object().shape({
-						email: Yup.string().email('Valid email address required').required('Password Required.'),
+						email: Yup.string()
+							.email('Valid email address required')
+							.required('Password Required.'),
 						password: Yup.string()
 							.required('Enter Password.')
 							.min(6, 'Minimum of 6 characters required.')
-							.matches(/(?=.*[0-9])/, 'Password must contain a number.')
+							.matches(
+								/(?=.*[0-9])/,
+								'Password must contain a number.'
+							),
 					})}
 				>
 					{(props) => {
-						const { values, touched, errors, isSubmitting, handleChange, handleBlur, handleSubmit } = props;
+						const {
+							values,
+							touched,
+							errors,
+							isSubmitting,
+							handleChange,
+							handleBlur,
+							handleSubmit,
+						} = props;
 
 						return (
 							<div>
@@ -145,7 +168,9 @@ const Login = () => {
 								</form>
 								<p className="auth-link">
 									Forgot password?{' '}
-									<Link to="/forgotPassword">Reset password</Link>
+									<Link to="/forgotPassword">
+										Reset password
+									</Link>
 								</p>
 								<p className="auth-link">
 									Not a member?{' '}
