@@ -8,6 +8,10 @@
 	border: none;
 	padding: 7px 17px;
 	border-radius: 10px;
+
+	&:hover {
+		background-color: $hover-orange;
+	}
 }
 
 .wrapper {

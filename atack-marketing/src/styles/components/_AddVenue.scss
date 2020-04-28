@@ -88,13 +88,18 @@
 			&:focus {
 				outline: none;
 			}
+
+			&:hover {
+				background-color: $hover-orange;
+			}
 		}
 	}
 
 	.submit {
 		margin-right: .5rem;
-	}
 
-	.submit {
+		&:hover {
+			background-color: $hover-orange;
+		}
 	}
 }
