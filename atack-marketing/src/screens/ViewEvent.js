@@ -9,13 +9,10 @@ const ViewEvent = (props) => {
     <div className="container">
       <div className="eventWrapper">
         <div className="eventHeader">
-          {/* <h2>{currentEvent.event.eventName}</h2> */}
           <h2>{currentEvent.eventName}</h2>
-          {/* <p>{props.eventStartDateTime}</p> */}
           <p>{Date(currentEvent.eventStartDateTime)}</p>
         </div>
         <p className="edit-del-links">Edit / Delete</p>
-        {/* <p className="venue">Location: {props.venueName}</p> */}
         <p className="venue">{currentEvent.venue.venueName}</p>
         <div className="eventDetailsWrapper">
           <div className="eventOrganziersContainer">
