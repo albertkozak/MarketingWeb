@@ -1,10 +1,11 @@
 import React from 'react';
 
 const AddVenue = (props) => {
-	const venueName = props.venue;
+	const venueNameValue = props.venueName;
+	console.log(venueNameValue);
 
 	const createVenue = async (venue) => {
-		user.preventDefault();
+		venue.preventDefault();
 		const { venueName, venueWebsite } = venue.target.elements;
 
 		// Add POST Request here
@@ -21,7 +22,7 @@ const AddVenue = (props) => {
 			<h1 className="addVenueName">Add Venue</h1>
 			<div className="venueForm">
 				<form onSubmit={createVenue} id="add-venue-form" className="addVenueForm">
-					<input name="venueName" type="text" placeholder="Venue Name" value={venueName} />
+					<input name="venueName" type="text" placeholder="Venue Name" value={venueNameValue} />
 					<input name="venueWebsite" type="text" placeholder="Website" />
 					<div className="buttons">
 						<button className="submit" variant="" type="submit">

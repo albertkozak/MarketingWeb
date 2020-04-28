@@ -1,5 +1,7 @@
 import React from 'react';
 import EventList from '../components/events/EventList'
+import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const ViewEvent = (props) => {
 
