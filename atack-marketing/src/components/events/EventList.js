@@ -1,30 +1,42 @@
-import React, { useState } from 'react';
-import EventItem from './EventItem';
+import React, { useState, useEffect } from "react";
+import EventItem from "./EventItem";
+import firebase from "../../firebase";
 
 const EventList = (props) => {
-	const [ events, setEvents ] = useState([]);
+  const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/Events";
+  const [fetchedData, setFetchedData] = useState([]);
 
-	const dummyData = [
-		{
-			eventId: 1,
-			eventName: '7-11 Unite',
-			eventStartDateTime: 'April 20th 1pm'
-		},
-		{
-			eventId: 2,
-			eventName: 'Same Same But Different',
-			eventStartDateTime: 'May 5th 2pm'
-		},
-		{
-			eventId: 3,
-			eventName: 'Egg & Rice Bowl',
-			eventStartDateTime: 'April 28th 12pm'
-		}
-	];
+  const fetchData = () => {
+    firebase
+      .auth()
+      .currentUser.getIdTokenResult()
+      .then((tokenResponse) => {
+        fetch(BASE_URL, {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${tokenResponse.token}`,
+          },
+        })
+          .then((response) => response.json())
+          .then((responseData) => {
+            setFetchedData(responseData.events);
+            console.log(fetchedData);
+          });
+      });
+  };
 
-	// Add GET Request here
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-	return <div className="wrapper">{dummyData.map((event) => <EventItem key={event.eventId} event={event} />)}</div>;
+  return (
+    <div className="wrapper">
+      {fetchedData.map((event) => (
+        <EventItem key={event.eventId} event={event} />
+      ))}
+    </div>
+  );
 };
 
 export default EventList;
