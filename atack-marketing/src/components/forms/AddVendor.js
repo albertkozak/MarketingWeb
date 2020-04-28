@@ -19,7 +19,7 @@ const AddVendor = () => {
 			<h1 className="addVendorName">Add Vendor</h1>
 			<div className="vendorForm">
 				<form onSubmit={createVendor} id="add-vendor-form" className="addVendorForm">
-					<input name="name" type="text" placeholder="Vendor Name" />
+					<input name="name" type="text" placeholder="Vendor" />
 					<input name="description" type="text" placeholder="Description" />
 					<input name="email" type="text" placeholder="Email" />
 					<input name="website" type="text" placeholder="Website" />
