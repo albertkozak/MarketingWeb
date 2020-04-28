@@ -1,6 +1,6 @@
 import React from 'react';
-import VenueInputSelector from '../forms/VenueInputSelector';
-import EventOrganizerInputSelector from '../forms/EventOrganizerInputSelector';
+import VenueInputSelector from './VenueInputSelector';
+import EventOrganizerInputSelector from './EventOrganizerInputSelector';
 
 const AddEvent = () => {
 	// Add GET Request here for Venues & Event Organizers
@@ -62,11 +62,11 @@ const AddEvent = () => {
 						<EventOrganizerInputSelector data={dummyDataEOs} />
 					</div>
 					<div className="buttons">
-						<button className="cancel" onClick={clearForm}>
-							Cancel
-						</button>
 						<button className="submit" variant="" type="submit">
 							Add Event
+						</button>
+						<button className="cancel" onClick={clearForm}>
+							Cancel
 						</button>
 					</div>
 				</form>
