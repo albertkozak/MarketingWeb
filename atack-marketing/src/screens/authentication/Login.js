@@ -56,15 +56,11 @@ const Login = () => {
 			}
 		});
 	}
-
-	// ATTEMPT AT AUTH CONTEXT
-
 	const { currentUser } = useContext(AuthContext)
-	console.log("Login Current User: " + currentUser)
 
-	// if(!!currentUser) {
-	// 	return <Redirect to="/register" />
-	// }
+	if(!!currentUser) {
+		return <Redirect to="/" />
+	}
 
 	return (
 		<div className="auth-container">

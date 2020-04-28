@@ -5,13 +5,10 @@ import { AuthContext } from '../screens/authentication/Auth'
 
 const NavComponent = () => {
 	const { currentUser } = useContext(AuthContext)
-	console.log("from nav" + currentUser)
 
 	return (
 		<div className="NavContainer">
-		{(!currentUser) ? (
-			null
-		) : (
+		{(currentUser) ? (
 			<header className="header">
 			<Link to="/" className="logo">
 				<img src={logo} alt="" />
@@ -39,6 +36,8 @@ const NavComponent = () => {
 				</li>
 			</ul>
 		</header>
+		) : (
+			null
 		)}
 		</div>
 	);
