@@ -1,6 +1,6 @@
 import React from 'react';
-import VenueInputSelector from '../forms/VenueInputSelector';
-import EventOrganizerInputSelector from '../forms/EventOrganizerInputSelector';
+import VenueInputSelector from './VenueInputSelector';
+import EventOrganizerInputSelector from './EventOrganizerInputSelector';
 
 const AddEvent = () => {
 	// Add GET Request here for Venues & Event Organizers
