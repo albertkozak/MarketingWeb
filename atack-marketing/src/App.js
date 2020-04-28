@@ -10,6 +10,8 @@ import Export from './screens/Export';
 import Roles from './screens/Roles';
 import AddEvent from './components/events/AddEvent';
 import AddUser from './components/users/AddUser';
+import Profile from './screens/Profile';
+import ForgotPassword from './screens/ForgotPassword';
 import ViewEvent from './screens/ViewEvent'
 import { AuthProvider } from './screens/authentication/Auth'
 import PrivateRoute from './screens/authentication/PrivateRoute'
@@ -29,7 +31,7 @@ export const Main = withRouter(({ location }) =>{
 	return(
 				<div>
 					{
-						location.pathname !=="/login" && location.pathname != '/register' && <Navbar />
+						location.pathname !=="/login" && location.pathname != '/register' && location.pathname != '/forgotpassword' && <Navbar />
 					}
 					<Switch>
 						<PrivateRoute exact path="/" component={Home} />
@@ -40,53 +42,14 @@ export const Main = withRouter(({ location }) =>{
 						<PrivateRoute exact path="/addevent" component={AddEvent} />
 						<PrivateRoute exact path="/adduser" component={AddUser} />
 						<PrivateRoute exact path="/event" component={ViewEvent} />
+						<PrivateRoute exact path="/profile" component={Profile} />
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/register" component={Register} />
+						<Route exacct path="/forgotpassword" component={ForgotPassword}/>
 					</Switch>
 			<Footer />
 			</div>
 	)
 })
-
-// function App() {
-// 	return (
-// 		<div>
-// 			<Router>
-// 				<Navbar />
-// 				<Route exact path="/">
-// 					<Home />
-// 				</Route>
-// 				<Route path="/Home">
-// 					<Home />
-// 				</Route>
-// 				<Route path="/QRCode">
-// 					<QRCode />
-// 				</Route>
-// 				<Route path="/Roles">
-// 					<Roles />
-// 				</Route>
-// 				<Route path="/Export">
-// 					<Export />
-// 				</Route>
-// 				<Route path="/Login">
-// 					<Login />
-// 				</Route>
-// 				<Route path="/Register">
-// 					<Register />
-// 				</Route>
-// 				<Route path="/addevent">
-// 					<AddEvent />
-// 				</Route>
-// 				<Route path="/adduser">
-// 					<AddUser />
-// 				</Route>
-// 				<Route path="/event">
-// 					<ViewEvent />
-// 				</Route>
-// 			</Router>
-// 			<Footer />
-// 		</div>
-// 	);
-// }
 
 export default App;

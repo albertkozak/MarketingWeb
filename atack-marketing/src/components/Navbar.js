@@ -42,6 +42,9 @@ const NavComponent = () => {
 				<li>
 					<Link to="/register">Register</Link>
 				</li>
+				<li>
+					<Link to="/Profile">Profile</Link>
+				</li>
 			</ul>
 		</header>
 		)}
