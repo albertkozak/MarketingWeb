@@ -31,7 +31,7 @@ const Profile = () => {
 		<div className="auth-container">
 			<img className="logo" src={Logo} alt="logo" />
 			<div className="auth-wrapper">
-				{loggedIn && <p>currently logged in as: {currentUser.email}</p>}
+				{loggedIn && <p>Currently logged in as: {currentUser.email}</p>}
 				<div>{loggedIn && <Logout getLoggedIn={getLoggedIn} />}</div>
 			</div>
 		</div>
