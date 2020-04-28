@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, useContext } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import firebase from '../../firebase';
 import { useHistory } from 'react-router-dom';
 import Logo from '../../assets/full-logo.png';
 import { withRouter, Redirect, Link } from 'react-router-dom';
+import {AuthContext} from './Auth'
 
 const Login = () => {
 	//const API_CREATE_URL =
@@ -55,6 +56,11 @@ const Login = () => {
 			}
 		});
 	}
+	const { currentUser } = useContext(AuthContext)
+
+	if(!!currentUser) {
+		return <Redirect to="/" />
+	}
 
 	return (
 		<div className="auth-container">
@@ -67,7 +73,7 @@ const Login = () => {
 						try {
 							await handleSubmit(values);
 							resetForm();
-							history.push('/Home');
+							history.push('/home');
 						} catch (error) {
 							alert(error);
 							values.password = '';
@@ -153,4 +159,4 @@ const Login = () => {
 		</div>
 	);
 };
-export default Login;
+export default withRouter(Login);

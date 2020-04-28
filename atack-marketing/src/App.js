@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, withRouter } from 'react-router-dom';
 import Home from './screens/Home';
 import Navbar from './components/Navbar';
 import QRCode from './screens/QRCode';
@@ -13,53 +13,43 @@ import AddUser from './components/users/AddUser';
 import Profile from './screens/Profile';
 import ForgotPassword from './screens/ForgotPassword';
 import ViewEvent from './screens/ViewEvent'
+import { AuthProvider } from './screens/authentication/Auth'
+import PrivateRoute from './screens/authentication/PrivateRoute'
 
 function App() {
 	return (
-		<div>
+		<AuthProvider>
 			<Router>
-				<Navbar />
-				<Route exact path="/">
-					<Home />
-				</Route>
-				<Route path="/Home">
-					<Home />
-				</Route>
-				<Route path="/QRCode">
-					<QRCode />
-				</Route>
-				<Route path="/Roles">
-					<Roles />
-				</Route>
-				<Route path="/Export">
-					<Export />
-				</Route>
-				<Route path="/Login">
-					<Login />
-				</Route>
-				<Route path="/Register">
-					<Register />
-				</Route>
-				<Route path="/ForgotPassword">
-					<ForgotPassword />
-				</Route>
-				<Route path="/Profile">
-					<Profile />
-				</Route>
-
-				<Route path="/addevent">
-					<AddEvent />
-				</Route>
-				<Route path="/adduser">
-					<AddUser />
-				</Route>
-				<Route path="/event">
-					<ViewEvent />
-				</Route>
+			<Main />
 			</Router>
 			<Footer />
-		</div>
-	);
+		</AuthProvider>
+	)
 }
+
+export const Main = withRouter(({ location }) =>{
+	return(
+				<div>
+					{
+						location.pathname !=="/login" && location.pathname != '/register' && location.pathname != '/forgotpassword' && <Navbar />
+					}
+					<Switch>
+						<PrivateRoute exact path="/" component={Home} />
+						<PrivateRoute exact path="/home" component={Home} />
+						<PrivateRoute exact path="/qrcode" component={QRCode} />
+						<PrivateRoute exact path="/roles" component={Roles} />
+						<PrivateRoute exact path="/export" component={Export} />
+						<PrivateRoute exact path="/addevent" component={AddEvent} />
+						<PrivateRoute exact path="/adduser" component={AddUser} />
+						<PrivateRoute exact path="/event" component={ViewEvent} />
+						<PrivateRoute exact path="/profile" component={Profile} />
+						<Route exact path="/login" component={Login} />
+						<Route exact path="/register" component={Register} />
+						<Route exacct path="/forgotpassword" component={ForgotPassword}/>
+					</Switch>
+			<Footer />
+			</div>
+	)
+})
 
 export default App;

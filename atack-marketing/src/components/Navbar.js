@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import logo from '../assets/nav-logo.png';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import { AuthContext } from '../screens/authentication/Auth'
 
 const NavComponent = () => {
+	const { currentUser } = useContext(AuthContext)
+
 	return (
-		<header className="header">
+		<div className="NavContainer">
+		{(currentUser) ? (
+			<header className="header">
 			<Link to="/" className="logo">
 				<img src={logo} alt="" />
 			</Link>
@@ -15,31 +20,27 @@ const NavComponent = () => {
 			<ul className="menu">
 				{/* <div className="nav-menu"> */}
 				<li>
-					<Link to="/Home">Home</Link>
+					<Link to="/home">Home</Link>
 				</li>
 				<li>
-					<Link to="/QRCode">QR Code</Link>
+					<Link to="/qrcode">QR Code</Link>
 				</li>
 				<li>
-					<Link to="/Roles">Roles</Link>
+					<Link to="/roles">Roles</Link>
 				</li>
 				<li>
-					<Link to="/Export">Export</Link>
-				</li>
-				{/* </div> */}
-				{/* <div className="nav-auth"> */}
-				<li>
-					<Link to="/Login">Login</Link>
-				</li>
-				<li>
-					<Link to="/Register">Register</Link>
+					<Link to="/export">Export</Link>
 				</li>
 				<li>
 					<Link to="/Profile">Profile</Link>
 				</li>
 			</ul>
 		</header>
+		) : (
+			null
+		)}
+		</div>
 	);
 };
 
-export default NavComponent;
+export default withRouter(NavComponent);

@@ -139,4 +139,4 @@ const Register = () => {
 		</div>
 	);
 };
-export default Register;
+export default withRouter(Register);
