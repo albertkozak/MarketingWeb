@@ -10,6 +10,8 @@ import Export from './screens/Export';
 import Roles from './screens/Roles';
 import AddEvent from './components/events/AddEvent';
 import AddUser from './components/users/AddUser';
+import Profile from './screens/Profile';
+import ForgotPassword from './screens/ForgotPassword';
 import ViewEvent from './screens/ViewEvent'
 
 function App() {
@@ -38,6 +40,13 @@ function App() {
 				<Route path="/Register">
 					<Register />
 				</Route>
+				<Route path="/ForgotPassword">
+					<ForgotPassword />
+				</Route>
+				<Route path="/Profile">
+					<Profile />
+				</Route>
+
 				<Route path="/addevent">
 					<AddEvent />
 				</Route>
