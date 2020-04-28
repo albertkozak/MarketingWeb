@@ -62,11 +62,11 @@ const AddEvent = () => {
 						<EventOrganizerInputSelector data={dummyDataEOs} />
 					</div>
 					<div className="buttons">
-						<button className="cancel" onClick={clearForm}>
-							Cancel
-						</button>
 						<button className="submit" variant="" type="submit">
 							Add Event
+						</button>
+						<button className="cancel" onClick={clearForm}>
+							Cancel
 						</button>
 					</div>
 				</form>
