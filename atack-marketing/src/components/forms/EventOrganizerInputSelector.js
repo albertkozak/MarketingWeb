@@ -12,7 +12,7 @@ const EventOrganizerInputSelector = (props) => {
   return (
     <Select
 				multi
-				create
+				//create
 				placeholder="Add event organizer(s)"
                 onCreateNew={(item) => console.log('%c New item created ', item)}
                 // onCreateNew will route to add event organizer page
