@@ -9,16 +9,14 @@ const Logout = (props) => {
 			.then(() => {
 				props.getLoggedIn(false);
 			})
-			.catch(function(error) {
+			.catch(function (error) {
 				// An error happened.
 			});
 	}
 	return (
-		<button className="logout-button">
-			<a href="/" onClick={() => signOutUser()}>
-				Log out
-			</a>
-		</button>
+		<a href="/" onClick={() => signOutUser()}>
+			Log out
+		</a>
 	);
 };
 

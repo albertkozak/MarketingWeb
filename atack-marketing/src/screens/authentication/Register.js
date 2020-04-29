@@ -26,7 +26,7 @@ const Register = () => {
 							alert(
 								' - ' +
 									response.user.email +
-									'Please check email inbox for email verification.'
+									'  Please check email inbox for email verification.'
 							);
 
 							firebase.auth().currentUser.sendEmailVerification();

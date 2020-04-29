@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import logo from '../assets/nav-logo.png';
 import { Link, withRouter } from 'react-router-dom';
-import { AuthContext } from '../screens/authentication/Auth'
+import { AuthContext } from '../screens/authentication/Auth';
+import Logout from '../components/Logout';
 
 const NavComponent = () => {
 	const { currentUser } = useContext(AuthContext)
@@ -34,6 +35,9 @@ const NavComponent = () => {
 				<li>
 					<Link to="/Profile">Profile</Link>
 				</li>
+        <li>
+          <Logout/>
+        </li>
 			</ul>
 		</header>
 		) : (
