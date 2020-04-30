@@ -17,6 +17,7 @@ import { AuthProvider } from './screens/authentication/Auth';
 import PrivateRoute from './screens/authentication/PrivateRoute';
 import AddVenue from './components/forms/AddVenue';
 import AddVendor from './components/forms/AddVendor';
+import EditVendor from './components/forms/EditVendor'
 
 function App() {
 	return (
@@ -32,7 +33,7 @@ function App() {
 export const Main = withRouter(({ location }) => {
 	return (
 		<div>
-			{location.pathname !== '/login' &&
+			{location.pathname != '/login' &&
 			location.pathname != '/register' &&
 			location.pathname != '/forgotpassword' && <Navbar />}
 			<Switch>
@@ -45,6 +46,7 @@ export const Main = withRouter(({ location }) => {
 				<PrivateRoute exact path="/adduser" component={AddUser} />
 				<PrivateRoute exact path="/addvenue" component={AddVenue} />
 				<PrivateRoute exact path="/addvendor" component={AddVendor} />
+				<PrivateRoute exact path="/editvendor" component={EditVendor} />
 				<PrivateRoute exact path="/event" component={ViewEvent} />
 				<PrivateRoute exact path="/profile" component={Profile} />
 				<Route exact path="/login" component={Login} />
