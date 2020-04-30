@@ -1,38 +1,26 @@
-.addUserEmail {
+.editUserTitle {
 	text-align: center;
 	font-size: 3rem;
 	margin: 5rem 0;
 }
 
-// .react-switch-checkbox {
-// 	height: 0;
-// 	width: 0;
-// 	visibility: hidden;
-// }
+.adminLabel {
+	font-family: $body-heading-font;
+	padding-left: 5rem;
+	font-size: 1.3rem;
+}
 
-// .react-switch-label .react-switch-button {
-// 	content: '';
-// 	position: absolute;
-// 	top: 2px;
-// 	left: 2px;
-// 	width: 45px;
-// 	height: 45px;
-// 	border-radius: 45px;
-// 	transition: 0.2s;
-// 	background: #222;
-// 	box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
-//   }
-  
-//   .react-switch-checkbox:checked + .react-switch-label .react-switch-button {
-// 	left: calc(100% - 2px);
-// 	transform: translateX(-100%);
-//   }
-  
-//   .react-switch-label:active .react-switch-button {
-// 	width: 60px;
-//   }
+.userContainer {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
 
-.switch {
+	.userName {
+		color: $dark-grey;
+		font-size: 1.2rem;
+	}
+
+	.switch {
 	position: relative;
 	display: inline-block;
 	width: 60px;
@@ -69,113 +57,114 @@
 	border-radius: 50%;
   }
   input:checked + .slider {
-	background-color: #2196F3;
+	background-color: $orange;
   }
   input:focus + .slider {
-	box-shadow: 0 0 1px #2196F3;
+	box-shadow: 0 0 1px $orange;
   }
   input:checked + .slider:before {
 	-webkit-transform: translateX(26px);
 	-ms-transform: translateX(26px);
 	transform: translateX(26px);
   }
-
-.addUserForm {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-
-	input {
-		border: none;
-		font-size: 1.125rem;
-		color: $black;
-		padding: 15px;
-		border-bottom: 1px solid $light-grey;
-		//width: 50%;
-		margin: 0 auto;
-		text-align: center;
-
-		&:focus {
-			outline: none;
-		}
-
-		&::placeholder {
-			color: $light-grey;
-			font-family: $body-font;
-		}
-	}
-
-	[type=date] {
-		color: $light-grey;
-		font-family: $body-font;
-
-		position: relative;
-
-		::-webkit-input-placeholder {
-			color: $light-grey;
-		}
-		::-moz-placeholder {
-			color: $light-grey;
-		} /* firefox 19+ */
-		:-ms-input-placeholder {
-			color: $grey;
-		} /* ie */
-		input:-moz-placeholder {
-			color: $grey;
-		}
-
-		::-webkit-calendar-picker-indicator {
-			position: absolute;
-			top: 0;
-			left: 0;
-			bottom: 0;
-			right: 0;
-			width: auto;
-			height: auto;
-			color: transparent;
-			background: transparent;
-		}
-
-		::-webkit-inner-spin-button {
-			z-index: 1;
-		}
-
-		::-webkit-clear-button {
-			z-index: 1;
-		}
-	}
-
-	.buttons {
-		margin-top: 1rem;
-
-		button {
-			width: 10rem;
-			padding: 7px 15px;
-			text-align: center;
-			border-radius: 10px;
-			font-family: $body-font;
-			font-size: 1.2rem;
-			color: #fff;
-			background-color: $orange;
-			text-transform: uppercase;
-			border: none;
-
-			&:focus {
-				outline: none;
-			}
-
-			&:hover {
-				background-color: $hover-orange;
-			}
-		}
-	}
-
-	.submit {
-		margin-right: .5rem;
-
-		&:hover {
-			background-color: $hover-orange;
-		}
-	}
 }
+
+// .addUserForm {
+// 	display: flex;
+// 	flex-direction: column;
+// 	align-items: center;
+// 	justify-content: center;
+
+// 	input {
+// 		border: none;
+// 		font-size: 1.125rem;
+// 		color: $black;
+// 		padding: 15px;
+// 		border-bottom: 1px solid $light-grey;
+// 		//width: 50%;
+// 		margin: 0 auto;
+// 		text-align: center;
+
+// 		&:focus {
+// 			outline: none;
+// 		}
+
+// 		&::placeholder {
+// 			color: $light-grey;
+// 			font-family: $body-font;
+// 		}
+// 	}
+
+// 	[type=date] {
+// 		color: $light-grey;
+// 		font-family: $body-font;
+
+// 		position: relative;
+
+// 		::-webkit-input-placeholder {
+// 			color: $light-grey;
+// 		}
+// 		::-moz-placeholder {
+// 			color: $light-grey;
+// 		} /* firefox 19+ */
+// 		:-ms-input-placeholder {
+// 			color: $grey;
+// 		} /* ie */
+// 		input:-moz-placeholder {
+// 			color: $grey;
+// 		}
+
+// 		::-webkit-calendar-picker-indicator {
+// 			position: absolute;
+// 			top: 0;
+// 			left: 0;
+// 			bottom: 0;
+// 			right: 0;
+// 			width: auto;
+// 			height: auto;
+// 			color: transparent;
+// 			background: transparent;
+// 		}
+
+// 		::-webkit-inner-spin-button {
+// 			z-index: 1;
+// 		}
+
+// 		::-webkit-clear-button {
+// 			z-index: 1;
+// 		}
+// 	}
+
+// 	.buttons {
+// 		margin-top: 1rem;
+
+// 		button {
+// 			width: 10rem;
+// 			padding: 7px 15px;
+// 			text-align: center;
+// 			border-radius: 10px;
+// 			font-family: $body-font;
+// 			font-size: 1.2rem;
+// 			color: #fff;
+// 			background-color: $orange;
+// 			text-transform: uppercase;
+// 			border: none;
+
+// 			&:focus {
+// 				outline: none;
+// 			}
+
+// 			&:hover {
+// 				background-color: $hover-orange;
+// 			}
+// 		}
+// 	}
+
+// 	.submit {
+// 		margin-right: .5rem;
+
+// 		&:hover {
+// 			background-color: $hover-orange;
+// 		}
+// 	}
+// }
