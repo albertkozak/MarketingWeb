@@ -17,7 +17,8 @@ import { AuthProvider } from './screens/authentication/Auth';
 import PrivateRoute from './screens/authentication/PrivateRoute';
 import AddVenue from './components/forms/AddVenue';
 import AddVendor from './components/forms/AddVendor';
-import EditVendor from './components/forms/EditVendor'
+import EditVendor from './components/forms/EditVendor';
+import EditEvent from './components/forms/EditEvent';
 
 function App() {
 	return (
@@ -43,6 +44,7 @@ export const Main = withRouter(({ location }) => {
 				<PrivateRoute exact path="/roles" component={Roles} />
 				<PrivateRoute exact path="/export" component={Export} />
 				<PrivateRoute exact path="/addevent" component={AddEvent} />
+				<PrivateRoute exact path="/editevent" component={EditEvent} />
 				<PrivateRoute exact path="/adduser" component={AddUser} />
 				<PrivateRoute exact path="/addvenue" component={AddVenue} />
 				<PrivateRoute exact path="/addvendor" component={AddVendor} />

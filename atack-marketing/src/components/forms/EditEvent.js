@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import VenueInputSelector from './VenueInputSelector';
 import EventOrganizerInputSelector from './EventOrganizerInputSelector';
 
@@ -10,36 +10,36 @@ const EditEvent = (props) => {
 	const [ venueName, setVenueName ] = useState(event.venue.venueName);
 	const [ errorMessage, setErrorMessage ] = useState('');
 	// Add GET Request here for Venues & Event Organizers
-	// const dummyDataVenues = [
-	// 	{
-	// 		venueId: 1,
-	// 		venueName: 'Rogers Arena',
-	// 		website: 'https://rogersarena.com/'
-	// 	},
-	// 	{
-	// 		venueId: 2,
-	// 		venueName: 'Vancouver Convention Centre',
-	// 		website: 'https://www.vancouverconventioncentre.com/'
-	// 	}
-	// ];
+	const dummyDataVenues = [
+		{
+			venueId: 1,
+			venueName: 'Rogers Arena',
+			website: 'https://rogersarena.com/'
+		},
+		{
+			venueId: 2,
+			venueName: 'Vancouver Convention Centre',
+			website: 'https://www.vancouverconventioncentre.com/'
+		}
+	];
 
-	// const dummyDataEOs = [
-	// 	{
-	// 		eventOrganizerId: 1,
-	// 		userId: 7,
-	// 		userEmail: 'eventies@events.com'
-	// 	},
-	// 	{
-	// 		eventOrganizerId: 2,
-	// 		userId: 12,
-	// 		userEmail: 'abc@123.com'
-	// 	},
-	// 	{
-	// 		eventOrganizerId: 5,
-	// 		userId: 198,
-	// 		userEmail: 'whatisricebowl@wut.com'
-	// 	}
-	// ];
+	const dummyDataEOs = [
+		{
+			eventOrganizerId: 1,
+			userId: 7,
+			userEmail: 'eventies@events.com'
+		},
+		{
+			eventOrganizerId: 2,
+			userId: 12,
+			userEmail: 'abc@123.com'
+		},
+		{
+			eventOrganizerId: 5,
+			userId: 198,
+			userEmail: 'whatisricebowl@wut.com'
+		}
+	];
 
 	const editEvent = async (event) => {
 		event.preventDefault();
@@ -51,11 +51,11 @@ const EditEvent = (props) => {
 		} else if (
 			eventName === event.eventName &&
 			eventStartDateTime.value === event.eventStartDateTime &&
-			eventVenueName.value === event.venueName
+			event.venue.VenueName.value === event.venue.venueName
 		) {
-			setErrorMessages('No changes have been made');
+			setErrorMessage('No changes have been made');
 		} else {
-			setErrorMessages('');
+			setErrorMessage('');
 		}
 
 		// Add POST Request here
