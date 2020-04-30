@@ -9,7 +9,7 @@ import Footer from './components/Footer';
 import Export from './screens/Export';
 import Roles from './screens/Roles';
 import AddEvent from './components/forms/AddEvent';
-import AddUser from './components/forms/AddUser';
+import EditUser from './components/forms/EditUser';
 import Profile from './screens/Profile';
 import ForgotPassword from './screens/ForgotPassword';
 import ViewEvent from './screens/ViewEvent';
@@ -44,7 +44,7 @@ export const Main = withRouter(({ location }) => {
 				<PrivateRoute exact path="/roles" component={Roles} />
 				<PrivateRoute exact path="/export" component={Export} />
 				<PrivateRoute exact path="/addevent" component={AddEvent} />
-				<PrivateRoute exact path="/adduser" component={AddUser} />
+				<PrivateRoute exact path="/edituser" component={EditUser} />
 				<PrivateRoute exact path="/addvenue" component={AddVenue} />
 				<PrivateRoute exact path="/editvenue" component={EditVenue} />
 				<PrivateRoute exact path="/addvendor" component={AddVendor} />
