@@ -1,4 +1,4 @@
-.eventButton {
+.vendorButton {
 	font-size: 1rem;
 	margin-left: 5rem;
 	margin-top: 2rem;
@@ -18,7 +18,7 @@
 	margin-top: 2.5rem;
 }
 
-.eventItem {
+.vendorItem {
 	margin: 0 auto;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
@@ -26,24 +26,17 @@
 	width: 65%;
 	padding: .7rem 0;
 
-	a {
-		text-decoration: none;
-	}
-
-	.eventTitle {
+	.vendorTitle {
 		font-family: $body-heading-font;
-		font-size: 1.3rem;
+		font-size: 1.2rem;
 		color: $dark-grey;
 		font-weight: 100;
-
-		&:hover {
-			color: $grey;
-		}
 	}
 
-	.eventStartDateTime {
+	.description {
 		text-align: center;
-		font-size: 1.1rem;
+		font-size: 1.0rem;
+		color: $grey;
 	}
 
 	.edit-del-links {
