@@ -46,7 +46,7 @@ export const Main = withRouter(({ location }) => {
 				<PrivateRoute exact path="/addevent" component={AddEvent} />
 				<PrivateRoute exact path="/adduser" component={AddUser} />
 				<PrivateRoute exact path="/addvenue" component={AddVenue} />
-				<PrivateRoute exact path="/addvenue" component={EditVenue} />
+				<PrivateRoute exact path="/editvenue" component={EditVenue} />
 				<PrivateRoute exact path="/addvendor" component={AddVendor} />
 				<PrivateRoute exact path="/editvendor" component={EditVendor} />
 				<PrivateRoute exact path="/event" component={ViewEvent} />
