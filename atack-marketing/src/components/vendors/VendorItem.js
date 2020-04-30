@@ -9,8 +9,8 @@ const VendorItem = (props) => {
 		<div className="vendorItem">
 			<h3 className="vendorTitle">{vendor.name}</h3>
 			<p className="description">{vendor.description}</p>
-			<p className="email">{vendor.email}</p>
-			<p className="website">{vendor.website}</p>
+			{/* <p className="email">{vendor.email}</p>
+			<p className="website">{vendor.website}</p> */}
 			{/* links for these */}
 			<div className="edit-del-links">
 				<Link
