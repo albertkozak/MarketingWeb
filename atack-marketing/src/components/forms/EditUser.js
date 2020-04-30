@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import Switch from './Switch'
 
 const EditUser = (props) => {
 	const user = props.location.state.user;
 	const [isAdmin, setIsAdmin] = useState(user.isAdmin)
-	const updateIsAdmin = () => setIsAdmin(!isAdmin)
 
 	const editUser = async (user) => {
 		user.preventDefault();
 		const { userEmail, isAdmin } = user.target.elements;
 
 		// Add POST Request here
-		alert(`POST-request: ${userEmail.value} ${isAdmin}`);
+		alert(`POST-request: ${userEmail.value} ${isAdmin.value}`);
 	};
 
 	const clearForm = (user) => {
@@ -23,11 +23,15 @@ const EditUser = (props) => {
 	return (
 		<div className="container">
 			<h1 className="addUserEmail">Edit User Access</h1>
+			<Switch 
+				isOn={isAdmin}
+        		handleToggle={() => setIsAdmin(!isAdmin)} />
 			<div className="userForm">
 				<form onSubmit={editUser} id="add-user-form" className="addUserForm">
 					<input readOnly value={user.userEmail} name="userEmail" type="text" placeholder="Email" />
-					<input checked={user.isAdmin}
-            		onChange={updateIsAdmin}name="isAdmin" type="checkbox" placeholder="Admin" />
+					
+					{/* <input
+            		onChange={updateIsAdmin}name="isAdmin" type="checkbox" label="Admin Access" /> */}
 					<div className="buttons">
 						<button className="submit" variant="" type="submit">
 							Edit Access
