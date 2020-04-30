@@ -6,6 +6,9 @@ const EditEvent = (props) => {
 	const event = props.location.state.event;
 	const [ eventName, setEventName ] = useState(event.eventName);
 	const [ eventStartDateTime, setEventStartDateTime ] = useState(event.eventStartDateTime);
+	const formDate = new Date(eventStartDateTime).toISOString().slice(0, 10);
+	console.log(formDate);
+
 	// Need to adjust selector form - pending
 	const [ venueName, setVenueName ] = useState(event.venue.venueName);
 	const [ errorMessage, setErrorMessage ] = useState('');
@@ -91,7 +94,7 @@ const EditEvent = (props) => {
 						onChange={(event) => {
 							setEventStartDateTime(event.target.value);
 						}}
-						value={eventStartDateTime}
+						value={formDate}
 						name="eventStartDateTime"
 						type="date"
 						placeholder="Start Date"

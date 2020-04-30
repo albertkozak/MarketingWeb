@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import Export from './screens/Export';
 import Roles from './screens/Roles';
 import AddEvent from './components/forms/AddEvent';
+import EditEvent from './components/forms/EditEvent';
 import EditUser from './components/forms/EditUser';
 import Profile from './screens/Profile';
 import ForgotPassword from './screens/ForgotPassword';
