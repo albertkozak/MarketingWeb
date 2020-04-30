@@ -50,13 +50,13 @@ const EditVendor = (props) => {
 			<div className="vendorForm">
 				<form onSubmit={editVendor} id="add-vendor-form" className="addVendorForm">
 				<p className="form-error">{errorMessage}</p>
-					<input onChange={event => { setName(event.target.value)}} value={name}name="name" type="text" placeholder="Vendor" />
+					<input onChange={event => { setName(event.target.value)}} value={name} name="name" type="text" placeholder="Vendor" />
 					<input onChange={event => { setDescription(event.target.value)}} value={description} name="description" type="text" placeholder="Description" />
 					<input onChange={event => { setEmail(event.target.value)}} value={email} name="email" type="text" placeholder="Email" />
 					<input onChange={event => { setWebsite(event.target.value)}} value={website} name="website" type="text" placeholder="Website" />
 					<div className="buttons">
 						<button className="submit" variant="" type="submit">
-							Add Vendor
+							Edit Vendor
 						</button>
 						<button className="cancel" onClick={clearForm}>
 							Cancel
