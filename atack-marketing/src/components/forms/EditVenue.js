@@ -42,7 +42,7 @@ const EditVenue = (props) => {
 			<div className="venueForm">
 				<form onSubmit={editVenue} id="edit-venue-form" className="addVenueForm">
                 <p className="form-error">{errorMessage}</p>
-					<input onChange={event => { setVenueName(event.target.value)}} value={venueName} name="venueName" type="text" placeholder="Venue Name" value={venueNameValue} />
+					<input onChange={event => { setVenueName(event.target.value)}} value={venueName} name="venueName" type="text" placeholder="Venue Name"  />
 					<input onChange={event => { setVenueWebsite(event.target.value)}} value={venueWebsite} name="venueWebsite" type="text" placeholder="Website" />
 					<div className="buttons">
 						<button className="submit" variant="" type="submit">
