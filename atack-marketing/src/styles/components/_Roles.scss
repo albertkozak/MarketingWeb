@@ -36,10 +36,20 @@
 	.isAdmin {
 		text-align: center;
 		font-size: 1.1rem;
+		color: $grey
 	}
 
 	.edit-del-links {
 		text-align: right;
 		color: $grey;
+
+		a {
+			text-decoration: none;
+			color: $orange;
+
+			&:hover {
+				color: $hover-orange;
+			  }
+		}
 	}
 }

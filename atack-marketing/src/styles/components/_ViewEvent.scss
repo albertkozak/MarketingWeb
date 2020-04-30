@@ -18,10 +18,35 @@
     margin: 0;
   }
 
-  .venue {
+  .venueContainer {
     margin: 3rem 0;
-    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    
+
+    .venue {
+      font-size: 1.3rem;
+      margin-right: 5rem;
+    }
+
+    .venueWebsite {
+      font-size: 1.1rem;
+      color: $grey
+    }
+
+    a {
+      text-decoration: none;
+      color: $orange;
+
+      &:hover {
+        color: $hover-orange;
+      }
+    }
+
+
   }
+
+
 
   .eventDetailsWrapper {
     display: flex;
@@ -51,6 +76,7 @@
       padding: 7px 17px;
       border-radius: 10px;
       cursor: pointer;
+      
     }
   }
 }

@@ -86,7 +86,7 @@ const EditVendor = (props) => {
 					/>
 					<div className="buttons">
 						<button className="submit" variant="" type="submit">
-							Add Vendor
+							Edit Vendor
 						</button>
 						<button className="cancel" onClick={clearForm}>
 							Cancel
