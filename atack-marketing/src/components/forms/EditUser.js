@@ -2,14 +2,19 @@ import React, { useState, useEffect } from 'react';
 
 const EditUser = (props) => {
 	const user = props.location.state.user;
-	const [isAdmin, setIsAdmin] = useState(user.isAdmin)
+	const initialValue = props.location.state.user.isAdmin
+	const [isAdmin, setIsAdmin] = useState(!user.isAdmin)
+	const [checked, setIsChecked] = useState(initialValue)
 
 	const handleToggle = () => {
 		setIsAdmin(!isAdmin)
-		console.log(isAdmin)
-
+		setIsChecked(!checked)
+		console.log("is admin: " + isAdmin)
+		console.log("is checked: " + checked)
+		
 		// Add Put request here
 	}
+
 
 	return (
 		<div className="container">
@@ -21,8 +26,8 @@ const EditUser = (props) => {
 			<div className='switchContainer'>
             <label className="switch">
 			<input 
-				type="checkbox" 
-				value={isAdmin} 
+				type="checkbox"
+				checked={checked} 
 				onChange={handleToggle} />
             <div className="slider"></div>
             </label>
