@@ -7,9 +7,9 @@ const Roles = () => {
 	const history = useHistory();
 	return (
 		<div className="container">
-			<button className="userButton" onClick={() => history.push('/adduser')}>
+			{/* <button className="userButton" onClick={() => history.push('/adduser')}>
 				Create User
-			</button>
+			</button> */}
 			<UserList />
 		</div>
 	);

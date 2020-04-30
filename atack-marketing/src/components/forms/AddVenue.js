@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 const AddVenue = (props) => {
-	const venueNameValue = props.venueName;
-	console.log(venueNameValue);
+    //const venueNameValue = props.venueName;
+    const venueNameValue = props.location.state.venueName;
+    const [venueName, setVenueName] = useState(venueNameValue)
+    console.log(venueNameValue);
 
 	const createVenue = async (venue) => {
 		venue.preventDefault();
@@ -22,7 +24,7 @@ const AddVenue = (props) => {
 			<h1 className="addVenueName">Add Venue</h1>
 			<div className="venueForm">
 				<form onSubmit={createVenue} id="add-venue-form" className="addVenueForm">
-					<input name="venueName" type="text" placeholder="Venue Name" value={venueNameValue} />
+					<input onChange={event => { setVenueName(event.target.value)}} value={venueName} name="venueName" type="text" placeholder="Venue Name" />
 					<input name="venueWebsite" type="text" placeholder="Website" />
 					<div className="buttons">
 						<button className="submit" variant="" type="submit">
