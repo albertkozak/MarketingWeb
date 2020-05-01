@@ -1,21 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import VenueInputSelector from './VenueInputSelector';
 import EventOrganizerInputSelector from './EventOrganizerInputSelector';
+import firebase from '../../firebase'
 
 const AddEvent = () => {
+	const [errorMessage, setErrorMessage] = useState('')
+	const [fetchedVenues, setFetchedVenues] = useState('')
+	const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/Events"
+
 	// Add GET Request here for Venues & Event Organizers
-	const dummyDataVenues = [
-		{
-			venueId: 1,
-			venueName: 'Rogers Arena',
-			website: 'https://rogersarena.com/'
-		},
-		{
-			venueId: 2,
-			venueName: 'Vancouver Convention Centre',
-			website: 'https://www.vancouverconventioncentre.com/'
-		}
-	];
+
+	const fetchData = () => {
+		firebase
+		  .auth()
+		  .currentUser.getIdTokenResult()
+		  .then((tokenResponse) => {
+			fetch(BASE_URL, {
+			  method: "GET",
+			  headers: {
+				Accept: "application/json",
+				Authorization: `Bearer ${tokenResponse.token}`,
+			  },
+			})
+			  .then((response) => response.json())
+			  .then((responseData) => {
+				setFetchedVenues(responseData.events.venue);
+				console.log(fetchedVenues);
+			  });
+		  });
+	  };
+	
+	  useEffect(() => {
+		fetchData();
+	  }, []);
 
 	const dummyDataEOs = [
 		{
@@ -56,7 +73,7 @@ const AddEvent = () => {
 					<input name="eventName" type="text" placeholder="Title" />
 					<input name="eventStartDateTime" type="date" placeholder="Start Date" />
 					<div className="input-selector">
-						<VenueInputSelector data={dummyDataVenues} />
+						<VenueInputSelector data={fetchedVenues} />
 					</div>
 					<div className="input-selector">
 						<EventOrganizerInputSelector data={dummyDataEOs} />
