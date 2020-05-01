@@ -22,6 +22,8 @@ import AddVendorProduct from './components/forms/AddVendorProduct';
 import EditVendor from './components/forms/EditVendor';
 import EditVenue from './components/forms/EditVenue';
 import Vendors from './screens/Vendors';
+import VendorDetailProductList from './components/products/VendorDetailProductList';
+import VendorDetailProduct from './components/products/VendorDetailProduct';
 
 function App() {
 	return (
@@ -57,9 +59,10 @@ export const Main = withRouter(({ location }) => {
 				<PrivateRoute exact path="/vendors" component={Vendors} />
 				<PrivateRoute exact path="/profile" component={Profile} />
 				<PrivateRoute exact path='/addvendorproduct' component={AddVendorProduct}/>
+				<PrivateRoute exact path='/vendordetailproductlist'component={VendorDetailProductList}/>
 				<Route exact path="/login" component={Login} />
 				<Route exact path="/register" component={Register} />
-				<Route exacct path="/forgotpassword" component={ForgotPassword} />
+				<Route exact path="/forgotpassword" component={ForgotPassword} />
 			</Switch>
 			<Footer />
 		</div>
