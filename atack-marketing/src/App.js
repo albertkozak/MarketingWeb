@@ -9,7 +9,8 @@ import Footer from './components/Footer';
 import Export from './screens/Export';
 import Roles from './screens/Roles';
 import AddEvent from './components/forms/AddEvent';
-import AddUser from './components/forms/AddUser';
+import EditEvent from './components/forms/EditEvent';
+import EditUser from './components/forms/EditUser';
 import Profile from './screens/Profile';
 import ForgotPassword from './screens/ForgotPassword';
 import ViewEvent from './screens/ViewEvent';
@@ -18,6 +19,9 @@ import PrivateRoute from './screens/authentication/PrivateRoute';
 import AddVenue from './components/forms/AddVenue';
 import AddVendor from './components/forms/AddVendor';
 import AddVendorProduct from './components/forms/AddVendorProduct';
+import EditVendor from './components/forms/EditVendor';
+import EditVenue from './components/forms/EditVenue';
+import Vendors from './screens/Vendors';
 
 function App() {
 	return (
@@ -33,7 +37,7 @@ function App() {
 export const Main = withRouter(({ location }) => {
 	return (
 		<div>
-			{location.pathname !== '/login' &&
+			{location.pathname != '/login' &&
 			location.pathname != '/register' &&
 			location.pathname != '/forgotpassword' && <Navbar />}
 			<Switch>
@@ -43,10 +47,14 @@ export const Main = withRouter(({ location }) => {
 				<PrivateRoute exact path="/roles" component={Roles} />
 				<PrivateRoute exact path="/export" component={Export} />
 				<PrivateRoute exact path="/addevent" component={AddEvent} />
-				<PrivateRoute exact path="/adduser" component={AddUser} />
+				<PrivateRoute exact path="/editevent" component={EditEvent} />
+				<PrivateRoute exact path="/edituser" component={EditUser} />
 				<PrivateRoute exact path="/addvenue" component={AddVenue} />
+				<PrivateRoute exact path="/editvenue" component={EditVenue} />
 				<PrivateRoute exact path="/addvendor" component={AddVendor} />
+				<PrivateRoute exact path="/editvendor" component={EditVendor} />
 				<PrivateRoute exact path="/event" component={ViewEvent} />
+				<PrivateRoute exact path="/vendors" component={Vendors} />
 				<PrivateRoute exact path="/profile" component={Profile} />
 				<PrivateRoute exact path='/addvendorproduct' component={AddVendorProduct}/>
 				<Route exact path="/login" component={Login} />

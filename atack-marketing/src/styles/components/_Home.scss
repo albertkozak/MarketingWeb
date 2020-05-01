@@ -49,5 +49,14 @@
 	.edit-del-links {
 		text-align: right;
 		color: $grey;
+
+		a {
+			text-decoration: none;
+			color: $orange;
+
+			&:hover {
+				color: $hover-orange;
+			}
+		}
 	}
 }
