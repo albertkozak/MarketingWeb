@@ -9,7 +9,7 @@ const DeleteEvent = (props) => {
 
     const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/"
 
-	const deleteEvent = async event => {
+	const deleteEvent = async e => {
 		let JWToken = await (await firebase.auth().currentUser.getIdTokenResult()).token;
 
 		if (JWToken !== null) {
@@ -36,8 +36,8 @@ const DeleteEvent = (props) => {
     return (
 <div className="container">
     <h1 className="addEventTitle">Delete {currentEvent.eventName}?</h1>
-    <div className="eventForm">
-            <form id="edit-event-form" className="addEventForm">
+    <div className="eventFormDelete">
+ 
             <input
                         placeholder={currentEvent.eventName}
                     />
@@ -49,15 +49,19 @@ const DeleteEvent = (props) => {
                     />
 
 					<div className="buttons">
-						<button className="submit" onClick={deleteEvent}>
-							Delete
-						</button>
+                    <button className="submit"
+                            onClick={e =>
+                                window.confirm("Are you sure you wish to delete this event?") && deleteEvent()}
+                        >
+                            Delete
+                        </button>
+
                         <button className="cancel" variant="" type="submit" onClick={() => history.push('/')}>
                             Cancel
                         </button>
 
 					</div>
-                    </form>
+
 			</div>
 		</div>
     )
