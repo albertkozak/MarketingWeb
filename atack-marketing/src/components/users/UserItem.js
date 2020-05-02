@@ -18,7 +18,7 @@ const UserItem = (props) => {
 
 	return (
 		<div className="userItem">
-			<h3 className="userTitle">{user.userEmail}</h3>
+			<h3 className="userTitle">{user.email}</h3>
 	<p className="isAdmin">{showAdmin()}</p>
 			{/* links for these */}
 			<div className="edit-del-links">
