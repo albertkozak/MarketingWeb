@@ -7,8 +7,8 @@ const AddEvent = () => {
 	const [errorMessage, setErrorMessage] = useState('')
 	const [fetchedVenues, setFetchedVenues] = useState([])
 	const [fetchedUsers, setFetchedUsers] = useState([])
-	const [selectedVenue, setSelectedVenue] = useState('')
-	const [selectedEventOrganizers, setSelectedEventOrgainizers] = useState('')
+	const [selectedVenue, setSelectedVenue] = useState([])
+	const [selectedEventOrganizers, setSelectedEventOrgainizers] = useState([])
 	const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/"
 
 	// Add GET Request here for Venues & Event Organizers
@@ -58,24 +58,6 @@ const AddEvent = () => {
 		fetchVenues(); 
 		fetchUsers();
 	  }, []);
-
-	const dummyDataEOs = [
-		{
-			eventOrganizerId: 1,
-			userId: 7,
-			userEmail: 'eventies@events.com'
-		},
-		{
-			eventOrganizerId: 2,
-			userId: 12,
-			userEmail: 'abc@123.com'
-		},
-		{
-			eventOrganizerId: 5,
-			userId: 198,
-			userEmail: 'whatisricebowl@wut.com'
-		}
-	];
 
 	const createEvent = async (event) => {
 		event.preventDefault();
