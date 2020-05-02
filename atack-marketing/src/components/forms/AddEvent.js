@@ -8,6 +8,7 @@ const AddEvent = () => {
 	const [fetchedVenues, setFetchedVenues] = useState([])
 	const [fetchedUsers, setFetchedUsers] = useState([])
 	const [selectedVenue, setSelectedVenue] = useState('')
+	const [selectedEventOrganizers, setSelectedEventOrgainizers] = useState('')
 	const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/"
 
 	// Add GET Request here for Venues & Event Organizers
@@ -38,7 +39,7 @@ const AddEvent = () => {
 		  .auth()
 		  .currentUser.getIdTokenResult()
 		  .then((tokenResponse) => {
-			fetch(BASE_URL + "User", {
+			fetch(BASE_URL + "User/userlist", {
 			  method: "GET",
 			  headers: {
 				Accept: "application/json",
@@ -47,7 +48,7 @@ const AddEvent = () => {
 			})
 			  .then((response) => response.json())
 			  .then((responseData) => {
-				setFetchedUsers(responseData.user);
+				setFetchedUsers(responseData);
 				console.log(fetchedUsers);
 			  });
 		  });
@@ -57,19 +58,6 @@ const AddEvent = () => {
 		fetchVenues(); 
 		fetchUsers();
 	  }, []);
-
-	const dummyDataVenues = [
-		{
-			venueId: 1,
-			venueName: 'Rogers Arena',
-			website: 'https://rogersarena.com/'
-		},
-		{
-			venueId: 2,
-			venueName: 'Vancouver Convention Centre',
-			website: 'https://www.vancouverconventioncentre.com/'
-		}
-	];
 
 	const dummyDataEOs = [
 		{
@@ -136,6 +124,14 @@ const AddEvent = () => {
 		setSelectedVenue(1)
 	}
 
+	const callbackFunctionEOs = (childData) => {
+		//let venueId = childData.value;
+		//setSelectedVenue(childData)
+		console.log(childData)
+		console.log(childData.value)
+		setSelectedEventOrgainizers(1)
+	}
+
 
 	const clearForm = (event) => {
 		event.preventDefault();
@@ -154,7 +150,7 @@ const AddEvent = () => {
 						<VenueInputSelector data={fetchedVenues} parentCallback={callbackFunction} />
 					</div>
 					<div className="input-selector">
-						<EventOrganizerInputSelector data={dummyDataEOs} />
+						<EventOrganizerInputSelector data={fetchedUsers} parentCallback={callbackFunctionEOs} />
 					</div>
 					<div className="buttons">
 						<button className="submit" variant="" type="submit">

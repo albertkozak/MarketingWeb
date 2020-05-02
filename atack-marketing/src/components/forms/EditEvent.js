@@ -3,7 +3,7 @@ import VenueInputSelector from './VenueInputSelector';
 import EventOrganizerInputSelector from './EventOrganizerInputSelector';
 
 const EditEvent = (props) => {
-	const event = props.location.state.event;
+	const event = props.location.state.currentEvent;
 	const [ eventName, setEventName ] = useState(event.eventName);
 	const [ eventStartDateTime, setEventStartDateTime ] = useState(event.eventStartDateTime);
 	const formDate = new Date(eventStartDateTime).toISOString().slice(0, 10);

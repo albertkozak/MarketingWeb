@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 import VenueItem from '../venue/VenueItem'
 
 const VenueInputSelector = (props) => {
-	// Refactor later for reusability - labels and values
 	const [ venueSelected, setVenue ] = useState('');
 	const [inputValue, setInputValue] = useState([])
 	const venues = props.data
