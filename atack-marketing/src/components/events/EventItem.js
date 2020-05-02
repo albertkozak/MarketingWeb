@@ -3,7 +3,6 @@ import { Link, withRouter } from 'react-router-dom';
 
 const EventItem = (props) => {
 	const event = props.event;
-	//const eventToPass = withRouter(event.eventName)
 	const formattedDate = new Date(event.eventStartDateTime).toISOString().slice(0, 10);
 
 	return (

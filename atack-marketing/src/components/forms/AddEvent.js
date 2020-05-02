@@ -27,6 +27,7 @@ const AddEvent = () => {
 			  .then((response) => response.json())
 			  .then((responseData) => {
 				setFetchedVenues(responseData);
+				console.log(responseData)
 				console.log(fetchedVenues);
 			  });
 		  });
@@ -92,21 +93,17 @@ const AddEvent = () => {
 		event.preventDefault();
 		const { eventName, eventStartDateTime, venueId } = event.target.elements;
 
-		// Add POST Request here
-		// alert(`POST-request: ${eventName.value} ${eventStartDateTime.value} ${venueName}`);
-
 		//Validation 
-		if(eventName.value === "" || eventStartDateTime.value === "") {
+		if(eventName.value === "" || eventStartDateTime.value === "" || selectedVenue === "") {
 			setErrorMessage("Please fill all required fields");
 		} else {
 			setErrorMessage("")
-		}
 
 		let JWToken = await (
 			await firebase.auth().currentUser.getIdTokenResult()
 		).token;
 		if (JWToken !== null) {
-			const result = await fetch(BASE_URL + "Events", {
+			const result = await fetch(BASE_URL + "Events/add", {
 				method: "POST",
 				headers: {
 					Accept: "application/json",
@@ -116,19 +113,27 @@ const AddEvent = () => {
 				body: JSON.stringify({
 					eventName: eventName.value,
 					eventStartDateTime: eventStartDateTime.value,
-					venueId: selectedVenue
+					venueId: selectedVenue,
 				})
-			})
+			});
+			if (result.status === 201) {
+				window.location.href="/";
+			} else {
+				alert("Error: Something went wrong, please try again");
+			}
+			document.getElementById('add-event-form').reset();
 		}
+	}
 	};
 
 
 	const callbackFunction = (childData) => {
 		//let venueId = childData.value;
-		setSelectedVenue(childData)
+		//setSelectedVenue(childData)
 		console.log(childData)
-		//console.log(childData.value)
+		console.log(childData.value)
 		console.log(selectedVenue)
+		setSelectedVenue(1)
 	}
 
 

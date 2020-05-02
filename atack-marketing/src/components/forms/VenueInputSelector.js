@@ -5,15 +5,18 @@ import VenueItem from '../venue/VenueItem'
 
 const VenueInputSelector = (props) => {
 	// Refactor later for reusability - labels and values
-	const [ venue, setVenue ] = useState('');
+	const [ venueSelected, setVenue ] = useState('');
+	const [inputValue, setInputValue] = useState([])
 	const venues = props.data
 
 	const history = useHistory();
 
 	function isSetVenue(venue) {
+		let venueString = JSON.stringify(venue, true, 2);
 		setVenue(venue);
 		console.log(venue)
-		console.log(venue.venueName);
+		console.log(venueString);
+		//console.log(venueString.label);
 		props.parentCallback(venue)
 	}
 
@@ -22,13 +25,21 @@ const VenueInputSelector = (props) => {
 		console.log(venueName.value);
 	}
 
-	// const options = [
-	// 	props.data.map((data) => ({
-	// 		venueId: data.venueId,
-	// 		venueName: data.venueName,
-	// 		website: data.website,
-	// 	}))
-	// ]
+
+
+	const options = venues.map((venue) => ({
+			value: venue,
+			label: venue.venueName,
+		}))
+
+	// const options = venues.map((venue) => (
+	// 	<option key={venue.venueId}>{venue.ame}</option>
+	// 	))
+
+	// const change = (event) => {
+	// 	setInputValue(event.target.value)
+	// }
+	
 
 	return (
 		<Select
@@ -37,17 +48,16 @@ const VenueInputSelector = (props) => {
 			onCreateNew={(item) => addVenue(item)}
 			searchable
 			searchBy="label"
-			// options={options => ({
-			// 	value: options.venueId
-			// })}
-			options={venues.map((venue) => ({
-				label: venue.venueName,
-				value: venue.venueId
-			}))}
-			// labelField={options.venueName}
-			// valueField={options.venueId}
+			name="venueId"
+			options={options}
+			// options={venues.map((venue) => (
+			// {
+			// 	value: venue,
+			// 	label: venue.venueName
+			// }
+			// ))}
 			values={[]}
-			onChange={(value) => isSetVenue(value)
+			onChange={(venue) => isSetVenue(venue)
 			}
 		/>
 	);
