@@ -21,13 +21,12 @@ const EventItem = (props) => {
 			<div className="edit-del-links">
 				<Link
 					to={{
-						pathname: '/editevent',
+						pathname: '/event',
 						state: { event }
 					}}
 				>
-					<p>Edit</p>
+					<p>View Event</p>
 				</Link>
-				/ Delete
 			</div>
 		</div>
 	);
