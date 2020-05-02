@@ -3,7 +3,6 @@ import { Link, withRouter } from 'react-router-dom';
 
 const EventItem = (props) => {
 	const event = props.event;
-	//const eventToPass = withRouter(event.eventName)
 	const formattedDate = new Date(event.eventStartDateTime).toISOString().slice(0, 10);
 
 	return (
@@ -22,13 +21,12 @@ const EventItem = (props) => {
 			<div className="edit-del-links">
 				<Link
 					to={{
-						pathname: '/editevent',
+						pathname: '/event',
 						state: { event }
 					}}
 				>
-					<p>Edit</p>
+					<p>View Event</p>
 				</Link>
-				/ Delete
 			</div>
 		</div>
 	);

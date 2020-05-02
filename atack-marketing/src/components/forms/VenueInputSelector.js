@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
 import Select from 'react-dropdown-select';
 import { useHistory } from 'react-router-dom';
+import VenueItem from '../venue/VenueItem'
 
 const VenueInputSelector = (props) => {
-	// Refactor later for reusability - labels and values
-	const [ venue, setVenue ] = useState('');
+	const [ venueSelected, setVenue ] = useState('');
+	const [inputValue, setInputValue] = useState([])
+	const venues = props.data
 
 	const history = useHistory();
 
-	function isSetVenue(value) {
-		setVenue(value);
-		console.log(venue);
+	function isSetVenue(venue) {
+		let venueString = JSON.stringify(venue, true, 2);
+		setVenue(venue);
+		console.log(venue)
+		console.log(venueString);
+		//console.log(venueString.label);
+		props.parentCallback(venue)
 	}
 
 	function addVenue(venueName) {
@@ -18,21 +24,40 @@ const VenueInputSelector = (props) => {
 		console.log(venueName.value);
 	}
 
+
+
+	const options = venues.map((venue) => ({
+			value: venue,
+			label: venue.venueName,
+		}))
+
+	// const options = venues.map((venue) => (
+	// 	<option key={venue.venueId}>{venue.ame}</option>
+	// 	))
+
+	// const change = (event) => {
+	// 	setInputValue(event.target.value)
+	// }
+	
+
 	return (
 		<Select
 			create
 			placeholder="Add a venue"
 			onCreateNew={(item) => addVenue(item)}
-			// onCreateNew will route to add venue page
-			options={props.data.map((data) => ({
-				label: data.venueName,
-				value: data.venueId
-			}))}
+			searchable
+			searchBy="label"
+			name="venueId"
+			options={options}
+			// options={venues.map((venue) => (
+			// {
+			// 	value: venue,
+			// 	label: venue.venueName
+			// }
+			// ))}
 			values={[]}
-			onChange={(value) => isSetVenue(value)
-			//console.log(`%c > onChange  `, value)
+			onChange={(venue) => isSetVenue(venue)
 			}
-			//onChange={(values) => this.onChange(values)} - pending function
 		/>
 	);
 };
