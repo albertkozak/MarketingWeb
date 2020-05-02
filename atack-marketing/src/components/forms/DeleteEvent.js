@@ -5,8 +5,9 @@ import { useHistory } from 'react-router-dom';
 
 const DeleteEvent = (props) => {
     const currentEvent = props.location.state.currentEvent;
+    const history = useHistory();
 
-const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/"
+    const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/"
 
 	const deleteEvent = async event => {
 		let JWToken = await (await firebase.auth().currentUser.getIdTokenResult()).token;
@@ -34,33 +35,29 @@ const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/"
 
     return (
 <div className="container">
-			<h1 className="addEventTitle">Are you sure you want to delete this event?</h1>
-			<div className="eventForm">
-					<input
-						placeholder={currentEvent.eventName}
-					/>
-					<input
-						placeholder={currentEvent.eventStartDateTime}
-					/>
-					<div className="input-selector">
-                        <p clasName="venue">
-                            {currentEvent.venue.venueName}
-                        </p>
-						{/* <VenueInputSelector data={fetchedVenues} parentCallback={callbackFunction} /> */}
-					</div>
-					{/* <div className="input-selector">
-						<EventOrganizerInputSelector data={fetchedUsers} parentCallback={callbackFunctionEOs} />
-					</div> */}
+    <h1 className="addEventTitle">Delete {currentEvent.eventName}?</h1>
+    <div className="eventForm">
+            <form id="edit-event-form" className="addEventForm">
+            <input
+                        placeholder={currentEvent.eventName}
+                    />
+                    <input
+                        placeholder={currentEvent.eventStartDateTime}
+                    />
+                    <input
+                        placeholder={currentEvent.venue.venueName}
+                    />
+
 					<div className="buttons">
-						<button className="cancel" onClick={deleteEvent}>
+						<button className="submit" onClick={deleteEvent}>
 							Delete
 						</button>
-                        <Link to="/">
-						<button className="submit" variant="" type="submit">
-							Cancel
-						</button>
-                        </Link>
+                        <button className="cancel" variant="" type="submit" onClick={() => history.push('/')}>
+                            Cancel
+                        </button>
+
 					</div>
+                    </form>
 			</div>
 		</div>
     )
