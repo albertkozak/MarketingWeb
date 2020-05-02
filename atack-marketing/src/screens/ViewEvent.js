@@ -3,17 +3,18 @@ import EventList from '../components/events/EventList';
 import { useHistory } from 'react-router-dom';
 import { FaRegArrowAltCircleLeft } from 'react-icons/fa';
 import { Link, withRouter } from "react-router-dom";
+import firebase from '../firebase'
 
 const ViewEvent = (props) => {
 	const currentEvent = props.location.state.event;
 	const venue = currentEvent.venue
-	console.log(currentEvent);
 
 	let history = useHistory();
+	
+	// const handleBack = () => {
+	// 	history.goBack();
+	// };
 
-	const handleBack = () => {
-		history.goBack();
-	};
 	return (
 		<div className="container">
 			<div className="eventWrapper">
@@ -28,7 +29,8 @@ const ViewEvent = (props) => {
 						state: { currentEvent }
 					}}
 				> <p className="edit">Edit Event</p> </Link>
-				 Delete</div>
+				<p className="delete" onClick={deleteEvent}>Delete</p>
+				 </div>
 				<div className="venueContainer">
 				<div className="venueDetails">
 				<p className="venue">{venue.venueName}</p>
