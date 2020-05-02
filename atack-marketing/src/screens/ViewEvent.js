@@ -21,7 +21,14 @@ const ViewEvent = (props) => {
 					<h2>{currentEvent.eventName}</h2>
 					<p>{Date(currentEvent.eventStartDateTime)}</p>
 				</div>
-				<p className="edit-del-links">Edit Event / Delete</p>
+				<div className="edit-del-links">
+				<Link
+					to={{
+						pathname: '/editEvent',
+						state: { currentEvent }
+					}}
+				> <p className="edit">Edit Event</p> </Link>
+				 Delete</div>
 				<div className="venueContainer">
 				<div className="venueDetails">
 				<p className="venue">{venue.venueName}</p>
@@ -40,6 +47,7 @@ const ViewEvent = (props) => {
 						<h3 className="eventOrganizers">Event Organizers</h3>
 						<ul className="eventOrganizersList" />
 					</div>
+					
 					<div className="eventVendorsContainer">
 						<h3 className="eventVendors">Event Vendors</h3>
 						<ul className="eventVendorsList" />
