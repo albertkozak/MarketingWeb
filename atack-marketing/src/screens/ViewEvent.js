@@ -29,7 +29,12 @@ const ViewEvent = (props) => {
 						state: { currentEvent }
 					}}
 				> <p className="edit">Edit Event</p> </Link>
-				<p className="delete" onClick={deleteEvent}>Delete</p>
+				<Link
+					to={{
+						pathname: '/deleteEvent',
+						state: { currentEvent }
+					}}
+				> <p className="delete">Delete</p> </Link>
 				 </div>
 				<div className="venueContainer">
 				<div className="venueDetails">

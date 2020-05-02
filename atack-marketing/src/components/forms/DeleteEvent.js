@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from "react-router-dom";
-import firebase from '../firebase'
+import firebase from '../../firebase'
 import { useHistory } from 'react-router-dom';
 
 const DeleteEvent = (props) => {
@@ -19,7 +19,10 @@ const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/"
 					Accept: "application/json",
 					"Content-Type": "application/json",
 					Authorization: `Bearer ${JWToken}`
-				}
+                },
+                body: JSON.stringify({
+                    deleteConfirmation: "ConfirmDELETE - " + currentEvent.eventName
+                })
 			});
 			if (result.status === 200) {
 				window.location.href = "/"
