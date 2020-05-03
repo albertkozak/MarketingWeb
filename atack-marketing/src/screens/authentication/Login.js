@@ -10,7 +10,7 @@ import { AuthContext } from './Auth';
 const Login = () => {
 	//const API_CREATE_URL =
 	//		'https://atackmarketingapi.azurewebsites.net/api/User/create';
-	const API_GET_URL = 'https://atackmarketingapi.azurewebsites.net/api/User';
+	//	const API_GET_URL = 'https://atackmarketingapi.azurewebsites.net/api/User';
 	const history = useHistory();
 	async function handleSubmit(values) {
 		return new Promise(async (resolve, reject) => {
@@ -27,38 +27,44 @@ const Login = () => {
 								firebase.auth().currentUser.emailVerified ===
 								false
 							) {
+								firebase.auth().signOut()
 								reject('Please verify email address.');
 							}
-							firebase
-								.auth()
-								.currentUser.getIdTokenResult()
-								.then((tokenResponse) => {
-									console.log(tokenResponse);
-									fetch(API_GET_URL, {
-										method: 'GET',
-										headers: {
-											Authorization: `Bearer ${tokenResponse.token}`,
-										},
-										//	})
-										// fetch(API_CREATE_URL, {
-										// 	method: 'POST',
-										// 	headers: {
-										// 		Authorization: `Bearer ${tokenResponse.token}`,
-										// 	},
-									}).then((response) => {
-										if (response.status === 200) {
-											resolve(response.status);
-										} else {
-											reject(
-												'API ERROR: ' +
-													JSON.stringify(response)
-											);
-										}
-									});
+						})
 
-									resolve();
-								})
-								.catch((error) => reject('Firebase ' + error));
+						.then(() => {
+							resolve();
+							//this block not needed
+							// 	firebase
+							// 		.auth()
+							// 		.currentUser.getIdTokenResult()
+							// 		.then((tokenResponse) => {
+							// 			console.log(tokenResponse);
+							// 			fetch(API_GET_URL, {
+							// 				method: 'GET',
+							// 				headers: {
+							// 					Authorization: `Bearer ${tokenResponse.token}`,
+							// 				},
+							// 				//	})
+							// 				// fetch(API_CREATE_URL, {
+							// 				// 	method: 'POST',
+							// 				// 	headers: {
+							// 				// 		Authorization: `Bearer ${tokenResponse.token}`,
+							// 				// 	},
+							// 			}).then((response) => {
+							// 				if (response.status === 200) {
+							// 					resolve(response.status);
+							// 				} else {
+							// 					reject(
+							// 						'API ERROR: ' +
+							// 							JSON.stringify(response)
+							// 					);
+							// 				}
+							// 			});
+
+							// 			resolve();
+							// 		})
+							// 		.catch((error) => reject('Firebase ' + error));
 						})
 						.catch((error) => reject('Firebase ' + error));
 				}, 1000);
