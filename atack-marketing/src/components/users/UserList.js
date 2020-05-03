@@ -20,6 +20,9 @@ const UserList = (props) => {
 			})
 			  .then((response) => response.json())
 			  .then((responseData) => {
+				  responseData.sort((a,b) => {
+					  return (a.email.localeCompare(b.email))
+				  })
 				setFetchedUsers(responseData);
 				console.log(fetchedUsers);
 			  });
