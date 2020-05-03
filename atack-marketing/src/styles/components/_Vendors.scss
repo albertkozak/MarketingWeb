@@ -21,22 +21,24 @@
 .vendorItem {
 	margin: 0 auto;
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr;
 	align-items: center;
 	width: 65%;
 	padding: .7rem 0;
+
+	a {
+		text-decoration: none;
+	}
 
 	.vendorTitle {
 		font-family: $body-heading-font;
 		font-size: 1.2rem;
 		color: $dark-grey;
 		font-weight: 100;
-	}
 
-	.description {
-		text-align: center;
-		font-size: 1.0rem;
-		color: $grey;
+		&:hover {
+			color: $grey;
+		}
 	}
 
 	.edit-del-links {
