@@ -5,11 +5,11 @@ import { useHistory } from 'react-router-dom';
 
 const Roles = () => {
 	const history = useHistory();
+	
+
+
 	return (
 		<div className="container">
-			{/* <button className="userButton" onClick={() => history.push('/adduser')}>
-				Create User
-			</button> */}
 			<UserList />
 		</div>
 	);

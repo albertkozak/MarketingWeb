@@ -23,7 +23,7 @@ import EditVendor from './components/forms/EditVendor';
 import EditVenue from './components/forms/EditVenue';
 import Vendors from './screens/Vendors';
 import VendorDetailProductList from './components/products/VendorDetailProductList';
-import VendorDetailProduct from './components/products/VendorDetailProduct';
+import DeleteEvent from './components/forms/DeleteEvent'
 
 function App() {
 	return (
@@ -50,6 +50,7 @@ export const Main = withRouter(({ location }) => {
 				<PrivateRoute exact path="/export" component={Export} />
 				<PrivateRoute exact path="/addevent" component={AddEvent} />
 				<PrivateRoute exact path="/editevent" component={EditEvent} />
+				<PrivateRoute exact path="/deleteevent" component={DeleteEvent} />
 				<PrivateRoute exact path="/edituser" component={EditUser} />
 				<PrivateRoute exact path="/addvenue" component={AddVenue} />
 				<PrivateRoute exact path="/editvenue" component={EditVenue} />
