@@ -6,23 +6,6 @@ const VendorList = (props) => {
 	const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/VendorManagement"
 	const [ fetchedVendors, setFetchedVendors] = useState([]);
 
-	// const dummyData = [
-	// 	{
-	// 		name: '7-11',
-	// 		description: 'Cheap Coffee Haven',
-	// 		email: '711@711.com',
-	// 		website: 'www.711.com'
-	// 	},
-	// 	{
-	// 		name: 'Audi Canada',
-	// 		description: 'Das Auto',
-	// 		email: 'audi@audicanada.ca',
-	// 		website: 'www.audi.ca'
-	// 	}
-	// ];
-
-	// Add GET Request here
-
 	const fetchVendors = () => {
 		firebase
 		  .auth()
