@@ -114,6 +114,7 @@ export default function AddEvent() {
   }
 
   function handleEOSelect(selection) {
+    console.log(selection);
     setSelectedEventOrgainizers(selection);
   }
 
