@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import firebase from '../../firebase'
 
 const EditVendor = (props) => {
 	const vendor = props.location.state.vendor;
@@ -7,6 +8,8 @@ const EditVendor = (props) => {
 	const [ email, setEmail ] = useState(vendor.email);
 	const [ website, setWebsite ] = useState(vendor.website);
 	const [ errorMessage, setErrorMessage ] = useState('');
+
+	const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/"
 
 	const editVendor = async (vendor) => {
 		vendor.preventDefault();

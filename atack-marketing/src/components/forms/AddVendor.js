@@ -53,6 +53,7 @@ const AddVendor = () => {
 		<div className="container">
 			<h1 className="addVendorName">Add Vendor</h1>
 			<div className="vendorForm">
+			<p className="form-error">{errorMessage}</p>
 				<form onSubmit={createVendor} id="add-vendor-form" className="addVendorForm">
 					<input name="name" type="text" placeholder="Vendor" />
 					<input name="description" type="text" placeholder="Description" />
