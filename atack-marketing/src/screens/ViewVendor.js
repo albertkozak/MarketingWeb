@@ -60,7 +60,7 @@ const ViewVendor = (props) => {
                 <p className="description">{vendor.description}</p>
 				<div className="vendorDetails">
 				<p className="vendor">{vendor.email}</p>
-				<p className="vendorWebsite">{vendor.description}</p>
+				<p className="vendorWebsite">{vendor.website}</p>
 				</div>
 				</div>
 			</div>
