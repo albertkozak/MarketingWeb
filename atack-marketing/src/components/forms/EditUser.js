@@ -1,18 +1,80 @@
 import React, { useState, useEffect } from 'react';
+import firebase from '../../firebase'
 
 const EditUser = (props) => {
 	const user = props.location.state.user;
 	const initialValue = props.location.state.user.isAdmin
 	const [isAdmin, setIsAdmin] = useState(!user.isAdmin)
 	const [checked, setIsChecked] = useState(initialValue)
+	const [status, setStatus] = useState('')
+
+	const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/User/"
 
 	const handleToggle = () => {
 		setIsAdmin(!isAdmin)
 		setIsChecked(!checked)
 		console.log("is admin: " + isAdmin)
 		console.log("is checked: " + checked)
-		
-		// Add Put request here
+		if(isAdmin) {
+			setStatus("elevate");
+			elevateUser()
+		} else {
+			setStatus("demote")
+			demoteUser();
+		}
+		return
+	}
+
+	const elevateUser = async () => {
+		const userEmail = user.email;
+
+		let JWToken = await (
+			await firebase.auth().currentUser.getIdTokenResult()).token;
+
+			if (JWToken !== null) {
+				const result = await fetch(BASE_URL + "elevate", {
+					method: "PUT",
+					headers: {
+							Accept: "application/json",
+							"Content-Type": "application/json",
+							Authorization: `Bearer ${JWToken}`
+					},
+					body: JSON.stringify({
+						userEmailToModify: userEmail
+					})
+				});
+				if (result.status === 200) {
+					return
+				} else {
+					alert("Error: Something went wront, please try again")
+				}
+			}
+	}
+
+	const demoteUser = async () => {
+		const userEmail = user.email;
+
+		let JWToken = await (
+			await firebase.auth().currentUser.getIdTokenResult()).token;
+
+			if (JWToken !== null) {
+				const result = await fetch(BASE_URL + "demote", {
+					method: "PUT",
+					headers: {
+							Accept: "application/json",
+							"Content-Type": "application/json",
+							Authorization: `Bearer ${JWToken}`
+					},
+					body: JSON.stringify({
+						userEmailToModify: userEmail
+					})
+				});
+				if (result.status === 200) {
+					return
+				} else {
+					alert("Error: Something went wront, please try again")
+				}
+			}
 	}
 
 
@@ -21,7 +83,7 @@ const EditUser = (props) => {
 			<h1 className="editUserTitle">Edit User Access</h1>
 			<h3 className="adminLabel">Admininstrative Access:</h3>
 			<div className="userContainer">
-			<p className="userName">{user.userEmail}</p>
+			<p className="userName">{user.email}</p>
 
 			<div className='switchContainer'>
             <label className="switch">
