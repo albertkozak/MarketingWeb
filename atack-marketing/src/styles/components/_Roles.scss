@@ -36,7 +36,18 @@
 	.isAdmin {
 		text-align: center;
 		font-size: 1.1rem;
-		color: $grey
+		color: $grey;
+
+		.adminStyle {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			.adminIcon {
+				margin-right: .5rem;
+				color: $orange;
+			}
+		}
 	}
 
 	.edit-del-links {
