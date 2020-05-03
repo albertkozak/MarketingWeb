@@ -1,16 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
+import firebase from '../../firebase'
 
 const AddVendor = () => {
-	const createVendor = async (vendor) => {
-		vendor.preventDefault();
-		const { name, description, email, website } = vendor.target.elements;
+	const [errorMessage, setErrorMessage] = useState('')
+	const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/VendorManagement/AddVendor"
 
-		// Add POST Request here
-		alert(`POST-request: ${name.value} ${description.value} ${email.value} ${website.value}`);
+	const createVendor = async (event) => {
+		event.preventDefault();
+		const { name, description, email, website } = event.target.elements;
+
+		//Validation
+		if (name.value === "") {
+			setErrorMessage("Please fill all required fields")
+		} else {
+			setErrorMessage("")
+
+			let JWToken = await (
+				await firebase.auth().currentUser.getIdTokenResult()).token;
+				if(JWToken !== null) {
+					const result = await fetch(BASE_URL, {
+						method: "POST",
+						headers: {
+							Accept: "application/json",
+							"Content-Type": "application/json",
+							Authorization: `Bearer ${JWToken}`
+						},
+						body: JSON.stringify({
+							name: name.value,
+							description: description.value,
+							email: email.value,
+							website: website.value
+						})
+					});
+					if (result.status === 201) {
+						window.location.href="/vendors"
+					} else if (result.status === 400) {
+						alert("Vendor already exists")
+					} else {
+						alert("Error: Something went wrong, please try again");
+					}
+					document.getElementById('add-vendor-form').reset();
+				}
+		}
 	};
 
-	const clearForm = (vendor) => {
-		vendor.preventDefault();
+	const clearForm = (event) => {
+		event.preventDefault();
 		document.getElementById('add-vendor-form').reset();
 	};
 
