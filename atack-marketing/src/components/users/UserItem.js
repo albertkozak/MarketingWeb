@@ -1,16 +1,26 @@
 import React from 'react';
 import { Link, withRouter } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 
 const UserItem = (props) => {
 	const user = props.user
 	console.log(user)
+
 	
 	const showAdmin = () => {
 		let access;
 		if (user.isAdmin) {
-			access = "Admin"
+			access = 
+			<div className="adminStyle">
+				<FontAwesomeIcon
+            		className="adminIcon"
+            		icon={faCheckCircle}
+          		/>
+				<p>Admin</p>
+				</div>
 		} else {
-			access = ""
+			access = "User"
 		}
 		return access;
 	}
@@ -19,7 +29,7 @@ const UserItem = (props) => {
 	return (
 		<div className="userItem">
 			<h3 className="userTitle">{user.email}</h3>
-	<p className="isAdmin">{showAdmin()}</p>
+			<p className="isAdmin">{showAdmin()}</p>
 			{/* links for these */}
 			<div className="edit-del-links">
 			<Link
