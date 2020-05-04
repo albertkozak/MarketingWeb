@@ -57,8 +57,8 @@ const EditVendor = (props) => {
 				}
 		}
 
-	const clearForm = (vendor) => {
-		vendor.preventDefault();
+	const clearForm = (event) => {
+		event.preventDefault();
 		setName(vendor.name);
 		setDescription(vendor.description);
 		setEmail(vendor.email);
