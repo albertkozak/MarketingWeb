@@ -99,27 +99,31 @@ const ViewEvent = (props) => {
 				</div>
 				<div className="eventDetailsWrapper">
 					<div className="eventOrganziersContainer">
+					<div className="containerHeading">
 						<h3 className="eventOrganizers">Event Organizers</h3>
+						<button className="addVendorButton" onClick={() => history.push('/editeventorganizers')}>
+						Edit Organizers
+					</button>
+					</div>
 						<ul className="eventOrganizersList">
 				{fetchedEOs.map((eo) => (
 					<EventOrganizerItem key={eo.eventOrganizerId} eo={eo} />
 				))}</ul>
 					</div>
-					<button className="addVendorButton" onClick={() => history.push('/editeventorganizers')}>
-						Edit Organizers
-					</button>
 					
 					<div className="eventVendorsContainer">
+						<div className="containerHeading">
 						<h3 className="eventVendors">Event Vendors</h3>
+						<button className="addVendorButton" onClick={() => history.push('/addvendor')}>
+						Edit Vendors
+					</button>
+					</div>
 						<ul className="eventVendorsList">
 						{fetchedVendors.map((vendor) => (
 					<VendorItemSL key={vendor.eventVendorId} vendor={vendor} />
 				))}
 						</ul>
 					</div>
-					<button className="addVendorButton" onClick={() => history.push('/addvendor')}>
-						Add Vendor
-					</button>
 				</div>
 			</div>
 		</div>

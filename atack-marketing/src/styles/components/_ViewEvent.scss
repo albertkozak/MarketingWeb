@@ -68,11 +68,19 @@
   .eventDetailsWrapper {
     display: flex;
     justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+
+    .containerHeading{
+      display: flex;
+      align-items: flex-start;
+    }
 
     h3 {
       font-size: 1.2rem;
       color: $dark-grey;
       font-family: $body-heading-font;
+      margin-right: 3rem;
     }
 
     li {
@@ -82,10 +90,8 @@
     }
 
     button {
-      align-self: flex-start;
       font-size: 1rem;
-      margin-left: 5rem;
-      margin-top: 2rem;
+      margin-top: 1rem;
       text-transform: uppercase;
       color: $white;
       background-color: $orange;
@@ -96,4 +102,5 @@
       
     }
   }
+  
 }
