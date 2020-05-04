@@ -1,8 +1,6 @@
 import React from 'react';
-import EventList from '../components/events/EventList';
 import { useHistory } from 'react-router-dom';
-import { FaRegArrowAltCircleLeft } from 'react-icons/fa';
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import firebase from '../firebase'
 
 const ViewEvent = (props) => {

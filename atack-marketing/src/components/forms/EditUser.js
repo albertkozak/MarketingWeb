@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import firebase from '../../firebase'
 
 const EditUser = (props) => {
@@ -6,7 +6,6 @@ const EditUser = (props) => {
 	const initialValue = props.location.state.user.isAdmin
 	const [isAdmin, setIsAdmin] = useState(!user.isAdmin)
 	const [checked, setIsChecked] = useState(initialValue)
-	const [status, setStatus] = useState('')
 
 	const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/User/"
 
@@ -16,10 +15,8 @@ const EditUser = (props) => {
 		console.log("is admin: " + isAdmin)
 		console.log("is checked: " + checked)
 		if(isAdmin) {
-			setStatus("elevate");
 			elevateUser()
 		} else {
-			setStatus("demote")
 			demoteUser();
 		}
 		return

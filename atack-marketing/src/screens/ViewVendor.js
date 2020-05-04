@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import firebase from '../firebase'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faGlobe } from "@fortawesome/free-solid-svg-icons";
@@ -9,7 +8,6 @@ const ViewVendor = (props) => {
     const currentVendor = props.location.state.vendor;
     const id = currentVendor.vendorId
     const [vendor, setVendor] = useState([])
-    let history = useHistory();
 
     const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/VendorManagement/"
 
@@ -36,7 +34,7 @@ const ViewVendor = (props) => {
 
 	  useEffect(() => {
 		fetchVendorDetails();
-	  }, []);
+	  });
 	
 	return (
 		<div className="container">
@@ -61,13 +59,13 @@ const ViewVendor = (props) => {
 				<div className="vendorContainer">
                 <p className="description">{vendor.description}</p>
 				<div className="vendorEmail">
-                <a href={"mailto:" + vendor.email} target="_blank"><FontAwesomeIcon
+                <a href={"mailto:" + vendor.email} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon
             		className="email"
             		icon={faEnvelope}
           		/>{vendor.email}</a>
                 </div>
                 <div className="vendorWebsite">
-                <a href={vendor.website} target="_blank"><FontAwesomeIcon
+                <a href={vendor.website} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon
             		className="website"
             		icon={faGlobe}
           		/> {vendor.website}</a>

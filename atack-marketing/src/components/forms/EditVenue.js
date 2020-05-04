@@ -3,7 +3,8 @@ import firebase from '../../firebase'
 
 const EditVenue = (props) => {
 	const venue = props.location.state.venue;
-	const eventId = props.location.state.id
+	// for passing to get back to previous selected event
+	//const eventId = props.location.state.id
 	const id = venue.venueId;
     const [venueName, setVenueName] = useState(venue.venueName)
     const [website, setWebsite] = useState(venue.website)
