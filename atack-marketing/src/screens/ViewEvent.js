@@ -1,18 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import firebase from '../firebase'
+import EventOrganizerItem from '../components/eventOrganizers/EventOrganizerItem'
 
 const ViewEvent = (props) => {
 	const currentEvent = props.location.state.event;
 	const venue = currentEvent.venue
 	const id = currentEvent.eventId
+	const [fetchedEOs, setFetchedEOs] = useState([])
+
+	const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/";
+	const EO_URL = BASE_URL + "EventOrganizer/"
 
 	let history = useHistory();
 	
-	// const handleBack = () => {
-	// 	history.goBack();
-	// };
+	const fetchEOs = () => {
+		firebase
+		.auth()
+		.currentUser.getIdTokenResult()
+		.then((tokenResponse) => {
+		  fetch(EO_URL + id, {
+			method: "GET",
+			headers: {
+			  Accept: "application/json",
+			  Authorization: `Bearer ${tokenResponse.token}`,
+			},
+		  })
+			.then((response) => response.json())
+			.then((responseData) => {
+			  setFetchedEOs(responseData.eventOrganizers);
+			  console.log(fetchedEOs);
+			});
+		});
+	};
+
+	useEffect(() => {
+		fetchEOs();
+	  });
 
 	return (
 		<div className="container">
@@ -51,7 +76,10 @@ const ViewEvent = (props) => {
 				<div className="eventDetailsWrapper">
 					<div className="eventOrganziersContainer">
 						<h3 className="eventOrganizers">Event Organizers</h3>
-						<ul className="eventOrganizersList" />
+						<div className="eventOrganizersList">
+				{fetchedEOs.map((eo) => (
+					<EventOrganizerItem key={eo.eventOrganizerId} eo={eo} />
+				))}</div>
 					</div>
 					
 					<div className="eventVendorsContainer">
