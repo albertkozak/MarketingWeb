@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link, withRouter } from "react-router-dom";
 import firebase from '../../firebase'
 import { useHistory } from 'react-router-dom';
 

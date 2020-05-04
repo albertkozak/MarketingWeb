@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import firebase from '../../firebase'
 
 const EditVendor = (props) => {
 	const vendor = props.location.state.vendor;
+	const id = props.location.state.id;
 	const [ name, setName ] = useState(vendor.name);
 	const [ description, setDescription ] = useState(vendor.description);
 	const [ email, setEmail ] = useState(vendor.email);
 	const [ website, setWebsite ] = useState(vendor.website);
 	const [ errorMessage, setErrorMessage ] = useState('');
 
-	const editVendor = async (vendor) => {
-		vendor.preventDefault();
-		const { name, description, email, website } = vendor.target.elements;
+	const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/VendorManagement/"
 
-		alert(`PUT-request: ${name.value} ${description.value} ${email.value} ${website.value}`);
+	const editVendor = async (event) => {
+		event.preventDefault();
+		const { name, description, email, website } = event.target.elements;
 
 		// Validation
 		if (name.value === '') {
@@ -26,18 +28,41 @@ const EditVendor = (props) => {
 			setErrorMessage('No changes have been made');
 		} else {
 			setErrorMessage('');
+
+			let JWToken = await (
+				await firebase.auth().currentUser.getIdTokenResult()).token;
+
+				if(JWToken !== null) {
+					const result = await fetch (BASE_URL + id, {
+						method: "PUT",
+						headers: {
+							Accept: "application/json",
+							"Content-Type": "application/json",
+							Authorization: `Bearer ${JWToken}`
+						},
+						body: JSON.stringify({
+							name: name.value,
+							description: description.value,
+							email: email.value,
+							website: website.value
+						})
+					});
+					if (result.status === 200) {
+						window.location.href = "/vendors"
+					} else {
+						alert("Error: Something went wrong, please try again");
+			}
+			document.getElementById('edit-vendor-form').reset();
+					}
+				}
 		}
 
-		// PUT Request
-	};
-
-	const clearForm = (vendor) => {
-		vendor.preventDefault();
+	const clearForm = (event) => {
+		event.preventDefault();
 		setName(vendor.name);
 		setDescription(vendor.description);
 		setEmail(vendor.email);
 		setWebsite(vendor.website);
-		//document.getElementById('add-vendor-form').reset();
 	};
 
 	useEffect(() => {}, [ errorMessage ]);
@@ -46,7 +71,7 @@ const EditVendor = (props) => {
 		<div className="container">
 			<h1 className="addVendorName">Edit Vendor</h1>
 			<div className="vendorForm">
-				<form onSubmit={editVendor} id="add-vendor-form" className="addVendorForm">
+				<form onSubmit={editVendor} id="edit-vendor-form" className="addVendorForm">
 					<p className="form-error">{errorMessage}</p>
 					<input
 						onChange={(event) => {

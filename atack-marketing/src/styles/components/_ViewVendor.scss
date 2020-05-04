@@ -1,0 +1,96 @@
+.vendorWrapper {
+    width: 70%;
+    margin: 2rem auto;
+  
+    .vendorHeader {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+  
+    h2 {
+      font-size: 2.2rem;
+      font-family: $body-heading-font;
+    }
+  
+    .edit-del-links {
+      color: $light-grey;
+      margin: 0;
+      display: flex;
+      align-items: center;
+  
+      .edit {
+        margin-right: 1rem;
+        font-size: 1.1rem;
+      }
+  
+      .delete {
+        font-size: 1.1rem;
+      }
+  
+      a {
+        text-decoration: none;
+        color: $orange;
+  
+        &:hover {
+          color: $hover-orange
+        }
+      }
+    }
+  
+    .vendorContainer {
+        margin: 1rem 0;
+
+        .description {
+            font-size: 1.25rem;
+            margin: 2rem 0 3rem
+        }
+
+        .vendorEmail {
+            margin: 2rem 3rem 1rem;
+            font-size: 1.1rem;
+            .email {
+                color: $orange;
+                margin-right: .8rem;
+
+                &:hover {
+                    color: $hover-orange
+                }
+            }
+
+            a {
+                text-decoration: none;
+                color: $grey;
+                font-family: $body-font;
+
+                &:hover {
+                    color: $light-grey;
+                }
+            }
+        }
+
+        .vendorWebsite {
+            margin: 1rem 3rem;
+            font-size: 1.1rem;
+            .website {
+                color: $orange;
+                margin-right: .8rem;
+
+                &:hover {
+                    color: $hover-orange
+                }
+            }
+
+            a {
+                text-decoration: none;
+                color: $grey;
+                font-family: $body-font;
+
+                &:hover {
+                    color: $light-grey;
+                }
+            }
+        }
+    }
+  }
+  

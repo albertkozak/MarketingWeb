@@ -7,19 +7,22 @@ const VendorItem = (props) => {
 
 	return (
 		<div className="vendorItem">
-			<h3 className="vendorTitle">{vendor.name}</h3>
-			<p className="description">{vendor.description}</p>
-			{/* <p className="email">{vendor.email}</p>
-			<p className="website">{vendor.website}</p> */}
-			{/* links for these */}
-			<div className="edit-del-links">
-				<Link
+			<Link
 					to={{
-						pathname: '/editVendor',
+						pathname: '/viewvendor',
 						state: { vendor }
 					}}
 				>
-					<p className="editVendor">Edit Vendor</p>
+			<h3 className="vendorTitle">{vendor.name}</h3>
+			</Link>
+			<div className="edit-del-links">
+				<Link
+					to={{
+						pathname: '/viewvendor',
+						state: { vendor }
+					}}
+				>
+					<p className="editVendor">View Vendor</p>
 				</Link>
 			</div>
 		</div>
