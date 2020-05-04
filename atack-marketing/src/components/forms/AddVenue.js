@@ -1,18 +1,48 @@
 import React, { useState } from "react";
+import firebase from '../../firebase'
 
 const AddVenue = props => {
-  //const venueNameValue = props.venueName;
   const venueNameValue = props.location.state.venueName;
   const [venueName, setVenueName] = useState(venueNameValue);
-  console.log(venueNameValue);
+  const [errorMessage, setErrorMessage] = useState('')
+  const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/Venues/add"
 
-  const createVenue = async venue => {
-    venue.preventDefault();
-    const { venueName, venueWebsite } = venue.target.elements;
+  const createVenue = async event => {
+    event.preventDefault();
+    const { venueName, website } = event.target.elements;
 
-    // Add POST Request here
-    alert(`POST-request: ${venueName.value} ${venueWebsite.value}`);
-  };
+    //Validation
+    if (venueName.value === "" || website.value === "") {
+      setErrorMessage("Please fill all required fields")
+    } else {
+      setErrorMessage("")
+
+      let JWToken = await (
+				await firebase.auth().currentUser.getIdTokenResult()).token;
+				if(JWToken !== null) {
+					const result = await fetch(BASE_URL, {
+						method: "POST",
+						headers: {
+							Accept: "application/json",
+							"Content-Type": "application/json",
+							Authorization: `Bearer ${JWToken}`
+						},
+						body: JSON.stringify({
+							venueName: venueName.value,
+							website: website.value
+						})
+					});
+					if (result.status === 201) {
+						window.location.href="/addevent"
+					} else if (result.status === 400) {
+						alert("Venue already exists")
+					} else {
+						alert("Error: Something went wrong, please try again");
+					}
+					document.getElementById('add-venue-form').reset();
+				}
+		}
+	};
 
   const clearForm = event => {
     event.preventDefault();
@@ -37,7 +67,7 @@ const AddVenue = props => {
             type="text"
             placeholder="Venue Name"
           />
-          <input name="venueWebsite" type="text" placeholder="Website" />
+          <input name="website" type="text" placeholder="Website" />
           <div className="buttons">
             <button className="submit" variant="" type="submit">
               Add Venue
