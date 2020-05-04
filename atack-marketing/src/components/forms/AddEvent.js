@@ -45,7 +45,6 @@ export default function AddEvent() {
           });
       });
   }
-
   // function fetchUsers() {
   //   firebase
   //     .auth()
@@ -115,6 +114,7 @@ export default function AddEvent() {
   }
 
   //Form Handlers
+
   function cancelButton(event) {
     event.preventDefault();
     history.push("/");

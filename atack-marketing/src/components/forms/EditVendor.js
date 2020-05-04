@@ -65,7 +65,7 @@ const EditVendor = (props) => {
 		setWebsite(vendor.website);
 	};
 
-	useEffect(() => {}, [ errorMessage ]);
+	useEffect(() => [ errorMessage ]);
 
 	return (
 		<div className="container">
