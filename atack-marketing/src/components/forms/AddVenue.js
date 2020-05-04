@@ -67,7 +67,9 @@ const AddVenue = props => {
             type="text"
             placeholder="Venue Name"
           />
+
           <input name="website" type="text" placeholder="Website" />
+
           <div className="buttons">
             <button className="submit" variant="" type="submit">
               Add Venue
