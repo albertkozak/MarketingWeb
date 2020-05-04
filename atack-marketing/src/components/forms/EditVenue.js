@@ -1,37 +1,60 @@
 import React, { useState, useEffect } from 'react';
+import firebase from '../../firebase'
 
 const EditVenue = (props) => {
-    //const venueNameValue = props.venueName;
-    const venue = props.location.state.venue;
+	const venue = props.location.state.venue;
+	const eventId = props.location.state.id
+	const id = venue.venueId;
     const [venueName, setVenueName] = useState(venue.venueName)
-    const [venueWebsite, setVenueWebsite] = useState(venue.venueWebsite)
-    const [errorMessage, setErrorMessage] = useState("")
-
-	const editVenue = async (venue) => {
-		venue.preventDefault();
-        const { venueName, venueWebsite } = venue.target.elements;
+    const [website, setWebsite] = useState(venue.website)
+	const [errorMessage, setErrorMessage] = useState("")
+	const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/Venues/update/"
+	
+	const editVenue = async (event) => {
+		event.preventDefault();
+        const { venueName, website } = event.target.elements;
         
         // Validation
-        if (venueName.value === "") {
+        if (venueName.value === "" || website.value === "") {
             setErrorMessage("Please fill all required fields")
         } else if (
             venueName.value === venue.venueName &&
-            venueWebsite.value === venue.venueWebsite
+            website.value === venue.website
         ) {
             setErrorMessage("No changes have been made")
         } else {
-            setErrorMessage("")
-        }
+			setErrorMessage("")
+			
+			let JWToken = await (
+				await firebase.auth().currentUser.getIdTokenResult()).token;
 
-		// Add POST Request here
-		alert(`POST-request: ${venueName.value} ${venueWebsite.value}`);
-	};
+				if(JWToken !== null) {
+					const result = await fetch (BASE_URL + id, {
+						method: "PUT",
+						headers: {
+							Accept: "application/json",
+							"Content-Type": "application/json",
+							Authorization: `Bearer ${JWToken}`
+						},
+						body: JSON.stringify({
+							venueName: venueName.value,
+							website: website.value
+						})
+					});
+					if (result.status === 200) {
+						window.location.href = "/"
+					} else {
+						alert("Error: Something went wrong, please try again");
+			}
+			document.getElementById('edit-venue-form').reset();
+					}
+				}
+		}
 
 	const clearForm = (event) => {
 		event.preventDefault();
-        //document.getElementById('add-venue-form').reset();
         setVenueName(venue.venueName)
-        setVenueWebsite(venue.venueWebsite)
+        setWebsite(venue.website)
     };
     
     useEffect(() => {}, [errorMessage])
@@ -43,10 +66,10 @@ const EditVenue = (props) => {
 				<form onSubmit={editVenue} id="edit-venue-form" className="addVenueForm">
                 <p className="form-error">{errorMessage}</p>
 					<input onChange={event => { setVenueName(event.target.value)}} value={venueName} name="venueName" type="text" placeholder="Venue Name"  />
-					<input onChange={event => { setVenueWebsite(event.target.value)}} value={venueWebsite} name="venueWebsite" type="text" placeholder="Website" />
+					<input onChange={event => { setWebsite(event.target.value)}} value={website} name="website" type="text" placeholder="Website" />
 					<div className="buttons">
 						<button className="submit" variant="" type="submit">
-							Add Venue
+							Edit Venue
 						</button>
 						<button className="cancel" onClick={clearForm}>
 							Cancel

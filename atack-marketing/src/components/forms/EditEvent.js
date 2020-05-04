@@ -64,7 +64,7 @@ const EditEvent = (props) => {
 	  useEffect(() => {
 		fetchVenues(); 
 		fetchUsers();
-	  }, []);
+	  });
 
 	const editEvent = async (event) => {
 		event.preventDefault();

@@ -8,6 +8,7 @@ import firebase from '../firebase'
 const ViewEvent = (props) => {
 	const currentEvent = props.location.state.event;
 	const venue = currentEvent.venue
+	const id = currentEvent.eventId
 
 	let history = useHistory();
 	
@@ -44,7 +45,7 @@ const ViewEvent = (props) => {
 				<Link
         			to={{
           			pathname: "/editVenue",
-          			state: { venue },
+          			state: { venue, id },
         			}}
       			><p className="editVenue">Edit Venue</p>
 				</Link>

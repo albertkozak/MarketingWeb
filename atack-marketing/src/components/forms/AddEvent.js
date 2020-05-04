@@ -5,10 +5,8 @@ import firebase from "../../firebase";
 
 export default function AddEvent() {
   const [errorMessage, setErrorMessage] = useState("");
-
   const [fetchedVenues, setFetchedVenues] = useState([]);
   const [fetchedUsers, setFetchedUsers] = useState([]);
-
   const [selectedVenue, setSelectedVenue] = useState([]);
   const [selectedEventOrganizers, setSelectedEventOrgainizers] = useState([]);
 
@@ -31,8 +29,6 @@ export default function AddEvent() {
           .then(response => response.json())
           .then(responseData => {
             setFetchedVenues(responseData);
-            // console.log(responseData);
-            // console.log(fetchedVenues);
           });
       });
   }
