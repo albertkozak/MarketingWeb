@@ -7,7 +7,7 @@ const EventOrganizerItem = (props) => {
 
 	return (
 		<div className="eoItem">
-			<h3 className="eoTitle">{eo.userEmail}</h3>
+			<p className="eoTitle">{eo.userEmail}</p>
 		</div>
 	);
 };

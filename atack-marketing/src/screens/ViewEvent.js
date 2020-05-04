@@ -76,10 +76,10 @@ const ViewEvent = (props) => {
 				<div className="eventDetailsWrapper">
 					<div className="eventOrganziersContainer">
 						<h3 className="eventOrganizers">Event Organizers</h3>
-						<div className="eventOrganizersList">
+						<ul className="eventOrganizersList">
 				{fetchedEOs.map((eo) => (
 					<EventOrganizerItem key={eo.eventOrganizerId} eo={eo} />
-				))}</div>
+				))}</ul>
 					</div>
 					
 					<div className="eventVendorsContainer">
