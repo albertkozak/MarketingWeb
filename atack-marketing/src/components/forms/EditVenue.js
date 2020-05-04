@@ -57,7 +57,7 @@ const EditVenue = (props) => {
         setWebsite(venue.website)
     };
     
-    useEffect(() => {}, [errorMessage])
+    useEffect(() => [errorMessage])
 
 	return (
 		<div className="container">
