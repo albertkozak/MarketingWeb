@@ -81,6 +81,9 @@ const ViewEvent = (props) => {
 					<EventOrganizerItem key={eo.eventOrganizerId} eo={eo} />
 				))}</ul>
 					</div>
+					<button className="addVendorButton" onClick={() => history.push('/addvendor')}>
+						Edit Organizers
+					</button>
 					
 					<div className="eventVendorsContainer">
 						<h3 className="eventVendors">Event Vendors</h3>
@@ -89,10 +92,6 @@ const ViewEvent = (props) => {
 					<button className="addVendorButton" onClick={() => history.push('/addvendor')}>
 						Add Vendor
 					</button>
-					{/* <button className="addVendorButton" onClick={handleBack}>
-						Back <br />
-						<FaRegArrowAltCircleLeft />
-					</button> */}
 				</div>
 			</div>
 		</div>
