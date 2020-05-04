@@ -54,7 +54,7 @@ const ViewVendor = (props) => {
 				<Link
 					to={{
 						pathname: '/deletevendor',
-						state: { vendor }
+						state: { vendor, id }
 					}}
 				> <p className="delete">Delete</p> </Link>
 				 </div>
