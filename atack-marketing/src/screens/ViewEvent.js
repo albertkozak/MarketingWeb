@@ -3,15 +3,18 @@ import { useHistory } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import firebase from '../firebase'
 import EventOrganizerItem from '../components/eventOrganizers/EventOrganizerItem'
+import VendorItemSL from '../components/vendors/VendorItemSL'
 
 const ViewEvent = (props) => {
 	const currentEvent = props.location.state.event;
 	const venue = currentEvent.venue
 	const id = currentEvent.eventId
 	const [fetchedEOs, setFetchedEOs] = useState([])
+	const [fetchedVendors, setFetchedVendors] = useState([])
 
 	const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/";
 	const EO_URL = BASE_URL + "EventOrganizer/"
+	const VENDOR_URL = BASE_URL + "Events/" + id;
 
 	let history = useHistory();
 	
@@ -35,8 +38,29 @@ const ViewEvent = (props) => {
 		});
 	};
 
+	const fetchVendors = () => {
+		firebase
+		.auth()
+		.currentUser.getIdTokenResult()
+		.then((tokenResponse) => {
+		  fetch(VENDOR_URL + "/Vendors", {
+			method: "GET",
+			headers: {
+			  Accept: "application/json",
+			  Authorization: `Bearer ${tokenResponse.token}`,
+			},
+		  })
+			.then((response) => response.json())
+			.then((responseData) => {
+			  setFetchedVendors(responseData.vendors);
+			  console.log(fetchedVendors);
+			});
+		});
+	};
+
 	useEffect(() => {
 		fetchEOs();
+		fetchVendors();
 	  });
 
 	return (
@@ -81,13 +105,17 @@ const ViewEvent = (props) => {
 					<EventOrganizerItem key={eo.eventOrganizerId} eo={eo} />
 				))}</ul>
 					</div>
-					<button className="addVendorButton" onClick={() => history.push('/addvendor')}>
+					<button className="addVendorButton" onClick={() => history.push('/editeventorganizers')}>
 						Edit Organizers
 					</button>
 					
 					<div className="eventVendorsContainer">
 						<h3 className="eventVendors">Event Vendors</h3>
-						<ul className="eventVendorsList" />
+						<ul className="eventVendorsList">
+						{fetchedVendors.map((vendor) => (
+					<VendorItemSL key={vendor.eventVendorId} vendor={vendor} />
+				))}
+						</ul>
 					</div>
 					<button className="addVendorButton" onClick={() => history.push('/addvendor')}>
 						Add Vendor

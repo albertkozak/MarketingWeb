@@ -13,7 +13,7 @@ const VendorItemSL = (props) => {
 						state: { vendor }
 					}}
 				>
-			<h3 className="vendorTitle">{vendor.name}</h3>
+			<h3 className="vendorTitle">{vendor.vendorName}</h3>
             </Link>
 		</div>
 	);
