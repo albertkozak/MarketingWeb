@@ -7,23 +7,18 @@ export default function VenueInputSelector(props) {
 
   function addVenue(venueName) {
     history.push("/addvenue", { venueName: venueName.value });
-    // console.log(venueName.value);
   }
-
-  const options = props.venues.map(venue => ({
-    value: venue.venueId,
-    label: venue.venueName
-  }));
 
   return (
     <Select
       create
-      placeholder="Add a venue"
+      placeholder="Add/Select A Venue"
       onCreateNew={item => addVenue(item)}
       searchable
       searchBy="label"
       name="venueId"
-      options={options}
+      options={props.options}
+      value={props.value}
       onChange={props.handleVenueSelect}
     />
   );
