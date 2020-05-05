@@ -110,7 +110,7 @@ const AddEventVendor = (props) => {
 			</div>
 			 <div className="buttons">
             <button className="submit" onClick={addVendors} >
-              Add Vendors
+              Add Vendor
             </button>
             <button className="cancel" onClick={cancelButton}>
               Cancel

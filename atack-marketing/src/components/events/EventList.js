@@ -28,7 +28,7 @@ const EventList = (props) => {
 
   useEffect(() => {
     fetchData();
-  });
+  }, []);
 
   return (
     <div className="wrapper">

@@ -41,7 +41,9 @@ const EventVendorItem = (props) => {
 						}
 					  })
 						.then(response => response.json())
-						.then(data => history.push("/event", { event: data }));
+						.then(
+							props.handleChange,
+							data => history.push("/event", { event: data }));
 				} else {
 					alert("Error: Something went wrong, please try again")
 				} 
@@ -60,7 +62,7 @@ const EventVendorItem = (props) => {
 					<FontAwesomeIcon 
 						className="delete" 
 						icon={faTimes}
-						onClick={removeEventVendor}
+						onClick={removeEventVendor, props.handleChange}
 						/>
 				)
 			}

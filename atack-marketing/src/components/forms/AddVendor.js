@@ -1,11 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import firebase from '../../firebase'
+import {useHistory} from 'react-router-dom'
 
 const AddVendor = (props) => {
-	const vendorNameValue = props.location.state.vendorName;
-  	const [name, setName] = useState(vendorNameValue);
+  	const [name, setName] = useState('');
 	const [errorMessage, setErrorMessage] = useState('')
 	const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/VendorManagement/AddVendor"
+	const history = useHistory();
+
+	const checkForPassedName = () => {
+		let vendorName; 
+		if (props.location.state !== undefined) {
+			vendorName = props.location.state.vendorName;
+			setName(vendorName)
+			console.log("check was called")
+		}
+	}
+
+	useEffect(() => {
+		checkForPassedName();
+	}, [])
 
 	const createVendor = async (event) => {
 		event.preventDefault();
@@ -35,7 +49,7 @@ const AddVendor = (props) => {
 						})
 					});
 					if (result.status === 201) {
-						window.location.href="/vendors"
+						history.goBack()
 					} else if (result.status === 400) {
 						alert("Vendor already exists")
 					} else {
@@ -48,6 +62,7 @@ const AddVendor = (props) => {
 
 	const clearForm = (event) => {
 		event.preventDefault();
+		setName('')
 		document.getElementById('add-vendor-form').reset();
 	};
 
@@ -57,10 +72,15 @@ const AddVendor = (props) => {
 			<div className="vendorForm">
 			<p className="form-error">{errorMessage}</p>
 				<form onSubmit={createVendor} id="add-vendor-form" className="addVendorForm">
-					<input 
-						onChange={event => {setName(event.target.value)}}
-					value={name}
-					name="name" type="text" placeholder="Vendor" />
+				<input
+            onChange={event => {
+              setName(event.target.value);
+            }}
+            value={name}
+            name="name"
+            type="text"
+            placeholder="Vendor"
+          />
 					<input name="description" type="text" placeholder="Description" />
 					<input name="email" type="text" placeholder="Email" />
 					<input name="website" type="text" placeholder="Website" />

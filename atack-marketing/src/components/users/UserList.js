@@ -32,7 +32,7 @@ const UserList = (props) => {
 	
 	  useEffect(() => {
 		fetchUsers();
-	  });
+	  }, []);
 	
 	return <div className="wrapper">{fetchedUsers.map((user) => <UserItem key={user.email} user={user} />)}</div>;
 };

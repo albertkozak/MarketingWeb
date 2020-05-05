@@ -13,7 +13,7 @@ const ViewEvent = (props) => {
 	const id = currentEvent.eventId
 	const [fetchedEOs, setFetchedEOs] = useState([])
 	const [fetchedVendors, setFetchedVendors] = useState([])
-	const [removeEO, setRemoveEO] = useState([])
+	//const [refreshComponent, setRefreshComponent] = useState(false);
 
 	const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/";
 	const EO_URL = BASE_URL + "EventOrganizer/"
@@ -36,7 +36,6 @@ const ViewEvent = (props) => {
 			.then((response) => response.json())
 			.then((responseData) => {
 			  setFetchedEOs(responseData.eventOrganizers);
-			  console.log(fetchedEOs);
 			});
 		});
 	};
@@ -56,7 +55,6 @@ const ViewEvent = (props) => {
 			.then((response) => response.json())
 			.then((responseData) => {
 			  setFetchedVendors(responseData.vendors);
-			  console.log(fetchedVendors);
 			});
 		});
 	};
@@ -117,7 +115,7 @@ const ViewEvent = (props) => {
       			>
 					<button className="addVendorButton"
 						>
-						Add Organizers
+						Add Organizer
 					</button>
 					</Link>
 					</div>
@@ -147,7 +145,7 @@ const ViewEvent = (props) => {
       			>
 					<button className="addVendorButton"
 						>
-						Add Vendors
+						Add Vendor
 					</button>
 					</Link>
 					</div>
