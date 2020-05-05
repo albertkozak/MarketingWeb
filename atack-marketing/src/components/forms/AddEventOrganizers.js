@@ -55,9 +55,6 @@ const AddEventOrganizers = (props) => {
 
 			let JWToken = await firebase.auth().currentUser.getIdTokenResult();
 
-			console.log(selectedEO[0].value)
-			console.log(eventId)
-
 			if (JWToken !== null) {
 				const result = await fetch(BASE_URL + "EventOrganizer/add", {
 					method: "POST",

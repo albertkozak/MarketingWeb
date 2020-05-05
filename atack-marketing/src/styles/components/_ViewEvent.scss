@@ -88,6 +88,16 @@
       padding: 0.5rem 0;
     }
 
+    .eoItem {
+      display: flex;
+      align-items: center;
+
+      .delete {
+        margin-left: 1rem;
+        color: $grey
+      }
+    }
+
     p {
       font-size: 1.1rem;
     }

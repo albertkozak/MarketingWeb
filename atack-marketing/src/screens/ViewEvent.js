@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import firebase from '../firebase'
 import EventOrganizerItem from '../components/eventOrganizers/EventOrganizerItem'
 import VendorItemSL from '../components/vendors/VendorItemSL'
-
 import * as moment from "moment-timezone";
 
 const ViewEvent = (props) => {
@@ -13,6 +12,7 @@ const ViewEvent = (props) => {
 	const id = currentEvent.eventId
 	const [fetchedEOs, setFetchedEOs] = useState([])
 	const [fetchedVendors, setFetchedVendors] = useState([])
+	const [removeEO, setRemoveEO] = useState([])
 
 	const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/";
 	const EO_URL = BASE_URL + "EventOrganizer/"
@@ -125,8 +125,13 @@ const ViewEvent = (props) => {
 							): (
 								<ul className="eventOrganizersList">
 								{fetchedEOs.map((eo) => (
-									<EventOrganizerItem key={eo.eventOrganizerId} eo={eo} />
-								))}</ul>
+									<EventOrganizerItem 
+									key={eo.eventOrganizerId} 
+									eo={eo}
+									eventId={id}
+									 />
+								))}
+								</ul>
 							)}
 					</div>
 					
