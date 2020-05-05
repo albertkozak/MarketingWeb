@@ -7,7 +7,7 @@ const EditEventOrganizers = (props) => {
     const currentEos = props.location.state.fetchedEos;
     const eventId = props.location.state.currentEvent.eventId
     const eventName = props.location.state.currentEvent.eventName;
-    const [ eosAdd, setEosAdd ] = useState(currentEos);
+    const [ eosAdd, setEosAdd ] = useState([]);
     const [ eosRemove, setEosRemove ] = useState([]);
     const [allEos, setAllEos] = useState([])
     const [errorMessage, setErrorMessage] = useState("")
@@ -32,21 +32,26 @@ const EditEventOrganizers = (props) => {
 			});
 		});
         
-    }        
-        useEffect(() => {
+	}   
+	        useEffect(() => {
             getAllEOs();
           });
 
 	return (
 		<div className="container">
 			<h1>Event Organizers for {eventName}</h1>
-			<div className="input-selector">
+			{/* <div className="input-selector">
 				<EventOrganizerInputSelector data={allEos} />
-			</div>
-            <ul className="eventOrganizersList">
+			</div> */}
+			{eosAdd.length === 0 ? (
+				<p className="nullText">No Event Organizers have been added yet.</p>
+			) : (
+				<ul className="eventOrganizersList">
 				{eosAdd.map((eo) => (
 					<EventOrganizerItem key={eo.eventOrganizerId} eo={eo} />
 				))}</ul>
+			)}
+           
 		</div>
 	);
 };

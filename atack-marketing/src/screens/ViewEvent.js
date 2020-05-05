@@ -108,28 +108,44 @@ const ViewEvent = (props) => {
 					<div className="eventOrganziersContainer">
 					<div className="containerHeading">
 						<h3 className="eventOrganizers">Event Organizers</h3>
-						<button className="addVendorButton" onClick={() => history.push('/editeventorganizers')}>
+						<Link
+        			to={{
+          			pathname: "/editeventorganizers",
+          			state: { currentEvent, fetchedEOs },
+        			}}
+      			>
+					<button className="addVendorButton"
+						>
 						Edit Organizers
 					</button>
+					</Link>
 					</div>
-						<ul className="eventOrganizersList">
-				{fetchedEOs.map((eo) => (
-					<EventOrganizerItem key={eo.eventOrganizerId} eo={eo} />
-				))}</ul>
+							{fetchedEOs.length === 0 ? (
+								<p className="nullText">No event organizers have been added yet.</p>
+							): (
+								<ul className="eventOrganizersList">
+								{fetchedEOs.map((eo) => (
+									<EventOrganizerItem key={eo.eventOrganizerId} eo={eo} />
+								))}</ul>
+							)}
 					</div>
 					
 					<div className="eventVendorsContainer">
 						<div className="containerHeading">
 						<h3 className="eventVendors">Event Vendors</h3>
 						<button className="addVendorButton" onClick={() => history.push('/addvendor')}>
-						Edit Vendors
+						Add Vendors
 					</button>
 					</div>
+					{fetchedVendors.length === 0 ? (
+						<p>No Vendors have been added yet.</p>
+					) : (
 						<ul className="eventVendorsList">
 						{fetchedVendors.map((vendor) => (
 					<VendorItemSL key={vendor.eventVendorId} vendor={vendor} />
 				))}
 						</ul>
+					)}
 					</div>
 				</div>
 			</div>
