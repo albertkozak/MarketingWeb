@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import EventOrganizerInputSelector from './EventOrganizerInputSelector';
+import UserInputSelector from './UserInputSelector';
 import firebase from '../../firebase'
 import { useHistory } from 'react-router-dom';
 
@@ -89,7 +89,7 @@ const AddEventOrganizers = (props) => {
 			}
 		}
 
-		function handleEOSelect(selection) {
+		function handleUserSelect(selection) {
 			setSelectedEO(selection)
 		}
 
@@ -103,10 +103,10 @@ const AddEventOrganizers = (props) => {
 			<h1>Event Organizers for {eventName}</h1>
 			<p className="form-error">{errorMessage}</p>
 			<div className="input-selector">
-				<EventOrganizerInputSelector 
+				<UserInputSelector
 					options={fetchedEOs}
 					values={selectedEO}
-					handleEOSelect={handleEOSelect}
+					handleUserSelect={handleUserSelect}
 				/>
 			</div>
 			{/* Add back if we can do multi post request */}

@@ -75,6 +75,19 @@ const ViewEvent = (props) => {
               .format("dddd, MMM DD YYYY @ hh:mm A")}
           </p>
 				</div>
+				<div className="venueContainer">
+				<div className="venueDetails">
+				<p className="venue">{venue.venueName}</p>
+				<p className="venueWebsite">{venue.venueWebsite}</p>
+				</div>
+				<Link
+        			to={{
+          			pathname: "/editVenue",
+          			state: { venue, id },
+        			}}
+      			><p className="editVenue">Edit Venue</p>
+				</Link>
+				</div>
 				<div className="edit-del-links">
 				<Link
 					to={{
@@ -89,19 +102,6 @@ const ViewEvent = (props) => {
 					}}
 				> <p className="delete">Delete</p> </Link>
 				 </div>
-				<div className="venueContainer">
-				<div className="venueDetails">
-				<p className="venue">{venue.venueName}</p>
-				<p className="venueWebsite">{venue.venueWebsite}</p>
-				</div>
-				<Link
-        			to={{
-          			pathname: "/editVenue",
-          			state: { venue, id },
-        			}}
-      			><p className="editVenue">Edit Venue</p>
-				</Link>
-				</div>
 				<div className="eventDetailsWrapper">
 					<div className="eventOrganziersContainer">
 					<div className="containerHeading">

@@ -2,7 +2,7 @@ import React from "react";
 import Select from "react-dropdown-select";
 
 
-export default function EventOrganizerInputSelector(props) {
+export default function UserInputSelector(props) {
 
   return (
     <Select
@@ -13,7 +13,7 @@ export default function EventOrganizerInputSelector(props) {
       placeholder="Select event organizer(s)"
       options={props.options}
       value={props.values}
-      onChange={props.handleEOSelect}
+      onChange={props.handleUserSelect}
     />
   );
 }
