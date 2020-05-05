@@ -138,16 +138,27 @@ const ViewEvent = (props) => {
 					<div className="eventVendorsContainer">
 						<div className="containerHeading">
 						<h3 className="eventVendors">Event Vendors</h3>
-						<button className="addVendorButton" onClick={() => history.push('/addvendor')}>
+						<Link
+        			to={{
+          			pathname: "/addeventvendor",
+          			state: { currentEvent, fetchedVendors },
+        			}}
+      			>
+					<button className="addVendorButton"
+						>
 						Add Vendors
 					</button>
+					</Link>
 					</div>
 					{fetchedVendors.length === 0 ? (
 						<p>No Vendors have been added yet.</p>
 					) : (
 						<ul className="eventVendorsList">
 						{fetchedVendors.map((vendor) => (
-					<VendorItemSL key={vendor.eventVendorId} vendor={vendor} />
+					<VendorItemSL 
+					key={vendor.eventVendorId} 
+					vendor={vendor}
+					 />
 				))}
 						</ul>
 					)}

@@ -48,7 +48,7 @@ const AddEventOrganizers = (props) => {
 
 		//Validate
 		if (selectedEO.length === 0 ) {
-			setErrorMessage("Please select at least one event organizer.")
+			setErrorMessage("Please select an event organizer.")
 		} else {
 			setErrorMessage("")
 
