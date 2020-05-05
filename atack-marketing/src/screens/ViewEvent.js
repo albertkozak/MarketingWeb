@@ -3,9 +3,9 @@ import { useHistory } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import firebase from '../firebase'
 import EventOrganizerItem from '../components/eventOrganizers/EventOrganizerItem'
-import VendorItemSL from '../components/vendors/VendorItemSL'
 import EventVendorItem from '../components/eventVendor/EventVendorItem'
 import * as moment from "moment-timezone";
+import VendorDetailProductList from '../components/products/VendorDetailProductList'
 
 const ViewEvent = (props) => {
 	const currentEvent = props.location.state.event;
@@ -13,7 +13,6 @@ const ViewEvent = (props) => {
 	const id = currentEvent.eventId
 	const [fetchedEOs, setFetchedEOs] = useState([])
 	const [fetchedVendors, setFetchedVendors] = useState([])
-	//const [refreshComponent, setRefreshComponent] = useState(false);
 
 	const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/";
 	const EO_URL = BASE_URL + "EventOrganizer/"
@@ -164,6 +163,33 @@ const ViewEvent = (props) => {
 						</ul>
 					)}
 					</div>
+				
+					
+
+				</div>
+				<div className="eventVendorWrapper">
+				<div className="vendorProductListContainer">
+					<div className="containerHeading">
+						<h3 className="eventVendors">Event Products</h3>
+						<Link
+        			to={{
+          			pathname: "/addeventvendor",
+          			state: { currentEvent, fetchedVendors },
+        			}}
+      			>
+					<button className="addVendorButton"
+						>
+						Add Products
+					</button>
+					</Link>
+					</div>
+					<VendorDetailProductList />
+				</div>
+				<div className="qrGenerator">
+					<button className="qrButton">
+						Generate QR Code
+					</button>
+				</div>
 				</div>
 			</div>
 		</div>

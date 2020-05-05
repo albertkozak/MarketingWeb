@@ -32,11 +32,11 @@ const BASE_URL ='https://atackmarketingapi.azurewebsites.net/api/Events/1/Vendor
 		fetchData();
   }, []);
    return (
-		<div className="wrapper">
-			<h3> {vendorDetails.vendorName}</h3>
+		<div className="productList">
+			{/* <h3> {vendorDetails.vendorName}</h3>
 			<p> {vendorDetails.description}</p>
 			<p>{vendorDetails.email}</p>
-			<a href={`${vendorDetails.website}`}>{vendorDetails.website}</a>
+			<a href={`${vendorDetails.website}`}>{vendorDetails.website}</a> */}
  
 			{/* {vendorDetails.map((vendor) => (
 				<VendorDetailProduct
