@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import firebase from '../firebase'
 import EventOrganizerItem from '../components/eventOrganizers/EventOrganizerItem'
 import VendorItemSL from '../components/vendors/VendorItemSL'
+import EventVendorItem from '../components/eventVendor/EventVendorItem'
 import * as moment from "moment-timezone";
 
 const ViewEvent = (props) => {
@@ -155,9 +156,11 @@ const ViewEvent = (props) => {
 					) : (
 						<ul className="eventVendorsList">
 						{fetchedVendors.map((vendor) => (
-					<VendorItemSL 
+					<EventVendorItem
 					key={vendor.eventVendorId} 
 					vendor={vendor}
+					eventId={id}
+					eventName={currentEvent.eventName}
 					 />
 				))}
 						</ul>
