@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import EventOrganizerInputSelector from './EventOrganizerInputSelector';
 import firebase from '../../firebase'
-import EventOrganizerItem from '../eventOrganizers/EventOrganizerItem'
 import { useHistory } from 'react-router-dom';
 
 const AddEventOrganizers = (props) => {
