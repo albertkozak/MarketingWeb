@@ -72,8 +72,16 @@ const AddEventOrganizers = (props) => {
 					})
 				});
 				if (result.status === 201) {
-					// need to push back to event page
-					history.push("/");
+					await fetch(BASE_URL + `Events/${eventId}`, {
+						METHOD: "GET",
+						headers: {
+						  Accept: "application/json",
+						  "Content-Type": "application/json",
+						  Authorization: `Bearer ${JWToken.token}`
+						}
+					  })
+						.then(response => response.json())
+						.then(data => history.push("/event", { event: data }));
 				} else if (result.status === 400 ){
 					setErrorMessage("User is already an event organizer for this event.")
 				} else if (result.status === 403 ){
@@ -93,7 +101,7 @@ const AddEventOrganizers = (props) => {
 
 		function cancelButton(event) {
 			event.preventDefault();
-			history.push("/");
+			history.goBack();
 		  }
 
 	return (
