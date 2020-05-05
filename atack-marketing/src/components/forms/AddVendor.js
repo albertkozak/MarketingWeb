@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import firebase from '../../firebase'
 
-const AddVendor = () => {
+const AddVendor = (props) => {
+	const vendorNameValue = props.location.state.vendorName;
+  	const [name, setName] = useState(vendorNameValue);
 	const [errorMessage, setErrorMessage] = useState('')
 	const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/VendorManagement/AddVendor"
 
@@ -55,7 +57,10 @@ const AddVendor = () => {
 			<div className="vendorForm">
 			<p className="form-error">{errorMessage}</p>
 				<form onSubmit={createVendor} id="add-vendor-form" className="addVendorForm">
-					<input name="name" type="text" placeholder="Vendor" />
+					<input 
+						onChange={event => {setName(event.target.value)}}
+					value={name}
+					name="name" type="text" placeholder="Vendor" />
 					<input name="description" type="text" placeholder="Description" />
 					<input name="email" type="text" placeholder="Email" />
 					<input name="website" type="text" placeholder="Website" />

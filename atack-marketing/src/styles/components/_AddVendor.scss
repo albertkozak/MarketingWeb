@@ -4,6 +4,11 @@
 	margin: 5rem 0 1rem;
 }
 
+.form-error {
+	text-align: center;
+	color: $error
+}
+
 .addVendorForm {
 	display: flex;
 	flex-direction: column;
