@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faTimes, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import firebase from '../../firebase'
 import { useHistory } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const EventVendorItem = (props) => {
 	const vendor = props.vendor;
+	const eventVendorId = vendor.eventVendorId
+	const vendorName = vendor.vendorName
     const eventId= props.eventId
     const eventName = props.eventName
 	const [isShown, setIsShown] = useState(false)
@@ -51,22 +54,43 @@ const EventVendorItem = (props) => {
 	}
 
 	return (
-        <div 
+		<div className="eventVendor">
+		<div 
             className="eventVendorItem"
             onMouseEnter={() => setIsShown(true)}
 			onMouseLeave={() => setIsShown(false)}
         >
-			<p className="vendorName">{vendor.vendorName}</p>
+				
+				<p className="vendorName">{vendor.vendorName}</p>
             {
 				isShown && (
+					<div className="icons">
 					<FontAwesomeIcon 
 						className="delete" 
 						icon={faTimes}
 						onClick={removeEventVendor, props.handleChange}
 						/>
+						<Link
+							to={{
+								pathname: '/addeventvendoruser',
+								state: { 
+									eventVendorId, vendorName, 
+									eventName }
+							}}
+						>
+							<FontAwesomeIcon
+							className="addUser"
+							icon={faUserPlus}
+							/>
+						</Link>
+						</div>
 				)
 			}
 			
+		</div>
+			{/* add input here for users */}
+
+
 		</div>
 	);
 };

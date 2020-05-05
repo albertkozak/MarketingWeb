@@ -10,7 +10,7 @@ export default function UserInputSelector(props) {
       searchable
       searchBy="label"
       name="userEmail"
-      placeholder="Select event organizer(s)"
+      placeholder="Select a user"
       options={props.options}
       value={props.values}
       onChange={props.handleUserSelect}

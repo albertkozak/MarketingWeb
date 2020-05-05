@@ -61,7 +61,7 @@ const ViewEvent = (props) => {
 	useEffect(() => {
 		fetchEOs();
 		fetchVendors();
-	  });
+	  }, []);
 
 	return (
 		<div className="container">
