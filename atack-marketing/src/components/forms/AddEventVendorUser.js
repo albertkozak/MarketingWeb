@@ -15,7 +15,7 @@ const AddEventVendorUser = (props) => {
     const history = useHistory();
     const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/"
 
-    const EVENTVENDOR_URL = BASE_URL + "EventVendorUser/"
+    const EVENTVENDOR_URL = BASE_URL + "EventVendorUser"
 
     const getAllUsers = () => {
         firebase
@@ -43,33 +43,32 @@ const AddEventVendorUser = (props) => {
         
     }   
 
-    // const getCurrentEventVendorUsers = () => {
-    //     firebase
-	// 	.auth()
-	// 	.currentUser.getIdTokenResult()
-	// 	.then((tokenResponse) => {
-	// 	  fetch(EVENTVENDOR_URL + eventVendorId, {
-	// 		method: "GET",
-	// 		headers: {
-	// 		  Accept: "application/json",
-	// 		  Authorization: `Bearer ${tokenResponse.token}`,
-	// 		},
-	// 	  })
-	// 		.then((response) => response.json())
-    //         .then((response) => response.json())
-    //         .then((responseData) => {
-    //           setCurrentEVUs(responseData.vendorUsers);
-    //           console.log(currentEVUs);
-    //         });
-	// 	});
+    const getCurrentEventVendorUsers = () => {
+        firebase
+		.auth()
+		.currentUser.getIdTokenResult()
+		.then((tokenResponse) => {
+		  fetch(EVENTVENDOR_URL + "/" + eventVendorId, {
+			method: "GET",
+			headers: {
+			  Accept: "application/json",
+			  Authorization: `Bearer ${tokenResponse.token}`,
+			},
+		  })
+			.then((response) => response.json())
+            .then((responseData) => {
+              setCurrentEVUs(responseData.vendorUsers);
+              console.log(currentEVUs);
+            });
+		});
         
-    // }  
+    }  
     
     
     
 	useEffect(() => {
         getAllUsers();
-        //getCurrentEventVendorUsers();
+        getCurrentEventVendorUsers();
         setRefreshComponent(false);
     }, [refreshComponent]
     );
@@ -94,7 +93,7 @@ const AddEventVendorUser = (props) => {
             console.log(JWToken.token)
 
             if ( JWToken !== null) {
-                const result = await fetch (EVENTVENDOR_URL + "add", {
+                const result = await fetch (EVENTVENDOR_URL + "/add", {
                     method: "POST",
                     headers: {
                     Accept: "application/json",
