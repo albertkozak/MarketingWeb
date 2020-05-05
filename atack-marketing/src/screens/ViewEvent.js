@@ -13,6 +13,7 @@ const ViewEvent = (props) => {
 	const id = currentEvent.eventId
 	const [fetchedEOs, setFetchedEOs] = useState([])
 	const [fetchedVendors, setFetchedVendors] = useState([])
+	const [refreshComponent, setRefreshComponent] = useState(false)
 
 	const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/";
 	const EO_URL = BASE_URL + "EventOrganizer/"
@@ -61,7 +62,12 @@ const ViewEvent = (props) => {
 	useEffect(() => {
 		fetchEOs();
 		fetchVendors();
-	  });
+		setRefreshComponent(false)
+	  }, [refreshComponent]);
+
+	  function handleChange() {
+		  setRefreshComponent(true);
+	  }
 
 	return (
 		<div className="container">
@@ -74,6 +80,19 @@ const ViewEvent = (props) => {
               .local()
               .format("dddd, MMM DD YYYY @ hh:mm A")}
           </p>
+				</div>
+				<div className="venueContainer">
+				<div className="venueDetails">
+				<p className="venue">{venue.venueName}</p>
+				<p className="venueWebsite">{venue.venueWebsite}</p>
+				</div>
+				<Link
+        			to={{
+          			pathname: "/editVenue",
+          			state: { venue, id },
+        			}}
+      			><p className="editVenue">Edit Venue</p>
+				</Link>
 				</div>
 				<div className="edit-del-links">
 				<Link
@@ -89,19 +108,6 @@ const ViewEvent = (props) => {
 					}}
 				> <p className="delete">Delete</p> </Link>
 				 </div>
-				<div className="venueContainer">
-				<div className="venueDetails">
-				<p className="venue">{venue.venueName}</p>
-				<p className="venueWebsite">{venue.venueWebsite}</p>
-				</div>
-				<Link
-        			to={{
-          			pathname: "/editVenue",
-          			state: { venue, id },
-        			}}
-      			><p className="editVenue">Edit Venue</p>
-				</Link>
-				</div>
 				<div className="eventDetailsWrapper">
 					<div className="eventOrganziersContainer">
 					<div className="containerHeading">
@@ -127,6 +133,7 @@ const ViewEvent = (props) => {
 									key={eo.eventOrganizerId} 
 									eo={eo}
 									eventId={id}
+									handleChange={handleChange}
 									 />
 								))}
 								</ul>
@@ -158,6 +165,7 @@ const ViewEvent = (props) => {
 					vendor={vendor}
 					eventId={id}
 					eventName={currentEvent.eventName}
+					handleChange={handleChange}
 					 />
 					))}
 					</ul>

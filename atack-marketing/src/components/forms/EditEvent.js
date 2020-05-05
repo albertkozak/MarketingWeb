@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import VenueInputSelector from "./VenueInputSelector";
-import EventOrganizerInputSelector from "./EventOrganizerInputSelector";
 import firebase from "../../firebase";
 
 import * as moment from "moment-timezone";

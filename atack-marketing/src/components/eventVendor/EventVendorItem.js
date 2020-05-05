@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faTimes, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import firebase from '../../firebase'
 import { useHistory } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const EventVendorItem = (props) => {
 	const vendor = props.vendor;
+	const eventVendorId = vendor.eventVendorId
+	const vendorName = vendor.vendorName
     const eventId= props.eventId
     const eventName = props.eventName
 	const [isShown, setIsShown] = useState(false)
@@ -32,41 +35,54 @@ const EventVendorItem = (props) => {
 					})
 				});
 				if (result.status === 200) {
-					await fetch(BASE_URL + `Events/${eventId}`, {
-						METHOD: "GET",
-						headers: {
-						  Accept: "application/json",
-						  "Content-Type": "application/json",
-						  Authorization: `Bearer ${JWToken.token}`
-						}
-					  })
-						.then(response => response.json())
-						.then(
-							props.handleChange,
-							data => history.push("/event", { event: data }));
+					props.handleChange()
+				} else if (result.status === 400) {
+					alert("The vendor cannot be removed from the event")
 				} else {
 					alert("Error: Something went wrong, please try again")
+					console.log(result.status)
 				} 
 			}
 	}
 
 	return (
-        <div 
+		<div className="eventVendor">
+		<div 
             className="eventVendorItem"
             onMouseEnter={() => setIsShown(true)}
 			onMouseLeave={() => setIsShown(false)}
         >
-			<p className="vendorName">{vendor.vendorName}</p>
+				
+				<p className="vendorName">{vendor.vendorName}</p>
             {
 				isShown && (
-					<FontAwesomeIcon 
-						className="delete" 
-						icon={faTimes}
-						onClick={removeEventVendor, props.handleChange}
+					<div className="icons">
+						<Link
+							to={{
+								pathname: '/addeventvendoruser',
+								state: { 
+									eventVendorId, vendorName, 
+									eventName }
+							}}
+						>
+							<FontAwesomeIcon
+							className="addUser"
+							icon={faUserPlus}
+							/>
+						</Link>
+						<FontAwesomeIcon 
+							className="delete" 
+							icon={faTimes}
+							onClick={removeEventVendor}
 						/>
+						</div>
 				)
 			}
 			
+		</div>
+			{/* add input here for users */}
+
+
 		</div>
 	);
 };

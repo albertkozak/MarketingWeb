@@ -2,7 +2,7 @@ import React from "react";
 import Select from "react-dropdown-select";
 
 
-export default function EventOrganizerInputSelector(props) {
+export default function UserInputSelector(props) {
 
   return (
     <Select
@@ -10,10 +10,10 @@ export default function EventOrganizerInputSelector(props) {
       searchable
       searchBy="label"
       name="userEmail"
-      placeholder="Select event organizer(s)"
+      placeholder="Select a user"
       options={props.options}
       value={props.values}
-      onChange={props.handleEOSelect}
+      onChange={props.handleUserSelect}
     />
   );
 }

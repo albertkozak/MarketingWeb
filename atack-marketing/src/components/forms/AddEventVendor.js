@@ -40,7 +40,7 @@ const AddEventVendor = (props) => {
 
 	useEffect(() => {
     	getAllVendors();
-    });
+    }, []);
 
     async function addVendors(event) {
 		event.preventDefault();
