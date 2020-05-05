@@ -1,27 +1,30 @@
 body {
-	margin: 0;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 // Helpers
-@import 'variables';
-@import 'mixins';
+@import "variables";
+@import "mixins";
 
 // Component styles
-@import './components/App';
-@import './components/NavBar';
-@import './components/Home';
-@import './components/Authentication';
-@import './components/Footer';
-@import './components/Export';
-@import './components/AddEvent';
-@import './components/Roles';
-@import './components/EditUser';
-@import './components/ViewEvent';
-@import './components/AddVenue';
-@import './components/AddVendor';
-@import './components/Vendors';
-@import './components/DeleteEvent';
-@import './components/ViewVendor';
-@import './components/AddEventOrganizers';
+@import "./components/App";
+@import "./components/NavBar";
+@import "./components/Home";
+@import "./components/Authentication";
+@import "./components/Footer";
+@import "./components/Export";
+@import "./components/AddEvent";
+@import "./components/Roles";
+@import "./components/EditUser";
+@import "./components/ViewEvent";
+@import "./components/AddVenue";
+@import "./components/AddVendor";
+@import "./components/DeleteVendor";
+@import "./components/AddEventVendor";
+@import "./components/Vendors";
+@import "./components/DeleteEvent";
+@import "./components/ViewVendor";
+@import "./components/AddEventOrganizers";
+@import "./components/AddVendorProduct";
