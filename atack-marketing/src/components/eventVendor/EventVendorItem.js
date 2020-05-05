@@ -35,20 +35,23 @@ const EventVendorItem = (props) => {
 					})
 				});
 				if (result.status === 200) {
-					await fetch(BASE_URL + `Events/${eventId}`, {
-						METHOD: "GET",
-						headers: {
-						  Accept: "application/json",
-						  "Content-Type": "application/json",
-						  Authorization: `Bearer ${JWToken.token}`
-						}
-					  })
-						.then(response => response.json())
-						.then(
-							props.handleChange,
-							data => history.push("/event", { event: data }));
+					props.handleChange()
+					// await fetch(BASE_URL + `Events/${eventId}`, {
+					// 	METHOD: "GET",
+					// 	headers: {
+					// 	  Accept: "application/json",
+					// 	  "Content-Type": "application/json",
+					// 	  Authorization: `Bearer ${JWToken.token}`
+					// 	}
+					//   })
+					// 	.then(response => response.json())
+					// 	.then(
+					// 		data => history.push("/event", { event: data }));
 				} else {
 					alert("Error: Something went wrong, please try again")
+					console.log(result.status)
+					console.log(eventName)
+					console.log(vendor.vendorName)
 				} 
 			}
 	}
@@ -81,7 +84,7 @@ const EventVendorItem = (props) => {
 						<FontAwesomeIcon 
 							className="delete" 
 							icon={faTimes}
-							onClick={removeEventVendor, props.handleChange}
+							onClick={removeEventVendor}
 						/>
 						</div>
 				)

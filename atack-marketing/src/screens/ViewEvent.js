@@ -62,7 +62,12 @@ const ViewEvent = (props) => {
 	useEffect(() => {
 		fetchEOs();
 		fetchVendors();
-	  }, []);
+		setRefreshComponent(false)
+	  }, [refreshComponent]);
+
+	  function handleChange() {
+		  setRefreshComponent(true);
+	  }
 
 	return (
 		<div className="container">
@@ -128,6 +133,7 @@ const ViewEvent = (props) => {
 									key={eo.eventOrganizerId} 
 									eo={eo}
 									eventId={id}
+									handleChange={handleChange}
 									 />
 								))}
 								</ul>
@@ -159,6 +165,7 @@ const ViewEvent = (props) => {
 					vendor={vendor}
 					eventId={id}
 					eventName={currentEvent.eventName}
+					handleChange={handleChange}
 					 />
 					))}
 					</ul>

@@ -28,7 +28,7 @@ const EventOrganizerItem = (props) => {
 					})
 				});
 				if (result.status === 200) {
-					
+					props.handleChange()
 				} else {
 					alert("Error: Something went wrong, please try again")
 				}
