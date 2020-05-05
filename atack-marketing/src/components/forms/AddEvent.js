@@ -1,24 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import VenueInputSelector from "./VenueInputSelector";
-import EventOrganizerInputSelector from "./EventOrganizerInputSelector";
 import firebase from "../../firebase";
+import { BASE_URL } from "../../Config";
 
 export default function AddEvent() {
   const history = useHistory();
   const [errorMessage, setErrorMessage] = useState("");
 
   const [fetchedVenues, setFetchedVenues] = useState([]);
-  // const [fetchedUsers, setFetchedUsers] = useState([]);
+  const [selectedVenue, setSelectedVenue] = useState([]);
 
-  const [selectedVenue, setSelectedVenue] = useState(0);
-  // const [selectedEventOrganizers, setSelectedEventOrgainizers] = useState([]);
-
+  const [eventName, setEventName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [startTime, setstartTime] = useState("");
-  const [eventName, setEventName] = useState("");
-
-  const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/";
 
   // Add GET Request here for Venues & Event Organizers
 
@@ -37,7 +32,7 @@ export default function AddEvent() {
           .then(response => response.json())
           .then(responseData => {
             setFetchedVenues(
-              responseData.map(venue => ({
+              responseData.map((venue, index) => ({
                 value: venue.venueId,
                 label: venue.venueName
               }))
@@ -45,29 +40,9 @@ export default function AddEvent() {
           });
       });
   }
-  // function fetchUsers() {
-  //   firebase
-  //     .auth()
-  //     .currentUser.getIdTokenResult()
-  //     .then(tokenResponse => {
-  //       fetch(BASE_URL + "User/userlist", {
-  //         method: "GET",
-  //         headers: {
-  //           Accept: "application/json",
-  //           Authorization: `Bearer ${tokenResponse.token}`
-  //         }
-  //       })
-  //         .then(response => response.json())
-  //         .then(responseData => {
-  //           setFetchedUsers(responseData);
-  //           // console.log(fetchedUsers);
-  //         });
-  //     });
-  // }
 
   useEffect(() => {
     fetchVenues();
-    // fetchUsers();
   }, []);
 
   async function createEvent(event) {
@@ -100,7 +75,7 @@ export default function AddEvent() {
           body: JSON.stringify({
             eventName: eventNameTrimmed,
             eventStartDateTime: eventDateParsed,
-            venueId: selectedVenue.value
+            venueId: selectedVenue[0].value
           })
         });
 
@@ -114,21 +89,14 @@ export default function AddEvent() {
   }
 
   //Form Handlers
-
   function cancelButton(event) {
     event.preventDefault();
     history.push("/");
   }
 
   function handleVenueSelect(selection) {
-    //React Select Returns An Array So Get First Object
-    setSelectedVenue(selection[0]);
+    setSelectedVenue(selection);
   }
-
-  // function handleEOSelect(selection) {
-  //   console.log(selection);
-  //   setSelectedEventOrgainizers(selection);
-  // }
 
   return (
     <div className="container">
@@ -164,17 +132,10 @@ export default function AddEvent() {
           <div className="input-selector">
             <VenueInputSelector
               options={fetchedVenues}
-              value={selectedVenue}
+              values={selectedVenue}
               handleVenueSelect={handleVenueSelect}
             />
           </div>
-          {/* <div className="input-selector">
-            <EventOrganizerInputSelector
-              users={fetchedUsers}
-              value={selectedEventOrganizers}
-              handleEOSelect={handleEOSelect}
-            />
-          </div> */}
           <div className="buttons">
             <button className="submit" variant="" type="submit">
               Add Event
