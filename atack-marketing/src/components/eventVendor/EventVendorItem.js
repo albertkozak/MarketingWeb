@@ -65,11 +65,6 @@ const EventVendorItem = (props) => {
             {
 				isShown && (
 					<div className="icons">
-					<FontAwesomeIcon 
-						className="delete" 
-						icon={faTimes}
-						onClick={removeEventVendor, props.handleChange}
-						/>
 						<Link
 							to={{
 								pathname: '/addeventvendoruser',
@@ -83,6 +78,11 @@ const EventVendorItem = (props) => {
 							icon={faUserPlus}
 							/>
 						</Link>
+						<FontAwesomeIcon 
+							className="delete" 
+							icon={faTimes}
+							onClick={removeEventVendor, props.handleChange}
+						/>
 						</div>
 				)
 			}

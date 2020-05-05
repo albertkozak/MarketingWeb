@@ -131,6 +131,7 @@ const AddEventVendorUser = (props) => {
       return (
 		<div className="container">
 			<h1>{vendorName}'s Users for {eventName}</h1>
+            <p className="goBack" onClick={cancelButton}>Go Back to Event</p>
 			<p className="form-error">{errorMessage}</p>
 			<div className="input-selector">
 				<UserInputSelector
@@ -148,7 +149,7 @@ const AddEventVendorUser = (props) => {
             </button>
           </div>
           <div className="currentevu">
-              {currentEVUs === null || currentEVUs === undefined ? (
+              {currentEVUs.length === 0 ? (
                   <p className="nullText">
                       No users have been added yet.
                   </p>

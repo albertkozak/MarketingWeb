@@ -99,7 +99,7 @@
 
       .delete {
         margin-left: 1rem;
-        color: $grey
+        color: $error
       }
     }
 
@@ -109,6 +109,11 @@
 
       .delete {
         margin-left: 1rem;
+        color: $error
+      }
+
+      .addUser {
+        margin-left: 2rem;
         color: $grey
       }
     }
