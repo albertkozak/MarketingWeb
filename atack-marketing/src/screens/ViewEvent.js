@@ -159,8 +159,8 @@ const ViewEvent = (props) => {
 					eventId={id}
 					eventName={currentEvent.eventName}
 					 />
-				))}
-						</ul>
+					))}
+					</ul>
 					)}
 					</div>
 				
@@ -170,18 +170,18 @@ const ViewEvent = (props) => {
 				<div className="eventVendorWrapper">
 				<div className="vendorProductListContainer">
 					<div className="containerHeading">
-						<h3 className="eventVendors">Event Products</h3>
+						<h3 className="eventVendorProducts">Event Products</h3>
 						<Link
-        			to={{
-          			pathname: "/addeventvendor",
-          			state: { currentEvent, fetchedVendors },
-        			}}
-      			>
-					<button className="addVendorButton"
-						>
-						Add Products
-					</button>
-					</Link>
+        					to={{
+          					pathname: "/addvendorproduct",
+          					state: { currentEvent },
+        					}}
+      					>
+							<button className="addProductButton"
+							>
+								Add Products
+							</button>
+						</Link>
 					</div>
 					<VendorDetailProductList />
 				</div>
