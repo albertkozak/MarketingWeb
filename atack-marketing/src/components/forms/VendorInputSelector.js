@@ -9,8 +9,8 @@ export default function VendorInputSelector(props) {
       //multi
       searchable
       searchBy="label"
-      name="userEmail"
-      placeholder="Select event organizer(s)"
+      name="vendorId"
+      placeholder="Select a vendor"
       options={props.options}
       value={props.values}
       onChange={props.handleVendorSelect}

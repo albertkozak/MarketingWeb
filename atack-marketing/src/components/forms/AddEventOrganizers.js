@@ -82,8 +82,6 @@ const AddEventOrganizers = (props) => {
 					setErrorMessage("User is already an event organizer for this event.")
 				} else if (result.status === 403 ){
 					setErrorMessage("User cannot be added as an event organizer at this time")
-				} else if (result.status === 400 ){
-					setErrorMessage("User is already an event organizer for this event.")
 				} else {
 					alert("Error: Something went wrong, please try again")
 				}

@@ -45,6 +45,7 @@ const AddEventVendor = (props) => {
     async function addVendors(event) {
 		event.preventDefault();
 
+        console.log(selectedVendor[0].value)
 		//Validate
 		if (selectedVendor.length === 0 ) {
 			setErrorMessage("Please select a vendor.")
@@ -78,11 +79,7 @@ const AddEventVendor = (props) => {
 						.then(response => response.json())
 						.then(data => history.push("/event", { event: data }));
 				} else if (result.status === 400 ){
-					setErrorMessage("User is already an event organizer for this event.")
-				} else if (result.status === 403 ){
-					setErrorMessage("User cannot be added as an event organizer at this time")
-				} else if (result.status === 400 ){
-					setErrorMessage("User is already an event organizer for this event.")
+					setErrorMessage("Vendor already exists in this event.")
 				} else {
 					alert("Error: Something went wrong, please try again")
 				}
@@ -92,6 +89,7 @@ const AddEventVendor = (props) => {
 
     function handleVendorSelect(selection) {
         setSelectedVendor(selection)
+        console.log(selection)
     }
 
     function cancelButton(event) {
@@ -107,7 +105,7 @@ const AddEventVendor = (props) => {
 				<VendorInputSelector 
 					options={fetchedVendors}
 					values={selectedVendor}
-					handleEOSelect={handleVendorSelect}
+					handleVendorSelect={handleVendorSelect}
 				/>
 			</div>
 			 <div className="buttons">
