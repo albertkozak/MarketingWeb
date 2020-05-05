@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import firebase from '../firebase'
 import EventOrganizerItem from '../components/eventOrganizers/EventOrganizerItem'
 import VendorItemSL from '../components/vendors/VendorItemSL'
+import EventVendorItem from '../components/eventVendor/EventVendorItem'
 import * as moment from "moment-timezone";
 
 const ViewEvent = (props) => {
@@ -138,16 +139,29 @@ const ViewEvent = (props) => {
 					<div className="eventVendorsContainer">
 						<div className="containerHeading">
 						<h3 className="eventVendors">Event Vendors</h3>
-						<button className="addVendorButton" onClick={() => history.push('/addvendor')}>
+						<Link
+        			to={{
+          			pathname: "/addeventvendor",
+          			state: { currentEvent, fetchedVendors },
+        			}}
+      			>
+					<button className="addVendorButton"
+						>
 						Add Vendors
 					</button>
+					</Link>
 					</div>
 					{fetchedVendors.length === 0 ? (
 						<p>No Vendors have been added yet.</p>
 					) : (
 						<ul className="eventVendorsList">
 						{fetchedVendors.map((vendor) => (
-					<VendorItemSL key={vendor.eventVendorId} vendor={vendor} />
+					<EventVendorItem
+					key={vendor.eventVendorId} 
+					vendor={vendor}
+					eventId={id}
+					eventName={currentEvent.eventName}
+					 />
 				))}
 						</ul>
 					)}

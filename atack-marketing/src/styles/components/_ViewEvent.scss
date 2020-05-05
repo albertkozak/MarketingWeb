@@ -98,6 +98,16 @@
       }
     }
 
+    .eventVendorItem {
+      display: flex;
+      align-items: center;
+
+      .delete {
+        margin-left: 1rem;
+        color: $grey
+      }
+    }
+
     p {
       font-size: 1.1rem;
     }

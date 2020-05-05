@@ -1,24 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import EventOrganizerInputSelector from './EventOrganizerInputSelector';
+import VendorInputSelector from './VendorInputSelector';
 import firebase from '../../firebase'
 import { useHistory } from 'react-router-dom';
 
-const AddEventOrganizers = (props) => {
-    //const currentEOs = props.location.state.fetchedEos;
+const AddEventVendor = (props) => {
     const eventId = props.location.state.currentEvent.eventId
     const eventName = props.location.state.currentEvent.eventName;
-	const [selectedEO, setSelectedEO] = useState([])
-    const [fetchedEOs, setFetchedEOs] = useState([])
+	const [selectedVendor, setSelectedVendor] = useState([])
+    const [fetchedVendors, setFetchedVendors] = useState([])
     const [errorMessage, setErrorMessage] = useState("")
 	const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/"
-	const history = useHistory()
+    const history = useHistory()
     
-    const getAllEOs = () => {
+    const getAllVendors = () => {
         firebase
 		.auth()
 		.currentUser.getIdTokenResult()
 		.then((tokenResponse) => {
-		  fetch(BASE_URL + "User/userlist", {
+		  fetch(BASE_URL + "VendorManagement", {
 			method: "GET",
 			headers: {
 			  Accept: "application/json",
@@ -27,35 +26,36 @@ const AddEventOrganizers = (props) => {
 		  })
 			.then((response) => response.json())
 			.then((responseData) => {
-			  setFetchedEOs(
-				  responseData.map((eo, index) => ({
-					  value: eo.email,
-					  label: eo.email
+			  setFetchedVendors(
+				  responseData.map((vendor, index) => ({
+					  value: vendor.vendorId,
+					  label: vendor.name
 				  })));
 			  console.log(responseData)
-			  console.log(fetchedEOs);
+			  console.log(fetchedVendors);
 			});
 		});
         
 	}   
 
 	useEffect(() => {
-    	getAllEOs();
-	});
-		  
-	async function addEventOrganizers(event) {
+    	getAllVendors();
+    });
+
+    async function addVendors(event) {
 		event.preventDefault();
 
+        console.log(selectedVendor[0].value)
 		//Validate
-		if (selectedEO.length === 0 ) {
-			setErrorMessage("Please select an event organizer.")
+		if (selectedVendor.length === 0 ) {
+			setErrorMessage("Please select a vendor.")
 		} else {
 			setErrorMessage("")
 
 			let JWToken = await firebase.auth().currentUser.getIdTokenResult();
 
 			if (JWToken !== null) {
-				const result = await fetch(BASE_URL + "EventOrganizer/add", {
+				const result = await fetch(BASE_URL + "EventVendor/add", {
 					method: "POST",
 					headers: {
 						Accept: "application/json",
@@ -64,7 +64,7 @@ const AddEventOrganizers = (props) => {
 					},
 					body: JSON.stringify({
 						eventId: eventId,
-						userEmailToModify: selectedEO[0].value
+						vendorId: selectedVendor[0].value
 					})
 				});
 				if (result.status === 201) {
@@ -79,9 +79,7 @@ const AddEventOrganizers = (props) => {
 						.then(response => response.json())
 						.then(data => history.push("/event", { event: data }));
 				} else if (result.status === 400 ){
-					setErrorMessage("User is already an event organizer for this event.")
-				} else if (result.status === 403 ){
-					setErrorMessage("User cannot be added as an event organizer at this time")
+					setErrorMessage("Vendor already exists in this event.")
 				} else {
 					alert("Error: Something went wrong, please try again")
 				}
@@ -89,38 +87,30 @@ const AddEventOrganizers = (props) => {
 			}
 		}
 
-		function handleEOSelect(selection) {
-			setSelectedEO(selection)
-		}
+    function handleVendorSelect(selection) {
+        setSelectedVendor(selection)
+        console.log(selection)
+    }
 
-		function cancelButton(event) {
-			event.preventDefault();
-			history.goBack();
-		  }
-
-	return (
+    function cancelButton(event) {
+        event.preventDefault();
+        history.goBack();
+      }
+    
+    return (
 		<div className="container">
-			<h1>Event Organizers for {eventName}</h1>
+			<h1>Vendors for {eventName}</h1>
 			<p className="form-error">{errorMessage}</p>
 			<div className="input-selector">
-				<EventOrganizerInputSelector 
-					options={fetchedEOs}
-					values={selectedEO}
-					handleEOSelect={handleEOSelect}
+				<VendorInputSelector 
+					options={fetchedVendors}
+					values={selectedVendor}
+					handleVendorSelect={handleVendorSelect}
 				/>
 			</div>
-			{/* Add back if we can do multi post request */}
-			{/* {selectedEO === null || selectedEO === undefined ? (
-				<p className="nullText">No event organizers have been added yet.</p>
-			) : (
-				<ul className="eventOrganizersList">
-				{selectedEO.map((eo) => (
-					<EventOrganizerItem key={eo.value} eo={eo} />
-				))}</ul>
-			)} */}
 			 <div className="buttons">
-            <button className="submit" onClick={addEventOrganizers} >
-              Add Event Organizers
+            <button className="submit" onClick={addVendors} >
+              Add Vendors
             </button>
             <button className="cancel" onClick={cancelButton}>
               Cancel
@@ -132,4 +122,4 @@ const AddEventOrganizers = (props) => {
 	);
 };
 
-export default AddEventOrganizers;
+export default AddEventVendor;

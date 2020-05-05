@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import firebase from '../../firebase'
@@ -9,10 +8,9 @@ const EventOrganizerItem = (props) => {
 	const id= props.eventId
 	const [isShown, setIsShown] = useState(false)
 	const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/EventOrganizer/remove";
-	const [removeEO, setRemoveEO] = useState([])
 
-	async function removeEventOrganizer() {
-		// event.preventDefault();
+	async function removeEventOrganizer(event) {
+		event.preventDefault();
 
 		let JWToken = await firebase.auth().currentUser.getIdTokenResult();
 
@@ -37,10 +35,6 @@ const EventOrganizerItem = (props) => {
 			}
 	}
 
-	function handleRemove(eo) {
-		setRemoveEO(eo);
-		removeEventOrganizer();
-	}
 
 	return (
 		<div 
@@ -54,7 +48,7 @@ const EventOrganizerItem = (props) => {
 					<FontAwesomeIcon 
 						className="delete" 
 						icon={faTimes}
-						onClick={handleRemove}
+						onClick={removeEventOrganizer}
 						/>
 				)
 			}
