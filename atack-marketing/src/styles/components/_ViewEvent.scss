@@ -68,24 +68,43 @@
   .eventDetailsWrapper {
     display: flex;
     justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+
+    .containerHeading{
+      display: flex;
+      align-items: flex-start;
+    }
 
     h3 {
       font-size: 1.2rem;
       color: $dark-grey;
       font-family: $body-heading-font;
+      margin-right: 3rem;
     }
 
     li {
       list-style-type: none;
       padding: 0.5rem 0;
+    }
+
+    .eoItem {
+      display: flex;
+      align-items: center;
+
+      .delete {
+        margin-left: 1rem;
+        color: $grey
+      }
+    }
+
+    p {
       font-size: 1.1rem;
     }
 
     button {
-      align-self: flex-start;
       font-size: 1rem;
-      margin-left: 5rem;
-      margin-top: 2rem;
+      margin-top: 1rem;
       text-transform: uppercase;
       color: $white;
       background-color: $orange;
@@ -96,4 +115,5 @@
       
     }
   }
+  
 }

@@ -53,6 +53,7 @@ const AddVenue = props => {
     <div className="container">
       <h1 className="addVenueName">Add Venue</h1>
       <div className="venueForm">
+      <p className="form-error">{errorMessage}</p>
         <form
           onSubmit={createVenue}
           id="add-venue-form"

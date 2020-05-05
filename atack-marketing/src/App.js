@@ -26,6 +26,7 @@ import VendorDetailProductList from './components/products/VendorDetailProductLi
 import DeleteEvent from './components/forms/DeleteEvent'
 import ViewVendor from './screens/ViewVendor'
 import DeleteVendor from './components/forms/DeleteVendor'
+import AddEventOrganizers from './components/forms/AddEventOrganizers';
 
 function App() {
 	return (
@@ -41,9 +42,9 @@ function App() {
 export const Main = withRouter(({ location }) => {
 	return (
 		<div>
-			{location.pathname != '/login' &&
-			location.pathname != '/register' &&
-			location.pathname != '/forgotpassword' && <Navbar />}
+			{location.pathname !== '/login' &&
+			location.pathname !== '/register' &&
+			location.pathname !== '/forgotpassword' && <Navbar />}
 			<Switch>
 				<PrivateRoute exact path="/" component={Home} />
 				<PrivateRoute exact path="/home" component={Home} />
@@ -54,6 +55,7 @@ export const Main = withRouter(({ location }) => {
 				<PrivateRoute exact path="/editevent" component={EditEvent} />
 				<PrivateRoute exact path="/deleteevent" component={DeleteEvent} />
 				<PrivateRoute exact path="/edituser" component={EditUser} />
+				<PrivateRoute exact path="/addeventorganizers" component={AddEventOrganizers} />
 				<PrivateRoute exact path="/addvenue" component={AddVenue} />
 				<PrivateRoute exact path="/editvenue" component={EditVenue} />
 				<PrivateRoute exact path="/addvendor" component={AddVendor} />

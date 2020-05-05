@@ -29,7 +29,7 @@ const VendorList = (props) => {
 
 	  useEffect(() => {
 		fetchVendors();
-	  }, []);
+	  });
 
 	return <div className="wrapper">{fetchedVendors.map((vendor) => <VendorItem key={vendor.id} vendor={vendor} />)}</div>;
 };
