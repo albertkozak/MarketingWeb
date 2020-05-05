@@ -14,5 +14,13 @@
     border: none;
     background-color: $orange;
     text-transform: uppercase;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      background-color: $hover-orange;
+    }
   }
 }
