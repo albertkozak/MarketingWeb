@@ -3,9 +3,9 @@ import { useHistory } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import firebase from '../firebase'
 import EventOrganizerItem from '../components/eventOrganizers/EventOrganizerItem'
-import VendorItemSL from '../components/vendors/VendorItemSL'
 import EventVendorItem from '../components/eventVendor/EventVendorItem'
 import * as moment from "moment-timezone";
+import VendorDetailProductList from '../components/products/VendorDetailProductList'
 
 const ViewEvent = (props) => {
 	const currentEvent = props.location.state.event;
@@ -13,7 +13,6 @@ const ViewEvent = (props) => {
 	const id = currentEvent.eventId
 	const [fetchedEOs, setFetchedEOs] = useState([])
 	const [fetchedVendors, setFetchedVendors] = useState([])
-	const [removeEO, setRemoveEO] = useState([])
 
 	const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/";
 	const EO_URL = BASE_URL + "EventOrganizer/"
@@ -36,7 +35,6 @@ const ViewEvent = (props) => {
 			.then((response) => response.json())
 			.then((responseData) => {
 			  setFetchedEOs(responseData.eventOrganizers);
-			  console.log(fetchedEOs);
 			});
 		});
 	};
@@ -56,7 +54,6 @@ const ViewEvent = (props) => {
 			.then((response) => response.json())
 			.then((responseData) => {
 			  setFetchedVendors(responseData.vendors);
-			  console.log(fetchedVendors);
 			});
 		});
 	};
@@ -117,7 +114,7 @@ const ViewEvent = (props) => {
       			>
 					<button className="addVendorButton"
 						>
-						Add Organizers
+						Add Organizer
 					</button>
 					</Link>
 					</div>
@@ -147,7 +144,7 @@ const ViewEvent = (props) => {
       			>
 					<button className="addVendorButton"
 						>
-						Add Vendors
+						Add Vendor
 					</button>
 					</Link>
 					</div>
@@ -162,10 +159,37 @@ const ViewEvent = (props) => {
 					eventId={id}
 					eventName={currentEvent.eventName}
 					 />
-				))}
-						</ul>
+					))}
+					</ul>
 					)}
 					</div>
+				
+					
+
+				</div>
+				<div className="eventVendorWrapper">
+				<div className="vendorProductListContainer">
+					<div className="containerHeading">
+						<h3 className="eventVendorProducts">Event Products</h3>
+						<Link
+        					to={{
+          					pathname: "/addvendorproduct",
+          					state: { currentEvent },
+        					}}
+      					>
+							<button className="addProductButton"
+							>
+								Add Products
+							</button>
+						</Link>
+					</div>
+					<VendorDetailProductList />
+				</div>
+				<div className="qrGenerator">
+					<button className="qrButton">
+						Generate QR Code
+					</button>
+				</div>
 				</div>
 			</div>
 		</div>

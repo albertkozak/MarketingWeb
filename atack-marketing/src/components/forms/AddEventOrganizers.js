@@ -120,7 +120,7 @@ const AddEventOrganizers = (props) => {
 			)} */}
 			 <div className="buttons">
             <button className="submit" onClick={addEventOrganizers} >
-              Add Event Organizers
+              Add Event Organizer
             </button>
             <button className="cancel" onClick={cancelButton}>
               Cancel
