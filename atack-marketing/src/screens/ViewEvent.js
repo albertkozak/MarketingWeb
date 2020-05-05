@@ -62,8 +62,7 @@ const ViewEvent = (props) => {
 	useEffect(() => {
 		fetchEOs();
 		fetchVendors();
-		refreshComponent(false);
-	  }, [refreshComponent]);
+	  }, []);
 
 	return (
 		<div className="container">
