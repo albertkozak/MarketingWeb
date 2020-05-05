@@ -39,7 +39,7 @@ export default class QRCodeGen extends React.Component {
 					/>
 					<br />
 					<form style={styles.form} onSubmit={this.handleSubmit}>
-						<label>Event Name</label>
+						<label>Code</label>
 						<br />
 						<input type="text" value={this.state.value} onChange={this.handleChange} />
 					</form>
