@@ -36,22 +36,11 @@ const EventVendorItem = (props) => {
 				});
 				if (result.status === 200) {
 					props.handleChange()
-					// await fetch(BASE_URL + `Events/${eventId}`, {
-					// 	METHOD: "GET",
-					// 	headers: {
-					// 	  Accept: "application/json",
-					// 	  "Content-Type": "application/json",
-					// 	  Authorization: `Bearer ${JWToken.token}`
-					// 	}
-					//   })
-					// 	.then(response => response.json())
-					// 	.then(
-					// 		data => history.push("/event", { event: data }));
+				} else if (result.status === 400) {
+					alert("The vendor cannot be removed from the event")
 				} else {
 					alert("Error: Something went wrong, please try again")
 					console.log(result.status)
-					console.log(eventName)
-					console.log(vendor.vendorName)
 				} 
 			}
 	}
