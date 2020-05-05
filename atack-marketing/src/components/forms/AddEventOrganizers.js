@@ -41,7 +41,7 @@ const AddEventOrganizers = (props) => {
 
 	useEffect(() => {
     	getAllEOs();
-	});
+	}, []);
 		  
 	async function addEventOrganizers(event) {
 		event.preventDefault();

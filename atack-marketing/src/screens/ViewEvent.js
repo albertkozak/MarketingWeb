@@ -13,6 +13,7 @@ const ViewEvent = (props) => {
 	const id = currentEvent.eventId
 	const [fetchedEOs, setFetchedEOs] = useState([])
 	const [fetchedVendors, setFetchedVendors] = useState([])
+	const [refreshComponent, setRefreshComponent] = useState(false)
 
 	const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/";
 	const EO_URL = BASE_URL + "EventOrganizer/"
@@ -61,7 +62,8 @@ const ViewEvent = (props) => {
 	useEffect(() => {
 		fetchEOs();
 		fetchVendors();
-	  }, []);
+		refreshComponent(false);
+	  }, [refreshComponent]);
 
 	return (
 		<div className="container">
