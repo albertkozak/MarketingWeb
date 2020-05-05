@@ -5,6 +5,8 @@ import firebase from '../firebase'
 import EventOrganizerItem from '../components/eventOrganizers/EventOrganizerItem'
 import VendorItemSL from '../components/vendors/VendorItemSL'
 
+import * as moment from "moment-timezone";
+
 const ViewEvent = (props) => {
 	const currentEvent = props.location.state.event;
 	const venue = currentEvent.venue
@@ -68,7 +70,12 @@ const ViewEvent = (props) => {
 			<div className="eventWrapper">
 				<div className="eventHeader">
 					<h2>{currentEvent.eventName}</h2>
-					<p>{Date(currentEvent.eventStartDateTime)}</p>
+					<p>
+            {moment
+              .utc(currentEvent.eventStartDateTime)
+              .local()
+              .format("dddd, MMM DD YYYY @ hh:mm A")}
+          </p>
 				</div>
 				<div className="edit-del-links">
 				<Link

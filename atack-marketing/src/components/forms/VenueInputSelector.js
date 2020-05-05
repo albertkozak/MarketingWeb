@@ -18,7 +18,7 @@ export default function VenueInputSelector(props) {
       searchBy="label"
       name="venueId"
       options={props.options}
-      value={props.value}
+      values={props.values}
       onChange={props.handleVenueSelect}
     />
   );
