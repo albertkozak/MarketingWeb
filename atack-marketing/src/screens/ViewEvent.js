@@ -110,13 +110,13 @@ const ViewEvent = (props) => {
 						<h3 className="eventOrganizers">Event Organizers</h3>
 						<Link
         			to={{
-          			pathname: "/editeventorganizers",
+          			pathname: "/addeventorganizers",
           			state: { currentEvent, fetchedEOs },
         			}}
       			>
 					<button className="addVendorButton"
 						>
-						Edit Organizers
+						Add Organizers
 					</button>
 					</Link>
 					</div>

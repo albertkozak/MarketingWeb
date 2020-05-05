@@ -1,20 +1,26 @@
 import React from "react";
 import Select from "react-dropdown-select";
+import { useHistory } from "react-router-dom";
 
 export default function EventOrganizerInputSelector(props) {
-  let sortedUsers = props.users.sort;
-  const options = props.users.map((eo, index) => ({
-    value: eo.email,
-    label: eo.email
-  }));
+  const history = useHistory();
+
+  // let sortedUsers = props.allEOs.sort;
+  // const options = props.allEOs.map((eo) => ({
+  //   value: eo.email,
+  //   label: eo.email
+  // }));
+
 
   return (
     <Select
-      multi
-      //Create
-      placeholder="Add/Search event organizer(s)"
-      options={options}
-      value={props.value}
+      //multi
+      searchable
+      searchBy="label"
+      name="userEmail"
+      placeholder="Select event organizer(s)"
+      options={props.options}
+      value={props.values}
       onChange={props.handleEOSelect}
     />
   );
