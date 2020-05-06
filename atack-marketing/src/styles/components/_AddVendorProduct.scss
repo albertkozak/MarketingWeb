@@ -1,6 +1,6 @@
 .addProductForm {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
 
@@ -10,7 +10,7 @@
     color: $black;
     padding: 15px;
     border-bottom: 1px solid $light-grey;
-    width: 30%;
+    width: 20%;
     margin: 0 auto;
     text-align: center;
 
