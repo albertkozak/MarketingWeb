@@ -4,6 +4,8 @@ import EventInputSelector from "../components/forms/EventInputSelector";
 
 const Export = (props) => {
   const [event, setEvent] = useState([]);
+  const [selectedEvent, setSelectedEvent] = useState([]);
+  const [refreshComponent, setRefreshComponent] = useState(false);
   const BASE_URL =
     "https://atackmarketingapi.azurewebsites.net/api/Reports/subscribers";
 
@@ -28,7 +30,12 @@ const Export = (props) => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+    setRefreshComponent(false);
+  }, [refreshComponent]);
+
+  function handleEventSelect(selection) {
+    setSelectedEvent(selection);
+  }
 
   return (
     <div className="container">
