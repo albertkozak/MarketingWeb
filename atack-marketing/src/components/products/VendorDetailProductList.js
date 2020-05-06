@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import firebase from "../../firebase";
 import VendorDetailProduct from "./VendorDetailProduct";
+import { QRCode } from "react-qr-svg";
 
 const VendorDetailProductList = (props) => {
   const BASE_URL =
     "https://atackmarketingapi.azurewebsites.net/api/Events/1/Vendors/1";
   const [fetchedData, setFetchedData] = useState([]);
   const [vendorDetails, setVendorDetails] = useState("");
+  const [eventInfo, setEventInfo] = useState(null);
   const fetchData = () => {
     firebase
       .auth()
@@ -23,7 +25,8 @@ const VendorDetailProductList = (props) => {
           .then((responseData) => {
             setVendorDetails(responseData.vendor);
             setFetchedData(responseData.vendor.products);
-            console.log(responseData.vendor);
+            setEventInfo(responseData);
+            console.log(responseData);
           });
       });
   };
@@ -32,22 +35,37 @@ const VendorDetailProductList = (props) => {
     fetchData();
   }, []);
   return (
-    <div className="productList">
-      {/* <h3> {vendorDetails.vendorName}</h3>
+    <div>
+      <div className="productList">
+        {/* <h3> {vendorDetails.vendorName}</h3>
 			<p> {vendorDetails.description}</p>
 			<p>{vendorDetails.email}</p>
 			<a href={`${vendorDetails.website}`}>{vendorDetails.website}</a> */}
 
-      {/* {vendorDetails.map((vendor) => (
+        {/* {vendorDetails.map((vendor) => (
 				<VendorDetailProduct
 					key={vendor.eventVendorId}
 					vendor={vendor}
 				/>
                 
 			))} */}
-      {fetchedData.map((product) => (
-        <VendorDetailProduct key={product.productId} product={product} />
-      ))}
+        {fetchedData.map((product) => (
+          <VendorDetailProduct key={product.productId} product={product} />
+        ))}
+      </div>
+      <div className="qrGenerator">
+        {eventInfo && (
+          <QRCode
+            level="Q"
+            style={{ width: 256 }}
+            value={JSON.stringify({
+              eventVendorId: eventInfo.vendor.eventVendorId,
+              vendorName: eventInfo.vendor.vendorName,
+              eventId: eventInfo.eventId,
+            })}
+          />
+        )}
+      </div>
     </div>
   );
 };
