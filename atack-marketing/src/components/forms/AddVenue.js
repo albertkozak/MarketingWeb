@@ -1,11 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import firebase from '../../firebase'
+import {useHistory} from 'react-router-dom'
 
 const AddVenue = props => {
-  const venueNameValue = props.location.state.venueName;
-  const [venueName, setVenueName] = useState(venueNameValue);
+  const [venueName, setVenueName] = useState('');
   const [errorMessage, setErrorMessage] = useState('')
   const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/Venues/add"
+  const history = useHistory();
+
+  const checkForPassedVenueName = () => {
+    let name;
+    if (props.location.state !== undefined) {
+      name = props.location.state.venueName;
+      setVenueName(name)
+    }
+  }
+
+  useEffect(() => {
+    checkForPassedVenueName();
+  }, [])
 
   const createVenue = async event => {
     event.preventDefault();
@@ -33,7 +46,7 @@ const AddVenue = props => {
 						})
 					});
 					if (result.status === 201) {
-						window.location.href="/addevent"
+						history.goBack();
 					} else if (result.status === 400) {
 						alert("Venue already exists")
 					} else {
@@ -46,6 +59,7 @@ const AddVenue = props => {
 
   const clearForm = event => {
     event.preventDefault();
+    setVenueName('')
     document.getElementById("add-venue-form").reset();
   };
 

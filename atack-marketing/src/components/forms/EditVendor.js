@@ -1,31 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import firebase from '../../firebase'
+import { useHistory } from "react-router-dom";
 
 const EditVendor = (props) => {
-	const vendor = props.location.state.vendor;
-	const id = props.location.state.id;
-	const [ name, setName ] = useState(vendor.name);
-	const [ description, setDescription ] = useState(vendor.description);
-	const [ email, setEmail ] = useState(vendor.email);
-	const [ website, setWebsite ] = useState(vendor.website);
+	// const vendor = props.location.state.vendor;
+	// const id = props.location.state.id;
+	const [id, setId]= useState(0)
+	const [ name, setName ] = useState([]);
+	const [ description, setDescription ] = useState([]);
+	const [ email, setEmail ] = useState([]);
+	const [ website, setWebsite ] = useState([]);
 	const [ errorMessage, setErrorMessage ] = useState('');
+	const history = useHistory();
 
 	const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/VendorManagement/"
 
+	useEffect(() => {
+		if (props.location.state === undefined) {
+			history.goBack()
+		} else {
+			let vendor = props.location.state.vendor;
+			let id = props.location.state.id
+			setId(id)
+			setName(vendor.name)
+			setDescription(vendor.description)
+			setEmail(vendor.email)
+			setWebsite(vendor.website)
+		}
+	}, 
+	[errorMessage])
+
 	const editVendor = async (event) => {
 		event.preventDefault();
-		const { name, description, email, website } = event.target.elements;
+		// const { name, description, email, website } = event.target.elements;
+
+		//Clean
+		var nameTrimmed = name.trim()
+		var descriptionTrimmed = description.trim()
+		var emailTrimmed = email.trim()
+		var websiteTrimmed = website.trim()
 
 		// Validation
-		if (name.value === '') {
+		if (nameTrimmed === '') {
 			setErrorMessage('Please fill all required fields');
-		} else if (
-			name.value === vendor.name &&
-			description.value === vendor.description &&
-			email.value === vendor.email &&
-			website.value === vendor.website
-		) {
-			setErrorMessage('No changes have been made');
 		} else {
 			setErrorMessage('');
 
@@ -41,31 +58,38 @@ const EditVendor = (props) => {
 							Authorization: `Bearer ${JWToken}`
 						},
 						body: JSON.stringify({
-							name: name.value,
-							description: description.value,
-							email: email.value,
-							website: website.value
+							name: nameTrimmed,
+							description: descriptionTrimmed,
+							email: emailTrimmed,
+							website: websiteTrimmed,
 						})
 					});
 					if (result.status === 200) {
-						window.location.href = "/vendors"
+						await fetch(BASE_URL + id, {
+							METHOD: "GET",
+							headers: {
+							  Accept: "application/json",
+							  "Content-Type": "application/json",
+							  Authorization: `Bearer ${JWToken}`
+							}
+						  })
+							.then(response => response.json())
+							.then(data => history.push("/viewvendor", { vendor: data }));
 					} else {
 						alert("Error: Something went wrong, please try again");
 			}
-			document.getElementById('edit-vendor-form').reset();
 					}
 				}
 		}
 
 	const clearForm = (event) => {
 		event.preventDefault();
-		setName(vendor.name);
-		setDescription(vendor.description);
-		setEmail(vendor.email);
-		setWebsite(vendor.website);
+		history.goBack();
+		// setName(vendor.name);
+		// setDescription(vendor.description);
+		// setEmail(vendor.email);
+		// setWebsite(vendor.website);
 	};
-
-	useEffect(() => [ errorMessage ]);
 
 	return (
 		<div className="container">

@@ -28,7 +28,9 @@ const DeleteVendor = (props) => {
             console.log(currentVendor.name)
 			if (result.status === 200) {
 				window.location.href = "/vendors"
-			} else {
+            }  else if (result.state === 400){
+                alert("Cannot delete at this time. Vendor may be attached to an event")
+            } else {
 				alert("Error: Something went wrong, please try again")
 			}
 		}

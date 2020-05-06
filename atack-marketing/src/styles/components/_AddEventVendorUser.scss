@@ -25,3 +25,15 @@
 .evu {
   margin-bottom: 3rem;
 }
+
+.eventVendorUserItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  .delete {
+    margin-left: 1rem;
+    color: $error
+  }
+
+}
