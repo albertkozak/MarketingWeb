@@ -30,6 +30,7 @@ import AddEventOrganizers from './components/forms/AddEventOrganizers';
 import AddEventVendor from './components/forms/AddEventVendor';
 import AddEventVendorUser from './components/forms/AddEventVendorUser'
 import Venue from './screens/Venue'
+import ViewVenue from './screens/ViewVenue'
 
 function App() {
 	return (
@@ -60,6 +61,7 @@ export const Main = withRouter(({ location }) => {
 				<PrivateRoute exact path="/edituser" component={EditUser} />
 				<PrivateRoute exact path="/addeventorganizers" component={AddEventOrganizers} />
 				<PrivateRoute exact path="/venues" component={Venue} />
+				<PrivateRoute exact path="/viewvenue" component={ViewVenue} />
 				<PrivateRoute exact path="/addvenue" component={AddVenue} />
 				<PrivateRoute exact path="/editvenue" component={EditVenue} />
 				<PrivateRoute exact path="/addvendor" component={AddVendor} />
