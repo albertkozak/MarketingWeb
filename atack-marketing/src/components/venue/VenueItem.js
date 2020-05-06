@@ -5,20 +5,20 @@ const VenueItem = (props) => {
 	const venue = props.venue;
 	
 	return (
-		<div className="VenueItem">
+		<div className="venueItem">
 			<Link
 				to={{
 					pathname: '/viewvenue',
 					state: { venue }
 				}}
 			>
-			<h3 className="vendorTitle">{vendor.venueName}</h3>
+			<h3 className="venueTitle">{venue.venueName}</h3>
 			</Link>
 			<div className="edit-del-links">
 				<Link
 					to={{
 						pathname: '/viewvenue',
-						state: { vennue }
+						state: { venue }
 					}}
 					>
 					<p className="editVenue">View Venue</p>

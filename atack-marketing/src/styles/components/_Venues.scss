@@ -1,0 +1,57 @@
+.venueButton {
+	font-size: 1rem;
+	margin-left: 5rem;
+	margin-top: 2rem;
+	text-transform: uppercase;
+	color: $white;
+	background-color: $orange;
+	border: none;
+	padding: 7px 17px;
+	border-radius: 10px;
+
+	&:hover {
+		background-color: $hover-orange;
+	}
+}
+
+.wrapper {
+	margin-top: 2.5rem;
+}
+
+.venueItem {
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	align-items: center;
+	width: 65%;
+	padding: .7rem 0;
+
+	a {
+		text-decoration: none;
+	}
+
+	.venueTitle {
+		font-family: $body-heading-font;
+		font-size: 1.2rem;
+		color: $dark-grey;
+		font-weight: 100;
+
+		&:hover {
+			color: $grey;
+		}
+	}
+
+	.edit-del-links {
+		text-align: right;
+		color: $grey;
+
+		a {
+			text-decoration: none;
+			color: $orange;
+
+			&:hover {
+				color: $hover-orange;
+			}
+		}
+	}
+}

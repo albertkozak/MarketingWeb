@@ -1,13 +1,15 @@
 import React from 'react';
+import VenueList from '../components/venue/VenueList';
+import { useHistory } from 'react-router-dom';
 
 const Venue = (props) => {
-	const venue = props.venue;
-	
+	const history = useHistory();
 	return (
-		<div className="VenueItem">
-			<p className="venue">{venue.venueId}</p>
-            <p className="venue">{venue.venueName}</p>
-            <p className="venue">{venue.venueWebsite}</p>
+		<div className="container">
+			<button className="venueButton" onClick={() => history.push('/addvenue')}>
+				Create Venue
+			</button>
+			<VenueList />
 		</div>
 	);
 };

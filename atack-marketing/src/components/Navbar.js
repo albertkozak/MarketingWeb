@@ -33,6 +33,9 @@ const NavComponent = () => {
 							<Link to="/vendors">Vendors</Link>
 						</li>
 						<li>
+							<Link to="/venues">Venues</Link>
+						</li>
+						<li>
 							<Link to="/export">Export</Link>
 						</li>
 						<li>
