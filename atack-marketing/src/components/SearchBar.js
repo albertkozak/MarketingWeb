@@ -1,21 +1,23 @@
 import React, { useState } from "react";
 
 const SearchBar = (props) => {
-  const [search, setSearch] = useState("");
-  const [query, setQuery] = useState("");
+  const [search, setSearch] = useState(props.search);
+
   const updateSearch = (e) => {
+    e.preventDefault();
     setSearch(e.target.value);
+    props.onTermChange(search);
+    props.onTermSubmit();
   };
 
-  const getSearch = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setQuery(search);
-    setSearch("");
+    props.onTermSubmit();
   };
 
   return (
     <div className="search-container">
-      <form onSubmit={getSearch} className="search-form">
+      <form onSubmit={handleSubmit} className="search-form">
         <input
           className="search-bar"
           type="text"
