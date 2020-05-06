@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import UserInputSelector from './UserInputSelector';
 import firebase from '../../firebase'
 import { useHistory } from 'react-router-dom';
+import EventVendorUserItem from '../eventVendorUser/EventVendorUserItem'
 
 const AddEventVendorUser = (props) => {
     const eventVendorId = props.location.state.eventVendorId;
@@ -12,6 +13,7 @@ const AddEventVendorUser = (props) => {
     const [currentEVUs, setCurrentEVUs] = useState([])
     const [errorMessage, setErrorMessage] = useState("")
     const [refreshComponent, setRefreshComponent] = useState(false)
+    const [isShown, setIsShown] = useState(false)
     const history = useHistory();
     const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/"
 
@@ -63,8 +65,7 @@ const AddEventVendorUser = (props) => {
 		});
         
     }  
-    
-    
+  
     
 	useEffect(() => {
         getAllUsers();
@@ -75,8 +76,6 @@ const AddEventVendorUser = (props) => {
     
     async function addEventVendorUser(event) {
         event.preventDefault();
-        // console.log(selectedUser[0].value)
-        // console.log(EVENTVENDOR_URL)
 
         //Validate
         if (selectedUser.length === 0) {
@@ -118,6 +117,7 @@ const AddEventVendorUser = (props) => {
         }
     }
 
+    
     function handleUserSelect(selection) {
         setSelectedUser(selection)
     }
@@ -125,6 +125,10 @@ const AddEventVendorUser = (props) => {
     function cancelButton(event) {
         event.preventDefault();
         history.goBack();
+      }
+
+      function handleChange() {
+        setRefreshComponent(true);
       }
 
 
@@ -156,7 +160,11 @@ const AddEventVendorUser = (props) => {
               ) : (
                   <ul className="evuList">
                       {currentEVUs.map((evu) => (
-                          <li key={evu.useerEmail}>{evu.userEmail}</li>
+                        <EventVendorUserItem
+                          key={evu.userEmail}
+                          user={evu}
+                          eventVendorId={eventVendorId}
+                          handleChange={handleChange} />
                       ))}
                   </ul>
               )}
