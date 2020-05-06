@@ -13,7 +13,6 @@ const AddVendor = (props) => {
 		if (props.location.state !== undefined) {
 			vendorName = props.location.state.vendorName;
 			setName(vendorName)
-			console.log("check was called")
 		}
 	}
 
