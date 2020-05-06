@@ -5,7 +5,8 @@ import EventInputSelector from "../components/forms/EventInputSelector";
 const Export = (props) => {
   const [event, setEvent] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState([]);
-  const [refreshComponent, setRefreshComponent] = useState(false);
+  const [subscriberData, setSubscriberData] = useState(null);
+
   const BASE_URL =
     "https://atackmarketingapi.azurewebsites.net/api/Reports/subscribers";
 
@@ -24,22 +25,59 @@ const Export = (props) => {
           .then((response) => response.json())
           .then((responseData) => {
             setEvent(responseData);
+            // console.log(responseData);
           });
       });
   };
 
+  const fetchSubscriberList = (eventVendorId) => {
+    firebase
+      .auth()
+      .currentUser.getIdTokenResult()
+      .then((tokenResponse) => {
+        fetch(BASE_URL + `/${eventVendorId}`, {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${tokenResponse.token}`,
+          },
+        })
+          .then((response) => response.json())
+          .then((responseData) => {
+            setSubscriberData(responseData);
+            console.log(responseData);
+          });
+      });
+  };
+
+  function handleSelect(event) {
+    setSelectedEvent(event);
+    fetchSubscriberList(event[0].value);
+    console.log(event);
+  }
+
   useEffect(() => {
     fetchData();
-    setRefreshComponent(false);
-  }, [refreshComponent]);
-
-  function handleEventSelect(selection) {
-    setSelectedEvent(selection);
-  }
+  }, []);
 
   return (
     <div className="container">
-      <EventInputSelector data={event} />
+      <EventInputSelector
+        data={event}
+        selectedEvent={selectedEvent}
+        handleSelect={handleSelect}
+      />
+      {subscriberData && (
+        <div>
+          <h3>
+            {subscriberData.eventName} - {subscriberData.vendorName}
+          </h3>
+          {subscriberData.subscribers.map((subscriber, index) => {
+            return (<p key={index}>{subscriber.userEmail}</p>);
+          })}
+          {subscriberData.subscribers.length === 0 && <p>No Subscribers</p>}
+        </div>
+      )}
     </div>
   );
 };
