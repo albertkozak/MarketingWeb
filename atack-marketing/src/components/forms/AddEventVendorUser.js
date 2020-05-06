@@ -66,16 +66,7 @@ const AddEventVendorUser = (props) => {
         
     }  
   
-    
-	useEffect(() => {
-        getAllUsers();
-        getCurrentEventVendorUsers();
-        setRefreshComponent(false);
-    }, [refreshComponent]
-    );
-    
-    async function addEventVendorUser(event) {
-        event.preventDefault();
+      
 
   useEffect(() => {
     getAllUsers();
@@ -85,8 +76,7 @@ const AddEventVendorUser = (props) => {
 
   async function addEventVendorUser(event) {
     event.preventDefault();
-    // console.log(selectedUser[0].value)
-    // console.log(EVENTVENDOR_URL)
+
 
     //Validate
     if (selectedUser.length === 0) {
