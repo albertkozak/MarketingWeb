@@ -86,13 +86,6 @@ const ViewEvent = (props) => {
 				<p className="venue">{venue.venueName}</p>
 				<p className="venueWebsite">{venue.venueWebsite}</p>
 				</div>
-				<Link
-        			to={{
-          			pathname: "/editVenue",
-          			state: { venue, id },
-        			}}
-      			><p className="editVenue">Edit Venue</p>
-				</Link>
 				</div>
 				<div className="edit-del-links">
 				<Link
