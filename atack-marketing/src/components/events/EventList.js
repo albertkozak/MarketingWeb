@@ -6,9 +6,8 @@ import { useHistory } from "react-router-dom";
 
 const EventList = (props) => {
   const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/Events";
-  //const [fetchedData, setFetchedData] = useState([]);
+  const [fetchedEvents, setFetchedEvents] = useState([]);
   const [search, setSearch] = useState("");
-  const [events, setEvents] = useState([]);
   const [searchedEvents, setSearchedEvents] = useState("");
 
   const fetchData = () => {
@@ -25,10 +24,10 @@ const EventList = (props) => {
         })
           .then((response) => response.json())
           .then((responseData) => {
-            setEvents(responseData.events);
+            setFetchedEvents(responseData.events);
           });
         setSearchedEvents(
-          events.filter((event) => {
+          fetchedEvents.filter((event) => {
             return event.eventName.toLowerCase().includes(search.toLowerCase());
           })
         );
@@ -41,7 +40,7 @@ const EventList = (props) => {
 
   let eventData;
   if (search.length === 0) {
-    eventData = events;
+    eventData = fetchedEvents;
   } else {
     eventData = searchedEvents;
   }
