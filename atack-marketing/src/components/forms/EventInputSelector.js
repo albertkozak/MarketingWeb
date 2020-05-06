@@ -11,13 +11,11 @@ const EventInputSelector = (props) => {
 
   return (
     <Select
-      multi
       placeholder="Select event(s)"
       options={props.data.map((data) => ({
-        label: data.eventName,
+        label: data.eventName + " - " + data.vendorName,
         value: data.eventId,
       }))}
-      values={[]}
       onChange={(value) => isSetEvents(value)}
     />
   );
