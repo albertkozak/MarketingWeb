@@ -83,8 +83,7 @@ const ViewEvent = (props) => {
               state: { currentEvent },
             }}
           >
-            {" "}
-            <p className="edit">Edit Event</p>{" "}
+            <p className="edit">Edit Event</p>
           </Link>
           <Link
             to={{
@@ -92,8 +91,7 @@ const ViewEvent = (props) => {
               state: { currentEvent },
             }}
           >
-            {" "}
-            <p className="delete">Delete</p>{" "}
+            <p className="delete">Delete</p>
           </Link>
         </div>
         <div className="venueContainer">
@@ -188,7 +186,9 @@ const ViewEvent = (props) => {
               level="Q"
               style={{ width: 256 }}
               value={JSON.stringify({
-                eventId: currentEvent.eventId,
+                eventVendorId: 1,
+                vendorName: "PetLand",
+                eventId: 1
               })}
             />
           </div>
