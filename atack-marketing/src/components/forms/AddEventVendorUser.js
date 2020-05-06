@@ -1,19 +1,21 @@
-import React, { useState, useEffect } from "react";
-import UserInputSelector from "./UserInputSelector";
-import firebase from "../../firebase";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import UserInputSelector from './UserInputSelector';
+import firebase from '../../firebase'
+import { useHistory } from 'react-router-dom';
+import EventVendorUserItem from '../eventVendorUser/EventVendorUserItem'
 
 const AddEventVendorUser = (props) => {
-  const eventVendorId = props.location.state.eventVendorId;
-  const vendorName = props.location.state.vendorName;
-  const eventName = props.location.state.eventName;
-  const [selectedUser, setSelectedUser] = useState([]);
-  const [fetchedUsers, setFetchedUsers] = useState([]);
-  const [currentEVUs, setCurrentEVUs] = useState([]);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [refreshComponent, setRefreshComponent] = useState(false);
-  const history = useHistory();
-  const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/";
+    const eventVendorId = props.location.state.eventVendorId;
+    const vendorName = props.location.state.vendorName;
+    const eventName = props.location.state.eventName;
+    const [selectedUser, setSelectedUser] = useState([])
+    const [fetchedUsers, setFetchedUsers] = useState([])
+    const [currentEVUs, setCurrentEVUs] = useState([])
+    const [errorMessage, setErrorMessage] = useState("")
+    const [refreshComponent, setRefreshComponent] = useState(false)
+    const [isShown, setIsShown] = useState(false)
+    const history = useHistory();
+    const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/"
 
   const EVENTVENDOR_URL = BASE_URL + "EventVendorUser";
 
@@ -43,25 +45,37 @@ const AddEventVendorUser = (props) => {
       });
   };
 
-  const getCurrentEventVendorUsers = () => {
-    firebase
-      .auth()
-      .currentUser.getIdTokenResult()
-      .then((tokenResponse) => {
-        fetch(EVENTVENDOR_URL + "/" + eventVendorId, {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            Authorization: `Bearer ${tokenResponse.token}`,
-          },
-        })
-          .then((response) => response.json())
-          .then((responseData) => {
-            setCurrentEVUs(responseData.vendorUsers);
-            console.log(currentEVUs);
-          });
-      });
-  };
+    const getCurrentEventVendorUsers = () => {
+        firebase
+		.auth()
+		.currentUser.getIdTokenResult()
+		.then((tokenResponse) => {
+		  fetch(EVENTVENDOR_URL + "/" + eventVendorId, {
+			method: "GET",
+			headers: {
+			  Accept: "application/json",
+			  Authorization: `Bearer ${tokenResponse.token}`,
+			},
+		  })
+			.then((response) => response.json())
+            .then((responseData) => {
+              setCurrentEVUs(responseData.vendorUsers);
+              console.log(currentEVUs);
+            });
+		});
+        
+    }  
+  
+    
+	useEffect(() => {
+        getAllUsers();
+        getCurrentEventVendorUsers();
+        setRefreshComponent(false);
+    }, [refreshComponent]
+    );
+    
+    async function addEventVendorUser(event) {
+        event.preventDefault();
 
   useEffect(() => {
     getAllUsers();
@@ -118,10 +132,15 @@ const AddEventVendorUser = (props) => {
     setSelectedUser(selection);
   }
 
+
   function cancelButton(event) {
     event.preventDefault();
     history.goBack();
   }
+      
+  function handleChange() {
+        setRefreshComponent(true);
+      }
 
   return (
     <div className="container">
@@ -152,9 +171,13 @@ const AddEventVendorUser = (props) => {
           <p className="nullText">No users have been added yet.</p>
         ) : (
           <ul className="evuList">
-            {currentEVUs.map((evu) => (
-              <li key={evu.useerEmail}>{evu.userEmail}</li>
-            ))}
+             {currentEVUs.map((evu) => (
+                        <EventVendorUserItem
+                          key={evu.userEmail}
+                          user={evu}
+                          eventVendorId={eventVendorId}
+                          handleChange={handleChange} />
+                      ))}
           </ul>
         )}
       </div>
