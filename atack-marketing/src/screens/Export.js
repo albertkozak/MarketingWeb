@@ -1,41 +1,49 @@
-import React, { useState } from 'react';
-import Select from 'react-dropdown-select';
-import EventInputSelector from '../components/forms/EventInputSelector';
+import React, { useState, useEffect } from "react";
+import firebase from "../firebase";
+import EventInputSelector from "../components/forms/EventInputSelector";
 
-const Export = (props) => {
-	const { events, setEvents } = useState([]);
+const Export = () => {
+  const [report, setReport] = useState([]);
+  const [event, setEvent] = useState([]);
+  const BASE_URL =
+    "https://atackmarketingapi.azurewebsites.net/api/Reports/subscribers";
 
-	// Add GET Request Here
-	const dummyData = [
-		{
-			eventId: 1,
-			eventName: '7-11 Unite',
-			eventStartDateTime: 'April 20th 1pm'
-		},
-		{
-			eventId: 2,
-			eventName: 'Same Same But Different',
-			eventStartDateTime: 'May 5th 2pm'
-		},
-		{
-			eventId: 3,
-			eventName: 'Egg & Rice Bowl',
-			eventStartDateTime: 'April 28th 12pm'
-		},
+  const fetchData = () => {
+    firebase
+      .auth()
+      .currentUser.getIdTokenResult()
+      .then((tokenResponse) => {
+        fetch(BASE_URL, {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${tokenResponse.token}`,
+          },
+        })
+          .then((response) => response.json())
+          .then((responseData) => {
+            setReport(responseData.subscribers);
+            setEvent(responseData);
+          });
+      });
+  };
 
-		// Needs To Assign Values (To State) For Events
-		function onChange(values) {
-			console.log(values);
-		}
-	];
-	return (
-		<div className="container">
-			<h1>Export</h1>
-			<div className="input-selector">
-				<EventInputSelector data={dummyData} />
-			</div>
-		</div>
-	);
+  useEffect(() => {
+    console.log(report);
+    fetchData();
+  }, []);
+
+  return (
+    <div className="container">
+      {/* <h1>Event Name: {event.eventName}</h1>
+      <h2>Event Id: {event.eventId}</h2>
+
+      {report.map((item) => {
+        return <p>User Email: {item.userEmail}</p>;
+      })} */}
+      <EventInputSelector data={event} />
+    </div>
+  );
 };
 
 export default Export;
