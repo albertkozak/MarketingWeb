@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { faTimes, faUserPlus , faBoxOpen} from "@fortawesome/free-solid-svg-icons";
 import firebase from '../../firebase'
 import { useHistory } from 'react-router-dom';
 import { Link } from "react-router-dom";
@@ -75,6 +75,20 @@ const EventVendorItem = (props) => {
 							icon={faTimes}
 							onClick={removeEventVendor}
 						/>
+						<Link to ={{
+							pathname:'/vendordetailproductlist',
+							state:{
+								eventVendorId: eventVendorId,
+							 eventId: eventId ,
+							 eventName: eventName}
+						
+						}}
+						>
+						<FontAwesomeIcon
+						className="Product"
+						 icon={faBoxOpen}
+						/>
+						</Link>
 						</div>
 				)
 			}
