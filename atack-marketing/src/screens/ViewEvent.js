@@ -6,6 +6,7 @@ import EventOrganizerItem from "../components/eventOrganizers/EventOrganizerItem
 import EventVendorItem from "../components/eventVendor/EventVendorItem";
 import * as moment from "moment-timezone";
 import VendorDetailProductList from "../components/products/VendorDetailProductList";
+import { QRCode } from "react-qr-svg";
 
 const ViewEvent = (props) => {
   const currentEvent = props.location.state.event;
@@ -183,6 +184,13 @@ const ViewEvent = (props) => {
             <VendorDetailProductList />
           </div>
           <div className="qrGenerator">
+            <QRCode
+              level="Q"
+              style={{ width: 256 }}
+              value={JSON.stringify({
+                eventId: currentEvent.eventId,
+              })}
+            />
           </div>
         </div>
       </div>
