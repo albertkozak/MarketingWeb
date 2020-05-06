@@ -3,10 +3,6 @@ import firebase from '../../firebase'
 import { useHistory } from "react-router-dom";
 
 const EditVenue = (props) => {
-	//const venue = props.location.state.venue;
-	// for passing to get back to previous selected event
-	//const eventId = props.location.state.id
-	//const id = venue.venueId;
 	const [venueId, setVenueId] = useState(0)
     const [venueName, setVenueName] = useState([])
     const [website, setWebsite] = useState([])
@@ -28,7 +24,6 @@ const EditVenue = (props) => {
 	
 	const editVenue = async (event) => {
 		event.preventDefault();
-		//const { venueName, website } = event.target.elements;
 		
 		//Clean
 		var venueNameTrimmed = venueName.trim()
