@@ -29,6 +29,7 @@ const EventList = (props) => {
         .auth()
         .currentUser.getIdTokenResult()
         .then((tokenResponse) => {
+          console.log(tokenResponse.token)
           fetch(BASE_URL + "Events", {
             method: "GET",
             headers: {

@@ -7,9 +7,9 @@ import { BASE_URL } from "../../Config";
 import { QRCode } from "react-qr-svg";
 
 export default function VendorDetailProductList(props) {
-  const eventId = props.location.state.eventId;
-  const eventName = props.location.state.eventName;
-  const eventVendorId = props.location.state.eventVendorId;
+  const eventId = props.eventId;
+  const eventName = props.eventName;
+  const eventVendorId = props.eventVendorId;
 
   const [fetchedData, setFetchedData] = useState([]);
   const [vendorDetails, setVendorDetails] = useState({});

@@ -6,6 +6,8 @@ import EventOrganizerItem from "../components/eventOrganizers/EventOrganizerItem
 import EventVendorItem from "../components/eventVendor/EventVendorItem";
 import * as moment from "moment-timezone";
 import VendorDetailProductList from "../components/products/VendorDetailProductList";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClock, faMapMarkerAlt, faGlobe } from "@fortawesome/free-solid-svg-icons";
 
 const ViewEvent = (props) => {
   const currentEvent = props.location.state.event;
@@ -38,7 +40,7 @@ const ViewEvent = (props) => {
   }
 
   const fetchEOs = () => {
-    if(isAdmin || isEO ){
+    // if(isAdmin || isEO ){
     firebase
       .auth()
       .currentUser.getIdTokenResult()
@@ -56,10 +58,10 @@ const ViewEvent = (props) => {
           });
       });
   };
-}
+// }
 
   const fetchVendors = () => {
-    if(isAdmin || isEO ){
+    // if(isAdmin || isEO ){
     firebase
       .auth()
       .currentUser.getIdTokenResult()
@@ -77,7 +79,7 @@ const ViewEvent = (props) => {
           });
       });
   };
-}
+// }
 
   useEffect(() => {
     renderScreen();
@@ -99,19 +101,35 @@ const ViewEvent = (props) => {
       <div className="eventWrapper">
         <div className="eventHeader">
           <h2>{currentEvent.eventName}</h2>
+          <div className="eventTime">
+          <FontAwesomeIcon className="clock" icon={faClock} />
           <p>
             {moment
               .utc(currentEvent.eventStartDateTime)
               .local()
               .format("dddd, MMM DD YYYY @ hh:mm A")}
           </p>
+          </div>
         </div>
         <div className="venueContainer">
           <div className="venueDetails">
+            <div className="venueLocation">
+            <FontAwesomeIcon className="location" icon={faMapMarkerAlt} />
             <p className="venue">{venue.venueName}</p>
-            <p className="venueWebsite">{venue.venueWebsite}</p>
+            </div>
+            <div className="venueLocation">
+            <a
+            href={venue.venueWebsite}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FontAwesomeIcon className="website" icon={faGlobe} />{" "}
+            {venue.website}
+          </a>
+            </div>
           </div>
         </div>
+        {/*  */}
         {isAdmin && (
           <>
         <div className="edit-del-links">
@@ -272,7 +290,7 @@ const ViewEvent = (props) => {
          {isVendor && (
         <div className="eventVendorWrapper">
           <div className="vendorProductListContainer">
-            <div className="containerHeading">
+            {/* <div className="containerHeading">
               <h3 className="eventVendorProducts">Event Products</h3>
               <Link
                 to={{
@@ -282,15 +300,19 @@ const ViewEvent = (props) => {
               >
                 <button className="addProductButton">Add Products</button>
               </Link>
-            </div>
+            </div> */}
 
-            {productVendor && (
-              <VendorDetailProductList productVendor={productVendor} />
-            )}
+            {/* {productVendor && ( */}
+              <VendorDetailProductList 
+                eventId={id}
+                eventName={currentEvent.eventName}
+                eventVendorId={14}
+               />
+            {/* )} */}
           </div>
-          <div className="qrGenerator">
+          {/* <div className="qrGenerator">
             <button className="qrButton">Generate QR Code</button>
-          </div>
+          </div> */}
         </div>
     )}
       </div>
