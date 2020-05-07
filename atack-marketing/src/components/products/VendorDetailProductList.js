@@ -20,6 +20,8 @@ export default function VendorDetailProductList(props) {
   const [updatingProduct, setUpdatingProduct] = useState(null);
   const inputProductName = useRef();
 
+  const [isShown, setIsShown] = useState(false)
+
   function fetchData() {
     console.log("fetching data")
     setUpdatingProduct(null);
@@ -164,7 +166,7 @@ export default function VendorDetailProductList(props) {
     inputProductName.current.focus();
     window.scrollTo({
       behavior: "smooth",
-      top: 0,
+      //top: 0,
     });
   }
 
@@ -219,28 +221,25 @@ export default function VendorDetailProductList(props) {
 
       {Object.keys(vendorDetails).length > 0 &&
         vendorDetails.products.length > 0 && (
-          <div className="productList">
-            {/* <h3> {vendorDetails.vendorName}</h3> <h3>{eventName}</h3> */}
-            <table className="productTable">
-              <thead>
-                <tr>
-                  <th>Product</th>
-                  <th>Price</th>
-                </tr>
-              </thead>
-              <tbody>
+          <div 
+            className="productList"
+          >
+            {fetchedData.length === 0 ? (
+              <p>There are no products yet.</p>
+            ) : (
+              <ul>
                 {fetchedData.map((product) => (
-                  <tr key={product.productId}>
-                    <td>{product.productName}</td>
-                    <td>{"$" + format(product.productPrice)}</td>
-                    <td>
-                      <FontAwesomeIcon
+                  <li 
+                  key={product.productId}
+                  >
+                    <p>{product.productName}</p>
+                    <p>{"$" + format(product.productPrice)}</p>
+                    <div className="links">
+                    <FontAwesomeIcon
                         className="edit"
                         icon={faPen}
                         onClick={() => updateProductButton(product)}
                       />
-                    </td>
-                    <td>
                       <FontAwesomeIcon
                         className="delete"
                         icon={faTimes}
@@ -250,11 +249,11 @@ export default function VendorDetailProductList(props) {
                           ) && removeProduct(product.productId)
                         }
                       />
-                    </td>
-                  </tr>
+                    </div>
+                  </li>
                 ))}
-              </tbody>
-            </table>
+              </ul>
+            )}
           </div>
         )}
       {Object.keys(vendorDetails).length > 0 &&

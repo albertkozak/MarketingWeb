@@ -229,7 +229,7 @@ const ViewEvent = (props) => {
         </>
          )}
           {isEO && (
-          <div className="eventVendorsContainer">
+          <div className="eventVendorsContainer-eo">
             <div className="containerHeading">
               <h3 className="eventVendors">Event Vendors</h3>
               <Link
