@@ -1,8 +1,7 @@
 .addProductForm {
-
   input {
     border: none;
-    font-size: .9rem;
+    font-size: 0.9rem;
     color: $black;
     border-bottom: 1px solid $light-grey;
     text-align: left;
@@ -21,7 +20,7 @@
   .buttons {
     text-align: left;
     margin: 1rem 0 2rem;
-    
+
     button {
       margin: 0;
       padding: 7px 17px;
@@ -30,12 +29,27 @@
     .submit {
       margin-right: 1rem;
     }
+  }
+}
 
+@media screen and (max-width: 840px) {
+  .addProductForm .buttons {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .addProductForm {
+    input {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+    }
   }
 }
 
 .productList {
-
   ul {
     margin: 0;
   }
@@ -53,12 +67,27 @@
     .links {
       .edit {
         margin: 0 1rem 0 2rem;
-        color: $grey
+        color: $grey;
       }
 
       .delete {
-        color: $error
+        color: $error;
       }
     }
+  }
 }
+
+@media screen and (max-width: 840px) {
+  .eventVendorWrapper .products-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .products-container {
+    align-self: center;
+
+    ul {
+      padding: 0;
+    }
+  }
 }

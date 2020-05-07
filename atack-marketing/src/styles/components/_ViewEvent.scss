@@ -17,7 +17,7 @@
 
       .clock {
         color: $grey;
-        margin-right: .5rem;
+        margin-right: 0.5rem;
       }
     }
   }
@@ -63,16 +63,16 @@
       display: flex;
       align-items: center;
 
-    .venue {
-      font-size: 0.9rem;
-      margin-right: 5rem;
-    }
+      .venue {
+        font-size: 0.9rem;
+        margin-right: 5rem;
+      }
 
-    .location {
-      color: $grey;
-      margin-right: .5rem;
+      .location {
+        color: $grey;
+        margin-right: 0.5rem;
+      }
     }
-  }
 
     a {
       text-decoration: none;
@@ -93,111 +93,173 @@
     margin: 0 auto;
   }
 
-    .containerHeading {
-      display: flex;
-      align-items: flex-start;
-    }
+  .containerHeading {
+    display: flex;
+    align-items: flex-start;
+  }
 
-    h3 {
-      font-size: 1rem;
-      color: $dark-grey;
-      font-family: $body-heading-font;
-      margin-right: 3rem;
-    }
+  h3 {
+    font-size: 1rem;
+    color: $dark-grey;
+    font-family: $body-heading-font;
+    margin-right: 3rem;
+  }
 
-    li {
-      list-style-type: none;
-      padding: 0.5rem 0;
-    }
+  li {
+    list-style-type: none;
+    padding: 0.5rem 0;
+  }
 
-    .eoItem {
-      display: flex;
-      align-items: center;
+  .eoItem {
+    display: flex;
+    align-items: center;
 
-      .delete {
-        margin-left: 1rem;
-        color: $error;
-      }
-    }
-
-    .eventVendorsContainer-eo {
-      margin-top: 3rem;
-    }
-
-    .eventVendorItem {
-      display: flex;
-      align-items: center;
-
-      .delete {
-        margin-left: 1rem;
-        color: $error;
-      }
-
-      .addUser {
-        margin-left: 2rem;
-        color: $grey;
-      }
-    }
-
-    p {
-      font-size: 0.9rem;
-    }
-
-    button {
-      font-size: 0.7rem;
-      margin-top: 1rem;
-      text-transform: uppercase;
-      color: $white;
-      background-color: $orange;
-      border: none;
-      padding: 7px 17px;
-      border-radius: 10px;
-      cursor: pointer;
+    .delete {
+      margin-left: 1rem;
+      color: $error;
     }
   }
 
-  .eventVendorWrapper {
+  .eventVendorsContainer-eo {
+    margin-top: 3rem;
+  }
+
+  .eventVendorItem {
+    display: flex;
+    align-items: center;
+
+    .delete {
+      margin-left: 1rem;
+      color: $error;
+    }
+
+    .addUser {
+      margin-left: 2rem;
+      color: $grey;
+    }
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  button {
+    font-size: 0.7rem;
+    margin-top: 1rem;
+    text-transform: uppercase;
+    color: $white;
+    background-color: $orange;
+    border: none;
+    padding: 7px 17px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .eventWrapper {
     width: 80%;
-    margin: 1rem auto;
+  }
+}
 
-    .containerHeading {
+@media screen and (max-width: 1080px) {
+  .eventWrapper {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 970px) {
+  .eventWrapper {
+    .eventDetailsWrapper {
+      width: 90%;
+    }
+
+    .eventVendorWrapper {
+      width: 90%;
+    }
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .eventWrapper {
+    .eventDetailsWrapper {
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 3rem;
+
+      .eventOrganziersContainer {
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .eventWrapper {
+    .eventHeader {
+      display: block;
+    }
+  }
+}
+
+.eventVendorWrapper {
+  width: 80%;
+  margin: 2rem auto;
+
+  .containerHeading {
+    display: block;
+  }
+
+  h3 {
+    font-size: 1rem;
+    color: $dark-grey;
+    font-family: $body-heading-font;
+    margin-right: 3rem;
+  }
+
+  .products-container {
+    display: flex;
+    justify-content: space-between;
+
+    .productListContainer {
       display: flex;
+      flex-direction: column;
       align-items: flex-start;
+      margin-top: 1.1rem;
     }
 
-    h3 {
-      font-size: 1rem;
-      color: $dark-grey;
-      font-family: $body-heading-font;
-      margin-right: 3rem;
-    }
-
-    .products-container {
-      display: flex;
-      justify-content: space-between;
-
-      .productListContainer {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        margin-top: 1.1rem;
-      }
-
-      .qrGenerator {
-        align-self: flex-start
-      }
-    }
-
-    button {
-      font-size: 0.7rem;
-      margin-top: 1rem;
-      text-transform: uppercase;
-      color: $white;
-      background-color: $orange;
-      border: none;
-      padding: 7px 17px;
-      border-radius: 10px;
-      cursor: pointer;
+    .qrGenerator {
+      align-self: flex-start;
     }
   }
 
+  button {
+    font-size: 0.7rem;
+    margin-top: 1rem;
+    text-transform: uppercase;
+    color: $white;
+    background-color: $orange;
+    border: none;
+    padding: 7px 17px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .eventVendorWrapper {
+    h3 {
+      text-align: center;
+      margin-right: 0;
+    }
+    .products-container {
+      .productListContainer {
+        align-items: center;
+      }
+      .qrGenerator {
+        align-self: center;
+        margin-top: 3rem;
+      }
+    }
+  }
+}
