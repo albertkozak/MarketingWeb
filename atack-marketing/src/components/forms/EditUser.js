@@ -76,7 +76,6 @@ const EditUser = (props) => {
 
   return (
     <div className="container">
-      <h1 className="editUserTitle">Edit User Access</h1>
       <h3 className="adminLabel">Admininstrative Access:</h3>
       <div className="userContainer">
         <p className="userName">{user.email}</p>
