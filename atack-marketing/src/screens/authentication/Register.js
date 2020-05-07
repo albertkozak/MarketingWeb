@@ -50,7 +50,7 @@ const Register = () => {
                 });
             })
             .catch((e) => {
-              console.log(e);
+             reject(e.message)
             });
         }, 3000);
       }
