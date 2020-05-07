@@ -1,41 +1,85 @@
-import React, { useState } from 'react';
-import Select from 'react-dropdown-select';
-import EventInputSelector from '../components/forms/EventInputSelector';
+import React, { useState, useEffect } from "react";
+import firebase from "../firebase";
+import EventInputSelector from "../components/forms/EventInputSelector";
 
-const Export = (props) => {
-	const { events, setEvents } = useState([]);
+const Export = props => {
+  const [event, setEvent] = useState([]);
+  const [selectedEvent, setSelectedEvent] = useState([]);
+  const [subscriberData, setSubscriberData] = useState(null);
 
-	// Add GET Request Here
-	const dummyData = [
-		{
-			eventId: 1,
-			eventName: '7-11 Unite',
-			eventStartDateTime: 'April 20th 1pm'
-		},
-		{
-			eventId: 2,
-			eventName: 'Same Same But Different',
-			eventStartDateTime: 'May 5th 2pm'
-		},
-		{
-			eventId: 3,
-			eventName: 'Egg & Rice Bowl',
-			eventStartDateTime: 'April 28th 12pm'
-		},
+  const BASE_URL =
+    "https://atackmarketingapi.azurewebsites.net/api/Reports/subscribers";
 
-		// Needs To Assign Values (To State) For Events
-		function onChange(values) {
-			console.log(values);
-		}
-	];
-	return (
-		<div className="container">
-			<h1>Export</h1>
-			<div className="input-selector">
-				<EventInputSelector data={dummyData} />
-			</div>
-		</div>
-	);
+  const fetchData = () => {
+    firebase
+      .auth()
+      .currentUser.getIdTokenResult()
+      .then(tokenResponse => {
+        fetch(BASE_URL, {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${tokenResponse.token}`
+          }
+        })
+          .then(response => response.json())
+          .then(responseData => {
+            setEvent(responseData);
+            // console.log(responseData);
+          });
+      });
+  };
+
+  const fetchSubscriberList = eventVendorId => {
+    firebase
+      .auth()
+      .currentUser.getIdTokenResult()
+      .then(tokenResponse => {
+        fetch(BASE_URL + `/${eventVendorId}`, {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${tokenResponse.token}`
+          }
+        })
+          .then(response => response.json())
+          .then(responseData => {
+            setSubscriberData(responseData);
+            console.log(responseData);
+          });
+      });
+  };
+
+  function handleSelect(event) {
+    setSelectedEvent(event);
+    fetchSubscriberList(event[0].value);
+    console.log(event);
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  return (
+    <div className="container">
+      <EventInputSelector
+        data={event}
+        selectedEvent={selectedEvent}
+        handleSelect={handleSelect}
+      />
+      {subscriberData && (
+        <div>
+          <h3>
+            {subscriberData.eventName} - {subscriberData.vendorName}
+          </h3>
+          {subscriberData.subscribers.map((subscriber, index) => {
+            return <p key={index}>{subscriber.userEmail}</p>;
+          })}
+          {subscriberData.subscribers.length === 0 && <p>No Subscribers</p>}
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default Export;
