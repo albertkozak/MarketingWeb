@@ -60,7 +60,7 @@ const DeleteVenue = (props) => {
             className="cancel"
             variant=""
             type="submit"
-            onClick={() => history.push("/venues")}
+            onClick={() => history.goBack()}
           >
             Cancel
           </button>

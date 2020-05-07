@@ -59,7 +59,7 @@ const AddVenue = (props) => {
   const clearForm = (event) => {
     event.preventDefault();
     setVenueName("");
-    document.getElementById("add-venue-form").reset();
+    history.goBack();
   };
 
   return (

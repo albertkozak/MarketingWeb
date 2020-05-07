@@ -64,7 +64,7 @@ const DeleteVendor = (props) => {
             className="cancel"
             variant=""
             type="submit"
-            onClick={() => history.push("/vendors")}
+            onClick={() => history.goBack()}
           >
             Cancel
           </button>

@@ -56,7 +56,7 @@ const DeleteEvent = (props) => {
             className="cancel"
             variant=""
             type="submit"
-            onClick={() => history.push("/")}
+            onClick={() => history.goBack()}
           >
             Cancel
           </button>

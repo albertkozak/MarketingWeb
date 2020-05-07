@@ -62,7 +62,7 @@ const AddVendor = (props) => {
   const clearForm = (event) => {
     event.preventDefault();
     setName("");
-    document.getElementById("add-vendor-form").reset();
+    history.goBack();
   };
 
   return (
