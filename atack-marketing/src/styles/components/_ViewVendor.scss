@@ -1,5 +1,5 @@
 .vendorWrapper {
-  width: 70%;
+  width: 60%;
   margin: 2rem auto;
 
   .vendorHeader {
@@ -9,7 +9,7 @@
   }
 
   h2 {
-    font-size: 2.2rem;
+    font-size: 1.9rem;
     font-family: $body-heading-font;
   }
 
@@ -21,11 +21,11 @@
 
     .edit {
       margin-right: 1rem;
-      font-size: 1.1rem;
+      font-size: 0.9rem;
     }
 
     .delete {
-      font-size: 1.1rem;
+      font-size: 0.9rem;
     }
 
     a {
@@ -42,13 +42,13 @@
     margin: 1rem 0;
 
     .description {
-      font-size: 1.25rem;
+      font-size: 0.9rem;
       margin: 2rem 0 3rem;
     }
 
     .vendorEmail {
-      margin: 2rem 3rem 1rem;
-      font-size: 1.1rem;
+      margin: 2rem 2rem 1rem 1rem;
+      font-size: 0.9rem;
       .email {
         color: $orange;
         margin-right: 0.8rem;
@@ -70,8 +70,8 @@
     }
 
     .vendorWebsite {
-      margin: 1rem 3rem;
-      font-size: 1.1rem;
+      margin: 1rem 1rem;
+      font-size: 0.9rem;
       .website {
         color: $orange;
         margin-right: 0.8rem;
