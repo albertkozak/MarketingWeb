@@ -1,3 +1,16 @@
+.container-vendors {
+  h1 {
+    text-align: center;
+    font-size: 1.9rem;
+    margin: 5rem 0;
+  }
+}
+
+.eventVendorUserTitle {
+  text-align: center;
+  margin: 3rem 0;
+}
+
 .goBack {
   color: $orange;
   text-align: right;
@@ -30,10 +43,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   .delete {
     margin-left: 1rem;
-    color: $error
+    color: $error;
   }
-
 }

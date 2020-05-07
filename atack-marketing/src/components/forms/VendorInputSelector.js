@@ -9,12 +9,10 @@ export default function VendorInputSelector(props) {
     history.push("/addvendor", { vendorName: vendorName.value });
   }
 
-
   return (
     <Select
-      //multi
       create
-      onCreateNew={item => addVendor(item)}
+      onCreateNew={(item) => addVendor(item)}
       searchable
       searchBy="label"
       name="vendorId"

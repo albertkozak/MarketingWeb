@@ -20,7 +20,6 @@ export default function AddEvent(props) {
   const [startTime, setstartTime] = useState("");
 
   useEffect(() => {
-    //Check if we have incoming data, if not kick them out
     if (props.location.state === undefined) {
       history.push("/");
     } else {
@@ -29,46 +28,38 @@ export default function AddEvent(props) {
       setEventId(currentEvent.eventId);
       setEventName(currentEvent.eventName);
       setStartDate(
-        moment
-          .utc(currentEvent.eventStartDateTime)
-          .local()
-          .format("yyyy-MM-DD")
+        moment.utc(currentEvent.eventStartDateTime).local().format("yyyy-MM-DD")
       );
       setstartTime(
-        moment
-          .utc(currentEvent.eventStartDateTime)
-          .local()
-          .format("HH:mm")
+        moment.utc(currentEvent.eventStartDateTime).local().format("HH:mm")
       );
       setSelectedVenue([
         {
           value: currentEvent.venue.venueId,
-          label: `${currentEvent.venue.venueName}`
-        }
+          label: `${currentEvent.venue.venueName}`,
+        },
       ]);
     }
   }, []);
-
-  // Add GET Request here for Venues & Event Organizers
 
   function fetchVenues() {
     firebase
       .auth()
       .currentUser.getIdTokenResult()
-      .then(tokenResponse => {
+      .then((tokenResponse) => {
         fetch(BASE_URL + "Venues", {
           method: "GET",
           headers: {
             Accept: "application/json",
-            Authorization: `Bearer ${tokenResponse.token}`
-          }
+            Authorization: `Bearer ${tokenResponse.token}`,
+          },
         })
-          .then(response => response.json())
-          .then(responseData => {
+          .then((response) => response.json())
+          .then((responseData) => {
             setFetchedVenues(
-              responseData.map(venue => ({
+              responseData.map((venue) => ({
                 value: venue.venueId,
-                label: venue.venueName
+                label: venue.venueName,
               }))
             );
           });
@@ -78,17 +69,15 @@ export default function AddEvent(props) {
   async function updateEvent(event) {
     event.preventDefault();
 
-    //Parse Date
     var eventDateParsed = new Date(`${startDate}T${startTime}`);
     var eventNameTrimmed = eventName.trim();
 
-    //Validate Other Fields
     if (
       eventNameTrimmed.length === 0 ||
       selectedVenue.length === 0 ||
       isNaN(eventDateParsed.getTime())
     ) {
-      setErrorMessage("Please fill all required fields");
+      setErrorMessage("Please fill all required fields.");
     } else {
       setErrorMessage("");
 
@@ -100,13 +89,13 @@ export default function AddEvent(props) {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
-            Authorization: `Bearer ${JWToken.token}`
+            Authorization: `Bearer ${JWToken.token}`,
           },
           body: JSON.stringify({
             eventName: eventNameTrimmed,
             eventStartDateTime: eventDateParsed,
-            venueId: selectedVenue[0].value
-          })
+            venueId: selectedVenue[0].value,
+          }),
         });
 
         if (result.status === 200) {
@@ -115,19 +104,18 @@ export default function AddEvent(props) {
             headers: {
               Accept: "application/json",
               "Content-Type": "application/json",
-              Authorization: `Bearer ${JWToken.token}`
-            }
+              Authorization: `Bearer ${JWToken.token}`,
+            },
           })
-            .then(response => response.json())
-            .then(data => history.push("/event", { event: data }));
+            .then((response) => response.json())
+            .then((data) => history.push("/event", { event: data }));
         } else {
-          alert("Error: Something went wrong, please try again");
+          alert("Error: Something went wrong, please try again.");
         }
       }
     }
   }
 
-  //Form Handlers
   function cancelButton(event) {
     event.preventDefault();
     history.goBack();
@@ -152,21 +140,21 @@ export default function AddEvent(props) {
             type="text"
             placeholder="Title"
             value={eventName}
-            onChange={e => setEventName(e.target.value)}
+            onChange={(e) => setEventName(e.target.value)}
           />
           <input
             name="eventStartDate"
             type="date"
             placeholder="Start Date"
             value={startDate}
-            onChange={e => setStartDate(e.target.value)}
+            onChange={(e) => setStartDate(e.target.value)}
           />
           <input
             name="eventStartTime"
             type="time"
             placeholder="Start Time"
             value={startTime}
-            onChange={e => setstartTime(e.target.value)}
+            onChange={(e) => setstartTime(e.target.value)}
           />
           <div className="input-selector">
             <VenueInputSelector

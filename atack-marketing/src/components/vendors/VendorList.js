@@ -3,7 +3,7 @@ import VendorItem from "./VendorItem";
 import firebase from "../../firebase";
 import SearchBar from "../SearchBar";
 
-const VendorList = (props) => {
+const VendorList = () => {
   const BASE_URL =
     "https://atackmarketingapi.azurewebsites.net/api/VendorManagement";
   const [fetchedVendors, setFetchedVendors] = useState([]);
