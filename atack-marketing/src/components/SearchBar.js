@@ -1,6 +1,7 @@
 import React from "react";
 
-const SearchBar = (props) => {
+const SearchBar = props => {
+
   return (
     <div className="search-container">
       <form className="search-form">
