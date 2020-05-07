@@ -14,7 +14,7 @@ const EventList = (props) => {
   const isVendor = user.isVendor;
   const [passingUser, setPassingUser] = useState([])
   const [eventVendorUserEvents, setEventVendorUserEvents] = useState(null)
-  // const [eventVendorId, setEventVendorId] = useState(null)
+  const [vendorEvents, setVendorEvents] = useState([])
 
   useEffect(() => {
     if (Object.keys(user).length > 0) {
@@ -76,8 +76,7 @@ const EventList = (props) => {
           })
             .then((response) => response.json())
             .then((responseData) => {
-              setFetchedEvents(responseData.userEventVendors);
-              //setEventVendorId(responseData.userEventVendors.eventVendorId)
+              setEventVendorUserEvents(responseData.userEventVendors);
             });
         });
     } else setFetchedEvents(null);
@@ -99,10 +98,31 @@ const EventList = (props) => {
       .then((response) => response.json())
       .then((responseData) => {
         setEventVendorUserEvents(responseData.userEventVendors)
-        // setEventVendorId(responseData.userEventVendors.eventVendorId)
       });
   }
   )}
+}
+
+function fetchVendorEventDetails(eventId) {
+      firebase
+        .auth()
+        .currentUser.getIdTokenResult()
+        .then((tokenResponse) => {
+          console.log(tokenResponse.token)
+          fetch(BASE_URL + "Events/" + eventId, {
+            method: "GET",
+            headers: {
+              Accept: "application/json",
+              Authorization: `Bearer ${tokenResponse.token}`,
+            },
+          })
+            .then((response) => response.json())
+            .then((responseData) => {
+              setVendorEvents(responseData);
+              console.log("vendor event detials")
+              console.log(responseData)
+            });
+          });
 }
 
   //console.log(eventVendorId)
@@ -123,6 +143,7 @@ const EventList = (props) => {
         <p>You don't have any events.</p>
       ) : (
         <div>
+          <h3>Events</h3>
           {fetchedEvents
             .filter((event) =>
               event.eventName.toLowerCase().includes(search.toLowerCase())
@@ -132,11 +153,12 @@ const EventList = (props) => {
             ))}
         </div>
       )}
-      {/* {isEO, eventVendorUserEvents !== null && (
+      {/* {eventVendorUserEvents !== null && (
         <div>
           <h3>Vendored Events</h3>
           {eventVendorUserEvents.map((event) => (
-            <EventItem key={event.eventId} event={event} user={passingUser} eventVendorUserEvents={eventVendorUserEvents} />
+            fetchVendorEventDetails(event.eventId),
+            <EventItem key={event.eventId} event={vendorEvents} user={passingUser} eventVendorUserEvents={eventVendorUserEvents} />
           ))}
         </div>
       )} */}
