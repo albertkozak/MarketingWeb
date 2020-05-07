@@ -14,7 +14,6 @@ const EventList = (props) => {
   const isVendor = user.isVendor;
   const [passingUser, setPassingUser] = useState([])
   const [eventVendorUserEvents, setEventVendorUserEvents] = useState(null)
-  const [vendorEvent, setVendorEvents] = useState([])
 
   useEffect(() => {
     if (Object.keys(user).length > 0) {
@@ -26,13 +25,11 @@ const EventList = (props) => {
   }, [user]);
 
   const fetchData = () => {
-    console.log(user);
     if (isAdmin) {
       firebase
         .auth()
         .currentUser.getIdTokenResult()
         .then((tokenResponse) => {
-          console.log(tokenResponse.token)
           fetch(BASE_URL + "Events", {
             method: "GET",
             headers: {
@@ -103,31 +100,6 @@ const EventList = (props) => {
   )}
 }
 
-function fetchVendorEventDetails(eventId) {
-      firebase
-        .auth()
-        .currentUser.getIdTokenResult()
-        .then((tokenResponse) => {
-          console.log(tokenResponse.token)
-          fetch(BASE_URL + "Events/" + eventId, {
-            method: "GET",
-            headers: {
-              Accept: "application/json",
-              Authorization: `Bearer ${tokenResponse.token}`,
-            },
-          })
-            .then((response) => response.json())
-            .then((responseData) => {
-              setVendorEvents(responseData);
-              console.log("vendor event detials")
-              console.log(responseData)
-            });
-          });
-}
-
-  console.log(fetchedEvents)
-  console.log(eventVendorUserEvents)
-
   function handleSearchTerm(event) {
     setSearch(event.target.value);
   }
@@ -140,10 +112,10 @@ function fetchVendorEventDetails(eventId) {
         value={search}
       />
       {fetchedEvents.length === 0 || fetchedEvents === undefined ? (
-        <p>You don't have any events.</p>
+        null
       ) : (
         <div>
-          <h3>Events</h3>
+           {!isAdmin && (<h3 className="title">Organized Events</h3> )}
           {fetchedEvents
             .filter((event) =>
               event.eventName.toLowerCase().includes(search.toLowerCase())
@@ -154,12 +126,11 @@ function fetchVendorEventDetails(eventId) {
             ))}
         </div>
       )}
-      {eventVendorUserEvents !== null && (
+      {isEO || isVendor && eventVendorUserEvents !== null && (
         <div>
-          <h3>Vendored Events</h3>
+          <h3 className="title">Vendored Events</h3>
           {eventVendorUserEvents.map((event) => (
-            fetchVendorEventDetails(event.eventId),
-            <EventItem key={event.eventId} event={vendorEvent} user={passingUser} eventVendorUserEvents={eventVendorUserEvents} />
+            <EventItem key={event.eventId} event={event} user={passingUser} eventVendorUserEvents={eventVendorUserEvents} />
           ))}
         </div>
       )}
