@@ -1,5 +1,5 @@
 .search-form {
-  padding: 1.4rem 0 0;
+  // padding: 1.rem 0 0;
   min-height: 10vh;
   display: flex;
   justify-content: center;
@@ -9,8 +9,11 @@
 .search-bar {
   width: 50%;
   border: solid 0.8px $light-grey;
-  padding: 10px;
+  padding: 9px;
   border-radius: 10px;
+  &:focus {
+    outline: none;
+  }
 }
 
 .search-button {
