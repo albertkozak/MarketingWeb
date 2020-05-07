@@ -8,16 +8,11 @@ const EventList = props => {
   const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/";
   const [fetchedEvents, setFetchedEvents] = useState([]);
   const [search, setSearch] = useState("");
-  // const [searchedEvents, setSearchedEvents] = useState("");
-  // const [refreshComponent, setRefreshComponent] = useState(true);
   const user = props.user;
   console.log(user)
   const isAdmin = user.isAdmin;
   const isEO = user.isEventOrganizer;
   const isVendor = user.isVendor;
-
-  // console.log(Object.keys(user).length);
-  // console.log(isAdmin);
 
   useEffect(() => {
     console.log("Maybe Fetch?");
@@ -27,18 +22,7 @@ const EventList = props => {
     }
   }, [user]);
 
-  // function goFetchData() {
-  //   if (user === undefined) {
-  //     setRefreshComponent(true);
-  //   } else {
-  //     fetchData();
-  //     console.log("fetching");
-  //     setRefreshComponent(false);
-  //   }
-  // }
-
   const fetchData = () => {
-    // console.log("first check");
     if (isAdmin) {
       firebase
         .auth()
@@ -56,15 +40,7 @@ const EventList = props => {
               setFetchedEvents(responseData.events);
               console.log(responseData);
             });
-          // setSearchedEvents(
-          //   fetchedEvents.filter((event) => {
-          //     return event.eventName.toLowerCase().includes(search.toLowerCase());
-          //   })
-          // );
         });
-      console.log(isAdmin);
-      console.log(isEO);
-      console.log(isVendor);
     } else if (isEO) {
       firebase
         .auth()
@@ -81,11 +57,6 @@ const EventList = props => {
             .then(responseData => {
               setFetchedEvents(responseData.events);
             });
-          // setSearchedEvents(
-          //   fetchedEvents.filter((event) => {
-          //     return event.eventName.toLowerCase().includes(search.toLowerCase());
-          //   })
-          // );
         });
     } else if (isVendor) {
       firebase
@@ -103,11 +74,6 @@ const EventList = props => {
             .then(responseData => {
               setFetchedEvents(responseData.userEventVendors);
             });
-          // setSearchedEvents(
-          //   fetchedEvents.filter((event) => {
-          //     return event.eventName.toLowerCase().includes(search.toLowerCase());
-          //   })
-          // );
         });
     }
   };
