@@ -9,6 +9,11 @@ const EventList = (props) => {
   const [fetchedEvents, setFetchedEvents] = useState([]);
   const [search, setSearch] = useState("");
   const [searchedEvents, setSearchedEvents] = useState("");
+  // const isAdmin = useState(props.isAdmin)
+  const isAdmin = props.isAdmin
+  const isEO = props.isEO
+  const isVendor = props.isVendor
+
 
   const fetchData = () => {
     firebase
@@ -31,6 +36,9 @@ const EventList = (props) => {
             return event.eventName.toLowerCase().includes(search.toLowerCase());
           })
         );
+        console.log(isAdmin)
+        // console.log(isEO)
+        // console.log(isVendor)
       });
   };
 

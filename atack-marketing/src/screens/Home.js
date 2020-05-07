@@ -7,19 +7,36 @@ import firebase from "../firebase";
 const Home = (props) => {
   const history = useHistory();
   const [userRole, setUserRole] = useState("");
-  const [user, setUser] = useState([])
-  const [admin, setAdmin] = useState(false);
-  const [eo, setEO] = useState(false);
-  const [vendor, setVendor] = useState(false);
+  //const [user, setUser] = useState([])
+  // const [isAdmin, setAdmin] = useState(false);
+  // const [isEO, setEO] = useState(false);
+  // const [isVendor, setVendor] = useState(false);
+  // const [userEmail, setUSerEmail] = useState('');
+  const { state: user } = React.useContext(updateUserRole);
+  
 
   useEffect(() => {
     fetchUserRole()
+    const newUser = {
+      ...user,
+      isAdmin: user.isAdmin
+    }
     // if(props.location.state.userRole === undefined || props.userRole === undefined || userRole === undefined) {
     //   fetchUserRole();
     // } else {
     //   setUserRole(props.location.state.userRole)
     // }
   }, [])
+
+  const updateUserRole = async (user, dispatch) => {
+    const result = await updateUser(user);
+    if (result.success) {
+      dispatch({type: "success"})
+    } else {
+      dispatch({type: "failure"})
+    }
+
+  }
 
   function fetchUserRole() {
     firebase
@@ -35,26 +52,29 @@ const Home = (props) => {
         })
           .then(response => response.json())
           .then(responseData => {
-            setUser(responseData);
-            setAdmin(responseData.isAdmin)
-            setEO(responseData.isEventOrganizer)
-            setVendor(responseData.isVendor)
+            // setUser(responseData);
+            // setUSerEmail(responseData.email);
+            // setAdmin(responseData.isAdmin)
+            // setEO(responseData.isEventOrganizer)
+            // setVendor(responseData.isVendor)
             console.log(responseData);
-            console.log(responseData.isAdmin);
-            console.log(responseData.isEventOrganizer);
-            console.log(responseData.isVendor);
           });
       });
   }
 
   return (
+    <React.Fragment>
     <div className="container">
-      {/* <h1>Home Page</h1> */}
+      <h1>{userEmail}</h1>
+      <h1>{isAdmin.toString()}</h1>
+      <h1>{isEO.toString()}</h1>
+      <h1>{isVendor.toString()}</h1>
       <button className="eventButton" onClick={() => history.push("/addevent")}>
         Create Event
       </button>
-      <EventList />
+      <EventList isAdmin={isAdmin} isEO={isEO} isVendor={isVendor} />
     </div>
+    </React.Fragment>
   );
 };
 
