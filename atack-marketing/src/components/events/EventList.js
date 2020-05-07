@@ -12,10 +12,13 @@ const EventList = (props) => {
   const isAdmin = user.isAdmin;
   const isEO = user.isEventOrganizer;
   const isVendor = user.isVendor;
+  const [passingUser, setPassingUser] = useState([])
 
   useEffect(() => {
     if (Object.keys(user).length > 0) {
       fetchData();
+      setPassingUser(user)
+      console.log(user)
     }
   }, [user]);
 
@@ -26,6 +29,7 @@ const EventList = (props) => {
         .auth()
         .currentUser.getIdTokenResult()
         .then((tokenResponse) => {
+          console.log(tokenResponse.token)
           fetch(BASE_URL + "Events", {
             method: "GET",
             headers: {
@@ -95,7 +99,7 @@ const EventList = (props) => {
               event.eventName.toLowerCase().includes(search.toLowerCase())
             )
             .map((event) => (
-              <EventItem key={event.eventId} event={event} />
+              <EventItem key={event.eventId} event={event} user={passingUser} />
             ))}
         </div>
       )}
