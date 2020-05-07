@@ -22,6 +22,7 @@ const EventList = (props) => {
   }, [user]);
 
   const fetchData = () => {
+    console.log(user);
     if (isAdmin) {
       firebase
         .auth()
@@ -73,7 +74,7 @@ const EventList = (props) => {
               setFetchedEvents(responseData.userEventVendors);
             });
         });
-    }
+    } else setFetchedEvents(null);
   };
 
   function handleSearchTerm(event) {
@@ -87,7 +88,7 @@ const EventList = (props) => {
         handleSearchTerm={(e) => handleSearchTerm(e)}
         value={search}
       />
-      {fetchedEvents.length === 0 ? (
+      {fetchedEvents.length === 0 || fetchedEvents === undefined ? (
         <p>You don't have any events.</p>
       ) : (
         <div>
