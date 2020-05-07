@@ -60,7 +60,8 @@ const Export = () => {
   }, []);
 
   return (
-    <div className="container-k">
+    <div className="container-export">
+      <h1>Export</h1>
       <EventInputSelector
         data={event}
         selectedEvent={selectedEvent}
