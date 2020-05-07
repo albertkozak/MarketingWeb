@@ -11,6 +11,7 @@ const NavComponent = () => {
   const [user, setUser] = useState([]);
   const [isShown, setIsShown] = useState(false);
   const [isEOShown, setIsEOShown] = useState(false);
+  const [isVendorShown, setIsVendorShown] = useState(false)
   const [refreshComponent, setRefreshComponent] = useState(false);
 
 
@@ -39,6 +40,8 @@ const NavComponent = () => {
                 setIsShown(true);
               } else if (responseData.isEventOrganizer) {
                 setIsEOShown(true);
+              } else if (responseData.isVendor) {
+                setIsVendorShown(true)
               }
               console.log(responseData);
             });
@@ -72,6 +75,9 @@ const NavComponent = () => {
                 <li>
                   <Link to="/venues">Venues</Link>
                 </li>
+                <li>
+              <Link to="/export">Export</Link>
+            </li>
               </>
             )}
 
@@ -83,9 +89,11 @@ const NavComponent = () => {
 
             )}
 
-            <li>
-              <Link to="/export">Export</Link>
-            </li>
+            {isVendorShown && (
+                <li>
+                  <Link to="/export">Export</Link>
+                </li>
+            )}
             <li>
               <Logout />
             </li>
