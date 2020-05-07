@@ -1,5 +1,5 @@
 .venueWrapper {
-  width: 70%;
+  width: 60%;
   margin: 2rem auto;
 
   .venueHeader {
@@ -9,7 +9,7 @@
   }
 
   h2 {
-    font-size: 2.2rem;
+    font-size: 1.9rem;
     font-family: $body-heading-font;
   }
 
@@ -21,11 +21,11 @@
 
     .edit {
       margin-right: 1rem;
-      font-size: 1.1rem;
+      font-size: 0.9rem;
     }
 
     .delete {
-      font-size: 1.1rem;
+      font-size: 0.9rem;
     }
 
     a {
@@ -39,8 +39,8 @@
   }
 
   .venueWebsite {
-    margin: 1rem 3rem;
-    font-size: 1.1rem;
+    margin: 1rem 1rem;
+    font-size: 0.9rem;
     .website {
       color: $orange;
       margin-right: 0.8rem;
