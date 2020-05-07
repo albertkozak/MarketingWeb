@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 
 const EventItem = (props) => {
   const event = props.event;
+  console.log("from event list")
+  console.log(event)
   const user = props.user;
   const eventVendorUserEvents = props.eventVendorUserEvents
   const formattedDate = new Date(event.eventStartDateTime)
@@ -10,12 +12,9 @@ const EventItem = (props) => {
     .slice(0, 10);
   const [eventVendorId, setEventVendorId] = useState(null)
 
-    console.log(eventVendorUserEvents)
-
     function checkIfVendorForEvent() {
       if (eventVendorUserEvents != null) {
       eventVendorUserEvents.map(evue => {
-        console.log(evue.eventId)
         if(evue.eventId === event.eventId) {
           setEventVendorId(evue.eventVendorId)
         }
@@ -23,10 +22,9 @@ const EventItem = (props) => {
     }
   }
 
-  console.log(eventVendorId)
-
     useEffect(()=> {
       checkIfVendorForEvent();
+      console.log(event)
     })
 
 

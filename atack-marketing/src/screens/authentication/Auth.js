@@ -9,9 +9,18 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
-      setCurrentUser(user);
-      setPending(false);
+      //Snoop to find out if the email address is verified, if not then we
+      //will ignore the firebase user object as they most likley have just
+      //registered therefore block sign in
+      if (user) {
+        console.log("Should We Check User?")
+        if (user.emailVerified) {
+          console.log("GUUCHI")
+          setCurrentUser(user);
+        }
+      }
     });
+    setPending(false);
   }, []);
 
   if (pending) {

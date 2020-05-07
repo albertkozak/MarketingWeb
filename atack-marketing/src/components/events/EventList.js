@@ -14,7 +14,6 @@ const EventList = (props) => {
   const isVendor = user.isVendor;
   const [passingUser, setPassingUser] = useState([])
   const [eventVendorUserEvents, setEventVendorUserEvents] = useState(null)
-  // const [eventVendorId, setEventVendorId] = useState(null)
 
   useEffect(() => {
     if (Object.keys(user).length > 0) {
@@ -26,13 +25,11 @@ const EventList = (props) => {
   }, [user]);
 
   const fetchData = () => {
-    console.log(user);
     if (isAdmin) {
       firebase
         .auth()
         .currentUser.getIdTokenResult()
         .then((tokenResponse) => {
-          console.log(tokenResponse.token)
           fetch(BASE_URL + "Events", {
             method: "GET",
             headers: {
@@ -76,8 +73,7 @@ const EventList = (props) => {
           })
             .then((response) => response.json())
             .then((responseData) => {
-              setFetchedEvents(responseData.userEventVendors);
-              //setEventVendorId(responseData.userEventVendors.eventVendorId)
+              setEventVendorUserEvents(responseData.userEventVendors);
             });
         });
     } else setFetchedEvents(null);
@@ -99,14 +95,10 @@ const EventList = (props) => {
       .then((response) => response.json())
       .then((responseData) => {
         setEventVendorUserEvents(responseData.userEventVendors)
-        // setEventVendorId(responseData.userEventVendors.eventVendorId)
       });
   }
   )}
 }
-
-  //console.log(eventVendorId)
-  console.log(eventVendorUserEvents)
 
   function handleSearchTerm(event) {
     setSearch(event.target.value);
@@ -120,26 +112,28 @@ const EventList = (props) => {
         value={search}
       />
       {fetchedEvents.length === 0 || fetchedEvents === undefined ? (
-        <p>You don't have any events.</p>
+        null
       ) : (
         <div>
+           {!isAdmin && (<h3 className="title">Organized Events</h3> )}
           {fetchedEvents
             .filter((event) =>
               event.eventName.toLowerCase().includes(search.toLowerCase())
             )
             .map((event) => (
+              console.log(event),
               <EventItem key={event.eventId} event={event} user={passingUser} eventVendorUserEvents={eventVendorUserEvents} />
             ))}
         </div>
       )}
-      {/* {isEO, eventVendorUserEvents !== null && (
+      {isEO || isVendor && eventVendorUserEvents !== null && (
         <div>
-          <h3>Vendored Events</h3>
+          <h3 className="title">Vendored Events</h3>
           {eventVendorUserEvents.map((event) => (
             <EventItem key={event.eventId} event={event} user={passingUser} eventVendorUserEvents={eventVendorUserEvents} />
           ))}
         </div>
-      )} */}
+      )}
     </div>
   );
 };

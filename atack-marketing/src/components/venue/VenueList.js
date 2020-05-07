@@ -7,7 +7,6 @@ const VenueList = () => {
   const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/";
   const [fetchedVenues, setFetchedVenues] = useState([]);
   const [search, setSearch] = useState("");
-  // const [searchedVenues, setSearchedVenues] = useState("");
 
   function fetchVenues() {
     firebase
@@ -25,24 +24,12 @@ const VenueList = () => {
           .then((responseData) => {
             setFetchedVenues(responseData);
           });
-        // setSearchedVenues(
-        //   fetchedVenues.filter((venue) => {
-        //     return venue.venueName.toLowerCase().includes(search.toLowerCase());
-        //   })
-        // );
       });
   }
 
   useEffect(() => {
     fetchVenues();
   }, []);
-
-  // let venueData;
-  // if (search.length === 0) {
-  //   venueData = fetchedVenues;
-  // } else {
-  //   venueData = searchedVenues;
-  // }
 
   function handleSearchTerm(event) {
     setSearch(event.target.value);
