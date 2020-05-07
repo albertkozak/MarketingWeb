@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import firebase from "../../firebase";
 import currency from "currency.js";
-import { faTimes, faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faTimes, faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { BASE_URL } from "../../Config";
 import { QRCode } from "react-qr-svg";
@@ -170,22 +170,11 @@ export default function VendorDetailProductList(props) {
   }
 
   return (
-    <div className="container">
-      <h1 className="addProductTitle">Manage Products</h1>
-      <div className="qrGenerator">
-        {Object.keys(vendorDetails).length > 0 && (
-          <QRCode
-            level="Q"
-            style={{ width: 256 }}
-            value={JSON.stringify({
-              eventId: eventId,
-              eventVendorId: eventVendorId,
-              vendorName: vendorDetails.vendorName,
-            })}
-          />
-        )}
-      </div>
-      <div>
+    // <div>
+    //   <h3 className="addProductTitle">Event Products</h3>
+      <div className="products-container">
+      <div className="productListContainer">
+        <div>
         <form id="add-product-form" className="addProductForm">
           <input
             ref={inputProductName}
@@ -212,7 +201,7 @@ export default function VendorDetailProductList(props) {
               </button>
             ) : (
               <button className="submit" variant="" onClick={createProduct}>
-                Add Product
+                Add
               </button>
             )}
 
@@ -226,12 +215,12 @@ export default function VendorDetailProductList(props) {
       {Object.keys(vendorDetails).length > 0 &&
         vendorDetails.products.length > 0 && (
           <div className="productList">
-            <h3> {vendorDetails.vendorName}</h3> <h3>{eventName}</h3>
+            {/* <h3> {vendorDetails.vendorName}</h3> <h3>{eventName}</h3> */}
             <table className="productTable">
               <thead>
                 <tr>
-                  <th>Product Name</th>
-                  <th>Product Price</th>
+                  <th>Product</th>
+                  <th>Price</th>
                 </tr>
               </thead>
               <tbody>
@@ -239,6 +228,13 @@ export default function VendorDetailProductList(props) {
                   <tr key={product.productId}>
                     <td>{product.productName}</td>
                     <td>{"$" + format(product.productPrice)}</td>
+                    <td>
+                      <FontAwesomeIcon
+                        className="edit"
+                        icon={faPen}
+                        onClick={() => updateProductButton(product)}
+                      />
+                    </td>
                     <td>
                       <FontAwesomeIcon
                         className="delete"
@@ -250,13 +246,6 @@ export default function VendorDetailProductList(props) {
                         }
                       />
                     </td>
-                    <td>
-                      <FontAwesomeIcon
-                        className="edit"
-                        icon={faEdit}
-                        onClick={() => updateProductButton(product)}
-                      />
-                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -265,6 +254,22 @@ export default function VendorDetailProductList(props) {
         )}
       {Object.keys(vendorDetails).length > 0 &&
         vendorDetails.products.length === 0 && <p>No Products Yet</p>}
+      </div>
+
+<div className="qrGenerator">
+        {Object.keys(vendorDetails).length > 0 && (
+          <QRCode
+            level="Q"
+            style={{ width: 150 }}
+            value={JSON.stringify({
+              eventId: eventId,
+              eventVendorId: eventVendorId,
+              vendorName: vendorDetails.vendorName,
+            })}
+          />
+        )}
+      </div>
     </div>
+    // </div>
   );
 }

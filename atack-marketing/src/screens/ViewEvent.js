@@ -283,7 +283,7 @@ const ViewEvent = (props) => {
                       eventId={id}
                       eventName={currentEvent.eventName}
                       handleChange={handleChange}
-                      handleClickedProduct={handleClickedProduct}
+                      // handleClickedProduct={handleClickedProduct}
                     />
                   </>
                 ))}
@@ -295,31 +295,18 @@ const ViewEvent = (props) => {
          )}
          {isVendor && (
         <div className="eventVendorWrapper">
-          <div className="vendorProductListContainer">
-            {/* <div className="containerHeading">
-              <h3 className="eventVendorProducts">Event Products</h3>
-              <Link
-                to={{
-                  pathname: "/addvendorproduct",
-                  state: { currentEvent },
-                }}
-              >
-                <button className="addProductButton">Add Products</button>
-              </Link>
-            </div> */}
-
+          <div className="containerHeading">
+              <h3 className="eventVendors">Event Products</h3>
+            </div>
             {/* {productVendor && ( */}
               <VendorDetailProductList 
                 eventId={id}
                 eventName={currentEvent.eventName}
                 eventVendorId={14}
                />
+               
             {/* )} */}
           </div>
-          {/* <div className="qrGenerator">
-            <button className="qrButton">Generate QR Code</button>
-          </div> */}
-        </div>
     )}
       </div>
     </div>

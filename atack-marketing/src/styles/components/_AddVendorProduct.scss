@@ -1,18 +1,12 @@
 .addProductForm {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
 
   input {
     border: none;
-    font-size: 1.125rem;
+    font-size: .9rem;
     color: $black;
-    padding: 15px;
     border-bottom: 1px solid $light-grey;
-    width: 20%;
-    margin: 0 auto;
-    text-align: center;
+    text-align: left;
+    margin-right: 1rem;
 
     &:focus {
       outline: none;
@@ -24,43 +18,39 @@
     }
   }
 
-  [type="date"] {
-    color: $light-grey;
-    font-family: $body-font;
-
-    position: relative;
-
-    ::-webkit-input-placeholder {
-      color: $light-grey;
-    }
-    ::-moz-placeholder {
-      color: $light-grey;
-    } /* firefox 19+ */
-    :-ms-input-placeholder {
-      color: $grey;
-    } /* ie */
-    input:-moz-placeholder {
-      color: $grey;
+  .buttons {
+    text-align: left;
+    margin: 1rem 0 2rem;
+    button {
+      margin: 0
     }
 
-    ::-webkit-calendar-picker-indicator {
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      width: auto;
-      height: auto;
-      color: transparent;
-      background: transparent;
+    .submit {
+      margin-right: 1rem;
     }
 
-    ::-webkit-inner-spin-button {
-      z-index: 1;
-    }
+  }
+}
 
-    ::-webkit-clear-button {
-      z-index: 1;
+.productList {
+  align-self: center;
+  
+  thead {
+    text-align: left;
+    font-size: .9rem;
+    color: $grey;
+
+    th {
+      font-family: $body-font;
+      font-weight: 300;
+    }
+  }
+
+  tbody {
+    td {
+      font-family: $body-font;
+      font-size: .9rem;
+      padding: 0 2rem;
     }
   }
 }
