@@ -14,7 +14,7 @@ const EventList = (props) => {
   const isVendor = user.isVendor;
   const [passingUser, setPassingUser] = useState([])
   const [eventVendorUserEvents, setEventVendorUserEvents] = useState(null)
-  const [vendorEvents, setVendorEvents] = useState([])
+  const [vendorEvent, setVendorEvents] = useState([])
 
   useEffect(() => {
     if (Object.keys(user).length > 0) {
@@ -125,7 +125,7 @@ function fetchVendorEventDetails(eventId) {
           });
 }
 
-  //console.log(eventVendorId)
+  console.log(fetchedEvents)
   console.log(eventVendorUserEvents)
 
   function handleSearchTerm(event) {
@@ -149,19 +149,20 @@ function fetchVendorEventDetails(eventId) {
               event.eventName.toLowerCase().includes(search.toLowerCase())
             )
             .map((event) => (
+              console.log(event),
               <EventItem key={event.eventId} event={event} user={passingUser} eventVendorUserEvents={eventVendorUserEvents} />
             ))}
         </div>
       )}
-      {/* {eventVendorUserEvents !== null && (
+      {eventVendorUserEvents !== null && (
         <div>
           <h3>Vendored Events</h3>
           {eventVendorUserEvents.map((event) => (
             fetchVendorEventDetails(event.eventId),
-            <EventItem key={event.eventId} event={vendorEvents} user={passingUser} eventVendorUserEvents={eventVendorUserEvents} />
+            <EventItem key={event.eventId} event={vendorEvent} user={passingUser} eventVendorUserEvents={eventVendorUserEvents} />
           ))}
         </div>
-      )} */}
+      )}
     </div>
   );
 };
