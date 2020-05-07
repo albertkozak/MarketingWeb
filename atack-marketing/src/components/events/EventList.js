@@ -51,7 +51,7 @@ const EventList = (props) => {
           })
             .then((response) => response.json())
             .then((responseData) => {
-              setFetchedEvents(responseData.events);
+              setFetchedEvents(responseData.eventsOrganizing);
             });
         });
     } else if (isVendor) {
@@ -71,7 +71,7 @@ const EventList = (props) => {
               setFetchedEvents(responseData.userEventVendors);
             });
         });
-    }
+    } else setFetchedEvents(null);
   };
 
   function handleSearchTerm(event) {
@@ -85,7 +85,7 @@ const EventList = (props) => {
         handleSearchTerm={(e) => handleSearchTerm(e)}
         value={search}
       />
-      {fetchedEvents.length === 0 ? (
+      {fetchedEvents.length === 0 || fetchedEvents === undefined ? (
         <p>You don't have any events.</p>
       ) : (
         <div>
