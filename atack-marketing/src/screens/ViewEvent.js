@@ -127,7 +127,7 @@ const ViewEvent = (props) => {
             </div>
             <div className="venueLocation">
             <a
-            href={venue.venueWebsite}
+            href={venue.website}
             target="_blank"
             rel="noopener noreferrer"
           >

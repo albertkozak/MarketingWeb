@@ -132,6 +132,14 @@ const EventList = (props) => {
             ))}
         </div>
       )}
+      {/* {isEO, eventVendorUserEvents !== null && (
+        <div>
+          <h3>Vendored Events</h3>
+          {eventVendorUserEvents.map((event) => (
+            <EventItem key={event.eventId} event={event} user={passingUser} eventVendorUserEvents={eventVendorUserEvents} />
+          ))}
+        </div>
+      )} */}
     </div>
   );
 };

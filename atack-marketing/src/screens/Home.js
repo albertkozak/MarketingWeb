@@ -11,9 +11,11 @@ const Home = props => {
 
   return (
     <div className="container">
+      {isAdmin &&
       <button className="eventButton" onClick={() => history.push("/addevent")}>
         Create Event
       </button>
+    }
       <EventList
         user={user}
         isAdmin={isAdmin}
