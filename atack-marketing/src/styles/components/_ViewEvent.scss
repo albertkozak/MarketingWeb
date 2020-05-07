@@ -8,12 +8,12 @@
     align-items: flex-end;
 
     p {
-      font-size: 1.1rem;
+      font-size: 0.9rem;
     }
   }
 
   h2 {
-    font-size: 2.2rem;
+    font-size: 1.9rem;
     font-family: $body-heading-font;
   }
 
@@ -26,11 +26,11 @@
 
     .edit {
       margin-right: 1rem;
-      font-size: 1.1rem;
+      font-size: 0.9rem;
     }
 
     .delete {
-      font-size: 1.1rem;
+      font-size: 0.9rem;
     }
 
     a {
@@ -49,12 +49,12 @@
     align-items: center;
 
     .venue {
-      font-size: 1.3rem;
+      font-size: 0.9rem;
       margin-right: 5rem;
     }
 
     .venueWebsite {
-      font-size: 1.1rem;
+      font-size: 0.9rem;
       color: $grey;
     }
 
@@ -80,7 +80,7 @@
     }
 
     h3 {
-      font-size: 1.2rem;
+      font-size: 1rem;
       color: $dark-grey;
       font-family: $body-heading-font;
       margin-right: 3rem;
@@ -117,11 +117,11 @@
     }
 
     p {
-      font-size: 1.1rem;
+      font-size: 0.9rem;
     }
 
     button {
-      font-size: 1rem;
+      font-size: 0.7rem;
       margin-top: 1rem;
       text-transform: uppercase;
       color: $white;
@@ -145,7 +145,7 @@
     }
 
     h3 {
-      font-size: 1.2rem;
+      font-size: 1rem;
       color: $dark-grey;
       font-family: $body-heading-font;
       margin-right: 3rem;
@@ -161,19 +161,19 @@
       margin-left: 2rem;
 
       .productName {
-        font-size: 1.1rem;
+        font-size: 0.9rem;
       }
 
       .price {
-        margin-left: 1.3rem;
-        font-size: 1rem;
+        margin-left: 0.8rem;
+        font-size: 0.9rem;
         color: $grey;
         justify-self: end;
       }
     }
 
     button {
-      font-size: 1rem;
+      font-size: 0.7rem;
       margin-top: 1rem;
       text-transform: uppercase;
       color: $white;
