@@ -25,23 +25,25 @@
   align-items: center;
   width: 65%;
   padding: 0.7rem 0;
+  font-size: 0.9rem;
 
   .userTitle {
     font-family: $body-font;
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: $dark-grey;
     font-weight: 100;
   }
 
   .isAdmin {
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     color: $grey;
 
     .adminStyle {
       display: flex;
       justify-content: center;
       align-items: center;
+      font-size: 0.9rem;
 
       .adminIcon {
         margin-right: 0.5rem;
