@@ -76,7 +76,7 @@ const AddEventVendor = (props) => {
             },
           })
             .then((response) => response.json())
-            .then((data) => history.push("/event", { event: data }));
+            .then((data) => history.push("/event", { event: data, user: props.location.state.user }));
         } else if (result.status === 400) {
           setErrorMessage("Vendor already exists in this event.");
         } else {
