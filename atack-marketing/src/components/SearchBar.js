@@ -1,6 +1,6 @@
 import React from "react";
 
-const SearchBar = props => {
+const SearchBar = (props) => {
   // const [search, setSearch] = useState(props.search);
 
   // const updateSearch = (e) => {
@@ -27,7 +27,7 @@ const SearchBar = props => {
         <input
           className="search-bar"
           type="text"
-          placeholder="Search Vendors..."
+          placeholder="Search..."
           value={props.search}
           onChange={props.handleSearchTerm}
         />
