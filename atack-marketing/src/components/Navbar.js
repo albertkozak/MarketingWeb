@@ -39,7 +39,7 @@ const NavComponent = () => {
 				setIsShown(true)
 			}
 			if(responseData.isEventOrganizer) {
-				setIsEOShown()
+				setIsEOShown(true)
 			}
 			console.log(responseData);
 			});

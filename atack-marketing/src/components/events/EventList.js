@@ -12,10 +12,12 @@ const EventList = (props) => {
   const isAdmin = user.isAdmin;
   const isEO = user.isEventOrganizer;
   const isVendor = user.isVendor;
+  const [passingUser, setPassingUser] = useState([])
 
   useEffect(() => {
     if (Object.keys(user).length > 0) {
       fetchData();
+      setPassingUser(user)
     }
   }, [user]);
 
@@ -51,7 +53,7 @@ const EventList = (props) => {
           })
             .then((response) => response.json())
             .then((responseData) => {
-              setFetchedEvents(responseData.events);
+              setFetchedEvents(responseData.eventsOrganizing);
             });
         });
     } else if (isVendor) {
@@ -94,7 +96,7 @@ const EventList = (props) => {
               event.eventName.toLowerCase().includes(search.toLowerCase())
             )
             .map((event) => (
-              <EventItem key={event.eventId} event={event} />
+              <EventItem key={event.eventId} event={event} user={user} />
             ))}
         </div>
       )}
