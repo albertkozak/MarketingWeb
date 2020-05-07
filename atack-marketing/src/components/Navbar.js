@@ -36,8 +36,7 @@ const NavComponent = () => {
               setUser(responseData);
               if (responseData.isAdmin) {
                 setIsShown(true);
-              }
-              if (responseData.isEventOrganizer) {
+              } else if (responseData.isEventOrganizer) {
                 setIsEOShown(true);
               }
               console.log(responseData);

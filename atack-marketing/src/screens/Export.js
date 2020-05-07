@@ -62,11 +62,15 @@ const Export = () => {
   return (
     <div className="container-export">
       <h1>Export</h1>
-      <EventInputSelector
-        data={event}
-        selectedEvent={selectedEvent}
-        handleSelect={handleSelect}
-      />
+      {event.length === 0 || event === undefined || event === null ? (
+        <p></p>
+      ) : (
+        <EventInputSelector
+          data={event}
+          selectedEvent={selectedEvent}
+          handleSelect={handleSelect}
+        />
+      )}
       {subscriberData && (
         <div>
           <h3>
