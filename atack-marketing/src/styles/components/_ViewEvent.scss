@@ -38,7 +38,7 @@
       color: $orange;
 
       &:hover {
-        color: $hover-orange
+        color: $hover-orange;
       }
     }
   }
@@ -47,7 +47,6 @@
     margin-left: 1rem;
     display: flex;
     align-items: center;
-    
 
     .venue {
       font-size: 1.3rem;
@@ -56,7 +55,7 @@
 
     .venueWebsite {
       font-size: 1.1rem;
-      color: $grey
+      color: $grey;
     }
 
     a {
@@ -67,7 +66,6 @@
         color: $hover-orange;
       }
     }
-
   }
 
   .eventDetailsWrapper {
@@ -76,7 +74,7 @@
     width: 80%;
     margin: 0 auto;
 
-    .containerHeading{
+    .containerHeading {
       display: flex;
       align-items: flex-start;
     }
@@ -99,7 +97,7 @@
 
       .delete {
         margin-left: 1rem;
-        color: $error
+        color: $error;
       }
     }
 
@@ -109,12 +107,12 @@
 
       .delete {
         margin-left: 1rem;
-        color: $error
+        color: $error;
       }
 
       .addUser {
         margin-left: 2rem;
-        color: $grey
+        color: $grey;
       }
     }
 
@@ -132,7 +130,6 @@
       padding: 7px 17px;
       border-radius: 10px;
       cursor: pointer;
-      
     }
   }
 
@@ -142,7 +139,7 @@
     width: 80%;
     margin: 1rem auto;
 
-    .containerHeading{
+    .containerHeading {
       display: flex;
       align-items: flex-start;
     }
@@ -161,7 +158,6 @@
 
     .product {
       display: flex;
-      // remove if mapping ul
       margin-left: 2rem;
 
       .productName {
@@ -186,9 +182,6 @@
       padding: 7px 17px;
       border-radius: 10px;
       cursor: pointer;
-      
     }
   }
-
-  
 }

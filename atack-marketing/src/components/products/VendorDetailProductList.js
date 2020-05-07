@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import firebase from "../../firebase";
-import { useHistory } from "react-router-dom";
 import currency from "currency.js";
-import { faTimes, faUserPlus, faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faTimes, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { BASE_URL } from "../../Config";
 import { QRCode } from "react-qr-svg";
@@ -26,16 +25,16 @@ export default function VendorDetailProductList(props) {
     firebase
       .auth()
       .currentUser.getIdTokenResult()
-      .then(tokenResponse => {
+      .then((tokenResponse) => {
         fetch(BASE_URL + `Events/${eventId}/Vendors/${eventVendorId}`, {
           method: "GET",
           headers: {
             Accept: "application/json",
-            Authorization: `Bearer ${tokenResponse.token}`
-          }
+            Authorization: `Bearer ${tokenResponse.token}`,
+          },
         })
-          .then(response => response.json())
-          .then(responseData => {
+          .then((response) => response.json())
+          .then((responseData) => {
             setVendorDetails(responseData.vendor);
             setFetchedData(responseData.vendor.products);
             console.log(responseData);
@@ -53,7 +52,7 @@ export default function VendorDetailProductList(props) {
     let JWToken = await firebase.auth().currentUser.getIdTokenResult();
 
     if (productName.trim().length === 0) {
-      alert("Please Fill In The Product Name");
+      alert("Please fill in the product name.");
       return;
     }
 
@@ -65,12 +64,12 @@ export default function VendorDetailProductList(props) {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
-            Authorization: `Bearer ${JWToken.token}`
+            Authorization: `Bearer ${JWToken.token}`,
           },
           body: JSON.stringify({
             productName: productName,
-            productPrice: currency(productPrice)
-          })
+            productPrice: currency(productPrice),
+          }),
         }
       );
       if (result.status === 201) {
@@ -80,7 +79,7 @@ export default function VendorDetailProductList(props) {
         setProductPrice("");
         inputProductName.current.focus();
       } else {
-        alert("Error: Something went wrong, please try again");
+        alert("Error: Something went wrong, please try again.");
       }
     }
   }
@@ -90,7 +89,7 @@ export default function VendorDetailProductList(props) {
     let JWToken = await firebase.auth().currentUser.getIdTokenResult();
 
     if (productName.trim().length === 0) {
-      alert("Please Fill In The Product Name");
+      alert("Please fill in the product name.");
       return;
     }
 
@@ -103,12 +102,12 @@ export default function VendorDetailProductList(props) {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
-            Authorization: `Bearer ${JWToken.token}`
+            Authorization: `Bearer ${JWToken.token}`,
           },
           body: JSON.stringify({
             productName: productName,
-            productPrice: currency(productPrice)
-          })
+            productPrice: currency(productPrice),
+          }),
         }
       );
       if (result.status === 200) {
@@ -118,7 +117,7 @@ export default function VendorDetailProductList(props) {
         setProductPrice("");
         setUpdatingProduct(null);
       } else {
-        alert("Error: Something went wrong, please try again");
+        alert("Error: Something went wrong, please try again.");
       }
     }
   }
@@ -134,20 +133,19 @@ export default function VendorDetailProductList(props) {
           method: "DELETE",
           headers: {
             Accept: "application/json",
-            Authorization: `Bearer ${JWToken.token}`
-          }
+            Authorization: `Bearer ${JWToken.token}`,
+          },
         }
       );
       if (result.status === 200) {
         console.log("succcess");
         fetchData();
       } else {
-        alert("Error: Something went wrong, please try again");
+        alert("Error: Something went wrong, please try again.");
       }
     }
   }
 
-  //Utility Functions
   function clearForm(event) {
     event.preventDefault();
     setProductName("");
@@ -161,7 +159,7 @@ export default function VendorDetailProductList(props) {
     inputProductName.current.focus();
     window.scrollTo({
       behavior: "smooth",
-      top: 0
+      top: 0,
     });
   }
 
@@ -182,7 +180,7 @@ export default function VendorDetailProductList(props) {
             value={JSON.stringify({
               eventId: eventId,
               eventVendorId: eventVendorId,
-              vendorName: vendorDetails.vendorName
+              vendorName: vendorDetails.vendorName,
             })}
           />
         )}
@@ -195,7 +193,7 @@ export default function VendorDetailProductList(props) {
             type="text"
             placeholder="Product"
             value={productName}
-            onChange={e => setProductName(e.target.value)}
+            onChange={(e) => setProductName(e.target.value)}
           />
           <input
             name="productPrice"
@@ -204,7 +202,7 @@ export default function VendorDetailProductList(props) {
             min="0"
             placeholder="Price"
             value={productPrice}
-            onChange={e => setProductPrice(e.target.value)}
+            onChange={(e) => setProductPrice(e.target.value)}
           />
 
           <div className="buttons">
@@ -237,7 +235,7 @@ export default function VendorDetailProductList(props) {
                 </tr>
               </thead>
               <tbody>
-                {fetchedData.map(product => (
+                {fetchedData.map((product) => (
                   <tr key={product.productId}>
                     <td>{product.productName}</td>
                     <td>{"$" + format(product.productPrice)}</td>
@@ -245,9 +243,9 @@ export default function VendorDetailProductList(props) {
                       <FontAwesomeIcon
                         className="delete"
                         icon={faTimes}
-                        onClick={e =>
+                        onClick={(e) =>
                           window.confirm(
-                            `Are You Sure You Want To Delete: ${product.productName}`
+                            `Are you sure you want to delete: ${product.productName}?`
                           ) && removeProduct(product.productId)
                         }
                       />
@@ -266,7 +264,7 @@ export default function VendorDetailProductList(props) {
           </div>
         )}
       {Object.keys(vendorDetails).length > 0 &&
-        vendorDetails.products.length === 0 && <p>No Products Yet!</p>}
+        vendorDetails.products.length === 0 && <p>No Products Yet</p>}
     </div>
   );
 }

@@ -1,170 +1,70 @@
 .editUserTitle {
-	text-align: center;
-	font-size: 3rem;
-	margin: 5rem 0;
+  text-align: center;
+  font-size: 3rem;
+  margin: 5rem 0;
 }
 
 .adminLabel {
-	font-family: $body-heading-font;
-	padding-left: 5rem;
-	font-size: 1.3rem;
+  font-family: $body-heading-font;
+  padding-left: 5rem;
+  font-size: 1.3rem;
 }
 
 .userContainer {
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 
-	.userName {
-		color: $dark-grey;
-		font-size: 1.2rem;
-	}
+  .userName {
+    color: $dark-grey;
+    font-size: 1.2rem;
+  }
 
-	.switch {
-	position: relative;
-	display: inline-block;
-	width: 60px;
-	height: 34px;
-	outline: none;
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    outline: none;
   }
   .switch input {
-	position: absolute;
-	top: -99999px;
-	left: -99999px;
+    position: absolute;
+    top: -99999px;
+    left: -99999px;
   }
   .slider {
-	position: absolute;
-	cursor: pointer;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color: #ccc;
-	-webkit-transition: .4s;
-	transition: .4s;
-	border-radius: 34px;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 34px;
   }
   .slider:before {
-	position: absolute;
-	content: "";
-	height: 26px;
-	width: 26px;
-	left: 4px;
-	bottom: 4px;
-	background-color: white;
-	-webkit-transition: .4s;
-	transition: .4s;
-	border-radius: 50%;
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 50%;
   }
   input:checked + .slider {
-	background-color: $orange;
+    background-color: $orange;
   }
   input:focus + .slider {
-	box-shadow: 0 0 1px $orange;
+    box-shadow: 0 0 1px $orange;
   }
   input:checked + .slider:before {
-	-webkit-transform: translateX(26px);
-	-ms-transform: translateX(26px);
-	transform: translateX(26px);
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
   }
 }
-
-// .addUserForm {
-// 	display: flex;
-// 	flex-direction: column;
-// 	align-items: center;
-// 	justify-content: center;
-
-// 	input {
-// 		border: none;
-// 		font-size: 1.125rem;
-// 		color: $black;
-// 		padding: 15px;
-// 		border-bottom: 1px solid $light-grey;
-// 		//width: 50%;
-// 		margin: 0 auto;
-// 		text-align: center;
-
-// 		&:focus {
-// 			outline: none;
-// 		}
-
-// 		&::placeholder {
-// 			color: $light-grey;
-// 			font-family: $body-font;
-// 		}
-// 	}
-
-// 	[type=date] {
-// 		color: $light-grey;
-// 		font-family: $body-font;
-
-// 		position: relative;
-
-// 		::-webkit-input-placeholder {
-// 			color: $light-grey;
-// 		}
-// 		::-moz-placeholder {
-// 			color: $light-grey;
-// 		} /* firefox 19+ */
-// 		:-ms-input-placeholder {
-// 			color: $grey;
-// 		} /* ie */
-// 		input:-moz-placeholder {
-// 			color: $grey;
-// 		}
-
-// 		::-webkit-calendar-picker-indicator {
-// 			position: absolute;
-// 			top: 0;
-// 			left: 0;
-// 			bottom: 0;
-// 			right: 0;
-// 			width: auto;
-// 			height: auto;
-// 			color: transparent;
-// 			background: transparent;
-// 		}
-
-// 		::-webkit-inner-spin-button {
-// 			z-index: 1;
-// 		}
-
-// 		::-webkit-clear-button {
-// 			z-index: 1;
-// 		}
-// 	}
-
-// 	.buttons {
-// 		margin-top: 1rem;
-
-// 		button {
-// 			width: 10rem;
-// 			padding: 7px 15px;
-// 			text-align: center;
-// 			border-radius: 10px;
-// 			font-family: $body-font;
-// 			font-size: 1.2rem;
-// 			color: #fff;
-// 			background-color: $orange;
-// 			text-transform: uppercase;
-// 			border: none;
-
-// 			&:focus {
-// 				outline: none;
-// 			}
-
-// 			&:hover {
-// 				background-color: $hover-orange;
-// 			}
-// 		}
-// 	}
-
-// 	.submit {
-// 		margin-right: .5rem;
-
-// 		&:hover {
-// 			background-color: $hover-orange;
-// 		}
-// 	}
-// }

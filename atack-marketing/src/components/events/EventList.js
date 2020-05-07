@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import EventItem from "./EventItem";
 import firebase from "../../firebase";
 import SearchBar from "../SearchBar";
-import { useHistory } from "react-router-dom";
 
 const EventList = (props) => {
   const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/Events";

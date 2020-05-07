@@ -4,7 +4,6 @@ const SearchBar = (props) => {
   const [search, setSearch] = useState(props.search);
 
   const updateSearch = (e) => {
-    //e.preventDefault();
     if (e.target.value !== null) {
       setSearch(e.target.value);
       props.onTermChange(search);

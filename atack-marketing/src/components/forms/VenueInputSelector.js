@@ -13,7 +13,7 @@ export default function VenueInputSelector(props) {
     <Select
       create
       placeholder="Add/Select A Venue"
-      onCreateNew={item => addVenue(item)}
+      onCreateNew={(item) => addVenue(item)}
       searchable
       searchBy="label"
       name="venueId"

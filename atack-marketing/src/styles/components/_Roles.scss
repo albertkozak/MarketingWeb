@@ -1,66 +1,66 @@
 .userButton {
-	font-size: 1rem;
-	margin-left: 5rem;
-	margin-top: 2rem;
-	text-transform: uppercase;
-	color: $white;
-	background-color: $orange;
-	border: none;
-	padding: 7px 17px;
-	border-radius: 10px;
+  font-size: 1rem;
+  margin-left: 5rem;
+  margin-top: 2rem;
+  text-transform: uppercase;
+  color: $white;
+  background-color: $orange;
+  border: none;
+  padding: 7px 17px;
+  border-radius: 10px;
 
-	&:hover {
-		background-color: $hover-orange;
-	}
+  &:hover {
+    background-color: $hover-orange;
+  }
 }
 
 .wrapper {
-	margin-top: 2.5rem;
+  margin-top: 2.5rem;
 }
 
 .userItem {
-	margin: 0 auto;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	align-items: center;
-	width: 65%;
-	padding: .7rem 0;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  width: 65%;
+  padding: 0.7rem 0;
 
-	.userTitle {
-		font-family: $body-font;
-		font-size: 1.2rem;
-		color: $dark-grey;
-		font-weight: 100;
-	}
+  .userTitle {
+    font-family: $body-font;
+    font-size: 1.2rem;
+    color: $dark-grey;
+    font-weight: 100;
+  }
 
-	.isAdmin {
-		text-align: center;
-		font-size: 1.1rem;
-		color: $grey;
+  .isAdmin {
+    text-align: center;
+    font-size: 1.1rem;
+    color: $grey;
 
-		.adminStyle {
-			display: flex;
-			justify-content: center;
-			align-items: center;
+    .adminStyle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-			.adminIcon {
-				margin-right: .5rem;
-				color: $orange;
-			}
-		}
-	}
+      .adminIcon {
+        margin-right: 0.5rem;
+        color: $orange;
+      }
+    }
+  }
 
-	.edit-del-links {
-		text-align: right;
-		color: $grey;
+  .edit-del-links {
+    text-align: right;
+    color: $grey;
 
-		a {
-			text-decoration: none;
-			color: $orange;
+    a {
+      text-decoration: none;
+      color: $orange;
 
-			&:hover {
-				color: $hover-orange;
-			  }
-		}
-	}
+      &:hover {
+        color: $hover-orange;
+      }
+    }
+  }
 }

@@ -3,7 +3,7 @@ import VenueItem from "./VenueItem";
 import firebase from "../../firebase";
 import SearchBar from "../SearchBar";
 
-const VenueList = (props) => {
+const VenueList = () => {
   const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/";
   const [fetchedVenues, setFetchedVenues] = useState([]);
   const [search, setSearch] = useState("");

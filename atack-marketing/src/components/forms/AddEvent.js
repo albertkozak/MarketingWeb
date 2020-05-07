@@ -15,26 +15,24 @@ export default function AddEvent() {
   const [startDate, setStartDate] = useState("");
   const [startTime, setstartTime] = useState("");
 
-  // Add GET Request here for Venues & Event Organizers
-
   function fetchVenues() {
     firebase
       .auth()
       .currentUser.getIdTokenResult()
-      .then(tokenResponse => {
+      .then((tokenResponse) => {
         fetch(BASE_URL + "Venues", {
           method: "GET",
           headers: {
             Accept: "application/json",
-            Authorization: `Bearer ${tokenResponse.token}`
-          }
+            Authorization: `Bearer ${tokenResponse.token}`,
+          },
         })
-          .then(response => response.json())
-          .then(responseData => {
+          .then((response) => response.json())
+          .then((responseData) => {
             setFetchedVenues(
               responseData.map((venue, index) => ({
                 value: venue.venueId,
-                label: venue.venueName
+                label: venue.venueName,
               }))
             );
           });
@@ -48,17 +46,15 @@ export default function AddEvent() {
   async function createEvent(event) {
     event.preventDefault();
 
-    //Parse Date
     var eventDateParsed = new Date(`${startDate}T${startTime}`);
     var eventNameTrimmed = eventName.trim();
 
-    //Validate Other Fields
     if (
       eventNameTrimmed.length === 0 ||
       selectedVenue.length === 0 ||
       isNaN(eventDateParsed.getTime())
     ) {
-      setErrorMessage("Please fill all required fields");
+      setErrorMessage("Please fill all required fields.");
     } else {
       setErrorMessage("");
 
@@ -70,25 +66,24 @@ export default function AddEvent() {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
-            Authorization: `Bearer ${JWToken.token}`
+            Authorization: `Bearer ${JWToken.token}`,
           },
           body: JSON.stringify({
             eventName: eventNameTrimmed,
             eventStartDateTime: eventDateParsed,
-            venueId: selectedVenue[0].value
-          })
+            venueId: selectedVenue[0].value,
+          }),
         });
 
         if (result.status === 201) {
           history.push("/");
         } else {
-          alert("Error: Something went wrong, please try again");
+          alert("Error: Something went wrong, please try again.");
         }
       }
     }
   }
 
-  //Form Handlers
   function cancelButton(event) {
     event.preventDefault();
     history.push("/");
@@ -113,21 +108,21 @@ export default function AddEvent() {
             type="text"
             placeholder="Title"
             value={eventName}
-            onChange={e => setEventName(e.target.value)}
+            onChange={(e) => setEventName(e.target.value)}
           />
           <input
             name="eventStartDate"
             type="date"
             placeholder="Start Date"
             value={startDate}
-            onChange={e => setStartDate(e.target.value)}
+            onChange={(e) => setStartDate(e.target.value)}
           />
           <input
             name="eventStartTime"
             type="time"
             placeholder="Start Time"
             value={startTime}
-            onChange={e => setstartTime(e.target.value)}
+            onChange={(e) => setstartTime(e.target.value)}
           />
           <div className="input-selector">
             <VenueInputSelector
