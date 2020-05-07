@@ -21,7 +21,7 @@
 
 .header li a {
   font-family: $heading-font;
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   font-weight: 100;
   display: block;
   padding: 20px 20px;
@@ -56,13 +56,13 @@
   clear: both;
   max-height: 0;
   transition: max-height 0.2s ease-out;
-  padding-right: 10px;
+  padding-right: 0px;
 }
 
 .header .menu-icon {
   cursor: pointer;
   display: inline-block;
-  padding: 20px 20px 42px;
+  padding: 20px 20px 40px;
   position: relative;
   user-select: none;
   float: right;
@@ -107,7 +107,7 @@
 }
 
 .header .menu-btn:checked ~ .menu {
-  max-height: 300px; // Height adjustment for open menu - mobile
+  max-height: 550px; // Height adjustment for open menu - mobile
 }
 
 .header .menu-btn:checked ~ .menu-icon .navicon {

@@ -22,9 +22,9 @@ const NavComponent = () => {
             <li>
               <Link to="/home">Home</Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/qrcode">QR Code</Link>
-            </li>
+            </li> */}
             <li>
               <Link to="/roles">Roles</Link>
             </li>
@@ -37,9 +37,9 @@ const NavComponent = () => {
             <li>
               <Link to="/export">Export</Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/Profile">Profile</Link>
-            </li>
+            </li> */}
             <li>
               <Logout />
             </li>
