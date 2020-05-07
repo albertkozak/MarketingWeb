@@ -35,7 +35,7 @@ const DeleteEvent = (props) => {
 
   return (
     <div className="container">
-      <h1 className="addEventTitle">Delete {currentEvent.eventName}?</h1>
+      <h1 className="deleteEventTitle">Delete {currentEvent.eventName}?</h1>
       <div className="eventFormDelete">
         <input placeholder={currentEvent.eventName} />
         <input placeholder={Date(currentEvent.eventStartDateTime)} />
