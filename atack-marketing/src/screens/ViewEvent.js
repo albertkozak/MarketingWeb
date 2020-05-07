@@ -227,37 +227,6 @@ const ViewEvent = (props) => {
         </>
          )}
           {isEO && (
-        <div className="eventDetailsWrapper">
-          <div className="eventOrganziersContainer">
-            <div className="containerHeading">
-              <h3 className="eventOrganizers">Event Organizers</h3>
-              <Link
-                to={{
-                  pathname: "/addeventorganizers",
-                  state: { currentEvent, fetchedEOs },
-                }}
-              >
-                <button className="addVendorButton">Add Organizer</button>
-              </Link>
-            </div>
-            {fetchedEOs.length === 0 ? (
-              <p className="nullText">
-                No event organizers have been added yet.
-              </p>
-            ) : (
-              <ul className="eventOrganizersList">
-                {fetchedEOs.map((eo) => (
-                  <EventOrganizerItem
-                    key={eo.eventOrganizerId}
-                    eo={eo}
-                    eventId={id}
-                    handleChange={handleChange}
-                  />
-                ))}
-              </ul>
-            )}
-          </div>
-
           <div className="eventVendorsContainer">
             <div className="containerHeading">
               <h3 className="eventVendors">Event Vendors</h3>
@@ -290,7 +259,6 @@ const ViewEvent = (props) => {
               </ul>
             )}
           </div>
-        </div>
 
          )}
          {isVendor && (

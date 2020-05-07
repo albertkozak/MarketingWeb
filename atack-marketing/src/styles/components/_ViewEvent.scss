@@ -91,6 +91,7 @@
     justify-content: space-between;
     width: 80%;
     margin: 0 auto;
+  }
 
     .containerHeading {
       display: flex;
@@ -117,6 +118,10 @@
         margin-left: 1rem;
         color: $error;
       }
+    }
+
+    .eventVendorsContainer {
+      margin-top: 3rem;
     }
 
     .eventVendorItem {
@@ -194,4 +199,4 @@
       cursor: pointer;
     }
   }
-}
+
