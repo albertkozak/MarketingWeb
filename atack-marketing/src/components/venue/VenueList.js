@@ -7,7 +7,7 @@ const VenueList = () => {
   const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/";
   const [fetchedVenues, setFetchedVenues] = useState([]);
   const [search, setSearch] = useState("");
-  const [searchedVenues, setSearchedVenues] = useState("");
+  // const [searchedVenues, setSearchedVenues] = useState("");
 
   function fetchVenues() {
     firebase
@@ -25,11 +25,11 @@ const VenueList = () => {
           .then((responseData) => {
             setFetchedVenues(responseData);
           });
-        setSearchedVenues(
-          fetchedVenues.filter((venue) => {
-            return venue.venueName.toLowerCase().includes(search.toLowerCase());
-          })
-        );
+        // setSearchedVenues(
+        //   fetchedVenues.filter((venue) => {
+        //     return venue.venueName.toLowerCase().includes(search.toLowerCase());
+        //   })
+        // );
       });
   }
 
@@ -37,23 +37,37 @@ const VenueList = () => {
     fetchVenues();
   }, []);
 
-  let venueData;
-  if (search.length === 0) {
-    venueData = fetchedVenues;
-  } else {
-    venueData = searchedVenues;
+  // let venueData;
+  // if (search.length === 0) {
+  //   venueData = fetchedVenues;
+  // } else {
+  //   venueData = searchedVenues;
+  // }
+
+  function handleSearchTerm(event) {
+    setSearch(event.target.value);
   }
 
   return (
     <div className="wrapper">
       <SearchBar
         search={search}
-        onTermChange={(newSearch) => setSearch(newSearch)}
-        onTermSubmit={() => fetchVenues()}
+        handleSearchTerm={(e) => handleSearchTerm(e)}
+        value={search}
       />
-      {venueData.map((venue) => (
-        <VenueItem key={venue.venueid} venue={venue} />
-      ))}
+      {fetchedVenues.length === 0 ? (
+        <p>There are no venues at this time.</p>
+      ) : (
+        <div>
+          {fetchedVenues
+            .filter((venue) =>
+              venue.venueName.toLowerCase().includes(search.toLowerCase())
+            )
+            .map((venue) => (
+              <VenueItem key={venue.venueid} venue={venue} />
+            ))}
+        </div>
+      )}
     </div>
   );
 };
