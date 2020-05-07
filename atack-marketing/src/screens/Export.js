@@ -55,6 +55,23 @@ const Export = () => {
     console.log(event);
   }
 
+  const print = () => {
+    var prtContent = document.getElementById("printable");
+    if (prtContent === null) {
+      alert("There is nothing to print");
+    } else {
+      var WinPrint = window.open(
+        "",
+        "",
+        "left=0,top=0,width=900,height=900,toolbar=0,scrollbars=0,status=0"
+      );
+      WinPrint.document.write(prtContent.innerHTML);
+      WinPrint.document.close();
+      WinPrint.focus();
+      WinPrint.print();
+    }
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -62,6 +79,9 @@ const Export = () => {
   return (
     <div className="container-export">
       <h1>Export</h1>
+      <p style={{ cursor: "pointer" }} onClick={print} href="#">
+        Print Report
+      </p>
       {event.length === 0 || event === undefined || event === null ? (
         <p></p>
       ) : (
@@ -72,7 +92,7 @@ const Export = () => {
         />
       )}
       {subscriberData && (
-        <div>
+        <div id="printable">
           <h3>
             {subscriberData.eventName} - {subscriberData.vendorName}
           </h3>
