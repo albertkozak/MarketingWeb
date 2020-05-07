@@ -13,6 +13,8 @@ const EventList = (props) => {
   const isEO = user.isEventOrganizer;
   const isVendor = user.isVendor;
   const [passingUser, setPassingUser] = useState([])
+  const [eventVendorId, setEventVendorId] = useState(null)
+  const [eventVendorUserEvents, setEventVendorUserEvents] = useState(null)
 
   useEffect(() => {
     if (Object.keys(user).length > 0) {
@@ -41,7 +43,19 @@ const EventList = (props) => {
             .then((responseData) => {
               setFetchedEvents(responseData.events);
             });
-        });
+            fetch(BASE_URL + "EventVendorUser", {
+              method: "GET",
+              headers: {
+                Accept: "application/json",
+                Authorization: `Bearer ${tokenResponse.token}`,
+              },
+            })
+              .then((response) => response.json())
+              .then((responseData) => {
+                setEventVendorUserEvents(responseData.userEventVendors)
+                setEventVendorId(responseData.userEventVendors.eventVendorId)
+              });
+          });
     } else if (isEO) {
       firebase
         .auth()
@@ -74,10 +88,14 @@ const EventList = (props) => {
             .then((response) => response.json())
             .then((responseData) => {
               setFetchedEvents(responseData.userEventVendors);
+              setEventVendorId(responseData.userEventVendors.eventVendorId)
             });
         });
     } else setFetchedEvents(null);
   };
+
+  console.log(eventVendorId)
+  console.log(eventVendorUserEvents)
 
   function handleSearchTerm(event) {
     setSearch(event.target.value);
@@ -99,7 +117,7 @@ const EventList = (props) => {
               event.eventName.toLowerCase().includes(search.toLowerCase())
             )
             .map((event) => (
-              <EventItem key={event.eventId} event={event} user={passingUser} />
+              <EventItem key={event.eventId} event={event} user={passingUser} eventVendorId={eventVendorId} />
             ))}
         </div>
       )}

@@ -76,11 +76,12 @@
 
     a {
       text-decoration: none;
-      color: $orange;
+      color: $grey;
       font-size: 0.9rem;
 
       &:hover {
-        color: $hover-orange;
+        color: $light-grey;
+        cursor: pointer;
       }
     }
   }

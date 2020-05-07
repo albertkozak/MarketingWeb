@@ -12,6 +12,7 @@ import { faClock, faMapMarkerAlt, faGlobe } from "@fortawesome/free-solid-svg-ic
 const ViewEvent = (props) => {
   const currentEvent = props.location.state.event;
   const user = props.location.state.user;
+  const eventVendorId = props.location.state.eventVendorId;
   const venue = currentEvent.venue;
   const id = currentEvent.eventId;
   const [fetchedEOs, setFetchedEOs] = useState([]);
@@ -29,12 +30,16 @@ const ViewEvent = (props) => {
 
   let history = useHistory();
 
-  const renderScreen = () => {
+  const renderAdminPanel = () => {
     if(user.isAdmin) {
       setIsAdmin(true)
     } else if (user.isEventOrganizer) {
       setIsEO(true)
-    } else if (user.isVendor) {
+    } 
+  }
+
+  const renderVendorPanel = () => {
+    if(eventVendorId != null) {
       setIsVendor(true)
     }
   }
@@ -82,9 +87,10 @@ const ViewEvent = (props) => {
 // }
 
   useEffect(() => {
-    renderScreen();
+    renderAdminPanel();
     fetchEOs();
     fetchVendors();
+    renderVendorPanel();
     setRefreshComponent(false);
   }, [refreshComponent]);
 
