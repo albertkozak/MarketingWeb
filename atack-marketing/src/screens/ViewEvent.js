@@ -179,17 +179,6 @@ const ViewEvent = (props) => {
 												handleClickedProduct
 											}
 										/>
-
-										{/* <Link to={{
-							pathname: "/vendordetailproductlist",
-							state: { eventId, eventVendorId },
-							}}
-							>
-							<button className="addProductButton"
-							>
-							Product List
-							</button>
-							</Link> */}
 									</>
 								))}
 							</ul>

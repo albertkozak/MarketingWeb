@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import firebase from './firebase'
 import { BrowserRouter as Router, Route, Switch, withRouter } from 'react-router-dom';
 import Home from './screens/Home';
 import Navbar from './components/Navbar';
@@ -34,6 +35,7 @@ import ViewVenue from './screens/ViewVenue'
 import DeleteVenue from './components/forms/DeleteVenue'
 
 function App() {
+
 	return (
 		<AuthProvider>
 			<Router>
@@ -45,6 +47,7 @@ function App() {
 }
 
 export const Main = withRouter(({ location }) => {
+
 	return (
 		<div>
 			{location.pathname !== '/login' &&
@@ -52,7 +55,6 @@ export const Main = withRouter(({ location }) => {
 			location.pathname !== '/forgotpassword' && <Navbar />}
 			<Switch>
 				<PrivateRoute exact path="/" component={Home} />
-				<PrivateRoute exact path="/home" component={Home} />
 				<PrivateRoute exact path="/qrcode" component={QRCode} />
 				<PrivateRoute exact path="/roles" component={Roles} />
 				<PrivateRoute exact path="/export" component={Export} />
