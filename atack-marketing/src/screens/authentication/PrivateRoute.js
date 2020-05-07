@@ -44,19 +44,14 @@ const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
       }
     }
 
-  
-    return (
-      <Route
-        {...rest}
-        render={routeProps =>
-          render === null ? (
-              <RouteComponent {...routeProps} user={user} />
-            ) : (
-                render
-              )
-        }
-      />
-    );
-  }
-  
-  export default PrivateRoute;
+  return (
+    <Route
+      {...rest}
+      render={(routeProps) =>
+        render === null ? <RouteComponent {...routeProps} /> : render
+      }
+    />
+  );
+};
+
+export default PrivateRoute;

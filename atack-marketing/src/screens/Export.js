@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import firebase from "../firebase";
 import EventInputSelector from "../components/forms/EventInputSelector";
 
-const Export = props => {
+const Export = () => {
   const [event, setEvent] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState([]);
   const [subscriberData, setSubscriberData] = useState(null);
@@ -14,36 +14,35 @@ const Export = props => {
     firebase
       .auth()
       .currentUser.getIdTokenResult()
-      .then(tokenResponse => {
+      .then((tokenResponse) => {
         fetch(BASE_URL, {
           method: "GET",
           headers: {
             Accept: "application/json",
-            Authorization: `Bearer ${tokenResponse.token}`
-          }
+            Authorization: `Bearer ${tokenResponse.token}`,
+          },
         })
-          .then(response => response.json())
-          .then(responseData => {
+          .then((response) => response.json())
+          .then((responseData) => {
             setEvent(responseData);
-            // console.log(responseData);
           });
       });
   };
 
-  const fetchSubscriberList = eventVendorId => {
+  const fetchSubscriberList = (eventVendorId) => {
     firebase
       .auth()
       .currentUser.getIdTokenResult()
-      .then(tokenResponse => {
+      .then((tokenResponse) => {
         fetch(BASE_URL + `/${eventVendorId}`, {
           method: "GET",
           headers: {
             Accept: "application/json",
-            Authorization: `Bearer ${tokenResponse.token}`
-          }
+            Authorization: `Bearer ${tokenResponse.token}`,
+          },
         })
-          .then(response => response.json())
-          .then(responseData => {
+          .then((response) => response.json())
+          .then((responseData) => {
             setSubscriberData(responseData);
             console.log(responseData);
           });
@@ -61,7 +60,8 @@ const Export = props => {
   }, []);
 
   return (
-    <div className="container">
+    <div className="container-export">
+      <h1>Export</h1>
       <EventInputSelector
         data={event}
         selectedEvent={selectedEvent}

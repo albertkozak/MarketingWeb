@@ -2,13 +2,13 @@ import React from "react";
 import firebase from "../../firebase";
 import { useHistory } from "react-router-dom";
 
-const DeleteEvent = props => {
+const DeleteEvent = (props) => {
   const currentEvent = props.location.state.currentEvent;
   const history = useHistory();
 
   const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/";
 
-  const deleteEvent = async e => {
+  const deleteEvent = async (e) => {
     let JWToken = await (await firebase.auth().currentUser.getIdTokenResult())
       .token;
 
@@ -19,23 +19,23 @@ const DeleteEvent = props => {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          Authorization: `Bearer ${JWToken}`
+          Authorization: `Bearer ${JWToken}`,
         },
         body: JSON.stringify({
-          deleteConfirmation: "ConfirmDELETE - " + currentEvent.eventName
-        })
+          deleteConfirmation: "ConfirmDELETE - " + currentEvent.eventName,
+        }),
       });
       if (result.status === 200) {
         window.location.href = "/";
       } else {
-        alert("Error: Something went wrong, please try again");
+        alert("Error: Something went wrong, please try again.");
       }
     }
   };
 
   return (
     <div className="container">
-      <h1 className="addEventTitle">Delete {currentEvent.eventName}?</h1>
+      <h1 className="deleteEventTitle">Delete {currentEvent.eventName}?</h1>
       <div className="eventFormDelete">
         <input placeholder={currentEvent.eventName} />
         <input placeholder={Date(currentEvent.eventStartDateTime)} />
@@ -44,7 +44,7 @@ const DeleteEvent = props => {
         <div className="buttons">
           <button
             className="submit"
-            onClick={e =>
+            onClick={(e) =>
               window.confirm("Are you sure you wish to delete this event?") &&
               deleteEvent()
             }
@@ -56,7 +56,7 @@ const DeleteEvent = props => {
             className="cancel"
             variant=""
             type="submit"
-            onClick={() => history.push("/")}
+            onClick={() => history.goBack()}
           >
             Cancel
           </button>

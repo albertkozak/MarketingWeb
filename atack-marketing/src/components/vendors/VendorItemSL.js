@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 
 const VendorItemSL = (props) => {
-	const vendor = props.vendor;
-	console.log(vendor);
+  const vendor = props.vendor;
+  console.log(vendor);
 
-	return (
-		<div className="vendorSL">
-			<p className="vendorName">{vendor.vendorName}</p>
-		</div>
-	);
+  return (
+    <div className="vendorSL">
+      <p className="vendorName">{vendor.vendorName}</p>
+    </div>
+  );
 };
 
 export default VendorItemSL;
