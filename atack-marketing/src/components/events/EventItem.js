@@ -13,7 +13,7 @@ const EventItem = (props) => {
       <Link
         to={{
           pathname: "/event",
-          state: { event },
+          state: { event, user },
         }}
       >
         <h3 className="eventTitle">{event.eventName}</h3>
@@ -23,7 +23,7 @@ const EventItem = (props) => {
         <Link
           to={{
             pathname: "/event",
-            state: { event },
+            state: { event, user },
           }}
         >
           <p>View Event</p>

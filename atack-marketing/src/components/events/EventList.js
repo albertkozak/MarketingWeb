@@ -18,6 +18,7 @@ const EventList = (props) => {
     if (Object.keys(user).length > 0) {
       fetchData();
       setPassingUser(user)
+      console.log(user)
     }
   }, [user]);
 
@@ -97,7 +98,7 @@ const EventList = (props) => {
               event.eventName.toLowerCase().includes(search.toLowerCase())
             )
             .map((event) => (
-              <EventItem key={event.eventId} event={event} user={user} />
+              <EventItem key={event.eventId} event={event} user={passingUser} />
             ))}
         </div>
       )}

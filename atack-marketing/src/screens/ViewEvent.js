@@ -9,21 +9,36 @@ import VendorDetailProductList from "../components/products/VendorDetailProductL
 
 const ViewEvent = (props) => {
   const currentEvent = props.location.state.event;
+  const user = props.location.state.user;
   const venue = currentEvent.venue;
   const id = currentEvent.eventId;
   const [fetchedEOs, setFetchedEOs] = useState([]);
   const [fetchedVendors, setFetchedVendors] = useState([]);
   const [refreshComponent, setRefreshComponent] = useState(false);
-
   const [productVendor, setProductVendor] = useState(null);
 
   const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/";
   const EO_URL = BASE_URL + "EventOrganizer/";
   const VENDOR_URL = BASE_URL + "Events/" + id;
 
+  const [isAdmin, setIsAdmin] = useState(false)
+  const [isEO, setIsEO] = useState(false)
+  const [isVendor, setIsVendor] = useState(false)
+
   let history = useHistory();
 
+  const renderScreen = () => {
+    if(user.isAdmin) {
+      setIsAdmin(true)
+    } else if (user.isEventOrganizer) {
+      setIsEO(true)
+    } else if (user.isVendor) {
+      setIsVendor(true)
+    }
+  }
+
   const fetchEOs = () => {
+    if(isAdmin || isEO ){
     firebase
       .auth()
       .currentUser.getIdTokenResult()
@@ -41,8 +56,10 @@ const ViewEvent = (props) => {
           });
       });
   };
+}
 
   const fetchVendors = () => {
+    if(isAdmin || isEO ){
     firebase
       .auth()
       .currentUser.getIdTokenResult()
@@ -60,8 +77,10 @@ const ViewEvent = (props) => {
           });
       });
   };
+}
 
   useEffect(() => {
+    renderScreen();
     fetchEOs();
     fetchVendors();
     setRefreshComponent(false);
@@ -93,26 +112,30 @@ const ViewEvent = (props) => {
             <p className="venueWebsite">{venue.venueWebsite}</p>
           </div>
         </div>
+        {isAdmin && (
+          <>
         <div className="edit-del-links">
           <Link
-            to={{
+             to={{
               pathname: "/editEvent",
               state: { currentEvent },
             }}
           >
-            {" "}
-            <p className="edit">Edit Event</p>{" "}
-          </Link>
-          <Link
-            to={{
-              pathname: "/deleteEvent",
-              state: { currentEvent },
-            }}
-          >
-            {" "}
-            <p className="delete">Delete</p>{" "}
-          </Link>
+        {" "}
+        <p className="edit">Edit Event</p>{" "}
+        </Link>
+    <Link
+        to={{
+          pathname: "/deleteEvent",
+          state: { currentEvent },
+        }}
+    >
+  {" "}
+      <p className="delete">Delete</p>{" "}
+      </Link>
         </div>
+
+       
         <div className="eventDetailsWrapper">
           <div className="eventOrganziersContainer">
             <div className="containerHeading">
@@ -177,6 +200,76 @@ const ViewEvent = (props) => {
             )}
           </div>
         </div>
+        </>
+         )}
+          {isEO && (
+        <div className="eventDetailsWrapper">
+          <div className="eventOrganziersContainer">
+            <div className="containerHeading">
+              <h3 className="eventOrganizers">Event Organizers</h3>
+              <Link
+                to={{
+                  pathname: "/addeventorganizers",
+                  state: { currentEvent, fetchedEOs },
+                }}
+              >
+                <button className="addVendorButton">Add Organizer</button>
+              </Link>
+            </div>
+            {fetchedEOs.length === 0 ? (
+              <p className="nullText">
+                No event organizers have been added yet.
+              </p>
+            ) : (
+              <ul className="eventOrganizersList">
+                {fetchedEOs.map((eo) => (
+                  <EventOrganizerItem
+                    key={eo.eventOrganizerId}
+                    eo={eo}
+                    eventId={id}
+                    handleChange={handleChange}
+                  />
+                ))}
+              </ul>
+            )}
+          </div>
+
+          <div className="eventVendorsContainer">
+            <div className="containerHeading">
+              <h3 className="eventVendors">Event Vendors</h3>
+              <Link
+                to={{
+                  pathname: "/addeventvendor",
+                  state: { currentEvent, fetchedVendors },
+                }}
+              >
+                <button className="addVendorButton">Add Vendor</button>
+              </Link>
+            </div>
+
+            {fetchedVendors.length === 0 ? (
+              <p>No Vendors have been added yet.</p>
+            ) : (
+              <ul className="eventVendorsList">
+                {fetchedVendors.map((vendor) => (
+                  <>
+                    <EventVendorItem
+                      key={vendor.eventVendorId}
+                      vendor={vendor}
+                      eventId={id}
+                      eventName={currentEvent.eventName}
+                      handleChange={handleChange}
+                      handleClickedProduct={handleClickedProduct}
+                    />
+                  </>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
+
+         )}
+         {isVendor && (
         <div className="eventVendorWrapper">
           <div className="vendorProductListContainer">
             <div className="containerHeading">
@@ -199,6 +292,7 @@ const ViewEvent = (props) => {
             <button className="qrButton">Generate QR Code</button>
           </div>
         </div>
+    )}
       </div>
     </div>
   );
