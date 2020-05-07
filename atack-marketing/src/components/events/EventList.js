@@ -132,6 +132,12 @@ const EventList = (props) => {
             ))}
         </div>
       )}
+      {/* {isEO && eventVendorUserEvents !== null (
+        <div>
+          <h3>Vendored Events</h3>
+          {eventVendorUserEvents}
+        </div>
+      )} */}
     </div>
   );
 };
