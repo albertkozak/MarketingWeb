@@ -10,6 +10,16 @@
     p {
       font-size: 0.9rem;
     }
+
+    .eventTime {
+      display: flex;
+      align-items: center;
+
+      .clock {
+        color: $grey;
+        margin-right: .5rem;
+      }
+    }
   }
 
   h2 {
@@ -49,19 +59,25 @@
     display: flex;
     align-items: center;
 
+    .venueLocation {
+      display: flex;
+      align-items: center;
+
     .venue {
       font-size: 0.9rem;
       margin-right: 5rem;
     }
 
-    .venueWebsite {
-      font-size: 0.9rem;
+    .location {
       color: $grey;
+      margin-right: .5rem;
     }
+  }
 
     a {
       text-decoration: none;
       color: $orange;
+      font-size: 0.9rem;
 
       &:hover {
         color: $hover-orange;
