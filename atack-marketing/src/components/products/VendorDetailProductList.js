@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import firebase from "../../firebase";
 import currency from "currency.js";
-import { faTimes, faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faTimes, faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { BASE_URL } from "../../Config";
 import { QRCode } from "react-qr-svg";
@@ -17,10 +17,13 @@ export default function VendorDetailProductList(props) {
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState("");
 
-  const [updatingProdcut, setUpdatingProduct] = useState(null);
+  const [updatingProduct, setUpdatingProduct] = useState(null);
   const inputProductName = useRef();
 
+  const [isShown, setIsShown] = useState(false)
+
   function fetchData() {
+    console.log("fetching data")
     setUpdatingProduct(null);
     firebase
       .auth()
@@ -47,6 +50,7 @@ export default function VendorDetailProductList(props) {
   }, []);
 
   async function createProduct(event) {
+    console.log("creating product")
     setUpdatingProduct(null);
     event.preventDefault();
     let JWToken = await firebase.auth().currentUser.getIdTokenResult();
@@ -85,6 +89,7 @@ export default function VendorDetailProductList(props) {
   }
 
   async function updateProduct(event) {
+    console.log("updating product")
     event.preventDefault();
     let JWToken = await firebase.auth().currentUser.getIdTokenResult();
 
@@ -96,7 +101,7 @@ export default function VendorDetailProductList(props) {
     if (JWToken !== null) {
       const result = await fetch(
         BASE_URL +
-          `/EventVendor/${eventVendorId}/products/${updatingProdcut.productId}`,
+          `/EventVendor/${eventVendorId}/products/${updatingProduct.productId}`,
         {
           method: "PUT",
           headers: {
@@ -123,6 +128,7 @@ export default function VendorDetailProductList(props) {
   }
 
   async function removeProduct(productId) {
+    console.log("removing product")
     setUpdatingProduct(null);
     let JWToken = await firebase.auth().currentUser.getIdTokenResult();
 
@@ -153,13 +159,14 @@ export default function VendorDetailProductList(props) {
   }
 
   function updateProductButton(product) {
+    console.log("updating")
     setUpdatingProduct(product);
     setProductName(product.productName);
     setProductPrice(product.productPrice);
     inputProductName.current.focus();
     window.scrollTo({
       behavior: "smooth",
-      top: 0,
+      //top: 0,
     });
   }
 
@@ -170,22 +177,11 @@ export default function VendorDetailProductList(props) {
   }
 
   return (
-    <div className="container">
-      <h1 className="addProductTitle">Manage Products</h1>
-      <div className="qrGenerator">
-        {Object.keys(vendorDetails).length > 0 && (
-          <QRCode
-            level="Q"
-            style={{ width: 256 }}
-            value={JSON.stringify({
-              eventId: eventId,
-              eventVendorId: eventVendorId,
-              vendorName: vendorDetails.vendorName,
-            })}
-          />
-        )}
-      </div>
-      <div>
+    // <div>
+    //   <h3 className="addProductTitle">Event Products</h3>
+      <div className="products-container">
+      <div className="productListContainer">
+        <div>
         <form id="add-product-form" className="addProductForm">
           <input
             ref={inputProductName}
@@ -206,13 +202,13 @@ export default function VendorDetailProductList(props) {
           />
 
           <div className="buttons">
-            {updatingProdcut !== null ? (
+            {(updatingProduct !== undefined) && (updatingProduct !== null) ? (
               <button className="submit" variant="" onClick={updateProduct}>
                 Update
               </button>
             ) : (
               <button className="submit" variant="" onClick={createProduct}>
-                Add Product
+                Add
               </button>
             )}
 
@@ -225,21 +221,25 @@ export default function VendorDetailProductList(props) {
 
       {Object.keys(vendorDetails).length > 0 &&
         vendorDetails.products.length > 0 && (
-          <div className="productList">
-            <h3> {vendorDetails.vendorName}</h3> <h3>{eventName}</h3>
-            <table className="productTable">
-              <thead>
-                <tr>
-                  <th>Product Name</th>
-                  <th>Product Price</th>
-                </tr>
-              </thead>
-              <tbody>
+          <div 
+            className="productList"
+          >
+            {fetchedData.length === 0 ? (
+              <p>There are no products yet.</p>
+            ) : (
+              <ul>
                 {fetchedData.map((product) => (
-                  <tr key={product.productId}>
-                    <td>{product.productName}</td>
-                    <td>{"$" + format(product.productPrice)}</td>
-                    <td>
+                  <li 
+                  key={product.productId}
+                  >
+                    <p>{product.productName}</p>
+                    <p>{"$" + format(product.productPrice)}</p>
+                    <div className="links">
+                    <FontAwesomeIcon
+                        className="edit"
+                        icon={faPen}
+                        onClick={() => updateProductButton(product)}
+                      />
                       <FontAwesomeIcon
                         className="delete"
                         icon={faTimes}
@@ -249,22 +249,31 @@ export default function VendorDetailProductList(props) {
                           ) && removeProduct(product.productId)
                         }
                       />
-                    </td>
-                    <td>
-                      <FontAwesomeIcon
-                        className="edit"
-                        icon={faEdit}
-                        onClick={() => updateProductButton(product)}
-                      />
-                    </td>
-                  </tr>
+                    </div>
+                  </li>
                 ))}
-              </tbody>
-            </table>
+              </ul>
+            )}
           </div>
         )}
       {Object.keys(vendorDetails).length > 0 &&
         vendorDetails.products.length === 0 && <p>No Products Yet</p>}
+      </div>
+
+<div className="qrGenerator">
+        {Object.keys(vendorDetails).length > 0 && (
+          <QRCode
+            level="Q"
+            style={{ width: 150 }}
+            value={JSON.stringify({
+              eventId: eventId,
+              eventVendorId: eventVendorId,
+              vendorName: vendorDetails.vendorName,
+            })}
+          />
+        )}
+      </div>
     </div>
+    // </div>
   );
 }

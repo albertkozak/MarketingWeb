@@ -10,6 +10,16 @@
     p {
       font-size: 0.9rem;
     }
+
+    .eventTime {
+      display: flex;
+      align-items: center;
+
+      .clock {
+        color: $grey;
+        margin-right: .5rem;
+      }
+    }
   }
 
   h2 {
@@ -49,22 +59,29 @@
     display: flex;
     align-items: center;
 
+    .venueLocation {
+      display: flex;
+      align-items: center;
+
     .venue {
       font-size: 0.9rem;
       margin-right: 5rem;
     }
 
-    .venueWebsite {
-      font-size: 0.9rem;
+    .location {
       color: $grey;
+      margin-right: .5rem;
     }
+  }
 
     a {
       text-decoration: none;
-      color: $orange;
+      color: $grey;
+      font-size: 0.9rem;
 
       &:hover {
-        color: $hover-orange;
+        color: $light-grey;
+        cursor: pointer;
       }
     }
   }
@@ -74,6 +91,7 @@
     justify-content: space-between;
     width: 80%;
     margin: 0 auto;
+  }
 
     .containerHeading {
       display: flex;
@@ -100,6 +118,10 @@
         margin-left: 1rem;
         color: $error;
       }
+    }
+
+    .eventVendorsContainer-eo {
+      margin-top: 3rem;
     }
 
     .eventVendorItem {
@@ -135,8 +157,6 @@
   }
 
   .eventVendorWrapper {
-    display: flex;
-    justify-content: space-between;
     width: 80%;
     margin: 1rem auto;
 
@@ -152,24 +172,19 @@
       margin-right: 3rem;
     }
 
-    li {
-      list-style-type: none;
-      padding: 0.5rem 0;
-    }
-
-    .product {
+    .products-container {
       display: flex;
-      margin-left: 2rem;
+      justify-content: space-between;
 
-      .productName {
-        font-size: 0.9rem;
+      .productListContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 1.1rem;
       }
 
-      .price {
-        margin-left: 0.8rem;
-        font-size: 0.9rem;
-        color: $grey;
-        justify-self: end;
+      .qrGenerator {
+        align-self: flex-start
       }
     }
 
@@ -185,4 +200,4 @@
       cursor: pointer;
     }
   }
-}
+

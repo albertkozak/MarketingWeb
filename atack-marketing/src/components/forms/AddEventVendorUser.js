@@ -132,7 +132,7 @@ const AddEventVendorUser = (props) => {
         {vendorName}'s Users for {eventName}
       </h1>
       <p className="goBack" onClick={cancelButton}>
-        Go Back to Event
+        Back to Event
       </p>
       <p className="form-error">{errorMessage}</p>
       <div className="input-selector">

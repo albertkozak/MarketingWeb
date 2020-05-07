@@ -12,6 +12,7 @@ import { faClock, faMapMarkerAlt, faGlobe } from "@fortawesome/free-solid-svg-ic
 const ViewEvent = (props) => {
   const currentEvent = props.location.state.event;
   const user = props.location.state.user;
+  const eventVendorId = props.location.state.eventVendorId;
   const venue = currentEvent.venue;
   const id = currentEvent.eventId;
   const [fetchedEOs, setFetchedEOs] = useState([]);
@@ -28,13 +29,19 @@ const ViewEvent = (props) => {
   const [isVendor, setIsVendor] = useState(false)
 
   let history = useHistory();
+  console.log(eventVendorId)
 
-  const renderScreen = () => {
+  const renderAdminPanel = () => {
     if(user.isAdmin) {
       setIsAdmin(true)
     } else if (user.isEventOrganizer) {
       setIsEO(true)
-    } else if (user.isVendor) {
+    } 
+  }
+
+  const renderVendorPanel = () => {
+    console.log(eventVendorId)
+    if(eventVendorId != null) {
       setIsVendor(true)
     }
   }
@@ -82,9 +89,10 @@ const ViewEvent = (props) => {
 // }
 
   useEffect(() => {
-    renderScreen();
+    renderAdminPanel();
     fetchEOs();
     fetchVendors();
+    renderVendorPanel();
     setRefreshComponent(false);
   }, [refreshComponent]);
 
@@ -221,44 +229,13 @@ const ViewEvent = (props) => {
         </>
          )}
           {isEO && (
-        <div className="eventDetailsWrapper">
-          <div className="eventOrganziersContainer">
-            <div className="containerHeading">
-              <h3 className="eventOrganizers">Event Organizers</h3>
-              <Link
-                to={{
-                  pathname: "/addeventorganizers",
-                  state: { currentEvent, fetchedEOs },
-                }}
-              >
-                <button className="addVendorButton">Add Organizer</button>
-              </Link>
-            </div>
-            {fetchedEOs.length === 0 ? (
-              <p className="nullText">
-                No event organizers have been added yet.
-              </p>
-            ) : (
-              <ul className="eventOrganizersList">
-                {fetchedEOs.map((eo) => (
-                  <EventOrganizerItem
-                    key={eo.eventOrganizerId}
-                    eo={eo}
-                    eventId={id}
-                    handleChange={handleChange}
-                  />
-                ))}
-              </ul>
-            )}
-          </div>
-
-          <div className="eventVendorsContainer">
+          <div className="eventVendorsContainer-eo">
             <div className="containerHeading">
               <h3 className="eventVendors">Event Vendors</h3>
               <Link
                 to={{
                   pathname: "/addeventvendor",
-                  state: { currentEvent, fetchedVendors },
+                  state: { currentEvent, fetchedVendors, user },
                 }}
               >
                 <button className="addVendorButton">Add Vendor</button>
@@ -277,43 +254,29 @@ const ViewEvent = (props) => {
                       eventId={id}
                       eventName={currentEvent.eventName}
                       handleChange={handleChange}
-                      handleClickedProduct={handleClickedProduct}
+                      // handleClickedProduct={handleClickedProduct}
                     />
                   </>
                 ))}
               </ul>
             )}
           </div>
-        </div>
 
          )}
          {isVendor && (
         <div className="eventVendorWrapper">
-          <div className="vendorProductListContainer">
-            {/* <div className="containerHeading">
-              <h3 className="eventVendorProducts">Event Products</h3>
-              <Link
-                to={{
-                  pathname: "/addvendorproduct",
-                  state: { currentEvent },
-                }}
-              >
-                <button className="addProductButton">Add Products</button>
-              </Link>
-            </div> */}
-
+          <div className="containerHeading">
+         <h3 className="eventVendors">Event Products</h3>
+            </div>
             {/* {productVendor && ( */}
               <VendorDetailProductList 
                 eventId={id}
                 eventName={currentEvent.eventName}
-                eventVendorId={14}
+                eventVendorId={eventVendorId}
                />
+               
             {/* )} */}
           </div>
-          {/* <div className="qrGenerator">
-            <button className="qrButton">Generate QR Code</button>
-          </div> */}
-        </div>
     )}
       </div>
     </div>

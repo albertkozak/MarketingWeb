@@ -75,7 +75,7 @@ const EventVendorItem = (props) => {
               icon={faTimes}
               onClick={removeEventVendor}
             />
-            <Link
+            {/* <Link
               to={{
                 pathname: "/vendordetailproductlist",
                 state: {
@@ -86,7 +86,7 @@ const EventVendorItem = (props) => {
               }}
             >
               <FontAwesomeIcon className="Product" icon={faBoxOpen} />
-            </Link>
+            </Link> */}
           </div>
         )}
       </div>

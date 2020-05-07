@@ -13,10 +13,13 @@ const EventList = (props) => {
   const isEO = user.isEventOrganizer;
   const isVendor = user.isVendor;
   const [passingUser, setPassingUser] = useState([])
+  const [eventVendorUserEvents, setEventVendorUserEvents] = useState(null)
+  // const [eventVendorId, setEventVendorId] = useState(null)
 
   useEffect(() => {
     if (Object.keys(user).length > 0) {
       fetchData();
+      fetchEventVendorIds();
       setPassingUser(user)
       console.log(user)
     }
@@ -41,7 +44,7 @@ const EventList = (props) => {
             .then((responseData) => {
               setFetchedEvents(responseData.events);
             });
-        });
+          });
     } else if (isEO) {
       firebase
         .auth()
@@ -74,10 +77,36 @@ const EventList = (props) => {
             .then((response) => response.json())
             .then((responseData) => {
               setFetchedEvents(responseData.userEventVendors);
+              //setEventVendorId(responseData.userEventVendors.eventVendorId)
             });
         });
     } else setFetchedEvents(null);
   };
+
+  const fetchEventVendorIds = () => {
+    if(isAdmin || isEO && isVendor) {
+    firebase
+    .auth()
+    .currentUser.getIdTokenResult()
+    .then((tokenResponse) => {
+    fetch(BASE_URL + "EventVendorUser", {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${tokenResponse.token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((responseData) => {
+        setEventVendorUserEvents(responseData.userEventVendors)
+        // setEventVendorId(responseData.userEventVendors.eventVendorId)
+      });
+  }
+  )}
+}
+
+  //console.log(eventVendorId)
+  console.log(eventVendorUserEvents)
 
   function handleSearchTerm(event) {
     setSearch(event.target.value);
@@ -99,7 +128,7 @@ const EventList = (props) => {
               event.eventName.toLowerCase().includes(search.toLowerCase())
             )
             .map((event) => (
-              <EventItem key={event.eventId} event={event} user={passingUser} />
+              <EventItem key={event.eventId} event={event} user={passingUser} eventVendorUserEvents={eventVendorUserEvents} />
             ))}
         </div>
       )}
