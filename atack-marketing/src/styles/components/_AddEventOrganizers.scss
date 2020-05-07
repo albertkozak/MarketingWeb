@@ -1,19 +1,30 @@
+.container-organizers {
+  h1 {
+    text-align: center;
+    font-size: 1.9rem;
+    margin: 5rem 0;
+  }
+}
+
 .nullText {
   text-align: center;
 }
 
+.input-selector-users {
+  width: 50%;
+  margin: 0 auto;
+}
+
 .buttons {
-  margin-top: 2rem;
   text-align: center;
 
   button {
-    margin-left: 1rem;
-    width: 10rem;
-    padding: 7px 15px;
-    text-align: center;
+    font-size: 0.7rem;
+    margin-left: 1.5rem;
+    margin-top: 2rem;
+    padding: 10px 15px;
     border-radius: 10px;
     font-family: $body-font;
-    font-size: 1.2rem;
     color: #fff;
     border: none;
     background-color: $orange;

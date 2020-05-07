@@ -99,10 +99,10 @@ const AddEventOrganizers = (props) => {
   }
 
   return (
-    <div className="container">
+    <div className="container-organizers">
       <h1>Event Organizers for {eventName}</h1>
       <p className="form-error">{errorMessage}</p>
-      <div className="input-selector">
+      <div className="input-selector-users">
         <UserInputSelector
           options={fetchedEOs}
           values={selectedEO}
