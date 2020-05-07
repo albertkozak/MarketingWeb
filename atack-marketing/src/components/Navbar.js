@@ -24,9 +24,11 @@ const NavComponent = (props) => {
 	}
 
 	useEffect(() => {
+		//if (Object.keys(user).length > 0) {
 		renderViews();
 		setRefreshComponent(false)
-	}, [refreshComponent])
+	// }
+}, [user])
 
 	return (
 		<div className="NavContainer">

@@ -11,6 +11,7 @@ const EventList = props => {
   // const [searchedEvents, setSearchedEvents] = useState("");
   // const [refreshComponent, setRefreshComponent] = useState(true);
   const user = props.user;
+  console.log(user)
   const isAdmin = user.isAdmin;
   const isEO = user.isEventOrganizer;
   const isVendor = user.isVendor;
