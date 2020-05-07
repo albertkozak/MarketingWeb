@@ -17,3 +17,9 @@ h4 {
 .container {
   margin: 3rem;
 }
+
+@media screen and (max-width: 600px) {
+  .container {
+    margin: 3rem 1rem;
+  }
+}
