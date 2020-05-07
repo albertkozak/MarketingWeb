@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const EventItem = (props) => {
   const event = props.event;
   const user = props.user;
-  const eventVendorId = props.eventVendorId;
+  //const eventVendorId = props.eventVendorId;
   const formattedDate = new Date(event.eventStartDateTime)
     .toISOString()
     .slice(0, 10);
@@ -14,7 +14,7 @@ const EventItem = (props) => {
       <Link
         to={{
           pathname: "/event",
-          state: { event, user, eventVendorId },
+          state: { event, user },
         }}
       >
         <h3 className="eventTitle">{event.eventName}</h3>
@@ -24,7 +24,7 @@ const EventItem = (props) => {
         <Link
           to={{
             pathname: "/event",
-            state: { event, user,  eventVendorId },
+            state: { event, user },
           }}
         >
           <p>View Event</p>
