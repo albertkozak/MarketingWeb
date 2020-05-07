@@ -44,9 +44,6 @@ const EventList = (props) => {
             .then((responseData) => {
               setFetchedEvents(responseData.events);
             });
-            // if(isVendor) {
-              //fetchEventVendorIds();
-            //}
           });
     } else if (isEO) {
       firebase
@@ -126,15 +123,12 @@ const EventList = (props) => {
         <p>You don't have any events.</p>
       ) : (
         <div>
-          {/* {eventVendorUserEvents.length !== 0} ? (
-            {eventVendorUserEvents.map((evue) => setEventVendorId(evue.eventVendorId))}
-          ) */}
           {fetchedEvents
             .filter((event) =>
               event.eventName.toLowerCase().includes(search.toLowerCase())
             )
             .map((event) => (
-              <EventItem key={event.eventId} event={event} user={passingUser} />
+              <EventItem key={event.eventId} event={event} user={passingUser} eventVendorUserEvents={eventVendorUserEvents} />
             ))}
         </div>
       )}
