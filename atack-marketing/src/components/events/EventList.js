@@ -20,6 +20,7 @@ const EventList = (props) => {
   }, [user]);
 
   const fetchData = () => {
+    console.log(user);
     if (isAdmin) {
       firebase
         .auth()
