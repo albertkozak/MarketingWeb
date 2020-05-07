@@ -1,11 +1,32 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import logo from '../assets/nav-logo.png';
 import { Link, withRouter } from 'react-router-dom';
 import { AuthContext } from '../screens/authentication/Auth';
 import Logout from '../components/Logout';
 
-const NavComponent = () => {
+const NavComponent = (props) => {
 	const { currentUser } = useContext(AuthContext);
+	const user = props.user;
+	const [isShown, setIsShown] = useState(false)
+	const [isEOShown, setIsEOShown] = useState(false)
+	const [refreshComponent, setRefreshComponent] = useState(false)
+
+	function renderViews() {
+		if(user === undefined) {
+			setRefreshComponent(true)
+		} else if(user.isAdmin) {
+			setIsShown(true)
+		} else if(user.isEventOrganizer) {
+			setIsEOShown(true)
+		}
+		console.log("from nav")
+		console.log(user)
+	}
+
+	useEffect(() => {
+		renderViews();
+		setRefreshComponent(false)
+	}, [refreshComponent])
 
 	return (
 		<div className="NavContainer">
@@ -23,24 +44,30 @@ const NavComponent = () => {
 						<li>
 							<Link to="/home">Home</Link>
 						</li>
-						<li>
+						{/* <li>
 							<Link to="/qrcode">QR Code</Link>
-						</li>
-						<li>
-							<Link to="/roles">Roles</Link>
-						</li>
-						<li>
-							<Link to="/vendors">Vendors</Link>
-						</li>
-						<li>
-							<Link to="/venues">Venues</Link>
-						</li>
+						</li> */}
+						{isShown && (
+							<li>
+								<Link to="/roles">Roles</Link>
+							</li>
+						)}
+						{isShown || isEOShown && (
+							<>
+							<li>
+								<Link to="/vendors">Vendors</Link>
+							</li>
+							<li>
+								<Link to="/venues">Venues</Link>
+							</li>
+							</>
+						)}
 						<li>
 							<Link to="/export">Export</Link>
 						</li>
-						<li>
+						{/* <li>
 							<Link to="/Profile">Profile</Link>
-						</li>
+						</li> */}
 						<li>
 							<Logout />
 						</li>
