@@ -97,7 +97,7 @@ const AddEventVendor = (props) => {
   }
 
   return (
-    <div className="container">
+    <div className="container-vendors">
       <h1>Vendors for {eventName}</h1>
       <p className="form-error">{errorMessage}</p>
       <div className="input-selector">
