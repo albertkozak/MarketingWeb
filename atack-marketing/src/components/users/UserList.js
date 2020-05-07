@@ -7,7 +7,6 @@ const UserList = () => {
   const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/";
   const [fetchedUsers, setFetchedUsers] = useState([]);
   const [search, setSearch] = useState("");
-  const [searchedUsers, setSearchedUsers] = useState("");
 
   const fetchUsers = () => {
     firebase
@@ -31,11 +30,6 @@ const UserList = () => {
               console.log(fetchedUsers);
             }
           });
-        setSearchedUsers(
-          fetchedUsers.filter((user) => {
-            return user.email.toLowerCase().includes(search.toLowerCase());
-          })
-        );
       });
   };
 
@@ -43,23 +37,30 @@ const UserList = () => {
     fetchUsers();
   }, []);
 
-  let userData;
-  if (search.length === 0) {
-    userData = fetchedUsers;
-  } else {
-    userData = searchedUsers;
+  function handleSearchTerm(event) {
+    setSearch(event.target.value);
   }
 
   return (
     <div className="wrapper">
       <SearchBar
         search={search}
-        onTermChange={(newSearch) => setSearch(newSearch)}
-        onTermSubmit={() => fetchUsers()}
+        handleSearchTerm={(e) => handleSearchTerm(e)}
+        value={search}
       />
-      {userData.map((user) => (
-        <UserItem key={user.email} user={user} />
-      ))}
+      {fetchedUsers.length === 0 ? (
+        <p>There are no users at this time.</p>
+      ) : (
+        <div>
+          {fetchedUsers
+            .filter((user) =>
+              user.email.toLowerCase().includes(search.toLowerCase())
+            )
+            .map((user) => (
+              <UserItem key={user.email} user={user} />
+            ))}
+        </div>
+      )}
     </div>
   );
 };
