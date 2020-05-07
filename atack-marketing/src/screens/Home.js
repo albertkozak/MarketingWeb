@@ -13,12 +13,13 @@ const Home = (props) => {
   const [vendor, setVendor] = useState(false);
 
   useEffect(() => {
-    if(props.location.state.userRole === undefined) {
-      fetchUserRole();
-    } else {
-      setUserRole(props.location.state.userRole)
-    }
-  })
+    fetchUserRole()
+    // if(props.location.state.userRole === undefined || props.userRole === undefined || userRole === undefined) {
+    //   fetchUserRole();
+    // } else {
+    //   setUserRole(props.location.state.userRole)
+    // }
+  }, [])
 
   function fetchUserRole() {
     firebase
@@ -34,7 +35,14 @@ const Home = (props) => {
         })
           .then(response => response.json())
           .then(responseData => {
-            setUser(responseData)
+            setUser(responseData);
+            setAdmin(responseData.isAdmin)
+            setEO(responseData.isEventOrganizer)
+            setVendor(responseData.isVendor)
+            console.log(responseData);
+            console.log(responseData.isAdmin);
+            console.log(responseData.isEventOrganizer);
+            console.log(responseData.isVendor);
           });
       });
   }
