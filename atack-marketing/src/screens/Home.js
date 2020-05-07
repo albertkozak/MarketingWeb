@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import EventList from "../components/events/EventList";
 import { useHistory } from "react-router-dom";
 
@@ -8,7 +8,6 @@ const Home = props => {
   const isAdmin = user.isAdmin;
   const isEO = user.isEventOrganizer;
   const isVendor = user.isVendor;
-  console.log("HOME - Is Admin? " + isAdmin);
 
   return (
     <div className="container">

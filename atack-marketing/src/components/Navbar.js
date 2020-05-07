@@ -11,9 +11,6 @@ const NavComponent = () => {
     const [user, setUser] = useState([])
 	const [isShown, setIsShown] = useState(false)
 	const [isEOShown, setIsEOShown] = useState(false)
-	const [isAdmin, setAdmin] = useState(false)
-    const [isEO, setEO] = useState(false)
-	const [isVendor, setVendor] = useState(false)
 	const [refreshComponent, setRefreshComponent] = useState(false)
 
 
@@ -49,8 +46,6 @@ const NavComponent = () => {
 		  });
 		}
 	}
-
-
 
 	return (
 		<div className="NavContainer">

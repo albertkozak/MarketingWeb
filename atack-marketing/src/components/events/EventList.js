@@ -9,15 +9,12 @@ const EventList = props => {
   const [fetchedEvents, setFetchedEvents] = useState([]);
   const [search, setSearch] = useState("");
   const user = props.user;
-  console.log(user)
   const isAdmin = user.isAdmin;
   const isEO = user.isEventOrganizer;
   const isVendor = user.isVendor;
 
   useEffect(() => {
-    console.log("Maybe Fetch?");
     if (Object.keys(user).length > 0) {
-      console.log("==> FETCHYROO TIME! <==");
       fetchData();
     }
   }, [user]);
@@ -38,7 +35,6 @@ const EventList = props => {
             .then(response => response.json())
             .then(responseData => {
               setFetchedEvents(responseData.events);
-              console.log(responseData);
             });
         });
     } else if (isEO) {
