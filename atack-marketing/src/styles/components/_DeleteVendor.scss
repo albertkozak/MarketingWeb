@@ -1,7 +1,7 @@
 .addVendorTitle {
   text-align: center;
-  font-size: 3rem;
-  margin: 5rem 0 1rem;
+  font-size: 1.9rem;
+  margin: 5rem 0 3rem;
 }
 
 .vendorFormDelete {
@@ -12,13 +12,13 @@
 
   input {
     border: none;
-    font-size: 1.125rem;
+    font-size: 0.9rem;
     color: $black;
     padding: 15px;
     border-bottom: 1px solid $light-grey;
     margin: 0 auto;
     text-align: center;
-    width: 35%;
+    width: 40%;
 
     &:focus {
       outline: none;
@@ -75,15 +75,15 @@
   }
 
   .buttons {
-    margin-top: 1rem;
+    margin-top: 2rem;
 
     button {
-      width: 10rem;
-      padding: 7px 15px;
+      width: 7rem;
+      padding: 10px 15px;
       text-align: center;
       border-radius: 10px;
       font-family: $body-font;
-      font-size: 1.2rem;
+      font-size: 0.7rem;
       color: #fff;
       border: none;
       background-color: $orange;
