@@ -13,6 +13,7 @@ const NavComponent = () => {
   const [isEOShown, setIsEOShown] = useState(false);
   const [refreshComponent, setRefreshComponent] = useState(false);
 
+
   useEffect(() => {
     fetchUserRole();
     setRefreshComponent(false);
@@ -75,14 +76,11 @@ const NavComponent = () => {
             )}
 
             {isEOShown && (
-              <>
+
                 <li>
                   <Link to="/vendors">Vendors</Link>
                 </li>
-                <li>
-                  <Link to="/venues">Venues</Link>
-                </li>
-              </>
+
             )}
 
             <li>
