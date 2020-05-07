@@ -8,7 +8,6 @@ const VendorList = () => {
     "https://atackmarketingapi.azurewebsites.net/api/VendorManagement";
   const [fetchedVendors, setFetchedVendors] = useState([]);
   const [search, setSearch] = useState("");
-  const [searchedVendors, setSearchedVendors] = useState("");
 
   const fetchVendors = () => {
     firebase
@@ -28,11 +27,6 @@ const VendorList = () => {
             console.log(responseData);
             console.log(fetchedVendors);
           });
-        setSearchedVendors(
-          fetchedVendors.filter((vendor) => {
-            return vendor.name.toLowerCase().includes(search.toLowerCase());
-          })
-        );
       });
   };
 
@@ -40,23 +34,30 @@ const VendorList = () => {
     fetchVendors();
   }, []);
 
-  let vendorData;
-  if (search.length === 0) {
-    vendorData = fetchedVendors;
-  } else {
-    vendorData = searchedVendors;
+  function handleSearchTerm(event) {
+    setSearch(event.target.value);
   }
 
   return (
     <div className="wrapper">
       <SearchBar
         search={search}
-        onTermChange={(newSearch) => setSearch(newSearch)}
-        onTermSubmit={() => fetchVendors()}
+        handleSearchTerm={(e) => handleSearchTerm(e)}
+        value={search}
       />
-      {vendorData.map((vendor) => (
-        <VendorItem key={vendor.id} vendor={vendor} />
-      ))}
+      {fetchedVendors.length === 0 ? (
+        <p>There are no vendors at this time.</p>
+      ) : (
+        <div>
+          {fetchedVendors
+            .filter((vendor) =>
+              vendor.name.toLowerCase().includes(search.toLowerCase())
+            )
+            .map((vendor) => (
+              <VendorItem key={vendor.id} vendor={vendor} />
+            ))}
+        </div>
+      )}
     </div>
   );
 };

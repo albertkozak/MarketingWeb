@@ -4,7 +4,7 @@ import firebase from "../../firebase";
 import SearchBar from "../SearchBar";
 import { withRouter } from "react-router-dom";
 
-const EventList = props => {
+const EventList = (props) => {
   const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/";
   const [fetchedEvents, setFetchedEvents] = useState([]);
   const [search, setSearch] = useState("");
@@ -24,16 +24,16 @@ const EventList = props => {
       firebase
         .auth()
         .currentUser.getIdTokenResult()
-        .then(tokenResponse => {
+        .then((tokenResponse) => {
           fetch(BASE_URL + "Events", {
             method: "GET",
             headers: {
               Accept: "application/json",
-              Authorization: `Bearer ${tokenResponse.token}`
-            }
+              Authorization: `Bearer ${tokenResponse.token}`,
+            },
           })
-            .then(response => response.json())
-            .then(responseData => {
+            .then((response) => response.json())
+            .then((responseData) => {
               setFetchedEvents(responseData.events);
             });
         });
@@ -41,16 +41,16 @@ const EventList = props => {
       firebase
         .auth()
         .currentUser.getIdTokenResult()
-        .then(tokenResponse => {
+        .then((tokenResponse) => {
           fetch(BASE_URL + "/EventOrganizer", {
             method: "GET",
             headers: {
               Accept: "application/json",
-              Authorization: `Bearer ${tokenResponse.token}`
-            }
+              Authorization: `Bearer ${tokenResponse.token}`,
+            },
           })
-            .then(response => response.json())
-            .then(responseData => {
+            .then((response) => response.json())
+            .then((responseData) => {
               setFetchedEvents(responseData.events);
             });
         });
@@ -58,16 +58,16 @@ const EventList = props => {
       firebase
         .auth()
         .currentUser.getIdTokenResult()
-        .then(tokenResponse => {
+        .then((tokenResponse) => {
           fetch(BASE_URL + "EventVendorUser", {
             method: "GET",
             headers: {
               Accept: "application/json",
-              Authorization: `Bearer ${tokenResponse.token}`
-            }
+              Authorization: `Bearer ${tokenResponse.token}`,
+            },
           })
-            .then(response => response.json())
-            .then(responseData => {
+            .then((response) => response.json())
+            .then((responseData) => {
               setFetchedEvents(responseData.userEventVendors);
             });
         });
@@ -82,7 +82,7 @@ const EventList = props => {
     <div className="wrapper">
       <SearchBar
         search={search}
-        handleSearchTerm={e => handleSearchTerm(e)}
+        handleSearchTerm={(e) => handleSearchTerm(e)}
         value={search}
       />
       {fetchedEvents.length === 0 ? (
@@ -90,10 +90,10 @@ const EventList = props => {
       ) : (
         <div>
           {fetchedEvents
-            .filter(event =>
+            .filter((event) =>
               event.eventName.toLowerCase().includes(search.toLowerCase())
             )
-            .map(event => (
+            .map((event) => (
               <EventItem key={event.eventId} event={event} />
             ))}
         </div>
