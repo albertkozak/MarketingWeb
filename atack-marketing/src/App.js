@@ -54,7 +54,9 @@ export const Main = withRouter(({ location }) => {
     <div>
       {location.pathname !== "/login" &&
         location.pathname !== "/register" &&
-        location.pathname !== "/forgotpassword" && <Navbar />}
+        location.pathname !== "/forgotpassword" && 
+        <Navbar />}
+        
       <Switch>
         <PrivateRoute exact path="/" component={Home} />
         <PrivateRoute exact path="/home" component={Home} />

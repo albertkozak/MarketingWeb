@@ -48,7 +48,7 @@ const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
     <Route
       {...rest}
       render={(routeProps) =>
-        render === null ? <RouteComponent {...routeProps} /> : render
+        render === null ? <RouteComponent {...routeProps} user={user}/> : render
       }
     />
   );

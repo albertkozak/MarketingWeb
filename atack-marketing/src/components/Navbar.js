@@ -3,32 +3,62 @@ import logo from '../assets/nav-logo.png';
 import { Link, withRouter } from 'react-router-dom';
 import { AuthContext } from '../screens/authentication/Auth';
 import Logout from '../components/Logout';
+import firebase from '../firebase'
+import {BASE_URL} from '../Config'
 
 const NavComponent = (props) => {
 	const { currentUser } = useContext(AuthContext);
-	const user = props.user;
+    const [user, setUser] = useState([])
 	const [isShown, setIsShown] = useState(false)
 	const [isEOShown, setIsEOShown] = useState(false)
-	const [refreshComponent, setRefreshComponent] = useState(false)
+	const [isAdmin, setAdmin] = useState(false)
+    const [isEO, setEO] = useState(false)
+    const [isVendor, setVendor] = useState(false)
 
-	function renderViews() {
-		if(user === undefined) {
-			setRefreshComponent(true)
-		} else if(user.isAdmin) {
-			setIsShown(true)
-		} else if(user.isEventOrganizer) {
-			setIsEOShown(true)
-		}
-		console.log("from nav")
-		console.log(user)
-	}
 
 	useEffect(() => {
-		//if (Object.keys(user).length > 0) {
-		renderViews();
-		setRefreshComponent(false)
-	// }
-}, [user])
+		if (Object.keys(user).length > 0) {
+			fetchUserRole();
+			renderViews();
+		}
+	  	}, [user])
+
+	  function fetchUserRole() {
+		if(currentUser) {
+		firebase
+		  .auth()
+		  .currentUser.getIdTokenResult()
+		  .then(tokenResponse => {
+		  fetch(BASE_URL + "/User", {
+			method: "GET",
+			headers: {
+			Accept: "application/json",
+			Authorization: `Bearer ${tokenResponse.token}`
+			}
+		  })
+			.then(response => response.json())
+			.then(responseData => {
+			setUser(responseData);
+			setAdmin(responseData.isAdmin)
+			setEO(responseData.isEventOrganizer)
+			setVendor(responseData.isVendor)
+			console.log(responseData);
+			});
+		  });
+		}
+	  }
+
+	  function renderViews() {
+		  console.log(user)
+		  if(isAdmin === true) {
+			setIsShown(true)
+		  }
+		  else if (isEO === true) {
+			  setIsEOShown(true)
+		  }
+	  }
+
+
 
 	return (
 		<div className="NavContainer">
@@ -42,13 +72,9 @@ const NavComponent = (props) => {
 						<span className="navicon" />
 					</label>
 					<ul className="menu">
-						{/* <div className="nav-menu"> */}
 						<li>
 							<Link to="/home">Home</Link>
 						</li>
-						{/* <li>
-							<Link to="/qrcode">QR Code</Link>
-						</li> */}
 						{isShown && (
 							<li>
 								<Link to="/roles">Roles</Link>
