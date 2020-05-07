@@ -17,10 +17,11 @@ export default function VendorDetailProductList(props) {
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState("");
 
-  const [updatingProdcut, setUpdatingProduct] = useState(null);
+  const [updatingProduct, setUpdatingProduct] = useState(null);
   const inputProductName = useRef();
 
   function fetchData() {
+    console.log("fetching data")
     setUpdatingProduct(null);
     firebase
       .auth()
@@ -47,6 +48,7 @@ export default function VendorDetailProductList(props) {
   }, []);
 
   async function createProduct(event) {
+    console.log("creating product")
     setUpdatingProduct(null);
     event.preventDefault();
     let JWToken = await firebase.auth().currentUser.getIdTokenResult();
@@ -85,6 +87,7 @@ export default function VendorDetailProductList(props) {
   }
 
   async function updateProduct(event) {
+    console.log("updating product")
     event.preventDefault();
     let JWToken = await firebase.auth().currentUser.getIdTokenResult();
 
@@ -96,7 +99,7 @@ export default function VendorDetailProductList(props) {
     if (JWToken !== null) {
       const result = await fetch(
         BASE_URL +
-          `/EventVendor/${eventVendorId}/products/${updatingProdcut.productId}`,
+          `/EventVendor/${eventVendorId}/products/${updatingProduct.productId}`,
         {
           method: "PUT",
           headers: {
@@ -123,6 +126,7 @@ export default function VendorDetailProductList(props) {
   }
 
   async function removeProduct(productId) {
+    console.log("removing product")
     setUpdatingProduct(null);
     let JWToken = await firebase.auth().currentUser.getIdTokenResult();
 
@@ -153,6 +157,7 @@ export default function VendorDetailProductList(props) {
   }
 
   function updateProductButton(product) {
+    console.log("updating")
     setUpdatingProduct(product);
     setProductName(product.productName);
     setProductPrice(product.productPrice);
@@ -195,7 +200,7 @@ export default function VendorDetailProductList(props) {
           />
 
           <div className="buttons">
-            {updatingProdcut !== null ? (
+            {(updatingProduct !== undefined) && (updatingProduct !== null) ? (
               <button className="submit" variant="" onClick={updateProduct}>
                 Update
               </button>

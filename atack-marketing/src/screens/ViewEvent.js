@@ -29,6 +29,7 @@ const ViewEvent = (props) => {
   const [isVendor, setIsVendor] = useState(false)
 
   let history = useHistory();
+  console.log(eventVendorId)
 
   const renderAdminPanel = () => {
     if(user.isAdmin) {
@@ -39,6 +40,7 @@ const ViewEvent = (props) => {
   }
 
   const renderVendorPanel = () => {
+    console.log(eventVendorId)
     if(eventVendorId != null) {
       setIsVendor(true)
     }
@@ -264,13 +266,13 @@ const ViewEvent = (props) => {
          {isVendor && (
         <div className="eventVendorWrapper">
           <div className="containerHeading">
-              <h3 className="eventVendors">Event Products</h3>
+         <h3 className="eventVendors">Event Products</h3>
             </div>
             {/* {productVendor && ( */}
               <VendorDetailProductList 
                 eventId={id}
                 eventName={currentEvent.eventName}
-                eventVendorId={14}
+                eventVendorId={eventVendorId}
                />
                
             {/* )} */}
