@@ -2,19 +2,40 @@ import React, { useState, useEffect } from "react";
 import EventItem from "./EventItem";
 import firebase from "../../firebase";
 import SearchBar from "../SearchBar";
-import { useHistory } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 const EventList = (props) => {
   const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/";
   const [fetchedEvents, setFetchedEvents] = useState([]);
   const [search, setSearch] = useState("");
   const [searchedEvents, setSearchedEvents] = useState("");
-  const isAdmin = props.isAdmin
-  const isEO = props.isEO
-  const isVendor = props.isVendor
+  const [refreshComponent, setRefreshComponent] = useState(true)
+  const user = props.user
+  const isAdmin = user.isAdmin
+  const isEO = user.isEventOrganizer
+  const isVendor = user.isVendor
 
+  console.log(user)
+  console.log(isAdmin)
+
+
+  useEffect(() => {
+    goFetchData();
+    setRefreshComponent(false)
+  }, [refreshComponent]);
+
+  function goFetchData() {
+    if (user === undefined) {
+      setRefreshComponent(true)
+    } else {
+      fetchData()
+      console.log("fetching")
+      setRefreshComponent(false)
+  }
+}
 
   const fetchData = () => {
+    console.log("first check")
     if (isAdmin) {
     firebase
       .auth()
@@ -85,11 +106,8 @@ const EventList = (props) => {
         );
       });
     }
-  };
+  }
 
-  useEffect(() => {
-    fetchData();
-  }, [props.readyForData]);
 
   let eventData;
   if (search.length === 0) {
@@ -118,4 +136,4 @@ const EventList = (props) => {
   );
 };
 
-export default EventList;
+export default withRouter(EventList);

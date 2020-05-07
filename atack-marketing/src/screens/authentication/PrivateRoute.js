@@ -14,13 +14,13 @@ const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
     let render = null;
     if(!currentUser) {
       render = <Redirect to={"/login"} />
-    }
-  
+    } 
     useEffect(() => {
       fetchUserRole();
     }, [])
   
     function fetchUserRole() {
+      if(currentUser) {
       firebase
         .auth()
         .currentUser.getIdTokenResult()
@@ -42,6 +42,7 @@ const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
           });
         });
       }
+    }
 
   
     return (

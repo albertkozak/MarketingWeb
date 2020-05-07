@@ -55,6 +55,7 @@ export const Main = withRouter(({ location }) => {
 			location.pathname !== '/forgotpassword' && <Navbar />}
 			<Switch>
 				<PrivateRoute exact path="/" component={Home} />
+				<PrivateRoute exact path="/home" component={Home} />
 				<PrivateRoute exact path="/qrcode" component={QRCode} />
 				<PrivateRoute exact path="/roles" component={Roles} />
 				<PrivateRoute exact path="/export" component={Export} />
