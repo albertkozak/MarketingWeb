@@ -13,7 +13,6 @@ const DeleteVenue = (props) => {
   const deleteVenue = async (e) => {
     let JWToken = await (await firebase.auth().currentUser.getIdTokenResult())
       .token;
-    console.log(JWToken);
 
     if (JWToken !== null) {
       const result = await fetch(BASE_URL + id, {
@@ -27,7 +26,6 @@ const DeleteVenue = (props) => {
           confirmDeleteVenue: "ConfirmDELETE - " + currentVenue.venueName,
         }),
       });
-      console.log(currentVenue.venueName);
       if (result.status === 200) {
         window.location.href = "/venues";
       } else if (result.state === 400) {

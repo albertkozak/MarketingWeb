@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import VenueInputSelector from "./VenueInputSelector";
 import firebase from "../../firebase";
-
 import * as moment from "moment-timezone";
-
 import { BASE_URL } from "../../Config";
 
 export default function AddEvent(props) {

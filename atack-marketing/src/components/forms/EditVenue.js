@@ -48,7 +48,6 @@ const EditVenue = (props) => {
             website: websiteTrimmed,
           }),
         });
-        console.log(BASE_URL);
         if (result.status === 200) {
           await fetch(BASE_URL + venueId, {
             METHOD: "GET",

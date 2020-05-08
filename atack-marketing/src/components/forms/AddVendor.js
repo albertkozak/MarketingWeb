@@ -25,7 +25,13 @@ const AddVendor = (props) => {
     event.preventDefault();
     const { name, description, email, website } = event.target.elements;
 
-    if (name.value === "") {
+    let nameTrimmed = name.value.trim()
+    let descriptionTrimmed = description.value.trim()
+    let emailTrimmed = email.value.trim()
+    let websiteTrimmed = website.value.trim()
+
+
+    if (nameTrimmed === "") {
       setErrorMessage("Please fill all required fields.");
     } else {
       setErrorMessage("");
@@ -41,10 +47,10 @@ const AddVendor = (props) => {
             Authorization: `Bearer ${JWToken}`,
           },
           body: JSON.stringify({
-            name: name.value,
-            description: description.value,
-            email: email.value,
-            website: website.value,
+            name: nameTrimmed,
+            description: descriptionTrimmed,
+            email: emailTrimmed,
+            website: websiteTrimmed,
           }),
         });
         if (result.status === 201) {
@@ -54,7 +60,6 @@ const AddVendor = (props) => {
         } else {
           alert("Error: Something went wrong, please try again.");
         }
-        document.getElementById("add-vendor-form").reset();
       }
     }
   };

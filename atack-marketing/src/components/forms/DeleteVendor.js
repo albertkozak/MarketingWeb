@@ -26,8 +26,6 @@ const DeleteVendor = (props) => {
           confirmDeleteName: "ConfirmDELETE - " + currentVendor.name,
         }),
       });
-      console.log(BASE_URL + id);
-      console.log(currentVendor.name);
       if (result.status === 200) {
         window.location.href = "/vendors";
       } else if (result.state === 400) {

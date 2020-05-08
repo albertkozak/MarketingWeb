@@ -32,8 +32,6 @@ const AddEventVendor = (props) => {
                 label: vendor.name,
               }))
             );
-            console.log(responseData);
-            console.log(fetchedVendors);
           });
       });
   };
@@ -45,7 +43,6 @@ const AddEventVendor = (props) => {
   async function addVendors(event) {
     event.preventDefault();
 
-    console.log(selectedVendor[0].value);
     if (selectedVendor.length === 0) {
       setErrorMessage("Please select a vendor.");
     } else {
@@ -88,7 +85,6 @@ const AddEventVendor = (props) => {
 
   function handleVendorSelect(selection) {
     setSelectedVendor(selection);
-    console.log(selection);
   }
 
   function cancelButton(event) {

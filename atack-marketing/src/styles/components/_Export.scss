@@ -19,7 +19,14 @@
   p {
     font-size: 0.9rem;
     text-align: center;
+    color: $light-grey
+  }
+
+  .printReport {
+    font-size: 0.9rem;
+    text-align: center;
     color: $orange;
+    cursor: pointer;
 
     &:hover {
       color: $hover-orange;

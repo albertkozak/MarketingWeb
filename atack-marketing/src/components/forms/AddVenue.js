@@ -24,7 +24,10 @@ const AddVenue = (props) => {
     event.preventDefault();
     const { venueName, website } = event.target.elements;
 
-    if (venueName.value === "" || website.value === "") {
+    let venueNameTrimmed = venueName.value.trim()
+    let websiteTrimmed = website.value.trim()
+
+    if (venueNameTrimmed === "" || websiteTrimmed === "") {
       setErrorMessage("Please fill all required fields");
     } else {
       setErrorMessage("");
@@ -40,8 +43,8 @@ const AddVenue = (props) => {
             Authorization: `Bearer ${JWToken}`,
           },
           body: JSON.stringify({
-            venueName: venueName.value,
-            website: website.value,
+            venueName: venueNameTrimmed,
+            website: websiteTrimmed,
           }),
         });
         if (result.status === 201) {
@@ -51,7 +54,6 @@ const AddVenue = (props) => {
         } else {
           alert("Error: Something went wrong, please try again");
         }
-        document.getElementById("add-venue-form").reset();
       }
     }
   };
