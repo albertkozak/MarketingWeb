@@ -14,12 +14,10 @@ const Register = () => {
     return new Promise(async (resolve, reject) => {
       if (values.email.length > 0 && values.password.length > 0) {
         await setTimeout(() => {
-          console.log("AAAA");
           firebase
             .auth()
             .createUserWithEmailAndPassword(values.email, values.password)
             .then((response) => {
-              console.log(response);
               alert(
                 " - " +
                   response.user.email +

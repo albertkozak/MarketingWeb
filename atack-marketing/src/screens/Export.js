@@ -44,7 +44,6 @@ const Export = () => {
           .then((response) => response.json())
           .then((responseData) => {
             setSubscriberData(responseData);
-            console.log(responseData);
           });
       });
   };
@@ -52,7 +51,6 @@ const Export = () => {
   function handleSelect(event) {
     setSelectedEvent(event);
     fetchSubscriberList(event[0].value);
-    console.log(event);
   }
 
   const print = () => {

@@ -169,7 +169,7 @@ const ViewEvent = (props) => {
               <Link
                 to={{
                   pathname: "/addeventorganizers",
-                  state: { currentEvent, fetchedEOs },
+                  state: { currentEvent, fetchedEOs, user },
                 }}
               >
                 <button className="addVendorButton">Add Organizer</button>
@@ -254,7 +254,6 @@ const ViewEvent = (props) => {
                       eventId={id}
                       eventName={currentEvent.eventName}
                       handleChange={handleChange}
-                      // handleClickedProduct={handleClickedProduct}
                     />
                   </>
                 ))}
@@ -268,14 +267,11 @@ const ViewEvent = (props) => {
           <div className="containerHeading">
          <h3 className="eventVendors">Event Products</h3>
             </div>
-            {/* {productVendor && ( */}
               <VendorDetailProductList 
                 eventId={id}
                 eventName={currentEvent.eventName}
                 eventVendorId={eventVendorId}
                />
-               
-            {/* )} */}
           </div>
     )}
       </div>

@@ -18,7 +18,6 @@ const Profile = () => {
         setLoggedIn(false);
       }
     } catch (error) {
-      console.log("Error Checking Logged In User" + error);
     }
   };
   getCurrentUser();

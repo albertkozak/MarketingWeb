@@ -27,7 +27,7 @@ const DeleteVendor = (props) => {
         }),
       });
       if (result.status === 200) {
-        window.location.href = "/vendors";
+        history.push("/vendors");
       } else if (result.state === 400) {
         alert(
           "Cannot delete at this time. Vendor may be attached to an event."

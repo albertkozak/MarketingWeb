@@ -27,8 +27,6 @@ const ViewVendor = (props) => {
           .then((response) => response.json())
           .then((responseData) => {
             setVendor(responseData);
-            console.log(responseData);
-            console.log(vendor);
           });
       });
   };

@@ -5,7 +5,6 @@ import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 
 const UserItem = (props) => {
   const user = props.user;
-  console.log(user);
 
   const showAdmin = () => {
     let access;

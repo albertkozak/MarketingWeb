@@ -27,7 +27,7 @@ const DeleteVenue = (props) => {
         }),
       });
       if (result.status === 200) {
-        window.location.href = "/venues";
+        history.push("/venues");
       } else if (result.state === 400) {
         alert("Cannot delete at this time. Venue may be in use for an event.");
       } else {

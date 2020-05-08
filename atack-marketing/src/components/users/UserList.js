@@ -27,7 +27,6 @@ const UserList = () => {
                 return a.email.localeCompare(b.email);
               });
               setFetchedUsers(responseData);
-              console.log(fetchedUsers);
             }
           });
       });

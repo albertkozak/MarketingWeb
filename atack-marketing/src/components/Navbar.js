@@ -43,7 +43,6 @@ const NavComponent = () => {
               } else if (responseData.isVendor) {
                 setIsVendorShown(true)
               }
-              console.log(responseData);
             });
         });
     }

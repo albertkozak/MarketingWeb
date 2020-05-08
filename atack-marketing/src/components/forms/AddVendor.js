@@ -54,7 +54,7 @@ const AddVendor = (props) => {
           }),
         });
         if (result.status === 201) {
-          history.goBack();
+          history.push('/vendors')
         } else if (result.status === 400) {
           alert("Vendor already exists.");
         } else {
