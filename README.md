@@ -7,7 +7,7 @@ View live demo: [https://atack-marketing.herokuapp.com/](https://atack-marketing
 
 ## Installation
 `git clone`
-`cd AtackMarketing`
+`cd atack-marketing`
 `yarn install`
 
 - Download Package from the Repository
