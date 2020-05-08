@@ -1,12 +1,20 @@
 # Industry - SSD
 A React and .NET Marketing Web Application created by Athena, Tony, Albert, Crystal, Kasra. Copyright 2020.
 
+View live demo: [https://atack-marketing.herokuapp.com/](https://atack-marketing.herokuapp.com/)
+
 ![App Demo](media/demo.gif)
 
 ## Installation
 `git clone`
 `cd AtackMarketing`
 `yarn install`
+
+- Download Package from the Repository
+- Create Appsettings.json and fill out your SQL Server Connection Information (sample in appsettings-sample.json), if you haven't created a Database in SQL now would be a good time to do so as you will need the DB name
+- In Startup.cs under the section labelled "Google Authentication" fill in the "App Name" for options.Authority, ValidIssuer, and ValidAudience
+- Open package console and run the command "Update-Database" to provision your SQL DB
+- You may now run the API either locally or publish it to a web service like Azure, however make sure your SQL Server can be reached by your hosting provider
 
 ## Features
 Admin:
