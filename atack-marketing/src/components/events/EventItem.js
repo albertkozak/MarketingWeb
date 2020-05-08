@@ -6,9 +6,6 @@ const EventItem = (props) => {
   const event = props.event;
   const user = props.user;
   const eventVendorUserEvents = props.eventVendorUserEvents
-  // const formattedDate = new Date(event.eventStartDateTime)
-  //   .toISOString()
-  //   .slice(0, 10);
   const [eventVendorId, setEventVendorId] = useState(null)
 
     function checkIfVendorForEvent() {

@@ -29,7 +29,6 @@ const ViewEvent = (props) => {
   const [isVendor, setIsVendor] = useState(false)
 
   let history = useHistory();
-  console.log(eventVendorId)
 
   const renderAdminPanel = () => {
     if(user.isAdmin) {
@@ -40,7 +39,6 @@ const ViewEvent = (props) => {
   }
 
   const renderVendorPanel = () => {
-    console.log(eventVendorId)
     if(eventVendorId != null) {
       setIsVendor(true)
     }

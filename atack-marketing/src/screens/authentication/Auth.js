@@ -10,9 +10,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        console.log("Should We Check User?")
         if (user.emailVerified) {
-          console.log("GUUCHI")
           setCurrentUser(user);
         } else {
           setCurrentUser(null)

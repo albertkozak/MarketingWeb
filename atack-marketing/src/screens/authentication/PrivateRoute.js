@@ -38,7 +38,6 @@ const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
           setAdmin(responseData.isAdmin)
           setEO(responseData.isEventOrganizer)
           setVendor(responseData.isVendor)
-          console.log(responseData);
           });
         });
       }
