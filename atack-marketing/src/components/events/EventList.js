@@ -126,7 +126,7 @@ const EventList = (props) => {
             ))}
         </div>
       )}
-      {isEO || isVendor && eventVendorUserEvents !== null && (
+      {isEO || isVendor && !isAdmin && eventVendorUserEvents !== null && (
         <div>
           <h3 className="title">Vendored Events</h3>
           {eventVendorUserEvents.map((event) => (
