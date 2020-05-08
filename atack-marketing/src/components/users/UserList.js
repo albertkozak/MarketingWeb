@@ -3,7 +3,7 @@ import UserItem from "./UserItem";
 import firebase from "../../firebase";
 import SearchBar from "../SearchBar";
 
-const UserList = () => {
+const UserList = (props) => {
   const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/";
   const [fetchedUsers, setFetchedUsers] = useState([]);
   const [search, setSearch] = useState("");
