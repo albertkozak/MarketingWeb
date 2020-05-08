@@ -13,7 +13,6 @@ const AddEventVendorUser = (props) => {
   const [currentEVUs, setCurrentEVUs] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [refreshComponent, setRefreshComponent] = useState(false);
-  const [isShown, setIsShown] = useState(false);
   const history = useHistory();
   const BASE_URL = "https://atackmarketingapi.azurewebsites.net/api/";
 
@@ -39,8 +38,6 @@ const AddEventVendorUser = (props) => {
                 label: user.email,
               }))
             );
-            console.log(responseData);
-            console.log(fetchedUsers);
           });
       });
   };
@@ -60,7 +57,6 @@ const AddEventVendorUser = (props) => {
           .then((response) => response.json())
           .then((responseData) => {
             setCurrentEVUs(responseData.vendorUsers);
-            console.log(currentEVUs);
           });
       });
   };
@@ -79,13 +75,7 @@ const AddEventVendorUser = (props) => {
     } else {
       setErrorMessage("");
 
-      console.log("hi from post call");
-      console.log(selectedUser[0].value);
-      console.log(eventVendorId);
-
       let JWToken = await firebase.auth().currentUser.getIdTokenResult();
-
-      console.log(JWToken.token);
 
       if (JWToken !== null) {
         const result = await fetch(EVENTVENDOR_URL + "/add", {

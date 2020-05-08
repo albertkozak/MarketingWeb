@@ -2,7 +2,6 @@ import React from "react";
 
 const VendorItemSL = (props) => {
   const vendor = props.vendor;
-  console.log(vendor);
 
   return (
     <div className="vendorSL">

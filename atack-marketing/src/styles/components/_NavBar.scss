@@ -9,6 +9,7 @@
   width: 100%;
   z-index: 3;
   display: inline-block;
+  background-color: rgba(255, 255, 255, 0.8) 
 }
 
 .header ul {
@@ -16,7 +17,7 @@
   padding: 0;
   list-style: none;
   overflow: hidden;
-  background-color: $white;
+
 }
 
 .header li a {
@@ -27,9 +28,9 @@
   padding: 20px 20px;
   text-decoration: none;
   color: $light-grey;
-}
+  }
 
-.header li a:hover {
+.header li a:hover, a:active{
   color: $orange;
 }
 /* End Header */
@@ -51,8 +52,8 @@
 /* End Logo */
 
 /* Start Menu */
-.header .menu {
-  background-color: rgba(255, 255, 255, 0.8);
+.menu {
+  // background-color: rgba(255, 255, 255, 0.8) 
   clear: both;
   max-height: 0;
   transition: max-height 0.2s ease-out;

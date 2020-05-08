@@ -30,7 +30,12 @@ const EventOrganizerItem = (props) => {
       });
       if (result.status === 200) {
         props.handleChange();
-      } else {
+      } else if (result.status === 400 ){
+        alert("This user is not an organizer fot this event.");
+      } else if (result.status === 403 ){
+        alert("This user cannot be removed at this time.");
+      }
+      else {
         alert("Error: Something went wrong, please try again.");
       }
     }

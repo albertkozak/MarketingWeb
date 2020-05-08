@@ -36,14 +36,13 @@ const NavComponent = () => {
             .then((response) => response.json())
             .then((responseData) => {
               setUser(responseData);
-              if (responseData.isAdmin) {
-                setIsShown(true);
-              } else if (responseData.isEventOrganizer) {
+              if (responseData.isEventOrganizer) {
                 setIsEOShown(true);
-              } else if (responseData.isVendor) {
+              } if (responseData.isVendor) {
                 setIsVendorShown(true)
+              } if (responseData.isAdmin) {
+                setIsShown(true);
               }
-              console.log(responseData);
             });
         });
     }

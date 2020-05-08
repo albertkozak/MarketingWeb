@@ -8,7 +8,6 @@ import { QRCode } from "react-qr-svg";
 
 export default function VendorDetailProductList(props) {
   const eventId = props.eventId;
-  const eventName = props.eventName;
   const eventVendorId = props.eventVendorId;
 
   const [fetchedData, setFetchedData] = useState([]);
@@ -20,10 +19,7 @@ export default function VendorDetailProductList(props) {
   const [updatingProduct, setUpdatingProduct] = useState(null);
   const inputProductName = useRef();
 
-  const [isShown, setIsShown] = useState(false)
-
   function fetchData() {
-    console.log("fetching data")
     setUpdatingProduct(null);
     firebase
       .auth()
@@ -40,7 +36,6 @@ export default function VendorDetailProductList(props) {
           .then((responseData) => {
             setVendorDetails(responseData.vendor);
             setFetchedData(responseData.vendor.products);
-            console.log(responseData);
           });
       });
   }
@@ -50,7 +45,6 @@ export default function VendorDetailProductList(props) {
   }, []);
 
   async function createProduct(event) {
-    console.log("creating product")
     setUpdatingProduct(null);
     event.preventDefault();
     let JWToken = await firebase.auth().currentUser.getIdTokenResult();
@@ -77,7 +71,6 @@ export default function VendorDetailProductList(props) {
         }
       );
       if (result.status === 201) {
-        console.log("succcess");
         fetchData();
         setProductName("");
         setProductPrice("");
@@ -89,7 +82,6 @@ export default function VendorDetailProductList(props) {
   }
 
   async function updateProduct(event) {
-    console.log("updating product")
     event.preventDefault();
     let JWToken = await firebase.auth().currentUser.getIdTokenResult();
 
@@ -116,7 +108,6 @@ export default function VendorDetailProductList(props) {
         }
       );
       if (result.status === 200) {
-        console.log("succcess");
         fetchData();
         setProductName("");
         setProductPrice("");
@@ -128,7 +119,6 @@ export default function VendorDetailProductList(props) {
   }
 
   async function removeProduct(productId) {
-    console.log("removing product")
     setUpdatingProduct(null);
     let JWToken = await firebase.auth().currentUser.getIdTokenResult();
 
@@ -144,7 +134,6 @@ export default function VendorDetailProductList(props) {
         }
       );
       if (result.status === 200) {
-        console.log("succcess");
         fetchData();
       } else {
         alert("Error: Something went wrong, please try again.");
@@ -159,7 +148,6 @@ export default function VendorDetailProductList(props) {
   }
 
   function updateProductButton(product) {
-    console.log("updating")
     setUpdatingProduct(product);
     setProductName(product.productName);
     setProductPrice(product.productPrice);
@@ -177,8 +165,6 @@ export default function VendorDetailProductList(props) {
   }
 
   return (
-    // <div>
-    //   <h3 className="addProductTitle">Event Products</h3>
       <div className="products-container">
       <div className="productListContainer">
         <div>
@@ -274,6 +260,5 @@ export default function VendorDetailProductList(props) {
         )}
       </div>
     </div>
-    // </div>
   );
 }

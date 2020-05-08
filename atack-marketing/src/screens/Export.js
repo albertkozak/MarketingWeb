@@ -44,7 +44,6 @@ const Export = () => {
           .then((response) => response.json())
           .then((responseData) => {
             setSubscriberData(responseData);
-            console.log(responseData);
           });
       });
   };
@@ -52,7 +51,6 @@ const Export = () => {
   function handleSelect(event) {
     setSelectedEvent(event);
     fetchSubscriberList(event[0].value);
-    console.log(event);
   }
 
   const print = () => {
@@ -79,7 +77,7 @@ const Export = () => {
   return (
     <div className="container-export">
       <h1>Export</h1>
-      <p style={{ cursor: "pointer" }} onClick={print} href="#">
+      <p className="printReport" onClick={print} href="#">
         Print Report
       </p>
       {event.length === 0 || event === undefined || event === null ? (

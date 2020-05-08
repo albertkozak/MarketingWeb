@@ -24,8 +24,6 @@ const VendorList = () => {
           .then((response) => response.json())
           .then((responseData) => {
             setFetchedVendors(responseData);
-            console.log(responseData);
-            console.log(fetchedVendors);
           });
       });
   };

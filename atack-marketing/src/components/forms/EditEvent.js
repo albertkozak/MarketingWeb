@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import VenueInputSelector from "./VenueInputSelector";
 import firebase from "../../firebase";
-
 import * as moment from "moment-timezone";
-
 import { BASE_URL } from "../../Config";
 
 export default function AddEvent(props) {
@@ -108,7 +106,7 @@ export default function AddEvent(props) {
             },
           })
             .then((response) => response.json())
-            .then((data) => history.push("/event", { event: data }));
+            .then((data) => history.push("/event", { event: data, user: props.location.state.user }));
         } else {
           alert("Error: Something went wrong, please try again.");
         }

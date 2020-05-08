@@ -12,8 +12,6 @@ const EditUser = (props) => {
   const handleToggle = () => {
     setIsAdmin(!isAdmin);
     setIsChecked(!checked);
-    console.log("is admin: " + isAdmin);
-    console.log("is checked: " + checked);
     if (isAdmin) {
       elevateUser();
     } else {
@@ -68,6 +66,8 @@ const EditUser = (props) => {
       });
       if (result.status === 200) {
         return;
+      } else if (result.status === 400){
+        alert("Cannot change status at this time.")
       } else {
         alert("Error: Something went wront, please try again.");
       }

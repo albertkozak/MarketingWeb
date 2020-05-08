@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 
 const EventItem = (props) => {
   const event = props.event;
-  console.log("from event list")
-  console.log(event)
   const user = props.user;
   const eventVendorUserEvents = props.eventVendorUserEvents
   const formattedDate = new Date(event.eventStartDateTime)
@@ -24,7 +22,6 @@ const EventItem = (props) => {
 
     useEffect(()=> {
       checkIfVendorForEvent();
-      console.log(event)
     })
 
 

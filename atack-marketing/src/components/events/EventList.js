@@ -20,7 +20,6 @@ const EventList = (props) => {
       fetchData();
       fetchEventVendorIds();
       setPassingUser(user)
-      console.log(user)
     }
   }, [user]);
 
@@ -121,12 +120,11 @@ const EventList = (props) => {
               event.eventName.toLowerCase().includes(search.toLowerCase())
             )
             .map((event) => (
-              console.log(event),
               <EventItem key={event.eventId} event={event} user={passingUser} eventVendorUserEvents={eventVendorUserEvents} />
             ))}
         </div>
       )}
-      {isEO || isVendor && !isAdmin && eventVendorUserEvents !== null && (
+      {!isAdmin && eventVendorUserEvents !== null && (
         <div>
           <h3 className="title">Vendored Events</h3>
           {eventVendorUserEvents.map((event) => (

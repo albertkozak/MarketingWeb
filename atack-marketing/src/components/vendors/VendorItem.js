@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 const VendorItem = (props) => {
   const vendor = props.vendor;
-  console.log(vendor);
 
   return (
     <div className="vendorItem">

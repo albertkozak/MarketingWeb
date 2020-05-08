@@ -43,7 +43,6 @@ const EventVendorItem = (props) => {
         alert("The vendor cannot be removed from the event.");
       } else {
         alert("Error: Something went wrong, please try again.");
-        console.log(result.status);
       }
     }
   }

@@ -32,8 +32,6 @@ const AddEventOrganizers = (props) => {
                 label: eo.email,
               }))
             );
-            console.log(responseData);
-            console.log(fetchedEOs);
           });
       });
   };
@@ -75,9 +73,9 @@ const AddEventOrganizers = (props) => {
             },
           })
             .then((response) => response.json())
-            .then((data) => history.push("/event", { event: data }));
+            .then((data) => history.push("/event", { event: data, user: props.location.state.user }));
         } else if (result.status === 400) {
-          setErrorMessage("User is already an event organizer for this event.");
+          setErrorMessage("User is already an organizer for this event.");
         } else if (result.status === 403) {
           setErrorMessage(
             "User cannot be added as an event organizer at this time."

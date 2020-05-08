@@ -26,7 +26,7 @@ const DeleteEvent = (props) => {
         }),
       });
       if (result.status === 200) {
-        window.location.href = "/";
+        history.push("/")
       } else {
         alert("Error: Something went wrong, please try again.");
       }
