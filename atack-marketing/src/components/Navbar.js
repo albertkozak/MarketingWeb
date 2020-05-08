@@ -36,12 +36,13 @@ const NavComponent = () => {
             .then((response) => response.json())
             .then((responseData) => {
               setUser(responseData);
+              if (responseData.isAdmin) {
+                setIsShown(true);
+              }
               if (responseData.isEventOrganizer) {
                 setIsEOShown(true);
               } if (responseData.isVendor) {
                 setIsVendorShown(true)
-              } if (responseData.isAdmin) {
-                setIsShown(true);
               }
             });
         });
@@ -80,7 +81,7 @@ const NavComponent = () => {
               </>
             )}
 
-            {isEOShown && (
+            {isEOShown && !isShown &&  (
 
                 <li>
                   <Link to="/vendors">Vendors</Link>
@@ -88,7 +89,7 @@ const NavComponent = () => {
 
             )}
 
-            {isVendorShown && (
+            {isVendorShown && !isShown && (
                 <li>
                   <Link to="/export">Export</Link>
                 </li>

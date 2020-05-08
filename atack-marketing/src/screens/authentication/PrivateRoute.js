@@ -25,7 +25,7 @@ const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
         .auth()
         .currentUser.getIdTokenResult()
         .then(tokenResponse => {
-        fetch(BASE_URL + "/User", {
+        fetch(BASE_URL + "User", {
           method: "GET",
           headers: {
           Accept: "application/json",
@@ -38,7 +38,6 @@ const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
           setAdmin(responseData.isAdmin)
           setEO(responseData.isEventOrganizer)
           setVendor(responseData.isVendor)
-          console.log(responseData);
           });
         });
       }
