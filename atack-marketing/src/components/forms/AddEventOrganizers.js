@@ -73,7 +73,7 @@ const AddEventOrganizers = (props) => {
             },
           })
             .then((response) => response.json())
-            .then((data) => history.push("/event", { event: data, user: props.location.state.use }));
+            .then((data) => history.push("/event", { event: data, user: props.location.state.user }));
         } else if (result.status === 400) {
           setErrorMessage("User is already an organizer for this event.");
         } else if (result.status === 403) {

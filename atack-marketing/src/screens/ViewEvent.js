@@ -199,7 +199,7 @@ const ViewEvent = (props) => {
               <Link
                 to={{
                   pathname: "/addeventvendor",
-                  state: { currentEvent, fetchedVendors },
+                  state: { currentEvent, fetchedVendors, user },
                 }}
               >
                 <button className="addVendorButton">Add Vendor</button>
