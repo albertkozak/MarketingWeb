@@ -118,6 +118,7 @@ export default function AddEvent() {
             onChange={(e) => setStartDate(e.target.value)}
           />
           <input
+            className="eventStartTime"
             name="eventStartTime"
             type="time"
             placeholder="Start Time"

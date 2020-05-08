@@ -4,6 +4,10 @@
   margin: 5rem 0 1rem;
 }
 
+.react-dropdown-select-item {
+  color: #333;
+}
+
 .addEventForm {
   display: flex;
   flex-direction: column;
@@ -70,11 +74,25 @@
     }
   }
 
-  .input-selector {
-    width: 40%;
-    padding: 1rem 0;
-    border-bottom: none;
+  .eventStartTime {
+    color: $light-grey;
+    font-family: $body-font;
   }
+
+  .react-dropdown-select-item {
+    color: $dark-grey;
+
+    &:hover {
+       background-color: $hover-orange;
+       color: $white;
+    }
+  }
+
+  // .input-selector {
+  //   width: 40%;
+  //   padding: 1rem 0;
+  //   border-bottom: none;
+  // }
 
   .buttons {
     margin-top: 2rem;

@@ -4,7 +4,7 @@ import Select from "react-dropdown-select";
 const EventInputSelector = (props) => {
   return (
     <Select
-      placeholder="Select event(s)"
+      placeholder="Select event"
       options={props.data.map((data) => ({
         label: data.eventName + " - " + data.vendorName,
         value: data.eventVendorId,
