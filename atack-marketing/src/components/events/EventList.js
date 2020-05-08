@@ -14,6 +14,7 @@ const EventList = (props) => {
   const isVendor = user.isVendor;
   const [passingUser, setPassingUser] = useState([])
   const [eventVendorUserEvents, setEventVendorUserEvents] = useState(null)
+  const [noRole, setNoRole] = useState(false)
 
   useEffect(() => {
     if (Object.keys(user).length > 0) {
@@ -75,7 +76,10 @@ const EventList = (props) => {
               setEventVendorUserEvents(responseData.userEventVendors);
             });
         });
-    } else setFetchedEvents(null);
+    } else {
+      setFetchedEvents([]);
+      setNoRole(true)
+    }
   };
 
   const fetchEventVendorIds = () => {
@@ -105,15 +109,16 @@ const EventList = (props) => {
 
   return (
     <div className="wrapper">
-      <SearchBar
-        search={search}
-        handleSearchTerm={(e) => handleSearchTerm(e)}
-        value={search}
-      />
-      {fetchedEvents.length === 0 || fetchedEvents === undefined ? (
+      {noRole && <p>You have no events at this time</p>}
+      {fetchedEvents.length === 0 || fetchedEvents === undefined || fetchedEvents === null ? (
         null
       ) : (
         <div>
+          <SearchBar
+            search={search}
+            handleSearchTerm={(e) => handleSearchTerm(e)}
+            value={search}
+          />
            {!isAdmin && (<h3 className="title">Organized Events</h3> )}
           {fetchedEvents
             .filter((event) =>
@@ -136,4 +141,4 @@ const EventList = (props) => {
   );
 };
 
-export default withRouter(EventList);
+export default EventList;
