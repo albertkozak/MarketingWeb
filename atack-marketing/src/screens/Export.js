@@ -83,11 +83,13 @@ const Export = () => {
       {event.length === 0 || event === undefined || event === null ? (
         <p></p>
       ) : (
+        <div className="input-selector-export">
         <EventInputSelector
           data={event}
           selectedEvent={selectedEvent}
           handleSelect={handleSelect}
         />
+        </div>
       )}
       {subscriberData && (
         <div id="printable">

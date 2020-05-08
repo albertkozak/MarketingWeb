@@ -13,6 +13,20 @@
 .input-selector {
   width: 50%;
   margin: 0 auto;
+
+  .react-dropdown-select-item {
+    color: #333;
+  }
+  
+  .react-dropdown-select-item {
+    color: $dark-grey;
+    width: 100%;
+  
+    &:hover {
+       background-color: $hover-orange;
+       color: $white;
+    }
+  }
 }
 
 .buttons {
