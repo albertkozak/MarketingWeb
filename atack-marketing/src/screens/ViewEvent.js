@@ -137,9 +137,8 @@ const ViewEvent = (props) => {
             </div>
           </div>
         </div>
-        {/*  */}
         {isAdmin && (
-          <>
+          <div>
         <div className="edit-del-links">
           <Link
              to={{
@@ -211,7 +210,6 @@ const ViewEvent = (props) => {
             ) : (
               <ul className="eventVendorsList">
                 {fetchedVendors.map((vendor) => (
-                  <>
                     <EventVendorItem
                       key={vendor.eventVendorId}
                       vendor={vendor}
@@ -220,13 +218,12 @@ const ViewEvent = (props) => {
                       handleChange={handleChange}
                       handleClickedProduct={handleClickedProduct}
                     />
-                  </>
                 ))}
               </ul>
             )}
           </div>
         </div>
-        </>
+        </div>
          )}
           {isEO && (
           <div className="eventVendorsContainer-eo">
@@ -247,7 +244,7 @@ const ViewEvent = (props) => {
             ) : (
               <ul className="eventVendorsList">
                 {fetchedVendors.map((vendor) => (
-                  <>
+                  <div>
                     <EventVendorItem
                       key={vendor.eventVendorId}
                       vendor={vendor}
@@ -255,7 +252,7 @@ const ViewEvent = (props) => {
                       eventName={currentEvent.eventName}
                       handleChange={handleChange}
                     />
-                  </>
+                  </div>
                 ))}
               </ul>
             )}
