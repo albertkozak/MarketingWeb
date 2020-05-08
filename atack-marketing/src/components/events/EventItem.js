@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
+import * as moment from "moment-timezone";
 
 const EventItem = (props) => {
   const event = props.event;
   const user = props.user;
   const eventVendorUserEvents = props.eventVendorUserEvents
-  const formattedDate = new Date(event.eventStartDateTime)
-    .toISOString()
-    .slice(0, 10);
+  // const formattedDate = new Date(event.eventStartDateTime)
+  //   .toISOString()
+  //   .slice(0, 10);
   const [eventVendorId, setEventVendorId] = useState(null)
 
     function checkIfVendorForEvent() {
@@ -35,7 +36,10 @@ const EventItem = (props) => {
       >
         <h3 className="eventTitle">{event.eventName}</h3>
       </Link>
-      <p className="eventStartDateTime">{formattedDate}</p>
+      <p className="eventStartDateTime">            {moment
+              .utc(event.eventStartDateTime)
+              .local()
+              .format("l")}</p>
       <div className="edit-del-links">
         <Link
           to={{
