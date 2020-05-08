@@ -144,7 +144,7 @@ const ViewEvent = (props) => {
           <Link
              to={{
               pathname: "/editEvent",
-              state: { currentEvent },
+              state: { currentEvent, user },
             }}
           >
         {" "}

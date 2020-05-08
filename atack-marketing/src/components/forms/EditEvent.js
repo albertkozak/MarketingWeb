@@ -106,7 +106,7 @@ export default function AddEvent(props) {
             },
           })
             .then((response) => response.json())
-            .then((data) => history.push("/event", { event: data }));
+            .then((data) => history.push("/event", { event: data, user: props.location.state.user }));
         } else {
           alert("Error: Something went wrong, please try again.");
         }
