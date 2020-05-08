@@ -25,7 +25,7 @@ const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
         .auth()
         .currentUser.getIdTokenResult()
         .then(tokenResponse => {
-        fetch(BASE_URL + "/User", {
+        fetch(BASE_URL + "User", {
           method: "GET",
           headers: {
           Accept: "application/json",

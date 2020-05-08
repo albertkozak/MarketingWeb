@@ -81,7 +81,7 @@ const NavComponent = () => {
               </>
             )}
 
-            {isEOShown &&  (
+            {isEOShown && !isShown &&  (
 
                 <li>
                   <Link to="/vendors">Vendors</Link>
@@ -89,7 +89,7 @@ const NavComponent = () => {
 
             )}
 
-            {isVendorShown && (
+            {isVendorShown && !isShown && (
                 <li>
                   <Link to="/export">Export</Link>
                 </li>
