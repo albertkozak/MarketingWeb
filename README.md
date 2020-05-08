@@ -1,60 +1,53 @@
 # Industry - SSD
-A React Native and .NET Marketing Application created by Athena, Tony, Albert, Crystal, Kasra. Copyright 2020.
+A React and .NET Marketing Web Application created by Athena, Tony, Albert, Crystal, Kasra. Copyright 2020.
+
+![App Demo](media/demo.gif)
 
 ## Installation
 `git clone`
-`cd MarketingWeb`
+`cd AtackMarketing`
 `yarn install`
 
-## Features Web: User Management
-Admin: (Full Access)
+## Features
+Admin:
+- Full access privileges
 - Add and manage events
-- All permissions that event organizers have
+- Add event organizers and vendors to events
+- Manage user roles
 
 Event Organizer:
-- Add and manage vendors
-- All permissions that vendors have
+- Add and manage vendors for events
 
 Vendors:
-- Add and manage marketing materials
-- View and export all subscribers (per event or app wide)
+- Add and manage marketing products
+- View and export all subscribers for an event
 
 Unique QR Generator:
 - Created when a vendor is added to an event
-  - Pending further review
+- Updates automatically with changes in vendor's marketing products
   
-## Features Mobile: Guest Access
-User Profile:
-- Register
-- Login
-
-QR Scanner:
-- Implements camera
-
-Search / View Event:
-- Users can join and leave events
-- View vendors
-- Information displayed in a list and detail view
-- Sort functionality (nice-to-have)
-
 ## Technologies
-- React Native
+- React
 - .NET
 - Adobe XD
 
-## Application Prototypes
-
-## Web App
+## Application Prototype
 [View the full prototype on Adobe XD](https://xd.adobe.com/view/8de0cde6-1fff-47b7-68f2-06945b2658b0-fbd1/)
 
-![picture](images/1.png)
-![picture](images/2.png)
-![picture](images/3.png)
-![picture](images/4.png)
+## Web App - Admin
+![picture](media/1.png)
+![picture](media/2.png)
+![picture](media/3.png)
+![picture](media/4.png)
 
-## Mobile App
-[View the full prototype on Adobe XD](https://xd.adobe.com/view/af850f75-0f9d-414c-6f33-cc7305f76382-d9b4/)
+## Web App - Event Organizer / Vendor
+![picture](media/5.png)
+![picture](media/6.png)
+![picture](media/7.png)
 
-![picture](images/5.png)
-![picture](images/6.png)
-![picture](images/7.png)
+## What's Next?
+- Add view filters to screens
+- Edit profile details
+- Downloadable export list
+- Multi-selector functionality
+- Upload images to events and vendors
