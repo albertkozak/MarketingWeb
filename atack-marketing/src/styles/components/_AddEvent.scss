@@ -88,6 +88,13 @@
     }
   }
 
+  .react-dropdown-select-item.react-dropdown-select-item-selected,
+  .react-dropdown-select-item.react-dropdown-select-item-active {
+    background: $orange;
+    color: #fff;
+    font-weight: bold;
+  }
+
   // .input-selector {
   //   width: 40%;
   //   padding: 1rem 0;
