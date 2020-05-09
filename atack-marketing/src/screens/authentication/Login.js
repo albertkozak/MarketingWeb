@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useContext}from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import firebase from "../../firebase";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect  } from "react-router-dom";
 import Logo from "../../assets/full-logo.png";
 import { withRouter, Link } from "react-router-dom";
+import { AuthContext } from "./Auth";
 
 const Login = () => {
   const history = useHistory();
@@ -29,6 +30,12 @@ const Login = () => {
         }, 1000);
       }
     });
+  }
+
+  const { currentUser } = useContext(AuthContext);
+
+  if (!!currentUser) {
+    return <Redirect to="/" />;
   }
 
   return (

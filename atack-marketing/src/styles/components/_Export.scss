@@ -50,4 +50,11 @@
        color: $white;
     }
   }
+
+  .react-dropdown-select-item.react-dropdown-select-item-selected,
+  .react-dropdown-select-item.react-dropdown-select-item-active {
+    background: $orange;
+    color: #fff;
+    font-weight: bold;
+  }
 }
